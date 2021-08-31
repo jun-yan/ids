@@ -40,4 +40,9 @@ We will supplement the in-class exercises with topic presentations.
 - Write a book manuscript with Jupyter-book
 - Coach a data science competition on Kaggle
 
+## Sreeram Anantharaman
+
+- Become competent in Python
+- Successfully complete a project using python
+- Should be comfortable using python for data analysis
 
