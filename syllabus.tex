@@ -1,0 +1,173 @@
+\documentclass[twocolumn]{article}
+\usepackage[hmargin={0.5in, 0.5in}, vmargin={0.8in, 0.8in}]{geometry}
+\usepackage{booktabs}
+\usepackage[table]{xcolor}
+\usepackage{hyperref}
+\usepackage[anythingbreaks]{breakurl}
+
+\usepackage[compact]{titlesec}
+
+\newcommand{\pkg}[1]{{\normalfont\fontseries{b}\selectfont #1}}
+\let\proglang=\textsf
+\let\code=\texttt
+
+\usepackage{color}
+\newcommand{\jy}[1]{\textcolor{red}{Updated: (#1)}}
+
+\usepackage{enumitem}
+\setlist{parsep=0pt, leftmargin=4mm, topsep=0pt, itemsep=8pt}
+% \setlist{nolistsep}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+\lhead{\sf STAT/BIST 5255}
+\rhead{Fall 2021}
+\lfoot{\sf jun.yan@uconn.edu}
+\rfoot{\url{http://www.stat.uconn.edu/~jyan/}}
+% \rhead{{\color{gray}\it Course Syllabus --- Spring 2021, \thepage/\pageref{LastPage}}}
+
+\begin{document}
+% \maketitle
+
+\title{STAT/BIST 5255: Introduction to Data Science}
+\date{August 31, 2021}
+
+\maketitle
+
+\thispagestyle{fancy}
+
+\begin{description}
+\item[Instructor:]
+  Jun Yan\\
+  % Austin 328\\
+  % 860/486-3416\\
+  jun.yan@uconn.edu
+
+\item[Lectures:] 
+  TuTh 3:30--4:45 pm @ AUST 313
+  
+  % \jy{Log into HuskyCT; Go into the course; Click on WebEx on the left menu and
+  %   then you will see the lecture meetings. Recordings will be here too when
+  %   they are available.}
+
+\item[Office Hours:] 
+  W 12:30 -- 1:30 pm @ WebEx virtual office
+  \url{https://uconn-cmr.webex.com/meet/juy07002}
+  or by appointment.
+
+% \item[Grader:] Jing Li (\href{mailto:
+%   jingli123@uconn.edu}{jingli123@uconn.edu})
+  
+\item[Prerequisites]
+  Open to graduate students in Statistics, others with permission. Not
+  open for credit to students who have passed STAT 3255.
+    
+\item[Course Description:]
+  Introduction to data science for effectively storing, processing,
+  visualizing, analyzing and making inferences from data to enable
+  decision making. Topics include project management, data
+  preparation, data visualization, statistical modeling, machine
+  learning, distributed computing and ethics.
+  
+\item[Course Materials:]
+  Lecture notes, assignments, sample code, datasets,  and other course material will be posted
+  on the HuskyCT course website (available at \url{https://lms.uconn.edu/}).
+  Please visit this site often to ensure timely obtainment of materials.
+  
+%{\red The lecture notes will be available online before each class.}
+\item[Recommended Textbooks:]\hspace{0pt}
+  \begin{enumerate}
+  \item 
+    ``Python Data Science Handbook: Essential Tools for Working with
+    Data,'' First Edition, by Jake VanderPlas, O’Reilly Media, 2016.
+ 
+  \item
+    ``Python for Data Analysis: Data Wrangling with Pandas, NumPy, and
+    IPython.''  Second Edition by Wes McKinney, O’Reilly Media, 2018.
+  \item
+    \href{https://www.practicaldatascience.org/html/not_a_mids_student.html}{Practical
+    Data Science at Duke}.
+  \end{enumerate}
+
+\item[Computing:]
+  \proglang{Python} will be the primary computing environment. You are
+  free to choose any interactive development environment (Jupyter
+  Notebook, VS Code, Emacs, etc.). Checkout
+  \href{https://google.github.io/styleguide/pyguide.html}{Google
+  Python Style Guide} and practice the recommendations.
+
+  Git will be used for project management and work flows, and GitHub
+  Classroom will be used for homework submission and grading. Learn
+  and practice \href{https://gitexercises.fracz.com}{online}.
+
+  Command line operation is essential. Point-and-clicks are enemies or
+  replicability and automation. Pick the basics from any tutorial
+  (e.g.,
+  \href{https://ubuntu.com/tutorials/command-line-for-beginners}{Ubuntu}).
+
+  Always be ready to learn new things.
+
+\item[Grading:]
+The grade for this course will be based on:
+\begin{center}
+  \rowcolors{2}{blue!20}{gray!20}
+  \begin{tabular}{lr}
+    \toprule
+    Category                & Percentage\\
+    \midrule
+    Participation           &  10\% \\
+    Homework              &  15\% \\
+    Presentations          &  25\% \\
+    Midterm Project      &  20\% \\
+    Final Project            & 30\% \\
+    \bottomrule
+  \end{tabular}
+\end{center} 
+
+\item[Participation:]  Participation in the remote setting includes
+  active use of HuskyCT Discussion Boards, answering questions posed
+  during lecture, and evaluation of presentations from the
+  undergraduate students.
+
+\item[Homework:]\hspace{0pt}
+\begin{itemize}
+\item Homeworks will be assigned roughly weekly throughout the
+  semester.  Students may consult amongst themselves or with the
+  instructor, but each student must submit his/her own work.
+  
+\item All completed assignments are to be submitted by the due date. 
+Assignments will be accepted up to 48 hours late, but with penalty.  If the
+submission is within 48 hours of the due date and time, total amount of credit
+available will be a linear function of time-beyond-due, ranging from 95\%--50\%
+of the total points. Submissions over 48 hours late will not be graded and will
+receive no credit.
+		
+\item No credit will be given for submitted assignments exhibiting
+  duplication or copying of solutions (from peers or existing
+  solutions).
+\end{itemize}
+
+\item[Midterm Project:]
+  The midterm project will be an assigned one. It requires completion
+  of the analysis component of a full data science project
+  and presenting results.
+  
+\item[Project:] The final project will be due by 11:59pm, Friday,
+  December 10, 2021. The topic will be of your choice. It should show
+  the whole cycle of a real data science project. Consider projects at
+  data science competition sites (e.g., \url{https://kaggle.com}).
+
+
+\item[COVID Guidelines]
+  See \url{https://covid.uconn.edu/campus-guidelines}.
+
+\item[University Policies and Academic Integrity]
+  See \url{http://provost.uconn.edu/syllabi-references}.
+  
+\end{description}
+% \label{LastPage}
+\end{document}
