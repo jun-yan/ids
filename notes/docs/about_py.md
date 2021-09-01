@@ -9,7 +9,7 @@ kernelspec:
   name: python3
 ---
 
-(about_py)=
+<!-- (about_py)= -->
 
 # About Python
 
@@ -58,9 +58,9 @@ in the fields of finance and banking.
 The following chart, produced using Stack Overflow Trends, shows one
 measure of the relative popularity of Python
 
-```{figure} /_static/lecture_specific/about_py/python_vs_matlab.png
-:scale: 72%
-```
+<!-- ```{figure} /_static/lecture_specific/about_py/python_vs_matlab.png -->
+<!-- :scale: 72% -->
+<!-- ``` -->
 
 The figure indicates not only that Python is widely used but also that
 adoption of Python has accelerated significantly since 2012.
@@ -73,9 +73,9 @@ library for data analysis with Python has exploded, as seen here.
 
 (The corresponding time path for MATLAB is shown for comparison)
 
-```{figure} /_static/lecture_specific/about_py/pandas_vs_matlab.png
-:scale: 23%
-```
+<!-- ```{figure} /_static/lecture_specific/about_py/pandas_vs_matlab.png -->
+<!-- :scale: 23% -->
+<!-- ``` -->
 
 Note that pandas takes off in 2012, which is the same year that we see
 Python\'s popularity begin to spike in the first figure.
