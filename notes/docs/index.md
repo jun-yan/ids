@@ -32,12 +32,37 @@ These notes are built using Jupyter Book 2.0.
 
 We will supplement the in-class exercises with topic presentations.
 
-# My Goals
+# My Goals (Alphabetical order)
 
-## Jun Yan
+## Yan, Jun
 
 - Become competent in Python
+- Write a (simple) Python package
 - Write a book manuscript with Jupyter-book
 - Coach a data science competition on Kaggle
 
+## Last, First
+
+- Add your goal 1
+- Goal 2
+
+## Last, First
+
+- Goal 1
+- Goal 2
+
+
+# Task Board
+
+- Git: Solving conflicts in merging
+- A tutorial on Jupyter Notebook
+
+# Resources
+
+- Command line jump start from Dr. Eubank:
+  [Basics](https://www.practicaldatascience.org/html/command_line_part1.html); 
+  [Advanced](https://www.practicaldatascience.org/html/command_line_part2.html).
+- [Git and GitHub](https://www.practicaldatascience.org/html/git_and_github.html) from Dr. Eubank
+- [Writing a book with Jupyter](https://jupyterbook.org/intro.html)
+- [MyST notebook with Jupytext](https://jupyterbook.org/file-types/myst-notebooks.html)
 
