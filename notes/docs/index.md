@@ -34,22 +34,18 @@ We will supplement the in-class exercises with topic presentations.
 
 # My Goals (Alphabetical order)
 
+## Sreeram Anantharaman
+
+- Become competent in Python
+- Successfully complete a project using python
+- Should be comfortable using python for data analysis
+
 ## Yan, Jun
 
 - Become competent in Python
 - Write a (simple) Python package
 - Write a book manuscript with Jupyter-book
 - Coach a data science competition on Kaggle
-
-## Last, First
-
-- Add your goal 1
-- Goal 2
-
-## Last, First
-
-- Goal 1
-- Goal 2
 
 
 # Task Board
