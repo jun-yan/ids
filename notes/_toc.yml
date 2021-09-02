@@ -2,4 +2,4 @@ format: jb-article
 root: docs/index
 sections:
 - file: docs/intro
-- file: docs/about_py
+- file: docs/pybasics

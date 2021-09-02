@@ -20,10 +20,10 @@ mathematics/statistics, computer science, and domain knowledge.
 
 In her 2014 Presidential Address, Prof. Bin Yu, then President of the
 Institute of Mathematical Statistics, gave an interesting definition:
-\[
+```{math}
 \mbox{Data Science} =
 \mbox{S}\mbox{D}\mbox{C}^3,
-\]
+```
 where S is Statistics, D is domain/science knowledge, and
 the three C's are computing, collaboration/teamwork, and communication
 to outsiders.
@@ -63,4 +63,3 @@ need it).
 1. Statistical modeling (statsmodels)
 1. Machine learning (Scikit-learn)
 1. Distributed computing (Dask)
-
