@@ -47,6 +47,8 @@ We will supplement the in-class exercises with topic presentations.
 - Explore packages within Python for purposes of data visualization and possible interactive component
 - Complete a project in Python to develop skills which can be applied to the creation of a web application
 
+## Jintao Zhang
+
 ## Yan, Jun
 
 - Become competent in Python
