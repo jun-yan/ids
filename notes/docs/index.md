@@ -40,6 +40,13 @@ We will supplement the in-class exercises with topic presentations.
 - Successfully complete a project using python
 - Should be comfortable using python for data analysis
 
+## Sydney Hyde
+
+- To become more knowledgeable in Python
+- Develop more confidence when working with Github
+- Explore packages within Python for purposes of data visualization and possible interactive component
+- Complete a project in Python to develop skills which can be applied to the creation of a web application
+
 ## Yan, Jun
 
 - Become competent in Python
