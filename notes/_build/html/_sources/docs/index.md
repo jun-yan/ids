@@ -34,6 +34,10 @@ We will supplement the in-class exercises with topic presentations.
 
 # My Goals (Alphabetical order)
 
+## Jintao Zhang
+- Learn more about computer languages
+- Make a project in python based on Kaggle data
+
 ## Sreeram Anantharaman
 
 - Become competent in Python
@@ -47,9 +51,6 @@ We will supplement the in-class exercises with topic presentations.
 - Explore packages within Python for purposes of data visualization and possible interactive component
 - Complete a project in Python to develop skills which can be applied to the creation of a web application
 
-## Jintao Zhang
-- Learn more about computer languages
-- Make a project in python based on Kaggle data
 
 ## Yan, Jun
 
