@@ -49,6 +49,7 @@ We will supplement the in-class exercises with topic presentations.
 
 ## Jintao Zhang
 - Learn more about computer languages
+- Make a project in python based on Kaggle data
 
 ## Yan, Jun
 
