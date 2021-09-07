@@ -274,3 +274,10 @@ TSWLatexianTemp*
 
 # Makeindex log files
 *.lpz
+
+# R temporaries
+*/*.Rhistory
+*/*.RData
+
+# Mac backup
+*/.DS_Store
