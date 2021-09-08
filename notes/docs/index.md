@@ -34,6 +34,9 @@ We will supplement the in-class exercises with topic presentations.
 
 # My Goals (Alphabetical order)
 
+## Jintao Zhang
+- Get to know more conputer languages
+
 ## Sreeram Anantharaman
 
 - Become competent in Python
