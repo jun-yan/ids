@@ -1,0 +1,374 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jump Start with Python &#8212; Introduction to Data Science</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Introduction" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/tricircle.pdf" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pybasics.html">
+   Python for R Users
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/index.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Jump Start with Python
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#i-understand">
+   I Understand
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#my-goals-alphabetical-order">
+   My Goals (Alphabetical order)
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jintao-zhang">
+     Jintao Zhang
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sreeram-anantharaman">
+     Sreeram Anantharaman
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sydney-hyde">
+     Sydney Hyde
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#yan-jun">
+     Yan, Jun
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#task-board">
+   Task Board
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resources">
+   Resources
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="jump-start-with-python">
+<h1>Jump Start with Python<a class="headerlink" href="#jump-start-with-python" title="Permalink to this headline">¶</a></h1>
+<p>This is a collection of notes to jump start in data science with Python</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The notes are a joint effort of the instructor and the students in
+STAT 5255, Fall 2021, through experimental learning.</p>
+</div>
+<p>These notes are built using Jupyter Book 2.0.</p>
+</div>
+<div class="section" id="i-understand">
+<h1>I Understand<a class="headerlink" href="#i-understand" title="Permalink to this headline">¶</a></h1>
+<p>(From Dr. Nicholas Eubank)</p>
+<blockquote>
+<div><p>Data science is an applied discipline, and so this will be an
+intensely applied class with lots of hands-on exercises.</p>
+<p>To make it possible for us to work through problems together as they
+arise, we will dedicate most of our class time to completing these
+exercises in small groups. That means that students will be required
+to read instructional material before every class so they will be
+ready to do these exercises. This is what is referred to as ``flipping
+the classroom.”</p>
+<p>In order to make this class organization work, it will be critically
+important that students do their assigned readings before every class,
+and as discussed below, this will be reflected in how grades are
+assigned in this class. Students who do not complete their assigned
+readings and tutorials before each class should not expect to receive
+good grades, regardless of performance on project assignments.</p>
+</div></blockquote>
+<p>We will supplement the in-class exercises with topic presentations.</p>
+</div>
+<div class="section" id="my-goals-alphabetical-order">
+<h1>My Goals (Alphabetical order)<a class="headerlink" href="#my-goals-alphabetical-order" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="jintao-zhang">
+<h2>Jintao Zhang<a class="headerlink" href="#jintao-zhang" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Get to know more conputer languages</p></li>
+</ul>
+</div>
+<div class="section" id="sreeram-anantharaman">
+<h2>Sreeram Anantharaman<a class="headerlink" href="#sreeram-anantharaman" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Become competent in Python</p></li>
+<li><p>Successfully complete a project using python</p></li>
+<li><p>Should be comfortable using python for data analysis</p></li>
+</ul>
+</div>
+<div class="section" id="sydney-hyde">
+<h2>Sydney Hyde<a class="headerlink" href="#sydney-hyde" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>To become more knowledgeable in Python</p></li>
+<li><p>Develop more confidence when working with Github</p></li>
+<li><p>Explore packages within Python for purposes of data visualization and possible interactive component</p></li>
+<li><p>Complete a project in Python to develop skills which can be applied to the creation of a web application</p></li>
+</ul>
+</div>
+<div class="section" id="yan-jun">
+<h2>Yan, Jun<a class="headerlink" href="#yan-jun" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Become competent in Python</p></li>
+<li><p>Write a (simple) Python package</p></li>
+<li><p>Write a book manuscript with Jupyter-book</p></li>
+<li><p>Coach a data science competition on Kaggle</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="task-board">
+<h1>Task Board<a class="headerlink" href="#task-board" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Git: Solving conflicts in merging</p></li>
+<li><p>A tutorial on Jupyter Notebook</p></li>
+</ul>
+</div>
+<div class="section" id="resources">
+<h1>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Command line jump start from Dr. Eubank:
+<a class="reference external" href="https://www.practicaldatascience.org/html/command_line_part1.html">Basics</a>;
+<a class="reference external" href="https://www.practicaldatascience.org/html/command_line_part2.html">Advanced</a>.</p></li>
+<li><p><a class="reference external" href="https://www.practicaldatascience.org/html/git_and_github.html">Git and GitHub</a> from Dr. Eubank</p></li>
+<li><p><a class="reference external" href="https://jupyterbook.org/intro.html">Writing a book with Jupyter</a></p></li>
+<li><p><a class="reference external" href="https://jupyterbook.org/file-types/myst-notebooks.html">MyST notebook with Jupytext</a></p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+     <div id="next">
+        <a class="right-next" href="intro.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Introduction</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Jun Yan and students in STAT 5255, Fall 2021<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
