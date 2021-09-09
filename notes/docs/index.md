@@ -36,6 +36,9 @@ We will supplement the in-class exercises with topic presentations.
 
 ## Jintao Zhang
 - Get to know more conputer languages
+- Get to know more knowledge about computer languages
+- Try to capture the way data scientist build a project by git
+- Apply data analytic methods in my current study
 
 ## Sreeram Anantharaman
 
@@ -49,6 +52,13 @@ We will supplement the in-class exercises with topic presentations.
 - Develop more confidence when working with Github
 - Explore packages within Python for purposes of data visualization and possible interactive component
 - Complete a project in Python to develop skills which can be applied to the creation of a web application
+
+## Surya Teja Eada
+
+- Be able to tutor or give an intro to python
+- Successfully complete class project in python
+- Be comfortable to change my project from R to python
+- Write a python book with an interactive course (of maybe Applied Statistics) 
 
 ## Yan, Jun
 
