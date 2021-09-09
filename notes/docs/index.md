@@ -35,7 +35,6 @@ We will supplement the in-class exercises with topic presentations.
 # My Goals (Alphabetical order)
 
 ## Jintao Zhang
-- Get to know more conputer languages
 - Get to know more knowledge about computer languages
 - Try to capture the way data scientist build a project by git
 - Apply data analytic methods in my current study
