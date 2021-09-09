@@ -1,5 +1,6 @@
 format: jb-article
 root: docs/index
 sections:
+- file: docs/tasks
 - file: docs/intro
 - file: docs/pybasics
