@@ -20,4 +20,4 @@ When you pick a task, cross it out and add your name.
 1. Jupyter-book/MyST markdown guide
 1. Errors and debudding
 1. Profiling and timing
-1. Numpy (JVP p.33-77)
+1. Sreeram Anantharaman ~~Numpy (JVP p.33-77)~~
