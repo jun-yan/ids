@@ -39,6 +39,11 @@ We will supplement the in-class exercises with topic presentations.
 - Try to capture the way data scientist build a project by git
 - Apply data analytic methods in my current study
 
+## Shike Xu
+- Get familiar with Python and Github commands
+- Develop Python coding skills and try to conduct some real data analysis
+- Contribute to some tutorial files of this class
+
 ## Sreeram Anantharaman
 
 - Become competent in Python
