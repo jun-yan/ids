@@ -3,8 +3,10 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.10.3
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -21,13 +23,13 @@ Solutions](https://github.com/MangoTheCat/python-for-r-users-workshop)
 - Getting help
 
 ## Reading data and manipulations
+
 ```{code-cell} ipython3
 import pandas as pd
 
 mtcars = pd.read_csv("../data/mtcars.csv", index_col = 0)
 mtcars.head(5)
 mtcars[['mpg', 'wt']]
-
 ```
 
 ## Writing a function
@@ -51,10 +53,10 @@ start = timeit.default_timer()
 print(fib_rs(35))
 stop = timeit.default_timer()
 print('Time: ', stop - start)
-
 ```
 
 1. Dynamic programming memoization;
+
 ```{code-cell} ipython3
 def fib_dm_helper(n,mem):
     if mem[n] is not None:
@@ -62,28 +64,29 @@ def fib_dm_helper(n,mem):
     elif (n==1 or n==2):
         result = 1
     else:
-        result = fib_dm_helper(n-1,mem)+fib_dm_helper(n-2,mem)
+        result = fib_dm_helper(n - 1, mem) + fib_dm_helper(n - 2, mem)
     mem[n]=result
     return result
 
 def fib_dm(n):
     mem=[None]*(n+1)
-    return fib_dm_helper(n,mem)
+    return fib_dm_helper(n, mem)
 	
 start = timeit.default_timer()
 print(fib_dm(35))
 stop = timeit.default_timer()
-print('Time: ', stop - start) 
+print('Time: ', stop - start)
 ```
 
 1. Dynamic programming bottom-up.
+
 ```{code-cell} ipython3
 def fib_dbu(n):
     mem=[None]*(n+1)
     mem[1]=1;
     mem[2]=1;
     for i in range(3,n+1):
-        mem[i]=mem[i-1]+mem[i-2]
+        mem[i] = mem[i-1] + mem[i-2]
     return mem[n]
 	
 
