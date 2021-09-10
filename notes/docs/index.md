@@ -71,6 +71,11 @@ We will supplement the in-class exercises with topic presentations.
 - Write a book manuscript with Jupyter-book
 - Coach a data science competition on Kaggle
 
+## Zefang Min
+- Get started with python
+- Complete a Kaggle project in Python
+- Contribute to a project and collaborate with others on Github
+- Survive the class
 
 # Task Board
 
