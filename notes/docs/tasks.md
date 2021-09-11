@@ -18,6 +18,6 @@ When you pick a task, cross it out and add your name.
 2. Zefang Min ~~ Numbers in computers
 3. Shike XU ~~Google rectuiting ad problem~~
 4. Sydney Hyde ~~Jupyter-book/MyST markdown guide~~
-5. Jintao Zhan ~~Errors and debudding~~
+5. Jintao Zhang ~~Errors and debudding~~
 6. Profiling and timing
 7. Sreeram Anantharaman ~~Numpy (JVP p.33-77)~~
