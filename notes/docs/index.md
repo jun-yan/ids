@@ -81,7 +81,8 @@ We will supplement the in-class exercises with topic presentations.
 
 - Git: Solving conflicts in merging
 - A tutorial on Jupyter Notebook
-
+- YAML (Usage in Rmd and Jupyter books)
+ 
 # Resources
 
 - Command line jump start from Dr. Eubank:
