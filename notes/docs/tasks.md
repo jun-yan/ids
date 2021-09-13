@@ -19,5 +19,5 @@ When you pick a task, cross it out and add your name.
 3. Shike XU ~~Google recruiting ad problem~~
 4. Sydney Hyde ~~Jupyter-book/MyST markdown guide~~
 5. Jintao Zhang ~~Errors and debugging~~
-6. Profiling and timing
+6. Surya Eada ~~Profiling and timing~~
 7. Sreeram Anantharaman ~~Numpy (JVP p.33-77)~~
