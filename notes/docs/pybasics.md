@@ -86,10 +86,40 @@ def fib_dbu(n):
 %timeit fib_dbu(500)
 ```
 
-
 ## Variables versus Objects
 See materials and exercises of Dr. Eubank's [PDS site](https://www.practicaldatascience.org/html/index.html).
 
+
+## Visualization
+Change the default plot format to `svg` for high quality display.
+
+```{code-cell} ipython3
+%config InlineBackend.figure_formats = ['svg']
+
+import seaborn as sns
+%matplotlib inline
+
+sns.set_theme(style="darkgrid")
+df = sns.load_dataset("penguins")
+fig = sns.displot(
+    df, x="flipper_length_mm", col="species", row="sex",
+    binwidth=3, height=3, facet_kws=dict(margin_titles=True)
+)
+```
+
+Let's see some plots using the `mtcars` example.
+``` {code-cell} ipython3
+sns.lmplot(x = "mpg", y = "wt", data = mtcars)
+sns.displot(mtcars, x = "mpg", col = "gear", binwidth = 3, height = 3)
+```
+
+``` {code-cell} ipython3
+sns.lmplot(x = "mpg", y = "wt", hue = "gear", data = mtcars)
+```
+
+``` {code-cell} ipython3
+sns.lmplot(x = "mpg", y = "wt", col = "gear", data = mtcars)
+```
 
 
 # General Resources
