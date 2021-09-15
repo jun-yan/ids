@@ -108,16 +108,16 @@ fig = sns.displot(
 ```
 
 Let's see some plots using the `mtcars` example.
-``` {code-cell} ipython3
+```{code-cell} ipython3
 sns.lmplot(x = "mpg", y = "wt", data = mtcars)
 sns.displot(mtcars, x = "mpg", col = "gear", binwidth = 3, height = 3)
 ```
 
-``` {code-cell} ipython3
+```{code-cell} ipython3
 sns.lmplot(x = "mpg", y = "wt", hue = "gear", data = mtcars)
 ```
 
-``` {code-cell} ipython3
+```{code-cell} ipython3
 sns.lmplot(x = "mpg", y = "wt", col = "gear", data = mtcars)
 ```
 
