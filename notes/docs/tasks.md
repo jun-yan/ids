@@ -16,17 +16,21 @@ When you pick a task, cross it out and add your name.
 
 
 1. Jun Yan ~~Variables and objects~~ 
+1. Jun Yan ~~Plotting with Matplotlib/Seaborn~~ 
 1. Zefang Min ~~Numbers in computers~~
 1. Shike Xu ~~Google recruiting ad problem~~
 1. Sydney Hyde ~~Jupyter-book/MyST markdown guide~~
 1. Jintao Zhang ~~Errors and debugging~~
 1. Surya Eada ~~Profiling and timing~~
 1. Sreeram Anantharaman ~~Numpy (JVP p.33-77)~~
-
-1. Plotting with Matplotlib/Seaborn
-
-1. Statistical distributions (Scipy); likelihood estimation
+1. Statistical distributions (Scipy)
+1. Optimization (Scipy)
 1. Python dictionary
+1. Numpy advanced (JVP p.78-96)
+1. Pandas: object; indexing; operation (JVP. p.97-118)
+1. Pandas: missing data; hierarchical indexing; (JVP p.119-140)
+1. Pandas: dataset operations (JVP p. 141-178)
+
 
 
 # Catching Up Topics
