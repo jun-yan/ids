@@ -27,7 +27,7 @@ When you pick a task, cross it out and add your name.
 1. Optimization (Scipy)
 1. Python dictionary
 1. Numpy advanced (JVP p.78-96)
-1. Pandas: object; indexing; operation (JVP. p.97-118)
+1. Surya Eada ~~Pandas: object; indexing; operation (JVP. p.97-118)~~
 1. Pandas: missing data; hierarchical indexing; (JVP p.119-140)
 1. Pandas: dataset operations (JVP p. 141-178)
 
