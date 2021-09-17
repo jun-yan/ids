@@ -23,7 +23,7 @@ When you pick a task, cross it out and add your name.
 1. Jintao Zhang ~~Errors and debugging~~
 1. Surya Eada ~~Profiling and timing~~
 1. Sreeram Anantharaman ~~Numpy (JVP p.33-77)~~
-1. Statistical distributions (Scipy)
+1. Sreeram Anantharaman ~~Statistical distributions (Scipy)~~
 1. Optimization (Scipy)
 1. Python dictionary
 1. Numpy advanced (JVP p.78-96)
