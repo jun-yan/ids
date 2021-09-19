@@ -107,6 +107,20 @@ fig = sns.displot(
 )
 ```
 
+Let's see some plots using the `mtcars` example.
+```{code-cell} ipython3
+sns.lmplot(x = "mpg", y = "wt", data = mtcars)
+sns.displot(mtcars, x = "mpg", col = "gear", binwidth = 3, height = 3)
+```
+
+```{code-cell} ipython3
+sns.lmplot(x = "mpg", y = "wt", hue = "gear", data = mtcars)
+```
+
+```{code-cell} ipython3
+sns.lmplot(x = "mpg", y = "wt", col = "gear", data = mtcars)
+```
+
 ## Numbers in Computer
 
 Pitfall one: Integer overflow
@@ -118,9 +132,7 @@ import numpy as np
 x = np.array(2**63 -1 , dtype='int')
 x
 # This should be the largest number numpy can display, with the default integer size being 64 bits in most computers.
-```
 
-```{code-cell} ipython3
 y = np.array(x + 1, dtype='int')
 y
 # Because of the overflow, when we add 1 to this number, it becomes negative!
@@ -135,13 +147,9 @@ Pitfall two: floating point numbers' impresicion
 Because our computers use binary to store information, some simple numbers in decimal are not represented and replaced by a rounded approximation.
 ```{code-cell} ipython3
 0.1 + 0.1 + 0.1 == 0.3
-```
 
-```{code-cell} ipython3
 0.3 - 0.2
-```
 
-```{code-cell} ipython3
 import decimal
 decimal.Decimal(0.1) # this is the true decimal value of the binary approximation stored for 0.1
 ```
@@ -170,19 +178,7 @@ float_epsilon = np.finfo(float).eps
 print(float_epsilon)
 ```
 
-Let's see some plots using the `mtcars` example.
-```{code-cell} ipython3
-sns.lmplot(x = "mpg", y = "wt", data = mtcars)
-sns.displot(mtcars, x = "mpg", col = "gear", binwidth = 3, height = 3)
-```
 
-```{code-cell} ipython3
-sns.lmplot(x = "mpg", y = "wt", hue = "gear", data = mtcars)
-```
-
-```{code-cell} ipython3
-sns.lmplot(x = "mpg", y = "wt", col = "gear", data = mtcars)
-```
 
 
 # General Resources
