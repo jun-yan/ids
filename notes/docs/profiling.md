@@ -24,6 +24,9 @@ quizzes whereby the raw dataset is hidden but a plot is shown or so on.
 To toggle on/off the raw code, <a href="javascript:code_toggle()">click here to toggle for raw hidden code</a>.''')
 ```
 
+
+
+
 ### Motivation for Profiling
 Speed? Jump the bottlenecks
 Which one do you want your code to be? 
@@ -81,6 +84,10 @@ def gallery(images, captions, row_height, row_width):
 gallery( ["https://www.seekpng.com/png/detail/127-1274961_visit-zootopia-jpg-free-sloth-characters-in-zootopia.png",
         "https://freepngimg.com/thumb/the_flash/5-2-flash-free-png-image.png"], ["Slow", "Fast"], 400,  400)
 ```
+
+
+
+
 
 This could be one most common reason for timing and profiling. The understanding is that only some small chunk often makes our code heavy in terms of time taken, memory usage, etc. Finding it and improving or managing it can improve our resource usage.
 

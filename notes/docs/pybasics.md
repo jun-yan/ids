@@ -160,3 +160,17 @@ Python is either the dominant player or a major player in
 1. Find the first 10-digit prime number occurring in consecutive
    digits of $e$. This was a
    [Google recruiting ad](http://mathworld.wolfram.com/news/2004-10-13/google/).
+
+1. Write a function to obtain the MLE of the parameters of a gamma
+   distribution with a random sample. The input is the random sample
+   vector, and the output is the MLE. For shape parameter $\alpha$ and
+   scale parameter $\beta$, generate a random sample of size $n$, and
+   then use your function to obtain the MLE. Conduct a simulation
+   study with $\alpha = \beta = 2$ for sample size 
+   $n \in \{50, 100, 200\}$. Do 1000 replicates and summarize your
+   results.
+
+1. Continue with the gamma MLE. Add the standard error of the MLE into
+   the output of your function. Repeat the simulation study and check
+   whether your standard errors match the empirical standard error
+   from the 1000 replicates.
