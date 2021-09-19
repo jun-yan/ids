@@ -107,6 +107,69 @@ fig = sns.displot(
 )
 ```
 
+## Numbers in Computer
+
+Pitfall one: Integer overflow
+
+We my encounter the Overflow problem when dealing with integers when using Numpy and Pandas in Python.
+
+```{code-cell} ipython3
+import numpy as np
+x = np.array(2**63 -1 , dtype='int')
+x
+# This should be the largest number numpy can display, with the default integer size being 64 bits in most computers.
+```
+
+```{code-cell} ipython3
+y = np.array(x + 1, dtype='int')
+y
+# Because of the overflow, when we add 1 to this number, it becomes negative!
+```
+For vanilla Python, the overflow errors are checked and more digits are allocated when needed, at the cost of being slow.
+
+```{code-cell} ipython3
+2**63 * 1000 # this number is 1000 times largger than the prior number, but still displayed perfectly without any overflows
+```
+Pitfall two: floating point numbers' impresicion
+
+Because our computers use binary to store information, some simple numbers in decimal are not represented and replaced by a rounded approximation.
+```{code-cell} ipython3
+0.1 + 0.1 + 0.1 == 0.3
+```
+
+```{code-cell} ipython3
+0.3 - 0.2
+```
+
+```{code-cell} ipython3
+import decimal
+decimal.Decimal(0.1) # this is the true decimal value of the binary approximation stored for 0.1
+```
+
+Pitfall three: trade-off between size and presicion
+
+To represent a floating points number, a 64-bit computer typically uses 1 bit to strore the sign, 52 bits to store the mantissa and 11 bits to store the exponent. Because the mantissa bits are limited, it can not represent a floating point that's both very big and very precise. Most computers can represent all integers up to 2^53, after that it starts skipping numbers.
+```{code-cell} ipython3
+2.1**53 +1 == 2.1**53
+
+# Find a number larger than 2 to the 53rd
+```
+
+```{code-cell} ipython3
+x = 2.1**53
+for i in range(1000000):
+    x = x+1
+x == 2.1**53
+
+# we add 1 to x by 1000000 times, but it still equal to its initial value, 2.1**53, because this number is too big that computer can't handle it with precision like add 1.
+```
+
+For floating points, we can find the smallest value we can get by calling machine epsilon. It is formally defined as the difference between 1 and the next largest floating point number.
+```{code-cell} ipython3
+float_epsilon = np.finfo(float).eps
+print(float_epsilon)
+```
+
 Let's see some plots using the `mtcars` example.
 ```{code-cell} ipython3
 sns.lmplot(x = "mpg", y = "wt", data = mtcars)
