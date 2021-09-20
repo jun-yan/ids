@@ -24,7 +24,7 @@ When you pick a task, cross it out and add your name.
 1. Surya Eada ~~Profiling and timing~~
 1. Sreeram Anantharaman ~~Numpy (JVP p.33-77)~~
 1. Sreeram Anantharaman ~~Statistical distributions (Scipy)~~
-1. Optimization (Scipy)
+1. Jintao Zhang ~~Optimization (Scipy)~~
 1. Python dictionary
 1. Zefang Min ~~Numpy advanced (JVP p.78-96)
 1. Surya Eada ~~Pandas: object; indexing; operation (JVP. p.97-118)~~
