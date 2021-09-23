@@ -309,7 +309,7 @@ There are many more available commands for interactive debugging than we've list
 **(enter)**	Repeat the previous command  
 **p(rint)**	Print variables  
 **s(tep)**	Step into a subroutine  
-**r(eturn)**	Return out of a subroutine  
+**r(eturn)**	Return out of a subroutine
 
 +++
 
