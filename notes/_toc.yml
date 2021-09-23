@@ -4,6 +4,7 @@ sections:
 - file: docs/tasks
 - file: docs/intro
 - file: docs/pybasics
+- file: docs/Numpy
 - file: docs/Scipy
 - file: docs/Optimization
 - file: docs/misc
