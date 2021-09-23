@@ -111,7 +111,3 @@ plt.ylabel("f")
 plt.legend(loc='lower right')
 plt.show()
 ```
-
-![svg](Optimization_files/Optimization_11_0.svg)
-    
-
