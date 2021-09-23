@@ -109,6 +109,7 @@ fig = sns.displot(
 ```
 
 Let's see some plots using the `mtcars` example.
+
 ```{code-cell} ipython3
 sns.lmplot(x = "mpg", y = "wt", data = mtcars)
 sns.displot(mtcars, x = "mpg", col = "gear", binwidth = 3, height = 3)
@@ -138,14 +139,17 @@ y = np.array(x + 1, dtype='int')
 y
 # Because of the overflow, when we add 1 to this number, it becomes negative!
 ```
+
 For vanilla Python, the overflow errors are checked and more digits are allocated when needed, at the cost of being slow.
 
 ```{code-cell} ipython3
 2**63 * 1000 # this number is 1000 times largger than the prior number, but still displayed perfectly without any overflows
 ```
+
 Pitfall two: floating point numbers' impresicion
 
 Because our computers use binary to store information, some simple numbers in decimal are not represented and replaced by a rounded approximation.
+
 ```{code-cell} ipython3
 0.1 + 0.1 + 0.1 == 0.3
 
@@ -158,6 +162,7 @@ decimal.Decimal(0.1) # this is the true decimal value of the binary approximatio
 Pitfall three: trade-off between size and presicion
 
 To represent a floating points number, a 64-bit computer typically uses 1 bit to strore the sign, 52 bits to store the mantissa and 11 bits to store the exponent. Because the mantissa bits are limited, it can not represent a floating point that's both very big and very precise. Most computers can represent all integers up to 2^53, after that it starts skipping numbers.
+
 ```{code-cell} ipython3
 2.1**53 +1 == 2.1**53
 
@@ -174,12 +179,11 @@ x == 2.1**53
 ```
 
 For floating points, we can find the smallest value we can get by calling machine epsilon. It is formally defined as the difference between 1 and the next largest floating point number.
+
 ```{code-cell} ipython3
 float_epsilon = np.finfo(float).eps
 print(float_epsilon)
 ```
-
-
 
 ## Example: Google recruiting problem
 Find the first 10-digit prime found in consecutive digits of $e$.
@@ -193,7 +197,6 @@ Find the first 10-digit prime found in consecutive digits of $e$.
 If you try to export $e$ using the format command in Python, you will
 not get the precise $e$ value due to the double type data's feature!
 
-
 ```{code-cell} ipython3
 import math
 print("%0.10f" % math.e)
@@ -202,7 +205,6 @@ print("%0.20f" % math.e)
 
 The digits after 16 positions of $e$ are wrong, compare this to the
 $e$ value export by "decimal".
-
 
 ```{code-cell} ipython3
 import operator # ?
@@ -214,12 +216,9 @@ e_decimal = decimal.Decimal(1).exp().to_eng_string()[2:]
 print(e_decimal)
 ```
 
-
 Besides the "decimal" module, we have lazy ways to find $e$ from
 an existed list. For example, the website
 https://apod.nasa.gov/htmltest/gifcity/e.2mil provides a list of $e$.
-
-
 
 ```{code-cell} ipython3
 import requests
@@ -234,7 +233,6 @@ e=''.join([LINE for LINE in line_strip if LINE and LINE[0].isdigit()])
 print(e[:20:])
 ```
 
-
 ### Write functions to check whether a number is a prime
 Here the most basic and bruteforce way is used. Check all the factors
 less than $\sqrt n+1$ for all the odd numbers $n$.
@@ -242,7 +240,6 @@ less than $\sqrt n+1$ for all the odd numbers $n$.
 We have many powerful algorithms to achieve this if we need to check
 for very large numbers. For this problem, this method is efficcient
 enough.
-
 
 ```{code-cell} ipython3
 %%time
@@ -264,8 +261,57 @@ while True:
         print(number)
         break
     i+= 1
-
 ```
+
+## Error and Debugging
+Resource: Python Data Science Handbook
+
+Code development and data analysis always require a bit of trial and error, and IPython contains tools to streamline this process. 
+
+### Error
+
+```{code-cell} ipython3
+def func1(a, b):
+    return a / b
+
+def func2(x):
+    a = x
+    b = x + 1
+    return func1(a, b)
+```
+
+```{code-cell} ipython3
+func2(-1)
+```
+
+Calling func2 results in an error, and reading the printed trace lets us see exactly what happened.By default, this trace includes several lines showing the context of each step that led to the error.
+
+### Debugging
+
+The standard Python tool for interactive debugging is pdb, the Python debugger. This debugger lets the user step through the code line by line in order to see what might be causing a more difficult error. The IPython-enhanced version of this is ipdb, the IPython debugger.
+
+```{code-cell} ipython3
+%debug
+```
+
+The interactive debugger allows much more than this, though–we can even step up and down through the stack and explore the values of variables there
+
+### Partial list of debugging commands
+There are many more available commands for interactive debugging than we've listed here; the following table contains a description of some of the more common and useful ones:
+
+**Command	Description**
+
+**list**	Show the current location in the file  
+**h(elp)**	Show a list of commands, or find help on a specific command  
+**q(uit)**	Quit the debugger and the program  
+**c(ontinue)**	Quit the debugger, continue in the program  
+**n(ext)**	Go to the next step of the program  
+**(enter)**	Repeat the previous command  
+**p(rint)**	Print variables  
+**s(tep)**	Step into a subroutine  
+**r(eturn)**	Return out of a subroutine  
+
++++
 
     
 
