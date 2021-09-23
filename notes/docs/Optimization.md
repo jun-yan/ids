@@ -9,16 +9,19 @@ linear programing, constrained and nonlinear least-squares, root finding, and cu
 ## Least-squares minimization (least_squares)
 
 SciPy is capable of solving robustified bound-constrained nonlinear least-squares problems:  
-$$min \frac{1}{2} \Sigma_{1}^{m}\rho(f_{i}(x)^2)$$  
-Subject to $$lb\leq x \leq ub$$
+$$min \frac{1}{2} \Sigma_{1}^{m}\rho(f_{i}(x_i;\theta)^2)$$  
+Subject to $$lb\leq \theta \leq ub$$
+
+Where $x_i$ is predictor, $f(x_i)$ is the residual,   
+$\rho(f_{i}(x_i;\theta)^2)$ is to reduce the influence of outliers on the solution
 
 
 ### Example of solving a fitting problem
 
-$f_i(x)=\frac{1}{(xu+1)}-y_i, i=1,...,10$  
-where $y_i$ are measurement values.The unknown vector of parameters is $x$.  
-It is recommended to compute Jacobian matrix in a closed form:  
-$J_i=\frac{-u}{(xu+1)^2}$  
+$f_i(x_i;\theta)=\frac{1}{(x_{i}\theta+1)}-y_i, i=1,...,n$  
+where $y_i$ are measurement values.The unknown vector of parameters is $\theta$.  
+It is recommended to compute derivitative in a closed form:  
+$J_i=\frac{-x_i}{(\theta*x_i+1)^2}$  
 
 <!-- #endregion -->
 
@@ -29,45 +32,49 @@ import numpy as np
 
 
 ```python
-def model(x, u):
-    return 1/(x*u+1)
+def model( theta,x):
+    return 1/(x*theta+1)
 ```
 
 
 ```python
-def fun(x, u, y):
-    return model(x,u) - y
+def fun( theta,x, y):
+    return y-model(x,theta)
 ```
 
 
 ```python
-def jac(x,u,y):
-    J = np.empty((u.size, x.size))
-    J[:, 0] = -u/(x[0]*u+1)**2
+def jac(theta,x,y):
+    J = np.empty((x.size, theta.size))
+    J[:, 0] = x/(theta[0]*x+1)**2
     return J
 ```
 
 
 ```python
-u = np.array([4.0, 2.0, 1.0, 2.5e-1])
-y = np.array([0.2, 0.33, 0.5,0.8])
-x0 = np.array([0.1])
-res = least_squares(fun, x0, jac=jac, bounds=(0, 100), args=(u, y), verbose=1)
+x = np.linspace(0,5,100)
+y = 1/(x+1)+np.random.randint(100, size=(len(x)))/100
+theta0 = np.array([0.1])
+res = least_squares(fun, theta0, jac=jac, bounds=(0, 100),xtol=1e-10, args=(x, y), verbose=1)
 ```
 
 ```python
+res
+```
+```python
 res.x
 ```
+
 ```python
 %config InlineBackend.figure_formats = ['svg']
 import matplotlib.pyplot as plt # import plot package
-u_test = np.linspace(0, 5)
-y_test = model(res.x, u_test)
-plt.plot(u, y, 'o', markersize=4, label='data')
-plt.plot(u_test, y_test, label='fitted model')
-plt.xlabel("u")
+x_test = np.linspace(0, 5)
+y_test = model(res.x, x_test)
+plt.plot(x, y, 'o', markersize=4, label='data')
+plt.plot(x_test, y_test, label='fitted model')
+plt.xlabel("x")
 plt.ylabel("y")
-plt.legend(loc='lower left')
+plt.legend(loc='upper right')
 plt.show()
 ```
 ## Univariate function minimizers (minimize_scalar)
@@ -96,7 +103,7 @@ print(res.x)
 
 ```python
 x_test = np.linspace(0, 5)
-f_test = f(u_test)
+f_test = f(x_test)
 plt.plot(x_test, f_test, label='f(x)')
 plt.plot(1,f(1),'bo',label="min")
 plt.xlabel("x")
