@@ -18,9 +18,12 @@ function code_toggle() {
 } 
 $( document ).ready(code_toggle);
 </script>
-The raw code for the following figures related code is by default hidden. This can be used to give
-quizzes whereby the raw dataset is hidden but a plot is shown or so on.
-To toggle on/off the raw code, <a href="javascript:code_toggle()">click here to toggle for raw hidden code</a>.''')
+The raw code for the following figures related code
+is by default hidden. This can be used to give
+quizzes whereby the raw dataset is hidden but a plot 
+is shown or so on. To toggle on/off the raw code, 
+<a href="javascript:code_toggle()">click here to 
+toggle for raw hidden code</a>.''')
 ```
 
 ### For running bash in ipynb
@@ -32,8 +35,10 @@ To toggle on/off the raw code, <a href="javascript:code_toggle()">click here to 
 
 ```python
 ## run timeit on python
-!python -m timeit -r 20 '"-".join(str(n) for n in range(100))'  ## r does repetition
-## The output suggests there were 20000 loops, repeated 20 times for accuracy, and 
+!python -m timeit -r 20 '"-".join(str(n) for n in range(100))'
+## r does repetition
+## The output suggests there were 20000 loops, repeated 20 
+## times for accuracy, and 
 
 "-".join(str(n) for n in range(100))
 ```
