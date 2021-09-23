@@ -314,66 +314,11 @@ There are many more available commands for interactive debugging than we've list
 **s(tep)**	Step into a subroutine  
 **r(eturn)**	Return out of a subroutine
 
-+++
 
-    
-
-# General Resources
-Popular textbooks on Python programming include {cite}`guttag2016introduction` and {cite}`hill2016learning`.
+## Profiling
 
 
-Python is either the dominant player or a major player in
-
--   [machine learning and data science](http://scikit-learn.org/stable/)
--   [astronomy](http://www.astropy.org/)
--   [artificial intelligence](https://wiki.python.org/moin/PythonForArtificialIntelligence)
--   [chemistry](http://chemlab.github.io/chemlab/)
--   [computational biology](http://biopython.org/wiki/Main_Page)
--   [meteorology](https://pypi.org/project/meteorology/)
-
-
-# Bibliography
-
-```{bibliography} ../_bibliography/references.bib
-```
-
-# Exercises
-
-1. Write a function to demonstrate the Monty Hall problem through
-   simulation. The function takes two arguments `ndoors` and
-   `ntrials`, representing the number of doors in the experiment and
-   the number of trails in a simulation, respectively. The function
-   should return the proportion of wins for both the switch and
-   no-switch strategy. Apply your function with 3 doors and 5 doors,
-   both with 1000 trials.
-
-1. Write a function to do a Monte Carlo approximation of $\pi$. The
-   function takes a Monte Carlo sample size `n` as input, and returns
-   a point estimate of $\pi$ and a 95% confidence interval. Apply your
-   function with sample size 1000, 2000, 4000, and 8000. Comment on
-   the results.
-
-1. Find the first 10-digit prime number occurring in consecutive
-   digits of $e$. This was a
-   [Google recruiting ad](http://mathworld.wolfram.com/news/2004-10-13/google/).
-
-1. Write a function to obtain the MLE of the parameters of a gamma
-   distribution with a random sample. The input is the random sample
-   vector, and the output is the MLE. For shape parameter $\alpha$ and
-   scale parameter $\beta$, generate a random sample of size $n$, and
-   then use your function to obtain the MLE. Conduct a simulation
-   study with $\alpha = \beta = 2$ for sample size 
-   $n \in \{50, 100, 200\}$. Do 1000 replicates and summarize your
-   results.
-
-1. Continue with the gamma MLE. Add the standard error of the MLE into
-   the output of your function. Repeat the simulation study and check
-   whether your standard errors match the empirical standard error
-   from the 1000 replicates.
-
-# Profiling
-
-## Motivation for Profiling
+### Motivation for Profiling
 Speed? Jump the bottlenecks
 Which one do you want your code to be?
 
@@ -394,7 +339,7 @@ see which chunks use most resources and which chunks use less. Some coding
 contests often have a maximum time to run or people boast of how fast their
 particular solution runs
 
-## Resources mostly profiled
+### Resources mostly profiled
 
 The most common resources that we often optimize for projects are: 
 
@@ -406,7 +351,7 @@ if you wish to create a notebook that gathers stock data from one of many
 locations such as Yahoo Finance etc, and you only have a limited bandwidth, your
 choice could also depend on where you gather your data from.
 
-## Profiling CPU time
+### Profiling CPU time
 Profiling implies that it divides the entire code file into smaller code chunks
 (*functions/lines*) in order to show the resource usage and thus existence of
 bottlenecks in our code. It is best practice to find bottlenecks by means of
@@ -428,7 +373,7 @@ code against C code: the profilers introduce overhead for Python code, but not
 for C-level functions, and so the C code would seem faster than any Python
 one.**
 
-## `timeit` Function Usage:
+### `timeit` Function Usage:
 
 
 ```python
@@ -475,7 +420,7 @@ fib_dbu(100)
 %timeit fib_dbu(100)  ## timeit application of fib_dbu
 ```
 
-## Dynamic save of a line to a code file
+### Dynamic save of a line to a code file
 
 This is a great tool (in ipython) as you can work on some code functions and
 applications and then save each chunk correspondingly to the "source" file with
@@ -490,7 +435,7 @@ file to automate it in clusters or so on.
 ## -n may change every session, thus good for mostly dynamic usage))
 ```
 
-## Command Line Interface for timeit
+### Command Line Interface for timeit
 
 ```python
 !python -m timeit -r 20 '"-".join(str(n) for n in range(100))'  ## r does repetition
@@ -499,7 +444,7 @@ file to automate it in clusters or so on.
 "-".join(str(n) for n in range(100))
 ```
 
-## cProfile for profiling CPU time
+### cProfile for profiling CPU time
 
 Source: [The python Profilers](https://docs.python.org/3/library/profile.html)
 
@@ -546,7 +491,7 @@ another script. For example:
 cProfile.run('fib_dm(2000)', 'restats')
 ```
 
-## Interpretation of Raw Output format:
+### Interpretation of Raw Output format:
 
 The column headings include:
 - ncalls: for the number of calls.
@@ -643,12 +588,12 @@ from IPython.display import SVG
 SVG('mine.svg')
 ```
 
-## Profiling Memory
+### Profiling Memory
 
 - memory_profiler open source  python package
 - guppy
 
-## Memory_Profiler
+### Memory_Profiler
 
 ```python
 !pip3 install -U memory_profiler    ## install memory_profiler
@@ -758,3 +703,60 @@ objgraph.show_growth()
 
 It’s easy to see MyBigFatObject instances that appeared and were not freed. So,
 we can trace the reference chain back.
+
++++
+
+
+# General Resources
+Popular textbooks on Python programming include {cite}`guttag2016introduction` and {cite}`hill2016learning`.
+
+
+Python is either the dominant player or a major player in
+
+-   [machine learning and data science](http://scikit-learn.org/stable/)
+-   [astronomy](http://www.astropy.org/)
+-   [artificial intelligence](https://wiki.python.org/moin/PythonForArtificialIntelligence)
+-   [chemistry](http://chemlab.github.io/chemlab/)
+-   [computational biology](http://biopython.org/wiki/Main_Page)
+-   [meteorology](https://pypi.org/project/meteorology/)
+
+
+# Bibliography
+
+```{bibliography} ../_bibliography/references.bib
+```
+
+# Exercises
+
+1. Write a function to demonstrate the Monty Hall problem through
+   simulation. The function takes two arguments `ndoors` and
+   `ntrials`, representing the number of doors in the experiment and
+   the number of trails in a simulation, respectively. The function
+   should return the proportion of wins for both the switch and
+   no-switch strategy. Apply your function with 3 doors and 5 doors,
+   both with 1000 trials.
+
+1. Write a function to do a Monte Carlo approximation of $\pi$. The
+   function takes a Monte Carlo sample size `n` as input, and returns
+   a point estimate of $\pi$ and a 95% confidence interval. Apply your
+   function with sample size 1000, 2000, 4000, and 8000. Comment on
+   the results.
+
+1. Find the first 10-digit prime number occurring in consecutive
+   digits of $e$. This was a
+   [Google recruiting ad](http://mathworld.wolfram.com/news/2004-10-13/google/).
+
+1. Write a function to obtain the MLE of the parameters of a gamma
+   distribution with a random sample. The input is the random sample
+   vector, and the output is the MLE. For shape parameter $\alpha$ and
+   scale parameter $\beta$, generate a random sample of size $n$, and
+   then use your function to obtain the MLE. Conduct a simulation
+   study with $\alpha = \beta = 2$ for sample size 
+   $n \in \{50, 100, 200\}$. Do 1000 replicates and summarize your
+   results.
+
+1. Continue with the gamma MLE. Add the standard error of the MLE into
+   the output of your function. Repeat the simulation study and check
+   whether your standard errors match the empirical standard error
+   from the 1000 replicates.
+
