@@ -5,3 +5,4 @@ sections:
 - file: docs/intro
 - file: docs/pybasics
 - file: docs/profiling
+- file: docs/optimization
