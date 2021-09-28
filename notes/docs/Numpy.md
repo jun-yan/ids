@@ -1,4 +1,4 @@
-# Numpy
+## Numpy
 
 By default Python does not have a concept of Arrays. And there is no inbuilt support for multidimensional arrays.
 
