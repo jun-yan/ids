@@ -1,5 +1,7 @@
 format: jb-article
 root: docs/index
+options:
+  numbered: true
 sections:
 - file: docs/tasks
 - file: docs/intro
