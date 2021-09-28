@@ -50,6 +50,65 @@ need it).
 - Jupyter notebook for code demo
 - Jupytext
 
+### MyST Markdown
+
+Markedly Structured Text (MyST) examples:
+
+```{admonition} Add my admonition
+Adding my little admonition
+```
+
+````{note}
+Initial
+```{warning}
+warning
+```
+````
+
+```{eval-rst}
+.. note::
+
+   A note written in reStructuredText.
+```
+
+```{code-cell} ipython3
+---
+other:
+  more: true
+tags: [hide-output, show-input]
+---
+print("Hello!")
+```
+
+```{code-block} python
+---
+lineno-start: 10
+emphasize-lines: 1, 3
+caption: |
+    This is my
+    multi-line caption. It is *pretty nifty* 
+---
+a = 2
+print('my 1st line')
+print(f'my {a}nd line')
+```
+
+```{admonition} Here's my title
+:class: warning
+
+Here's my admonition content
+```
+
+
+```{math} ax^{2} + bx + c
+---
+label: quadratic
+---
+```
+
+The basic quadratic equation, {math:numref}`quadratic`, allows for the 
+construction of all kinds of parabolas
+
 ### Git and GitHub
 
 
