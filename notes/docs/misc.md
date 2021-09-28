@@ -1,3 +1,16 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.10.3
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
+---
+
 ## Miscellaneous learnings
 
 ### For hidden Code:
@@ -28,12 +41,12 @@ toggle for raw hidden code</a>.''')
 
 ### For running bash in ipynb
 
-```python
+{code-cell} ipython3
 ## copy a file
 !cp myscript.py myscript2.py
 ```
 
-```python
+{code-cell} ipython3
 ## run timeit on python
 !python -m timeit -r 20 '"-".join(str(n) for n in range(100))'
 ## r does repetition
@@ -43,18 +56,18 @@ toggle for raw hidden code</a>.''')
 "-".join(str(n) for n in range(100))
 ```
 
-```python
+{code-cell} ipython3
 ## pip install packages
 !pip install pstats 
 ```
 
 ### Save a file dynamically into a .py or .R file from jupyter notebook
-```python
+{code-cell} ipython3
 %save -a example.py -n 28   ## change 28 to respective line number
 ```
 
 ### Convert .ipynb to .md file
-```python
+{code-cell} ipython3
 jupyter nbconvert --to FORMAT notebook.ipynb
 ```
 

@@ -1,4 +1,19 @@
-## Numpy
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.10.3
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
+---
+
+<!-- (about_py)= -->
+
+# Numpy
 
 By default Python does not have a concept of Arrays. And there is no inbuilt support for multidimensional arrays.
 
@@ -12,21 +27,23 @@ NumPy arrays are faster and more compact than Python lists. An array consumes le
 
 The NumPy API is used extensively in **Pandas, SciPy, Matplotlib, scikit-learn, scikit-image** and most other data science and scientific Python packages.
 
-### Array
+## Array
 
 An array is a grid of values and it contains information about the raw data, how to locate an element, and how to interpret an element. 
 
 The rank of the array is the number of dimensions. The shape of the array is a tuple of integers giving the size of the array along each dimension.
 
 
-```python
+
+```{code-cell} ipython3
 ## Import the Numpy package
 
 import numpy as np
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Create Array
 
 x = np.array([2,4,6,8])
@@ -34,48 +51,55 @@ x
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Creating Zeroes
 
 np.zeros(3)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Creating ones
 
 np.ones(5)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Creating first 5 integers
 
 np.arange(5)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Creating integers based in an interval with spacing
 
 np.arange(1, 10, 3)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Creating an Array in a linearspace
 
 np.linspace(0, 5, num=3)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Creating an identity matrix
 np.eye(5)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Sort the array
 
 ar = np.array([7,9,2,6])
@@ -83,7 +107,8 @@ np.sort(ar)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Merge arrays
 
 x=np.array([2,4,6])
@@ -92,7 +117,8 @@ np.concatenate((x,y))
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Reshaping an array
 
 a = np.arange(4)
@@ -100,13 +126,15 @@ print(a)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 b = a.reshape(2, 2)
 print(b)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Indexing and Slicing
 
 data = np.array([1, 5, 9, 2])
@@ -114,64 +142,75 @@ data[1]
 ```
 
 
-```python
+
+```{code-cell} ipython3
 data[0:2]
 ```
 
 
-```python
+
+```{code-cell} ipython3
 data[1:]
 ```
 
 
-```python
+
+```{code-cell} ipython3
 data[::2]
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Reverse elements in an array
 
 data[::-1] 
 ```
 
 
-```python
+
+```{code-cell} ipython3
 data[2::-1]
 ```
 
 
-```python
+
+```{code-cell} ipython3
 a = np.array([[2, 4], [6, 8], [10, 12]])
 print(a[a < 8])
 ```
 
 
-```python
+
+```{code-cell} ipython3
 greater = (a >= 6)
 print(a[greater])
 ```
 
 
-```python
+
+```{code-cell} ipython3
 divisible_by_4 = a[a%4==0]
 print(divisible_by_4)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 range = a[(a > 2) & (a < 12)]
 print(range)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 up = (a > 6) | (a == 6)
 print(a[up])
 ```
 
 
-```python
+
+```{code-cell} ipython3
 #Stack Arrays
 a1 = np.array([[1, 2],
                [3, 4]])
@@ -185,14 +224,16 @@ np.vstack((a1, a2))
 Similar to function "rbind" in r.
 
 
-```python
+
+```{code-cell} ipython3
 np.hstack((a1, a2))
 ```
 
 Similar to function "cbind" in r.
 
 
-```python
+
+```{code-cell} ipython3
 ## Split Arrays
 
 x = np.arange(4).reshape((2, 2))
@@ -200,21 +241,24 @@ x
 ```
 
 
-```python
+
+```{code-cell} ipython3
 x1, x2 = np.vsplit(x, [1])
 print(x1)
 print(x2)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 x1, x2 = np.hsplit(x, [1])
 print(x1)
 print(x2)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Array functions
 
 data = np.array([2, 4])
@@ -223,46 +267,54 @@ data + ones
 ```
 
 
-```python
+
+```{code-cell} ipython3
 data - ones
 ```
 
 
-```python
+
+```{code-cell} ipython3
 data * data
 ```
 
 
-```python
+
+```{code-cell} ipython3
 data / 3
 ```
 
 
-```python
+
+```{code-cell} ipython3
 data//3
 ```
 
 
-```python
+
+```{code-cell} ipython3
 print("-data = ", -data)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Power
 
 print("data ** 2 = ", data ** 2)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Modulus
 
 print("data % 4 = ", data % 4)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Summing an Array
 
 a = np.array([2, 2, 2, 4])
@@ -270,7 +322,8 @@ a.sum()
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Summing over rows
 
 b = np.array([[0, 1], [2, 3]])
@@ -278,38 +331,44 @@ b.sum(axis=0)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Summing over Columns
 
 b.sum(axis=1)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Minimum 
 
 b.min()
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Maximum
 
 b.max()
 ```
 
 
-```python
+
+```{code-cell} ipython3
 b.max(axis=0)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 b.max(axis=1)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Absolute Values
 
 x = np.array([-2, -1, 0, 3, -4])
@@ -317,7 +376,8 @@ np.absolute(x)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Aggregates
 
 x = np.arange(1, 5)
@@ -325,27 +385,32 @@ np.add.reduce(x)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 np.multiply.reduce(x)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 np.add.accumulate(x)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 np.multiply.accumulate(x)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 np.multiply.outer(x, x)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Random number generation
 
 rng = np.random
@@ -353,7 +418,8 @@ rng.random(3)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Pulling unique values
 
 a = np.array([1, 1, 2, 3, 4, 5, 2, 3, 1, 4, 8, 9])
@@ -361,28 +427,33 @@ np.unique(a)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 np.unique(a, return_index=True)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 np.unique(a, return_counts=True)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Transpose of a matrix
 b
 ```
 
 
-```python
+
+```{code-cell} ipython3
 np.transpose(b)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Flip array
 
 x=np.arange(6)
@@ -390,40 +461,47 @@ x
 ```
 
 
-```python
+
+```{code-cell} ipython3
 np.flip(x)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 y=np.array([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]])
 np.flip(y)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 np.flip(y, axis=0)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 np.flip(y, axis=1)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 y[1]=np.flip(y[1])
 print(y)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 y[:,1] = np.flip(y[:,1])
 print(y)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Flattening an multidimensional array
 
 y=np.array([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]])
@@ -431,55 +509,64 @@ y.flatten()
 ```
 
 
-```python
+
+```{code-cell} ipython3
 y1 = y.flatten()
 y1[0] = 99
 print(y) 
 ```
 
 
-```python
+
+```{code-cell} ipython3
 print(y1)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 y1 = y.ravel()
 y1[0] = 99
 print(y) 
 ```
 
 
-```python
+
+```{code-cell} ipython3
 print(y1)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Save and Load
 
 np.save('data', y1)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 np.load('data.npy')
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Save as csv
 
 np.savetxt('new_data.csv', y1)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 np.loadtxt('new_data.csv')
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Copy array
 
 y2=y1.copy()
@@ -487,7 +574,8 @@ y2
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Dot product
 
 a = 2
@@ -496,21 +584,24 @@ np.dot(a,b)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 A = np.array([1, 2, 3, 4])
 B = np.array([5, 6, 7, 8])
 np.dot(A, B)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 A = np.array([[1, 2], [3, 4]])
 B = np.array([[5, 6], [7, 8]])
 np.dot(A, B)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Cross product
 
 A = np.array([1, 2])
@@ -519,14 +610,16 @@ np.cross(A, B)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 A = np.array([1, 2, 3])
 B = np.array([4, 5, 6])
 np.cross(A, B)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Square root
 
 A = [4, 9, 16, 1, 25]
@@ -534,19 +627,22 @@ np.sqrt(A)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 x = [4+1j, 9+16j]
 np.sqrt(x)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 y = [-4, 9]
 np.sqrt(y)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Average
 
 a = np.array([1, 2, 3, 4]).reshape(2,2)
@@ -554,60 +650,70 @@ np.average(a)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 np.average(a, axis=0)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 np.average(a, axis=1)
 ```
 
 Can perform this using "np.mean" function too.
 
 
-```python
+
+```{code-cell} ipython3
 ## Mean
 
 np.mean(a)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Standard Deviation
 
 np.std(a)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 np.std(a,axis=1)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 np.percentile(a, 25)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 np.median(a)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 np.percentile(a, 75)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Converting from array to list
 
 a.tolist()
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Converting from list to array
 
 y=list([1, 2, 3, 4, 5])
@@ -615,13 +721,15 @@ np.array(y)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ar=np.array([[True,True],[False,False]])
 np.any(ar)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Check elements in an array is true
 
 ar=np.array([[True,True],[True,True]])
@@ -629,19 +737,22 @@ np.all(ar)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ar = np.array([[True,True],[False,False]])
 np.all(ar)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ar = np.array([[True,True], [True,False], [True,False]])
 np.all(ar, axis=1)
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Trignometric functions 
     
 theta = np.linspace(1, np.pi, 2)
@@ -652,7 +763,8 @@ print("tan(theta) = ", np.tan(theta))
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Inverse trignometric functions
 
 x=[-1,0]
@@ -662,7 +774,8 @@ print("arctan(x) = ", np.arctan(x))
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Exponentials
 
 x = [1, 3]
@@ -672,7 +785,8 @@ print("4^x =", np.power(4, x))
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## Logarithms
 
 x = [1, 2, 3]
@@ -682,7 +796,8 @@ print("log10(x) =", np.log10(x))
 ```
 
 
-```python
+
+```{code-cell} ipython3
 ## More precision for small inputs
 
 x = [0.001, 0.01]
@@ -704,7 +819,8 @@ With fancy indexing, the shape of the result reflects the shape of the index arr
 ###  fancy indexing in one dimensional array:
 
 
-```python
+
+```{code-cell} ipython3
 import numpy as np
 x = np.random.randint(100, size=10)
 print(x)
@@ -714,7 +830,8 @@ print(x)
 
 
 
-```python
+
+```{code-cell} ipython3
 # instead of simple indexing like these:
 [x[3], x[7], x[4], x[4]]
 ```
@@ -727,7 +844,8 @@ print(x)
 
 
 
-```python
+
+```{code-cell} ipython3
 # we can do this
 x[[3, 7, 4, 4]]
 ```
@@ -740,7 +858,8 @@ x[[3, 7, 4, 4]]
 
 
 
-```python
+
+```{code-cell} ipython3
 ind = np.array([[3, 7],
                      [4, 5]])
 x[ind]
@@ -759,7 +878,8 @@ x[ind]
 Let's work in multiple dimensions
 
 
-```python
+
+```{code-cell} ipython3
 X = np.arange(12).reshape(3, 4)
 X
 ```
@@ -774,7 +894,8 @@ X
 
 
 
-```python
+
+```{code-cell} ipython3
 row = np.array([0, 1, 2])
 col = np.array([2, 1, 3])
 X[row, col]
@@ -792,7 +913,8 @@ X[row, col]
 What if we want to select all 3 rows and 3 columns specified?
 
 
-```python
+
+```{code-cell} ipython3
 row[:, np.newaxis] 
 
 # one dimensional array becomes two dimensional array, 3 by 1, i.e., a column vector
@@ -814,7 +936,8 @@ Remember numpy.newaxis is used to increase the dimension of the existing array b
 3D array will become 4D array......
 
 
-```python
+
+```{code-cell} ipython3
 X[row[:, np.newaxis], col] 
 
 ## This is what we want
@@ -830,7 +953,8 @@ X[row[:, np.newaxis], col]
 
 
 
-```python
+
+```{code-cell} ipython3
 row[:, np.newaxis] * col
 ```
 
@@ -846,7 +970,8 @@ row[:, np.newaxis] * col
 ### Combine fancy indexing with slicing, simple indexing and mask
 
 
-```python
+
+```{code-cell} ipython3
 X[: , [2,1,3]] 
 
 # Or we can combine fancy indexing with slicing.
@@ -862,7 +987,8 @@ X[: , [2,1,3]]
 
 
 
-```python
+
+```{code-cell} ipython3
 X[1 , [2,1,3]] 
 
 # we can combine fancy indexing with simple indexing.
@@ -876,14 +1002,16 @@ X[1 , [2,1,3]]
 
 
 
-```python
+
+```{code-cell} ipython3
 # mask = np.array([1, 0, 1], dtype=bool)
 # mask[:, np.newaxis]
 # X[mask[:, np.newaxis],  [2,1,3]]
 ```
 
 
-```python
+
+```{code-cell} ipython3
 mask = np.array([1, 0, 1, 0], dtype=bool)
 X[row[:, np.newaxis], mask]
 
@@ -902,7 +1030,8 @@ X[row[:, np.newaxis], mask]
 ### Modify values with fancy indexing
 
 
-```python
+
+```{code-cell} ipython3
 x = np.zeros(20)
 ind = np.array([4, 9, 14, 19])
 x[ind] = 9
@@ -913,7 +1042,8 @@ print(x)
 
 
 
-```python
+
+```{code-cell} ipython3
 x[ind] -= 1 # minus 1 to the previous value
 print(x)
 ```
@@ -922,7 +1052,8 @@ print(x)
 
 
 
-```python
+
+```{code-cell} ipython3
 x[ind-1] += 1 # add 1 to the number before the positions of i.
 print(x) 
 ```
@@ -931,7 +1062,8 @@ print(x)
 
 
 
-```python
+
+```{code-cell} ipython3
 ## in multi-dimensions
 
 x = np.zeros(20).reshape(4,5)
@@ -948,7 +1080,8 @@ print(x)
 Repeated indices with these operations can cause some unexpected results. 
 
 
-```python
+
+```{code-cell} ipython3
 x = np.zeros(10)
 x[[0, 0, 0]] = [4, 6, 8]
 print(x)
@@ -960,7 +1093,8 @@ print(x)
 
 
 
-```python
+
+```{code-cell} ipython3
 x = np.zeros(10)
 ind=[2,3,3,4,4,4] 
 x[ind] += 1
@@ -981,7 +1115,8 @@ So it is the assignment , not the augument, that happens mulitple times. <br />
 To make the operation happen repeatedly, use '.at()':
 
 
-```python
+
+```{code-cell} ipython3
 x = np.zeros(10)
 np.add.at(x, ind, 1)
 print(x)
@@ -993,7 +1128,8 @@ print(x)
 ## 2. Sorting
 
 
-```python
+
+```{code-cell} ipython3
 ## First, let's get an array to be sorted
 
 import random
@@ -1009,7 +1145,8 @@ x
 
 
 
-```python
+
+```{code-cell} ipython3
 np.sort(x)
 
 ## Equivalent to sort() in R
@@ -1023,7 +1160,8 @@ np.sort(x)
 
 
 
-```python
+
+```{code-cell} ipython3
 np.argsort(x)
 
 # Equivalent to order() in R, though start with index 0.
@@ -1037,7 +1175,8 @@ np.argsort(x)
 
 
 
-```python
+
+```{code-cell} ipython3
 x
 
 # x remains the same
@@ -1055,7 +1194,8 @@ We can see that np.sort() does not modify the input. <br />
 To sort directly in place, we can use the sort method of arrays:
 
 
-```python
+
+```{code-cell} ipython3
 x.sort() # To sort directly in place
 print(x)
 ```
@@ -1066,7 +1206,8 @@ print(x)
 ### Sorting along rows or columns
 
 
-```python
+
+```{code-cell} ipython3
 X = np.random.randint(1, 10, (3,5)) 
 print(X)
 ```
@@ -1077,7 +1218,8 @@ print(X)
 
 
 
-```python
+
+```{code-cell} ipython3
 # sort each column of X
 
 np.sort(X, axis=0)
@@ -1097,7 +1239,8 @@ Remember "axis" specifies the dimension of the array that will be collapsed, rat
 so axis=0 means the first axis(row) will be collapsed, which means the values within each columns will be sorted. 
 
 
-```python
+
+```{code-cell} ipython3
 # sort each row of X
 
 np.sort(X, axis=1)
@@ -1115,7 +1258,8 @@ np.sort(X, axis=1)
 ### partitioning
 
 
-```python
+
+```{code-cell} ipython3
 x = np.array([9, 10, 8, 4, 0, 6, 2, 6, 5, 1, 0])
 np.partition(x, 4)
 ```
@@ -1133,7 +1277,8 @@ and the remaining values to the right.
 Within each group, the order is arbituray.
 
 
-```python
+
+```{code-cell} ipython3
 ## we can partition along any axis of a multidimensional array
 
 X = np.random.randint(1, 10, (3,5)) 
@@ -1156,7 +1301,8 @@ extend from homogeneous data to compound, heterogeneous data.
 ### Creating a structured array
 
 
-```python
+
+```{code-cell} ipython3
 x = np.zeros(4, dtype=int)
 x
 
@@ -1171,7 +1317,8 @@ x
 
 
 
-```python
+
+```{code-cell} ipython3
 # Creating a structured array : the dictionary method
 data = np.zeros(4, dtype={'names':('name', 'cyl', 'mpg'),
                                      'formats':('U20', 'i4', 'f8')})
@@ -1190,7 +1337,8 @@ print(data.dtype)
 and 'f8' translates to “8-byte (i.e., 64 bit) float” ---See more by searching "Numpy data types"
 
 
-```python
+
+```{code-cell} ipython3
 data['name'] =  ['Honda Civic', 'Toyota Corolla', 'Ferrari Dino', 'Lincoln Continental']
 data['cyl'] =  [4, 4, 6, 8]
 data['mpg'] = [30.4, 33.9, 19.7, 10.4]
@@ -1204,7 +1352,8 @@ print(data)
 A compound type can also be specified as a list of tuples:
 
 
-```python
+
+```{code-cell} ipython3
 # Creating a structured array : the list-of-tuple method
 
 data1 = np.zeros(4, dtype=[('name', 'U20'), ('cyl', 'i4'), ('mpg', 'f8')])
@@ -1223,7 +1372,8 @@ print(data1)
 ### Refer to values in structured arrays
 
 
-```python
+
+```{code-cell} ipython3
 # By name: get all names
 
 data['name']
@@ -1238,7 +1388,8 @@ data['name']
 
 
 
-```python
+
+```{code-cell} ipython3
 # By index: get first row of data 
 
 data[0]
@@ -1252,7 +1403,8 @@ data[0]
 
 
 
-```python
+
+```{code-cell} ipython3
 # By index and name: get the name from the last row 
 
 data[-1]['name']
@@ -1266,7 +1418,8 @@ data[-1]['name']
 
 
 
-```python
+
+```{code-cell} ipython3
 # Using Boolean masking to filter the data on age 
 
 data[data['cyl'] < 5]['name']
@@ -1285,7 +1438,8 @@ NumPy also provides the np.recarray class <br />
 The only difference is that, fields can be accessed as attributes rather than dictionary keys
 
 
-```python
+
+```{code-cell} ipython3
 # Previously we access cyl by dictionary keys:
 data['cyl']
 ```
@@ -1298,7 +1452,8 @@ data['cyl']
 
 
 
-```python
+
+```{code-cell} ipython3
 # View the data as record array:
 
 data = data.view(np.recarray)
