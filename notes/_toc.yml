@@ -7,4 +7,5 @@ sections:
 - file: docs/Numpy
 - file: docs/Scipy
 - file: docs/Optimization
+- file: docs/pandas_objs
 - file: docs/misc
