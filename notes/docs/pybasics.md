@@ -322,9 +322,9 @@ There are many more available commands for interactive debugging than we've list
 Speed? Jump the bottlenecks
 Which one do you want your code to be?
 
-!["https://www.seekpng.com/png/detail/127-1274961_visit-zootopia-jpg-free-sloth-characters-in-zootopia.png"](Slow)
+![Slow](https://www.seekpng.com/png/detail/127-1274961_visit-zootopia-jpg-free-sloth-characters-in-zootopia.png)
 
-!["https://freepngimg.com/thumb/the_flash/5-2-flash-free-png-image.png"](Fast)
+![Fast](https://freepngimg.com/thumb/the_flash/5-2-flash-free-png-image.png)
 
 
 This could be one most common reason for timing and profiling. The understanding
@@ -366,17 +366,19 @@ Python includes the following modules that achieve profiling for CPU time:
 
 For interpretation, we use the fibonacci example shown in class:
 
-**Note: The profiler modules are designed to provide an execution profile for a
+````{note}
+The profiler modules are designed to provide an execution profile for a
 given program, not for benchmarking purposes (for that, there is timeit for
 reasonably accurate results). This particularly applies to benchmarking Python
 code against C code: the profilers introduce overhead for Python code, but not
 for C-level functions, and so the C code would seem faster than any Python
-one.**
+one.
+````
 
 ### `timeit` Function Usage:
 
 
-```python
+```{code-cell} ipython3
 import pandas    ## !pip3 install pandas (uncomment to add)
 import timeit    ## base package
 
@@ -401,7 +403,7 @@ def fib_dm(n):
 ```
 
 
-```python
+```{code-cell} ipython3
 ### Second Interpretation using dynamic programming bottom up
 def fib_dbu(n):
     mem=[None]*(n+1)
@@ -416,7 +418,7 @@ fib_dbu(100)
 ```
 
 
-```python
+```{code-cell} ipython3
 %timeit fib_dbu(100)  ## timeit application of fib_dbu
 ```
 
@@ -429,33 +431,33 @@ helps a great deal as you'd like your functions to finally appear in a ".py"
 file to automate it in clusters or so on.
 
 
-```python
+```{code-cell} ipython3
 !cp myscript.py myscript2.py
 %save -a myscript2.py -n 4   ##(-a for append, -n for the line run 
 ## -n may change every session, thus good for mostly dynamic usage))
 ```
 
-### Command Line Interface for timeit
+### Command Line Interface for `timeit`
 
-```python
+```{code-cell} ipython3
 !python -m timeit -r 20 '"-".join(str(n) for n in range(100))'  ## r does repetition
 ## The output suggests there were 20000 loops, repeated 20 times for accuracy, and 
 
 "-".join(str(n) for n in range(100))
 ```
 
-### cProfile for profiling CPU time
+### `cProfile` for profiling CPU time
 
 Source: [The python Profilers](https://docs.python.org/3/library/profile.html)
 
 To profile a function that takes only one argument, you can do the following:
 
 
-```python
+```{code-cell} ipython3
 import cProfile   ## for profiling function
 ```
 
-```python
+```{code-cell} ipython3
 # cProfile.run('re.compile("foo|bar")')
 cProfile.run('fib_dm(2000)')
 cProfile.run('fib_dbu(2000)')
@@ -701,14 +703,16 @@ computate_something()
 objgraph.show_growth() 
 ```
 
-It’s easy to see MyBigFatObject instances that appeared and were not freed. So,
+It’s easy to see `MyBigFatObject` instances that appeared and were not freed. So,
 we can trace the reference chain back.
 
 +++
 
 
-# General Resources
-Popular textbooks on Python programming include {cite}`guttag2016introduction` and {cite}`hill2016learning`.
+## General Resources
+Popular textbooks on Python programming include
+{cite}`guttag2016introduction` and {cite}`hill2016learning`.
+
 
 
 Python is either the dominant player or a major player in
@@ -721,12 +725,12 @@ Python is either the dominant player or a major player in
 -   [meteorology](https://pypi.org/project/meteorology/)
 
 
-# Bibliography
+## Bibliography
 
 ```{bibliography} ../_bibliography/references.bib
 ```
 
-# Exercises
+## Exercises
 
 1. Write a function to demonstrate the Monty Hall problem through
    simulation. The function takes two arguments `ndoors` and
@@ -760,3 +764,24 @@ Python is either the dominant player or a major player in
    whether your standard errors match the empirical standard error
    from the 1000 replicates.
 
+1. Consider a telecommunication service company. To simplify the
+   setting, suppose that starting from time zero, customers arrive
+   with a Poisson process with rate `lambda` (the interarrival time is
+   exponential with mean `1 / lambda`). Suppose that a customer stays
+   with the company for a duration of gamma distribution with shape
+   `alpha` and scale `sigma`. The company hires a data scientist to
+   estimate the distribution of the duration of the customer's
+   stay. The data scientist decides to include in the sample all
+   customers who are with the company at time `t`. Write a function to
+   conduct a simulation study. For each replicate, the function
+   generates `n` customers and select those that are active at time
+   `t` to form a sample; returns the mean and standard deviation of
+   the durations in the sample. Repeat the experiment 1000 times for
+   various values of `lambda`, `alpha`, `sigma`, `n`, and `t`. Discuss
+   your findings.
+
+1. Continue with the telecommunication service company. Suppose now
+   that the data scientists decides to include in the sample all
+   custermers that are active during a time interval from `t0` to
+   `t1`. Modify your function and carry out the simulation
+   study. Discuss your findings.
