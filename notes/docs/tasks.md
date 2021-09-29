@@ -28,10 +28,10 @@ When you pick a task, cross it out and add your name.
 1. Zefang Min ~~Numpy advanced (JVP p.78-96)~~
 1. Surya Eada ~~Pandas: object; indexing; operation (JVP. p.97-118)~~
 1. Sreeram Anantharaman ~~Pandas: missing data; hierarchical indexing; (JVP p.119-140)~~
-1. Pandas: dataset operations (JVP p. 141-178)
+1. Sydney Hyde ~~Pandas: dataset operations (JVP p. 141-178)
 1. Scope of variables
-1. Web scraping
-1. Sydney Hyde ~~Calling R from Python~~
+1. Sydney Hyde ~~Web scraping~~
+1. Calling R from Python
 1. Creating modules and packages
 1. A Kaggle competition walkthrough
 1. Visualization with Matplotlib (JVP: p.217-274)
