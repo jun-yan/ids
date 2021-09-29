@@ -765,9 +765,8 @@ Python is either the dominant player or a major player in
    from the 1000 replicates.
 
 1. Consider a telecommunication service company. To simplify the
-   setting, suppose that starting from time zero, customers arrive
-   with a Poisson process with rate `lambda` (the interarrival time is
-   exponential with mean `1 / lambda`). Suppose that a customer stays
+   setting, suppose that the starting points of new customers are
+   uniformly distributed over time. Suppose that a customer stays
    with the company for a duration of gamma distribution with shape
    `alpha` and scale `sigma`. The company hires a data scientist to
    estimate the distribution of the duration of the customer's
@@ -777,7 +776,7 @@ Python is either the dominant player or a major player in
    generates `n` customers and select those that are active at time
    `t` to form a sample; returns the mean and standard deviation of
    the durations in the sample. Repeat the experiment 1000 times for
-   various values of `lambda`, `alpha`, `sigma`, `n`, and `t`. Discuss
+   various values of `alpha`, `sigma`, `n`, and `t`. Discuss
    your findings.
 
 1. Continue with the telecommunication service company. Suppose now
