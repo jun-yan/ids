@@ -21,7 +21,7 @@ to perform quantitative analysis on financial data. Before leaving AQR
 he was able to convince management to allow him to open source the library.
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 ## Installing and Checking version of Pandas:
 # !pip3 install pandas
 
@@ -57,7 +57,7 @@ created from a list or array as follows:
 ### Series
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 data = pd.Series([0.25, 0.5, 0.75, 1.0])
 data
 ```
@@ -65,23 +65,23 @@ data
 As can be seen above, it is a numpy array but with index `0-3`
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 data.values
 ```
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 data.index
 ```
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 print(f"data value at index 1 is {data[1]}")    ## f string in python.
 data[0:3]  
 ```
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 data = pd.Series([0.25, 0.5, 0.75, 1.0],
  index=['a', 'b', 'c', 'd'])
 
@@ -95,7 +95,7 @@ seemingly resembling keys in dictionary. This was clarified by creating
 a pandas series using a dictionary.
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 population_dict = {'California': 38332521,
  'Texas': 26448193,
  'New York': 19651127,
@@ -112,12 +112,12 @@ range of values from PD Series by doing slicing and so on,
 while it is not the same in a dictionary
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 population['California':'Florida']
 ```
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 try: 
     print(population_dict['California':'Florida'])
 except:
@@ -133,13 +133,13 @@ except:
 These above points are exemplified below:
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 ## From a list
 pd.Series([2, 4, 6])
 ```
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 ## Repeating numbers when index set is longer than data
 pd.Series(5, index = [1, 2, 3])
 ```
@@ -160,7 +160,7 @@ sequence of aligned Series objects. Here, by “aligned” we mean that they sha
 same index.
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 area_dict = {'California': 423967, 'Texas': 695662, 'New York': 141297,
  'Florida': 170312, 'Illinois': 149995}
 area = pd.Series(area_dict)
@@ -197,13 +197,13 @@ Panda dataframes can be constructed in various ways:
   but cannot be modified unlike numpy arrays. 
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 ind = pd.Index([2, 3, 5, 7, 11])
 ind
 ```
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 ## Accessing index
 print(ind[1])
 print(ind[::2])  ## notice the difference between a single : and double ::
@@ -211,7 +211,7 @@ print(ind[:2])
 ```
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 try:
     ind[1] = 0
 except:
@@ -219,7 +219,7 @@ except:
 ```
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 indA =  pd.Index([1,3, 5, 7, 9])
 indB = pd.Index([2,3, 5, 7, 11])
 
@@ -227,7 +227,7 @@ indA & indB  #intersection
 ```
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 ## deprecated warnings
 indA | indB
 ```
@@ -235,24 +235,24 @@ indA | indB
 ## Data Indexing and Selection:
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 data = pd.Series([0.25, 0.5, 0.75, 1.0],
 index=['a', 'b', 'c', 'd'])
 data
 ```
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 data['b']     ## accessing the b index location
 ```
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 data.keys()     ## also gives the index object
 ```
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 list(data.items())   ## gives both keys and values
 ```
 
@@ -262,13 +262,13 @@ copying that might need to take place; the user generally does not
 need to worry about these issues.
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 data['e'] = 1.25
 data
 ```
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 print("slicing by explicit index")
 print(data['a':'c'])
 
@@ -293,18 +293,18 @@ while a slicing operation like `data[1:3]` will use the implicit
 Python-style index.
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 data = pd.Series(['a', 'b', 'c'], index=[1, 3, 5])
 data[3]
 ```
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 data[1:3]
 ```
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 ## thus 'loc' always slices using explicit index
 print(data.loc[1])
 print(data.loc[1:3])
@@ -313,7 +313,7 @@ print(data.loc[1:3])
 ```
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 # and 'iloc' uses implicit python index
 print(data.iloc[1])
 print(data.iloc[1:3])
@@ -324,7 +324,7 @@ print(data.iloc[1:3])
 ## Data Selection in Dataframe
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 area = pd.Series({'California': 423967, 'Texas': 695662,
 'New York': 141297, 'Florida': 170312,
 'Illinois': 149995})
@@ -336,7 +336,7 @@ data
 ```
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 print(data['area'])
 print(data.area)
 
@@ -345,13 +345,13 @@ print(data.area is data['area'])
 ```
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 print(data.pop is data['pop'])
 print(data.pop)
 ```
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 data['density'] =  data['pop']/data['area']
 data
 ```
@@ -363,39 +363,39 @@ twodimensional array. We can examine the raw underlying data array
 using the values attribute:
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 data.values
 ```
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 data.T    ## for Transpose
 ```
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 data.values[0]  ## accesses a row (like a dictionary)
 ```
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 data.iloc[:3, :2]
 ```
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 data.loc[:'Florida', :'pop']
 ```
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 data.ix[:3, :'pop']   ## hybrid of iloc and loc
 
 ## maybe removed since.
 ```
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 data.loc[data.density > 100, ['pop', 'density']]
 ```
 
@@ -408,7 +408,7 @@ Functions”on page 50 are key to this.
 ## Ufuncs: Index Preservation
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 rng = np.random.RandomState(42)
 ser = pd.Series(rng.randint(0, 10, 4))
 print(ser)
@@ -422,12 +422,12 @@ If we apply a NumPy ufunc on either of these objects, the result will
 be another Pandas object with the indices preserved:
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 np.exp(ser)
 ```
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 np.sin(df*np.pi/4)
 ```
 
@@ -436,7 +436,7 @@ np.sin(df*np.pi/4)
 
 
 
-{code-cell} ipython3
+```{code-cell} ipython3
 area = pd.Series({'Alaska': 1723337, 'Texas': 695662,
 'California': 423967}, name='area')
 population = pd.Series({'California': 38332521, 'Texas': 26448193,
