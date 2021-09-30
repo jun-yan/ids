@@ -475,7 +475,7 @@ cProfile.run('fib_dbu(2000)')
   argument as follows:
 
 
-```python
+```{code-cell} ipython3
 cProfile.run('fib_dm(2000)', 'restats')
 ```
 
@@ -485,7 +485,7 @@ The files cProfile and profile can also be invoked as a script to profile
 another script. For example:
 
 
-```python
+```{code-cell} ipython3
 ## run using bash and saved `py` file
 !python -m cProfile -o restats myscript.py   ## profiling an entire script will include
                                              ## overhead time for importing, creating a function
@@ -509,7 +509,7 @@ The pstats.Stats class reads profile results from a file and formats them in
 readable manner.
 
 
-```python
+```{code-cell} ipython3
 # !pip install pstats   # pip install from within notebook using bash magic command
 import pstats  ## Clean reprsentation of profile
 from pstats import SortKey
@@ -518,7 +518,7 @@ p = pstats.Stats('restats') ## uses the above file created with output
 ```
 
 
-```python
+```{code-cell} ipython3
 ### some possible print outputs
 p.strip_dirs().sort_stats(-1).print_stats(.1)
 p.sort_stats(SortKey.CUMULATIVE).print_stats(10) ## sort cumulative time spent
@@ -553,12 +553,12 @@ execute. The profiler is implemented in C via Cython in order to reduce the
 overhead of profiling.* Also the timer unit is $10^{-6}$ or $\mu s$
 
 
-```python
+```{code-cell} ipython3
 !pip3 install line_profiler  ## install line_profiler
 ```
 
 
-```python
+```{code-cell} ipython3
 from line_profiler import LineProfiler
 import random
 
@@ -575,7 +575,7 @@ lp.print_stats()
 ```
 
 
-```python
+```{code-cell} ipython3
 ## from pycallgraph import PyCallGraph
 ## from pycallgraph.output import GraphvizOutput
 
@@ -585,7 +585,7 @@ lp.print_stats()
 ```
 
 
-```python
+```{code-cell} ipython3
 from IPython.display import SVG
 SVG('mine.svg')
 ```
@@ -597,11 +597,11 @@ SVG('mine.svg')
 
 ### Memory_Profiler
 
-```python
+```{code-cell} ipython3
 !pip3 install -U memory_profiler    ## install memory_profiler
 ```
 
-```python
+```{code-cell} ipython3
 @profile
 def my_func():
     a = [1] * (10 ** 6)
@@ -613,18 +613,18 @@ if __name__ == '__main__':
     my_func()
 ```
 
-```python
+```{code-cell} ipython3
 %save -a example.py -n 28   ## change 28 to respective line number
 ```
 
-```python
+```{code-cell} ipython3
 !python3.9 -m memory_profiler example.py   ## calc. memory used by my function 
 
 ## This goes into the pdb debugger as soon as 100MB is used
 ## !python3.9 -m memory_profiler --pdb-mmem=100 example.py  
 ```
 
-```python
+```{code-cell} ipython3
 ## This can be improvised by mprof
 !pip3 install matplotlib
 import matplotlib
@@ -634,7 +634,7 @@ import matplotlib.pyplot as plt
 ```
 
 
-```python
+```{code-cell} ipython3
 !mprof run example.py
 !mprof plot -o image.jpeg
 ```
@@ -655,7 +655,7 @@ process. Then compare the total memory and pinpoint possible memory spikes
 involved within common objects. Well, but apparently it works with Python 2.
 
 
-```python
+```{code-cell} ipython3
 # !pip install guppy
 
 # from guppy import hpy
@@ -674,18 +674,18 @@ involved within common objects. Well, but apparently it works with Python 2.
 Objgraph also helps in finding memory leaks using visualization as follows:
 
 
-```python
+```{code-cell} ipython3
 !pip3 install objgraph
 ```
 
 
-```python
+```{code-cell} ipython3
 import objgraph
 objgraph.show_most_common_types()   ## overview of the objects in memory
 ```
 
 
-```python
+```{code-cell} ipython3
 class MyBigFatObject(object):
     pass
 
@@ -697,7 +697,7 @@ def computate_something(_cache={}):
 ```
 
 
-```python
+```{code-cell} ipython3
 objgraph.show_growth(limit=3) 
 computate_something()
 objgraph.show_growth() 
