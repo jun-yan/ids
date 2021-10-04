@@ -29,7 +29,7 @@ When you pick a task, cross it out and add your name.
 1. Surya Eada ~~Pandas: object; indexing; operation (JVP. p.97-118)~~
 1. Sreeram Anantharaman ~~Pandas: missing data; hierarchical indexing; (JVP p.119-140)~~
 1. Sydney Hyde ~~Pandas: dataset operations (JVP p. 141-178)~~
-1. Zefang Min ~~Scope of variables
+1. Zefang Min ~~Scope of variables~~
 1. Sydney Hyde ~~Web scraping~~
 1. Calling R from Python
 1. Creating modules and packages
