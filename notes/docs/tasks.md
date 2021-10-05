@@ -31,17 +31,21 @@ When you pick a task, cross it out and add your name.
 1. Sydney Hyde ~~Pandas: dataset operations (JVP p. 141-178)~~
 1. Zefang Min ~~Scope of variables~~
 1. Sydney Hyde ~~Web scraping~~
-1. Calling R from Python
-1. Creating modules and packages
-1. A Kaggle competition walkthrough
-1. Jintao Zhang ~~Visualization with Matplotlib (JVP: p.217-274)~~
-1. Advanced Matplotlib: customization; 3d; maps (JVP: p.275-310)
-1. Statistical modeling with statmodels
+1. Measures of classification accuracy and functions in Python
+1. Fraud detection with Python
 1. Machine learning: jumpstart (JVP: p. 331-381)
 1. Naive Bayes classification
 1. Support vector machine
 1. Decision trees and random forests
 1. TensorFlow
+1. A Kaggle competition walkthrough
+
+
+1. Calling R from Python
+1. Creating modules and packages
+1. Jintao Zhang ~~Visualization with Matplotlib (JVP: p.217-274)~~
+1. Advanced Matplotlib: customization; 3d; maps (JVP: p.275-310)
+1. Statistical modeling with statmodels
 
 
 # Catching Up Topics
