@@ -432,8 +432,8 @@ file to automate it in clusters or so on.
 
 
 ```{code-cell} ipython3
-!cp myscript.py myscript2.py
-%save -a myscript2.py -n 4   ##(-a for append, -n for the line run 
+# !cp myscript.py myscript2.py
+# %save -a myscript2.py -n 4   ##(-a for append, -n for the line run 
 ## -n may change every session, thus good for mostly dynamic usage))
 ```
 
@@ -513,7 +513,7 @@ readable manner.
 # !pip install pstats   # pip install from within notebook using bash magic command
 import pstats  ## Clean reprsentation of profile
 from pstats import SortKey
-p = pstats.Stats('restats') ## uses the above file created with output
+ p = pstats.Stats('restats') ## uses the above file created with output
 ;
 ```
 
@@ -572,6 +572,9 @@ lp = LineProfiler()
 lp_wrapper = lp(do_stuff)
 lp_wrapper(numbers)
 lp.print_stats()
+
+## remove restats
+!rm restats
 ```
 
 
@@ -587,7 +590,7 @@ lp.print_stats()
 
 ```{code-cell} ipython3
 from IPython.display import SVG
-SVG('mine.svg')
+#  SVG('mine.svg')
 ```
 
 ### Profiling Memory
@@ -614,7 +617,7 @@ if __name__ == '__main__':
 ```
 
 ```{code-cell} ipython3
-%save -a example.py -n 28   ## change 28 to respective line number
+# %save -a example.py -n 28   ## change 28 to respective line number
 ```
 
 ```{code-cell} ipython3

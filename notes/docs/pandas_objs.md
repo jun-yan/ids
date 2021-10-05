@@ -11,7 +11,6 @@ kernelspec:
   name: python3
 ---
 
-
 # Pandas
 
 ## History of Pandas
@@ -19,7 +18,6 @@ Developer Wes McKinney started working on pandas in 2008 while at AQR
 Capital Management out of the need for a high performance, flexible tool
 to perform quantitative analysis on financial data. Before leaving AQR
 he was able to convince management to allow him to open source the library.
-
 
 ```{code-cell} ipython3
 ## Installing and Checking version of Pandas:
@@ -56,7 +54,6 @@ created from a list or array as follows:
 
 ### Series
 
-
 ```{code-cell} ipython3
 data = pd.Series([0.25, 0.5, 0.75, 1.0])
 data
@@ -64,22 +61,18 @@ data
 
 As can be seen above, it is a numpy array but with index `0-3`
 
-
 ```{code-cell} ipython3
 data.values
 ```
-
 
 ```{code-cell} ipython3
 data.index
 ```
 
-
 ```{code-cell} ipython3
 print(f"data value at index 1 is {data[1]}")    ## f string in python.
 data[0:3]  
 ```
-
 
 ```{code-cell} ipython3
 data = pd.Series([0.25, 0.5, 0.75, 1.0],
@@ -93,7 +86,6 @@ data['b']
 Quick to note that series may also resemble dictionary due to its index
 seemingly resembling keys in dictionary. This was clarified by creating
 a pandas series using a dictionary.
-
 
 ```{code-cell} ipython3
 population_dict = {'California': 38332521,
@@ -111,11 +103,9 @@ Difference however is that, the indices can still be used to get a
 range of values from PD Series by doing slicing and so on, 
 while it is not the same in a dictionary
 
-
 ```{code-cell} ipython3
 population['California':'Florida']
 ```
-
 
 ```{code-cell} ipython3
 try: 
@@ -132,20 +122,17 @@ except:
   
 These above points are exemplified below:
 
-
 ```{code-cell} ipython3
 ## From a list
 pd.Series([2, 4, 6])
 ```
-
 
 ```{code-cell} ipython3
 ## Repeating numbers when index set is longer than data
 pd.Series(5, index = [1, 2, 3])
 ```
 
-
-{code-cell} ipython3
+```{code-cell} ipython3
 # This uses dictionary but also indexes a smaller set 
 pd.Series({2:'a', 1:'b', 3:'c'}, index=[3, 2]) 
 ```
@@ -194,14 +181,12 @@ Panda dataframes can be constructed in various ways:
 ## Pandas Index:
 
 - Pandas index is an immutable array. It is like an array in many ways
-  but cannot be modified unlike numpy arrays. 
-
+  but cannot be modified unlike numpy arrays.
 
 ```{code-cell} ipython3
 ind = pd.Index([2, 3, 5, 7, 11])
 ind
 ```
-
 
 ```{code-cell} ipython3
 ## Accessing index
@@ -210,14 +195,12 @@ print(ind[::2])  ## notice the difference between a single : and double ::
 print(ind[:2])
 ```
 
-
 ```{code-cell} ipython3
 try:
     ind[1] = 0
 except:
     "Error found"
 ```
-
 
 ```{code-cell} ipython3
 indA =  pd.Index([1,3, 5, 7, 9])
@@ -226,7 +209,6 @@ indB = pd.Index([2,3, 5, 7, 11])
 indA & indB  #intersection
 ```
 
-
 ```{code-cell} ipython3
 ## deprecated warnings
 indA | indB
@@ -234,23 +216,19 @@ indA | indB
 
 ## Data Indexing and Selection:
 
-
 ```{code-cell} ipython3
 data = pd.Series([0.25, 0.5, 0.75, 1.0],
 index=['a', 'b', 'c', 'd'])
 data
 ```
 
-
 ```{code-cell} ipython3
 data['b']     ## accessing the b index location
 ```
 
-
 ```{code-cell} ipython3
 data.keys()     ## also gives the index object
 ```
-
 
 ```{code-cell} ipython3
 list(data.items())   ## gives both keys and values
@@ -261,12 +239,10 @@ the hood, Pandas is making decisions about memory layout and data
 copying that might need to take place; the user generally does not
 need to worry about these issues.
 
-
 ```{code-cell} ipython3
 data['e'] = 1.25
 data
 ```
-
 
 ```{code-cell} ipython3
 print("slicing by explicit index")
@@ -292,17 +268,14 @@ an indexing operation such as `data[1]` will use the explicit indices,
 while a slicing operation like `data[1:3]` will use the implicit
 Python-style index.
 
-
 ```{code-cell} ipython3
 data = pd.Series(['a', 'b', 'c'], index=[1, 3, 5])
 data[3]
 ```
 
-
 ```{code-cell} ipython3
 data[1:3]
 ```
-
 
 ```{code-cell} ipython3
 ## thus 'loc' always slices using explicit index
@@ -311,7 +284,6 @@ print(data.loc[1:3])
 
 # does show the value in index 3
 ```
-
 
 ```{code-cell} ipython3
 # and 'iloc' uses implicit python index
@@ -322,7 +294,6 @@ print(data.iloc[1:3])
 ```
 
 ## Data Selection in Dataframe
-
 
 ```{code-cell} ipython3
 area = pd.Series({'California': 423967, 'Texas': 695662,
@@ -335,7 +306,6 @@ data = pd.DataFrame({'area':area, 'pop':pop})
 data
 ```
 
-
 ```{code-cell} ipython3
 print(data['area'])
 print(data.area)
@@ -344,12 +314,10 @@ print(data.area is data['area'])
 ## wont work if area is also a special command for dataframes
 ```
 
-
 ```{code-cell} ipython3
 print(data.pop is data['pop'])
 print(data.pop)
 ```
-
 
 ```{code-cell} ipython3
 data['density'] =  data['pop']/data['area']
@@ -362,38 +330,31 @@ As mentioned previously, we can also view the DataFrame as an enhanced
 twodimensional array. We can examine the raw underlying data array
 using the values attribute:
 
-
 ```{code-cell} ipython3
 data.values
 ```
-
 
 ```{code-cell} ipython3
 data.T    ## for Transpose
 ```
 
-
 ```{code-cell} ipython3
 data.values[0]  ## accesses a row (like a dictionary)
 ```
-
 
 ```{code-cell} ipython3
 data.iloc[:3, :2]
 ```
 
-
 ```{code-cell} ipython3
 data.loc[:'Florida', :'pop']
 ```
-
 
 ```{code-cell} ipython3
 data.ix[:3, :'pop']   ## hybrid of iloc and loc
 
 ## maybe removed since.
 ```
-
 
 ```{code-cell} ipython3
 data.loc[data.density > 100, ['pop', 'density']]
@@ -406,7 +367,6 @@ that we introduced in “Computation on NumPy Arrays: Universal
 Functions”on page 50 are key to this.
 
 ## Ufuncs: Index Preservation
-
 
 ```{code-cell} ipython3
 rng = np.random.RandomState(42)
@@ -421,20 +381,15 @@ print(df)
 If we apply a NumPy ufunc on either of these objects, the result will
 be another Pandas object with the indices preserved:
 
-
 ```{code-cell} ipython3
 np.exp(ser)
 ```
-
 
 ```{code-cell} ipython3
 np.sin(df*np.pi/4)
 ```
 
 ## UFuncs: Index Alignment
-
-
-
 
 ```{code-cell} ipython3
 area = pd.Series({'Alaska': 1723337, 'Texas': 695662,
@@ -446,7 +401,6 @@ print(population / area)
 
 print(population.divide(area, fill_value=0))
 ```
-
 
 ## Exercises
 
@@ -461,4 +415,3 @@ print(population.divide(area, fill_value=0))
    each poster presenter. Write a script to process the three input
    files to generate an output markdown file that gives a virtual
    directory of the poster session like <https://statds.org/events/ucsas2021/poster_directory.html>.
-   
