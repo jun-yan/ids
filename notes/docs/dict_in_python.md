@@ -1,4 +1,19 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .md
+      format_name: markdown
+      format_version: '1.3'
+      jupytext_version: 1.10.3
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+---
+
 # Python dictionary
+
 
 
 ## Python sequence types:
@@ -10,7 +25,6 @@ immutable, use a parentheses $(\quad)$
 - Range:
 sequence of integars
 
-
 ```python
 list1=[1,"a",[1,2,3]]
 print(list1[1])
@@ -19,35 +33,14 @@ print(list1[0])
 print(list1[-1])
 ```
 
-    a
-    2
-    [1, 2, 3]
-    
-
-
 ```python
 tuple1=(1,2,3)
 print(tuple1[2])
-tuple1[2]=100
+try:
+    tuple1[2]=100
+except:
+    print("error")
 ```
-
-    3
-    
-
-
-    ---------------------------------------------------------------------------
-
-    TypeError                                 Traceback (most recent call last)
-
-    ~\AppData\Local\Temp/ipykernel_5908/1596880032.py in <module>
-          1 tuple1=(1,2,3)
-          2 print(tuple1[2])
-    ----> 3 tuple1[2]=100
-    
-
-    TypeError: 'tuple' object does not support item assignment
-
-
 
 ```python
 a=range(5)
@@ -56,15 +49,10 @@ b=[i for i in range(5)]
 print(b)
 ```
 
-    range(0, 5)
-    [0, 1, 2, 3, 4]
-    
-
 ## Mapping type: dictionary
 A set of value pairs\
 Indexed by "keys": a immutable type, should be unique\
-Tuple can be used as keys\
-
+Tuple can be used as keys
 
 
 ```python
@@ -73,95 +61,45 @@ score['alice']=70
 score
 ```
 
-
-
-
-    {'tom': 90, 'jack': 80, 'alice': 70}
-
-
-
-
 ```python
-del socre['tom']
+del score['tom']
 ```
-
-
-    ---------------------------------------------------------------------------
-
-    NameError                                 Traceback (most recent call last)
-
-    ~\AppData\Local\Temp/ipykernel_5908/3109481407.py in <module>
-    ----> 1 del socre['tom']
-    
-
-    NameError: name 'socre' is not defined
-
-
 
 ```python
 score['jack']=100
 score
 ```
 
-
-
-
-    {'tom': 90, 'jack': 100, 'alice': 70}
-
-
-
 Construct dictionary from list of pairs:
-
 
 ```python
 dict(tom=80,jack=90)
 ```
 
+Construct dictionart using zip()
 
-
-
-    {'tom': 80, 'jack': 90}
-
-
+```python
+list1=["Tom","Jack","Steve"]
+list2=[5,7,9]
+zip_pairs=zip(list1,list2)
+print(zip_pairs)
+dict_pairs=dict(zip_pairs)
+print(dict_pairs)
+```
 
 ## Some useful functions:
-
 
 ```python
 score.items()
 ```
 
-
-
-
-    dict_items([('tom', 90), ('jack', 100), ('alice', 70)])
-
-
-
-
 ```python
 score.keys()
 ```
 
-
-
-
-    dict_keys(['tom', 'jack', 'alice'])
-
-
-
-
 ```python
 score.values()
 ```
-
-
-
-
-    dict_values([90, 100, 70])
-
-
-
 
 ```python
 # check for the key
@@ -169,30 +107,53 @@ print(score.get('steven','not found'))
 print(score.get('alice','not found'))
 ```
 
-    not found
-    70
-    
+```python
+"jack" in score
+```
+
+```python
+"tom" not in score
+```
 
 ## Applications:
 Find the winner of an election:
 The results is {"john", "johnny", "jackie", "johnny", "john", "jackie", "jamie", "jamie", "john", "johnny", "jamie", "johnny", "john"}\
 Try to write a function to out put people and their votes.
 
-
 ```python
 dict1=dict(jimmy=3,john=1)
 data = ["john", "johnny", "jackie", "johnny", "john", "jackie", "jamie", "jamie", "john","johnny", "jamie", "johnny",  "john"]
-def vote(data):
-    Mydict=dict()
+def vote(data,Mydict):
     for i in data:
         if i not in Mydict.keys():
             Mydict[i]=0
         if i in Mydict.keys():
-            Mydict[i]+=1
-            
+            Mydict[i]+=1           
     return Mydict 
-print(vote(data))
+
+vote(data,dict1)
 ```
 
-    {'john': 4, 'johnny': 4, 'jackie': 2, 'jamie': 3}
-    
+## Merging dictionaries
+
+```python
+fruit = {"A": {"Apple"}, "B":{"Grape","Pear"}}
+fruit2 = {"A":{"Banana"}, "C":{"Pear"}}
+fruit.update(fruit2)
+fruit
+```
+
+## Iterating over dictionaries
+
+```python
+%%timeit  d = {"a":123, "b":34, "c":304, "d":99}
+for key in d.keys():
+    x = d[key]
+
+```
+
+```python
+%%timeit  d = {"a":123, "b":34, "c":304, "d":99}
+for value in d.values():
+    x = value
+```
