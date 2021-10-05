@@ -32,15 +32,13 @@ When you pick a task, cross it out and add your name.
 1. Zefang Min ~~Scope of variables~~
 1. Sydney Hyde ~~Web scraping~~
 1. Measures of classification accuracy and functions in Python
-1. Fraud detection with Python
+1. Sydney Hyde ~~Fraud detection with Python~~
 1. Machine learning: jumpstart (JVP: p. 331-381)
 1. Naive Bayes classification
 1. Support vector machine
 1. Decision trees and random forests
 1. TensorFlow
 1. A Kaggle competition walkthrough
-
-
 1. Calling R from Python
 1. Creating modules and packages
 1. Jintao Zhang ~~Visualization with Matplotlib (JVP: p.217-274)~~
