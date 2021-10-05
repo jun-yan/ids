@@ -446,3 +446,19 @@ print(population / area)
 
 print(population.divide(area, fill_value=0))
 ```
+
+
+## Exercises
+
+1. Posters submitted to the 2021 UConn Sports Analytics Symposium were
+   collected at a website. After the deadline, two files were
+   generated: `ucsas2021_poster.csv` contains the poster submitter's
+   information including their names, emails, titles, and abstracts;
+   `ucsas2021_pdf.csv` contains the file name of the pdf posters. To
+   facilitate the virtual poster session, a group of UConn student
+   volunteers signed up to set up virtual webex meetings. The Google
+   spreadsheet `ucsas2021_volunteers.csv` contains a webex link for
+   each poster presenter. Write a script to process the three input
+   files to generate an output markdown file that gives a virtual
+   directory of the poster session like <https://statds.org/events/ucsas2021/poster_directory.html>.
+   
