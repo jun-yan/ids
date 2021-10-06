@@ -29,7 +29,7 @@ When you pick a task, cross it out and add your name.
 1. Surya Eada ~~Pandas: object; indexing; operation (JVP. p.97-118)~~
 1. Sreeram Anantharaman ~~Pandas: missing data; hierarchical indexing; (JVP p.119-140)~~
 1. Sydney Hyde ~~Pandas: dataset operations (JVP p. 141-178)~~
-1. Measures of classification accuracy and functions in Python
+1. Jintao Zhang ~~Measures of classification accuracy and functions in Python~~
 1. Sydney Hyde ~~Fraud detection with Python (GitHub of Trenton McKinney)~~
 1. Machine learning for credit card fraud detection (Le Borgne and Nontempi)
 1. Credit card fraud detection by Nikhil Adithyan on Medium.com
