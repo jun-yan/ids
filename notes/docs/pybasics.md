@@ -640,9 +640,12 @@ import matplotlib.pyplot as plt
 ```{code-cell} ipython3
 !mprof run example.py
 !mprof plot -o image.jpeg
+
+## Remove if not required to show.
+!rm image.jpeg
 ```
 
-!["Mprof Output"](image.jpeg)
+<!-- !["Mprof Output"](image.jpeg) -->
 
 More information about this and even plots etc can be found at
 [Memory_Profiler](https://pypi.org/project/memory-profiler/). You can use a
