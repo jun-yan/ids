@@ -9,8 +9,16 @@ linear programing, constrained and nonlinear least-squares, root finding, and cu
 ## Least-squares minimization (least_squares)
 
 SciPy is capable of solving robustified bound-constrained nonlinear least-squares problems:  
-$$min \frac{1}{2} \Sigma_{1}^{m}\rho(f_{i}(x_i;\theta)^2)$$  
-Subject to $$lb\leq \theta \leq ub$$
+
+$$
+\text{min}\  \frac{1}{2} \sum\limits_{1}^{m}\rho(f_{i}(x_i;\theta)^2)
+$$
+  
+Subject to
+
+$$
+lb\leq \theta \leq ub
+$$
 
 Where $x_i$ is predictor, $f(x_i)$ is the residual,   
 $\rho(f_{i}(x_i;\theta)^2)$ is to reduce the influence of outliers on the solution
@@ -20,7 +28,7 @@ $\rho(f_{i}(x_i;\theta)^2)$ is to reduce the influence of outliers on the soluti
 
 $f_i(x_i;\theta)=\frac{1}{(x_{i}\theta+1)}-y_i, i=1,...,n$  
 where $y_i$ are measurement values.The unknown vector of parameters is $\theta$.  
-It is recommended to compute derivitative in a closed form:  
+It is recommended to compute derivative in a closed form:  
 $J_i=\frac{-x_i}{(\theta*x_i+1)^2}$  
 
 <!-- #endregion -->
