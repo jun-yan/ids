@@ -377,7 +377,6 @@ one.
 
 ### `timeit` Function Usage:
 
-
 ```{code-cell} ipython3
 import pandas    ## !pip3 install pandas (uncomment to add)
 import timeit    ## base package
@@ -402,7 +401,6 @@ def fib_dm(n):
 %timeit fib_dm(100)
 ```
 
-
 ```{code-cell} ipython3
 ### Second Interpretation using dynamic programming bottom up
 def fib_dbu(n):
@@ -417,7 +415,6 @@ def fib_dbu(n):
 fib_dbu(100)
 ```
 
-
 ```{code-cell} ipython3
 %timeit fib_dbu(100)  ## timeit application of fib_dbu
 ```
@@ -429,7 +426,6 @@ applications and then save each chunk correspondingly to the "source" file with
 functions and "application" file once you ensure it works on the notebook. It
 helps a great deal as you'd like your functions to finally appear in a ".py"
 file to automate it in clusters or so on.
-
 
 ```{code-cell} ipython3
 # !cp myscript.py myscript2.py
@@ -452,7 +448,6 @@ Source: [The python Profilers](https://docs.python.org/3/library/profile.html)
 
 To profile a function that takes only one argument, you can do the following:
 
-
 ```{code-cell} ipython3
 import cProfile   ## for profiling function
 ```
@@ -474,9 +469,8 @@ cProfile.run('fib_dbu(2000)')
 - You can also save the run output to a file by providing it as the second
   argument as follows:
 
-
 ```{code-cell} ipython3
-cProfile.run('fib_dm(2000)', 'restats')
+cProfile.run('fib_dm(2000)', 'restats.log')
 ```
 
 ### Command Line for cProfile
@@ -484,13 +478,13 @@ cProfile.run('fib_dm(2000)', 'restats')
 The files cProfile and profile can also be invoked as a script to profile
 another script. For example:
 
-
 ```{code-cell} ipython3
 ## run using bash and saved `py` file
-!python -m cProfile -o restats myscript.py   ## profiling an entire script will include
-                                             ## overhead time for importing, creating a function
+## !python -m cProfile -o restats.log myscript.py # myscript.py does not exist
+## profiling an entire script will include
+## overhead time for importing, creating a function
 ## Once again run at the end
-cProfile.run('fib_dm(2000)', 'restats')
+cProfile.run('fib_dm(2000)', 'restats.log')
 ```
 
 ### Interpretation of Raw Output format:
@@ -508,15 +502,13 @@ The column headings include:
 The pstats.Stats class reads profile results from a file and formats them in
 readable manner.
 
-
 ```{code-cell} ipython3
 # !pip install pstats   # pip install from within notebook using bash magic command
 import pstats  ## Clean reprsentation of profile
 from pstats import SortKey
- p = pstats.Stats('restats') ## uses the above file created with output
-;
+p = pstats.Stats('restats.log') ## uses the above file created with output
+print(p)
 ```
-
 
 ```{code-cell} ipython3
 ### some possible print outputs
@@ -552,11 +544,9 @@ implementations.
 execute. The profiler is implemented in C via Cython in order to reduce the
 overhead of profiling.* Also the timer unit is $10^{-6}$ or $\mu s$
 
-
 ```{code-cell} ipython3
-!pip3 install line_profiler  ## install line_profiler
+!pip3 install line_profiler  ## install line_profiler ## check if it is installed first
 ```
-
 
 ```{code-cell} ipython3
 from line_profiler import LineProfiler
@@ -573,10 +563,9 @@ lp_wrapper = lp(do_stuff)
 lp_wrapper(numbers)
 lp.print_stats()
 
-## remove restats
-!rm restats
+## remove restats.log
+!rm restats.log
 ```
-
 
 ```{code-cell} ipython3
 ## from pycallgraph import PyCallGraph
@@ -584,9 +573,8 @@ lp.print_stats()
 
 ## with PyCallGraph(output=GraphvizOutput()):
 ##    fib_dm(10)
-!gprof2dot -f pstats restats | dot -Tsvg -o mine.svg
+!gprof2dot -f pstats restats.log | dot -Tsvg -o mine.svg
 ```
-
 
 ```{code-cell} ipython3
 from IPython.display import SVG
@@ -636,7 +624,6 @@ import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
 ```
 
-
 ```{code-cell} ipython3
 !mprof run example.py
 !mprof plot -o image.jpeg
@@ -660,7 +647,6 @@ way is Guppy. You can take a snapshot of the heap before and after a critical
 process. Then compare the total memory and pinpoint possible memory spikes
 involved within common objects. Well, but apparently it works with Python 2.
 
-
 ```{code-cell} ipython3
 # !pip install guppy
 
@@ -679,17 +665,14 @@ involved within common objects. Well, but apparently it works with Python 2.
 
 Objgraph also helps in finding memory leaks using visualization as follows:
 
-
 ```{code-cell} ipython3
 !pip3 install objgraph
 ```
-
 
 ```{code-cell} ipython3
 import objgraph
 objgraph.show_most_common_types()   ## overview of the objects in memory
 ```
-
 
 ```{code-cell} ipython3
 class MyBigFatObject(object):
@@ -702,7 +685,6 @@ def computate_something(_cache={}):
     x = MyBigFatObject() # this one doesn't leak
 ```
 
-
 ```{code-cell} ipython3
 objgraph.show_growth(limit=3) 
 computate_something()
@@ -713,7 +695,6 @@ It’s easy to see `MyBigFatObject` instances that appeared and were not freed. 
 we can trace the reference chain back.
 
 +++
-
 
 ## General Resources
 Popular textbooks on Python programming include
