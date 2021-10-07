@@ -12,7 +12,7 @@ kernelspec:
   name: python3
 ---
 
-## Pandas: Dataset Operations
+# Pandas: Dataset Operations
 
 Dataset can be combined in a multidue of different ways from other datasets. Operations that can be used can be from a straightforward approch such as using concatenation from two datasets. Alternatively, one could use database-style joins and merges to correctly handle any overlaps between datasets. 
 
@@ -20,7 +20,7 @@ Dataset can be combined in a multidue of different ways from other datasets. Ope
 
 +++
 
-### Simple Concatenation Using pd.concat
+## Simple Concatenation Using pd.concat
 
 ```{code-cell} ipython3
 # !pip3 install pandas
@@ -85,7 +85,7 @@ print(y); print();
 print(df_concat4); print()
 ```
 
-#### Concatenations with joins
+### Concatenations with joins
 
 When concatinating dataframes with different column names `pd.concat` defaults to filling entries where no data is available with NA values.
 
@@ -105,7 +105,7 @@ print(df6); print();
 print(pd.concat([df5, df6], join = 'inner'))
 ```
 
-#### Append() Method
+### Append() Method
 
 Direct array concatentation is very common, `series` and `DataFrame` objects have an additional method that can be used in similar fashion.
 
@@ -115,17 +115,17 @@ print(df2); print();
 print(df1.append(df2))
 ```
 
-### Combining Datasets: Merge and Join
+## Combining Datasets: Merge and Join
 
 +++
 
-#### Categories of Joins
+### Categories of Joins
 
 Using the `pd.merge()` function carries out a number of types of joins: *one-to-one*, *many-to-one*, and *many-to-many* joins.
 
 +++
 
-##### Example of One-to-One Join
+#### Example of One-to-One Join
 
 ```{code-cell} ipython3
 df7 = pd.DataFrame({
@@ -156,7 +156,7 @@ df9 = pd.merge(df7, df8)
 df9
 ```
 
-##### Many-to-One Joins
+#### Many-to-One Joins
 
 Many-to-one joins are joins in which one of the two key columns contains duplicated entries.
 
@@ -173,7 +173,7 @@ print(df10); print();
 print(pd.merge(df9, df10))
 ```
 
-##### Many-to-Many Joins
+#### Many-to-Many Joins
 
 Many-to-many joins if the key column in both left and right array contains any duplicates, it can result in many-to-many joins.
 
@@ -192,7 +192,7 @@ print(df11); print();
 print(pd.merge(df7, df11))
 ```
 
-#### Using Merge Keys
+### Using Merge Keys
 
 By default, `pd.merge()` looks for one or more matching column names to use as a key. However you can specify this column name using on. If two colums that are the same have different names you can merge them using left_on and right_on, or even merge by index using `left_index` and `right_index`.
 
@@ -239,11 +239,11 @@ print(df14); print()
 print(pd.merge(df13, df14, left_index = True, right_index = True))
 ```
 
-### Aggregation and Grouping
+## Aggregation and Grouping
 
 +++
 
-#### Simple Aggregration 
+### Simple Aggregration 
 
 For Pandas `DataFrame` aggrigates return results within each column. All common aggrigates are available, and in addition there is a method `describe()` which computes several common aggrigates at once for each column.
 
@@ -255,7 +255,7 @@ mpg = sns.load_dataset('mpg')
 mpg.dropna().describe()
 ```
 
-#### GroupBy
+### GroupBy
 
 Conditional Aggrigation by some label or index can be done by `groupby` operation, which does the "split, apply, combine" operation by default.
 
@@ -263,7 +263,7 @@ Conditional Aggrigation by some label or index can be done by `groupby` operatio
 mpg.dropna().groupby('origin').mean()
 ```
 
-#### Using GroupBy Object
+### Using GroupBy Object
 
 It is possible to think of the `GroupBy` object as a collection of `DataFrames`, and it has a variety of operations that can be used. It is possible to index a `GroupBy` object as you would a `DataFrame` to return a modified GroupBy object. It also supports direct iteration over groups, returning each group as a `Series` or `DataFrame`. In addition any method not specifically called by the `GroupBy` object will be called on the indivdual groups within the `GroupBy`b object.
 
@@ -284,7 +284,7 @@ for (origin, group) in mpg.groupby('origin'):
 mpg.groupby('origin')['mpg'].describe()
 ```
 
-#### GroupBy Aggregration 
+### GroupBy Aggregration 
 
 The aggregate function can take a string or function or list of those and compute all aggregates at once. You can also pass a dictionary which maps colum names to operations to be used in those columns.
 
@@ -306,7 +306,7 @@ df17.groupby('Color').aggregate({'Data1':'min',
                                  'Data2':'max'})
 ```
 
-#### GroupBy Filtering 
+### GroupBy Filtering 
 
 Filtering allows us to keep data based on group properties. It returns a Boolian value saying if the group passes the filtering.
 
@@ -320,7 +320,7 @@ print(df17.groupby('Color').std()); print()
 print(df17.groupby('Color').filter(filter_function))
 ```
 
-#### GroupBy apply() Method
+### GroupBy apply() Method
 
 `apply()` lets you apply an arbitrary function to the results of a group. The function takes a `DataFrame` as an argument and returns either a Pandas `DataFrame`, Pandas `Series` or a scalar.
 
@@ -334,7 +334,7 @@ print(df17); print()
 print(df17.groupby('Color').apply(dev_by_mean_data2))
 ```
 
-#### Specifying the Split Key
+### Specifying the Split Key
 
 The `DataFrame` can be split by more than just a single column name. It can be split by any list, array, series, or index providing the grouping keys so long as the length matches the `DataFrame`. It can also be split by a dictionary which mappes index values to group keys. It can also be split by any Python function so long as it inputs the index value and outputs the group. And finally it can be done by mixing any of these together in a list of valid keys to create a multi-index.
 
@@ -362,11 +362,11 @@ print(df18); print()
 print(df18.groupby([str.upper, mapping]).mean())
 ```
 
-### Pivot Tables
+## Pivot Tables
 
 +++
 
-#### Basics
+### Basics
 
 While `groupby` is useful for gaining basic understanding of data, it can become messy when you try to do anything in more than one-dimension. This is why Pandas has the built in routine `pivot_table` which can easily handle multidimensional aggregation.
 
@@ -374,7 +374,7 @@ While `groupby` is useful for gaining basic understanding of data, it can become
 mpg.pivot_table('mpg', index = 'origin', columns = 'cylinders')
 ```
 
-#### Multilevel Pivot Tables
+### Multilevel Pivot Tables
 
 We can bin data to show multilevel tables using the `pd.cut` and `pd.qcut` functions
 
@@ -390,7 +390,7 @@ weight = pd.qcut(mpg['weight'], 2)
 mpg.pivot_table('mpg', ['origin', years], ['cylinders', weight])
 ```
 
-#### Additional Pivot Tables Options
+### Additional Pivot Tables Options
 
 There are five arguments we havent covered for pivot tables. `fill_value` and `dropna` deal with missing data. `aggfunc` keyword determines which type of aggrigation is applied, which is mean by default. It can specify `'sum'`, `'mean'`, `'count'`, `'min'`, `'max'`, etc.. or a function for an aggrigation (`np.sum()`, `min()`, `sum()`, etc) It can also be a dictionary mapping a collumn to any of the previous options. When using aggfunc the values keyword is determined automatically
 
