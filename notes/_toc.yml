@@ -8,6 +8,7 @@ sections:
 - file: docs/pybasics
 - file: docs/Numpy
 - file: docs/Scipy
+- file: docs/dict_in_python
 - file: docs/Optimization
 - file: docs/pandas_objs
 - file: docs/Pandas_Dataset_Operations
