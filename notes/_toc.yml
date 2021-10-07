@@ -12,3 +12,4 @@ sections:
 - file: docs/pandas_objs
 - file: docs/Pandas_Dataset_Operations
 - file: docs/misc
+- file: docs/Measures of classification accuracy
