@@ -29,18 +29,18 @@ When you pick a task, cross it out and add your name.
 1. Surya Eada ~~Pandas: object; indexing; operation (JVP. p.97-118)~~
 1. Sreeram Anantharaman ~~Pandas: missing data; hierarchical indexing; (JVP p.119-140)~~
 1. Sydney Hyde ~~Pandas: dataset operations (JVP p. 141-178)~~
-1. Zefang Min ~~Scope of variables~~
-1. Sydney Hyde ~~Web scraping~~
-1. Measures of classification accuracy and functions in Python
-1. Fraud detection with Python
-1. Machine learning: jumpstart (JVP: p. 331-381)
+1. Jintao Zhang ~~Measures of classification accuracy and functions in Python~~
+1. Sydney Hyde ~~Fraud detection with Python (GitHub of Trenton McKinney)~~
+1. Machine learning for credit card fraud detection (Le Borgne and Nontempi)
+1. Sreeram Anantharaman ~~Credit card fraud detection by Nikhil Adithyan on Medium.com~~
+1. Zefang Min ~~Machine learning: jumpstart (JVP: p. 331-381)~~
 1. Naive Bayes classification
 1. Support vector machine
 1. Decision trees and random forests
 1. TensorFlow
 1. A Kaggle competition walkthrough
-
-
+1. Zefang Min ~~Scope of variables~~
+1. Sydney Hyde ~~Web scraping~~
 1. Calling R from Python
 1. Creating modules and packages
 1. Jintao Zhang ~~Visualization with Matplotlib (JVP: p.217-274)~~
@@ -48,11 +48,9 @@ When you pick a task, cross it out and add your name.
 1. Statistical modeling with statmodels
 
 
-# Catching Up Topics
+## Catching Up Topics
 
 1. [Python standard library](https://docs.python.org/3/library/)
 
 
-# Lessons Learned
-
-
+## Lessons Learned
