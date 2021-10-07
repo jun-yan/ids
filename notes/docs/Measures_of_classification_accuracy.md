@@ -128,9 +128,6 @@ precision = precision_score(y_true, y_pred, average='binary')
 print('Precision: %.3f' % precision)
 ```
 
-    Precision: 0.750
-    
-
 ## Recall Metric
 
 **Recall** is a metric that quantifies **the number of correct positive predictions   
@@ -191,9 +188,6 @@ y_pred = pred_pos + pred_neg
 recall = recall_score(y_true, y_pred, average='binary')
 print('Recall: %.3f' % recall)
 ```
-
-    Recall: 0.900
-    
 
 ## Precision vs. Recall for Imbalanced Classification
 
@@ -294,6 +288,3 @@ y_pred = pred_pos + pred_neg
 score = f1_score(y_true, y_pred, average='binary')
 print('F-Measure: %.3f' % score)
 ```
-
-    F-Measure: 0.760
-    
