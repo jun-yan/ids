@@ -33,7 +33,7 @@ When you pick a task, cross it out and add your name.
 1. Sydney Hyde ~~Fraud detection with Python (GitHub of Trenton McKinney)~~
 1. Machine learning for credit card fraud detection (Le Borgne and Nontempi)
 1. Sreeram Anantharaman ~~Credit card fraud detection by Nikhil Adithyan on Medium.com~~
-1. Machine learning: jumpstart (JVP: p. 331-381)
+1. Zefang Min ~~Machine learning: jumpstart (JVP: p. 331-381)
 1. Naive Bayes classification
 1. Support vector machine
 1. Decision trees and random forests
