@@ -12,7 +12,7 @@ will overwhelm the number of examples in the minority class, meaning that even u
 can achieve accuracy scores of 90 percent, or 99 percent, depending on how severe  
 the class imbalance happens to be.  
 
-An alternative to using classification accuracy is to use **precision** and **recall** metrics.
+An alternative to using classification accuracy is to use **precision** and **recall** metrics.  
 
 After completing this tutorial, you will know:
 
@@ -38,7 +38,7 @@ The confusion matrix provides more insight into not only the performance
 of a predictive model, but also which classes are being predicted correctly,  
 which incorrectly, and what type of errors are being made.  
 
-The **simplest confusion matrix** is for a two-class classification problem, with  
+The **simplest confusion matrix** is for a two-class classification problem, with    
 **negative (class 0) and positive (class 1) classes**.  
 
 In this type of confusion matrix, each cell in the table has a specific and   
@@ -50,16 +50,16 @@ well-understood name, summarized as follows:
 |Negative Class | False Positive (FP) | True Negative (TN) |
 
 The **precision and recall metrics** are defined in terms of the cells in  
-the confusion matrix, specifically terms like true positives and false negatives.
+the confusion matrix, specifically terms like true positives and false negatives.  
 
 ## Precision metric
 
-**Precision** is a metric that quantifies the number of correct positive predictions made.  
+**Precision** is a metric that quantifies the number of correct positive predictions made.    
 
-**Precision**, therefore, calculates the accuracy for the **minority** class.
+**Precision**, therefore, calculates the accuracy for the **minority** class.  
 
-It is calculated as the **ratio of correctly predicted positive examples divided by the  
-total number of positive examples that were predicted**.
+It is calculated as the **ratio of correctly predicted positive examples divided by the    
+total number of positive examples that were predicted**.  
 
 ### Precision for Binary Classification
 
@@ -69,7 +69,7 @@ the total number of true positives and false positives**.
 
 \* **Precision = TruePositives / (TruePositives + FalsePositives)**  
 
-The result is a value between 0.0 for no precision and 1.0 for full or perfect precision.
+The result is a value between 0.0 for no precision and 1.0 for full or perfect precision.  
 
 A model makes predictions and predicts 120 examples as belonging  
 to the minority class, 90 of which are correct, and 30 of which are incorrect.  
@@ -105,10 +105,10 @@ to the negative class, so-called false negatives.
 
 The precision score can be calculated using the [precision_score() scikit-learn function](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html).  
 
-For example, we can use this function to calculate precision for the scenarios in the previous section.  
+For example, we can use this function to calculate precision for the scenarios in the previous section.    
 
 First, the case where there are 100 positive to 10,000 negative examples, and a model   
-predicts 90 true positives and 30 false positives. The complete example is listed below.
+predicts 90 true positives and 30 false positives. The complete example is listed below.  
 
 
 ```python
@@ -136,41 +136,41 @@ made out of all positive predictions that could have been made**.
 Unlike precision that only comments on the correct positive predictions out of  
 all positive predictions, recall provides an indication of missed positive predictions.  
 
-In this way, **recall** provides some **notion of the coverage of the positive class**.
+In this way, **recall** provides some **notion of the coverage of the positive class**.  
 
 ### Recall for Binary Classification
 
-In an imbalanced classification problem with two classes, **recall**  
+In an imbalanced classification problem with two classes, **recall**   
 is calculated as **the number of true positives divided by the total  
-number of true positives and false negatives**.
+number of true positives and false negatives**.  
 
 **Recall = TruePositives / (TruePositives + FalseNegatives)**  
-The result is a value between 0.0 for no recall and 1.0 for full or perfect recall.  
+The result is a value between 0.0 for no recall and 1.0 for full or perfect recall.    
 
-Let’s make this calculation concrete with some examples.  
+Let’s make this calculation concrete with some examples.   
 
-As in the previous section, consider a dataset with 1:100 minority to majority ratio,  
+As in the previous section, consider a dataset with 1:100 minority to majority ratio,    
 with 100 minority examples and 10,000 majority class examples.  
 
-A model makes predictions and predicts 90 of the positive class predictions correctly  
-and 10 incorrectly. We can calculate the recall for this model as follows:  
+A model makes predictions and predicts 90 of the positive class predictions correctly   
+and 10 incorrectly. We can calculate the recall for this model as follows:   
 
-Recall = TruePositives / (TruePositives + FalseNegatives)  
+Recall = TruePositives / (TruePositives + FalseNegatives)   
 Recall = 90 / (90 + 10)  
 Recall = 90 / 100  
 Recall = 0.9  
-This model has a good recall.
+This model has a good recall.  
 
 ### Calculate Recall With Scikit-Learn
 
 The recall score can be calculated using the [recall_score() scikit-learn function](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.recall_score.html).  
 
-For example, we can use this function to calculate recall for the scenarios above.
+For example, we can use this function to calculate recall for the scenarios above.  
 
-First, we can consider the case of a 1:100 imbalance with 100 and 10,000 examples  
+First, we can consider the case of a 1:100 imbalance with 100 and 10,000 examples   
 respectively, and a model predicts 90 true positives and 10 false negatives.  
 
-The complete example is listed below.
+The complete example is listed below.  
 
 
 ```python
@@ -191,16 +191,16 @@ print('Recall: %.3f' % recall)
 
 ## Precision vs. Recall for Imbalanced Classification
 
-You may decide to use precision or recall on your imbalanced classification problem.
+You may decide to use precision or recall on your imbalanced classification problem.  
 
 Maximizing precision will minimize the number false positives, whereas maximizing  
 the recall will minimize the number of false negatives.  
 
 **Precision: Appropriate when minimizing false positives is the focus.  
 Recall: Appropriate when minimizing false negatives is the focus.**    
-Sometimes, we want excellent predictions of the positive class. We want high precision and high recall.  
+Sometimes, we want excellent predictions of the positive class. We want high precision and high recall.    
 
-This can be challenging, as often increases in recall often come at the expense of decreases in precision.
+This can be challenging, as often increases in recall often come at the expense of decreases in precision.  
 
 ## F-Measure for Imbalanced Classification
 
@@ -220,8 +220,9 @@ the two scores can be combined into the calculation of the F-Measure.
 The traditional F measure is calculated as follows:  
 **F-Measure = (2 * Precision * Recall) / (Precision + Recall)**  
 
-This is the [harmonic mean](https://en.wikipedia.org/wiki/Harmonic_mean) of the two fractions. This is sometimes called the  
-F-Score or the F1-Score and might be the most common metric used on imbalanced classification problems.
+This is the [harmonic mean](https://en.wikipedia.org/wiki/Harmonic_mean) of the two fractions.  
+This is sometimes called the F-Score or the F1-Score and might be the most common metric  
+ used on imbalanced classification problems.  
 
 Like precision and recall, a poor F-Measure score is 0.0 and a best or perfect F-Measure score is 1.0  
 
