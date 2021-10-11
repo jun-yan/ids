@@ -34,13 +34,12 @@ negative outcome (e.g. such as “no change” or “negative test result“), a
 minority class is typically referred to as the positive outcome (e.g. “change”   
 or “positive test result”).
 
-```{toggle}
 ```{code-cell} ipython3
+# make the table left aligned
 %%html
 <style>
 table {float:left}
 </style>
-```
 ```
 
 
