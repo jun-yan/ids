@@ -34,17 +34,13 @@ negative outcome (e.g. such as “no change” or “negative test result“), a
 minority class is typically referred to as the positive outcome (e.g. “change”   
 or “positive test result”).
 
-
+```{toggle}
 ```{code-cell} ipython3
-{
-    "tags": [
-        "hide-cell"
-    ]
-}
 %%html
 <style>
 table {float:left}
 </style>
+```
 ```
 
 
@@ -68,7 +64,7 @@ well-understood name, summarized as follows:
 The **precision and recall metrics** are defined in terms of the cells in  
 the confusion matrix, specifically terms like true positives and false negatives.
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Precisionrecall.svg/525px-Precisionrecall.svg.png" alt="Precision and Recall" width="400" height="200" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Precisionrecall.svg/525px-Precisionrecall.svg.png" alt="Precision and Recall" width="400" height="400" />
 
 ## Precision metric
 
