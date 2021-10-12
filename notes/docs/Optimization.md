@@ -33,25 +33,25 @@ $J_i=\frac{-x_i}{(\theta*x_i+1)^2}$
 
 <!-- #endregion -->
 
-```python
+```{code-cell} ipython3
 from scipy.optimize import least_squares
 import numpy as np
 ```
 
 
-```python
+```{code-cell} ipython3
 def model( theta,x):
     return 1/(x*theta+1)
 ```
 
 
-```python
+```{code-cell} ipython3
 def fun( theta,x, y):
     return y-model(x,theta)
 ```
 
 
-```python
+```{code-cell} ipython3
 def jac(theta,x,y):
     J = np.empty((x.size, theta.size))
     J[:, 0] = x/(theta[0]*x+1)**2
@@ -59,21 +59,21 @@ def jac(theta,x,y):
 ```
 
 
-```python
+```{code-cell} ipython3
 x = np.linspace(0,5,100)
 y = 1/(x+1)+np.random.randint(100, size=(len(x)))/100
 theta0 = np.array([0.1])
 res = least_squares(fun, theta0, jac=jac, bounds=(0, 100),xtol=1e-10, args=(x, y), verbose=1)
 ```
 
-```python
+```{code-cell} ipython3
 res
 ```
-```python
+```{code-cell} ipython3
 res.x
 ```
 
-```python
+```{code-cell} ipython3
 %config InlineBackend.figure_formats = ['svg']
 import matplotlib.pyplot as plt # import plot package
 x_test = np.linspace(0, 5)
@@ -102,14 +102,14 @@ If this is not given, then alternatively two starting points can be chosen and a
 If these two starting points are not provided, 0 and 1 will be used
 
 
-```python
+```{code-cell} ipython3
 from scipy.optimize import minimize_scalar
 f = lambda x: (x - 2) * (x + 1)**2
 res = minimize_scalar(f, method='brent')
 print(res.x)
 ```
 
-```python
+```{code-cell} ipython3
 x_test = np.linspace(0, 5)
 f_test = f(x_test)
 plt.plot(x_test, f_test, label='f(x)')
