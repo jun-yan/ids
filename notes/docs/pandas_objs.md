@@ -146,7 +146,6 @@ sequence of aligned one-dimensional columns, you can think of a DataFrame as a
 sequence of aligned Series objects. Here, by “aligned” we mean that they share the
 same index.
 
-
 ```{code-cell} ipython3
 area_dict = {'California': 423967, 'Texas': 695662, 'New York': 141297,
  'Florida': 170312, 'Illinois': 149995}
@@ -206,12 +205,14 @@ except:
 indA =  pd.Index([1,3, 5, 7, 9])
 indB = pd.Index([2,3, 5, 7, 11])
 
-indA & indB  #intersection
+indC = indA.intersection(indB)  #intersection
+indC
 ```
 
 ```{code-cell} ipython3
 ## deprecated warnings
-indA | indB
+indC = indA.union(indB)
+indC
 ```
 
 ## Data Indexing and Selection:
@@ -348,12 +349,6 @@ data.iloc[:3, :2]
 
 ```{code-cell} ipython3
 data.loc[:'Florida', :'pop']
-```
-
-```{code-cell} ipython3
-data.ix[:3, :'pop']   ## hybrid of iloc and loc
-
-## maybe removed since.
 ```
 
 ```{code-cell} ipython3
