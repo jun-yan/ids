@@ -605,15 +605,11 @@ print("exp(x) - 1 =", np.expm1(x))
 print("log(1 + x) =", np.log1p(x))
 ```
 
-# Numpy Advanced
-
-## 1.Fancy Indexing
+## Fancy Indexing
 
 Fancy indexing means passing an array of indices to access multiple array elements at once
 
 Remamber the simple indexing we'v seen before? Let's replace the singlel scaler with arrays of indices.
-
-With fancy indexing, the shape of the result reflects the shape of the index arrays rather than the shape of the array being indexed
 
 ###  fancy indexing in one dimensional array:
 
@@ -623,32 +619,35 @@ x = np.random.randint(100, size=10)
 print(x)
 ```
 
-    [91 47 83 49 23 82 94 87 11 17]
+    [64 90 19 13 66 37 12 38 64 82]
 
 ```{code-cell} ipython3
 # instead of simple indexing like these:
 [x[3], x[7], x[4], x[4]]
 ```
 
-    [49, 87, 23, 23]
+    [13, 38, 66, 66]
 
 ```{code-cell} ipython3
-# we can do this
+# we can now do this
 x[[3, 7, 4, 4]]
 ```
 
-    array([49, 87, 23, 23])
+    array([13, 38, 66, 66])
 
 ```{code-cell} ipython3
 ind = np.array([[3, 7],
-                     [4, 5]])
+                     [4, 4]])
 x[ind]
 ```
 
-    array([[49, 87],
-           [23, 82]])
+    array([[13, 38],
+           [66, 66]])
 
 
+
+With fancy indexing, the shape of the result reflects the shape <br />
+of the index arrays rather than the shape of the array being indexed
 
 ### fancy indexing in multiple dimensional arrays:
 
@@ -709,6 +708,12 @@ X[row[:, np.newaxis], col]
 row[:, np.newaxis] * col
 ```
 
+    array([[0, 0, 0],
+           [2, 1, 3],
+           [4, 2, 6]])
+
+
+
 ### Combine fancy indexing with slicing, simple indexing and mask
 
 ```{code-cell} ipython3
@@ -717,17 +722,17 @@ X[: , [2,1,3]]
 # Or we can combine fancy indexing with slicing.
 ```
 
+    array([[ 2,  1,  3],
+           [ 6,  5,  7],
+           [10,  9, 11]])
+
 ```{code-cell} ipython3
 X[1 , [2,1,3]] 
 
 # we can combine fancy indexing with simple indexing.
 ```
 
-```{code-cell} ipython3
-# mask = np.array([1, 0, 1], dtype=bool)
-# mask[:, np.newaxis]
-# X[mask[:, np.newaxis],  [2,1,3]]
-```
+    array([6, 5, 7])
 
 ```{code-cell} ipython3
 mask = np.array([1, 0, 1, 0], dtype=bool)
@@ -736,48 +741,36 @@ X[row[:, np.newaxis], mask]
 # There are only 1st column and 3rd column now
 ```
 
+    array([[ 0,  2],
+           [ 4,  6],
+           [ 8, 10]])
+
+
+
+### Modify values with fancy indexing
+
 ```{code-cell} ipython3
-x = np.zeros(20)
-ind = np.array([4, 9, 14, 19])
+x = np.zeros(10)
+print(x)
+
+ind = np.array([0,1,2,3])
 x[ind] = 9
 print(x)
-```
 
-    [0. 0. 0. 0. 9. 0. 0. 0. 0. 9. 0. 0. 0. 0. 9. 0. 0. 0. 0. 9.]
-
-```{code-cell} ipython3
 x[ind] -= 1 # minus 1 to the previous value
 print(x)
 ```
 
-    [0. 0. 0. 0. 8. 0. 0. 0. 0. 8. 0. 0. 0. 0. 8. 0. 0. 0. 0. 8.]
-
-```{code-cell} ipython3
-x[ind-1] += 1 # add 1 to the number before the positions of i.
-print(x) 
-```
-
-    [0. 0. 0. 1. 8. 0. 0. 0. 1. 8. 0. 0. 0. 1. 8. 0. 0. 0. 1. 8.]
-
-```{code-cell} ipython3
-## in multi-dimensions
-
-x = np.zeros(20).reshape(4,5)
-x[[0,1,2,3], [4,3,2,1]] = 99
-print(x)
-```
-
-    [[ 0.  0.  0.  0. 99.]
-     [ 0.  0.  0. 99.  0.]
-     [ 0.  0. 99.  0.  0.]
-     [ 0. 99.  0.  0.  0.]]
+    [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+    [9. 9. 9. 9. 0. 0. 0. 0. 0. 0.]
+    [8. 8. 8. 8. 0. 0. 0. 0. 0. 0.]
 
 
 Repeated indices with these operations can cause some unexpected results.
 
 ```{code-cell} ipython3
 x = np.zeros(10)
-x[[0, 0, 0]] = [4, 6, 8]
+x[[0, 0, 0, 0]] = [2, 4, 6, 8]
 print(x)
 
 # multiple modifies at index 0, only the last one shows
@@ -787,16 +780,15 @@ print(x)
 
 ```{code-cell} ipython3
 x = np.zeros(10)
-ind=[2,3,3,4,4,4] 
-x[ind] += 1
+x[ [1,3,3,5,5,5] ] += 1
 x
 ```
 
-    array([0., 0., 1., 1., 1., 0., 0., 0., 0., 0.])
+    array([0., 1., 0., 1., 0., 1., 0., 0., 0., 0.])
 
 
 
-Why not x[3] = 2 and x[4] = 3?
+Why didn't we get x[3] = 2 and x[5] = 3?
 
 Because under the hook, x[i] +1 is evaluated and the resaul is assigned to the index in x. <br />
 So it is the assignment , not the augument, that happens mulitple times. <br />
@@ -804,23 +796,25 @@ To make the operation happen repeatedly, use '.at()':
 
 ```{code-cell} ipython3
 x = np.zeros(10)
+ind =  [1,3,3,5,5,5]
 np.add.at(x, ind, 1)
 print(x)
 ```
 
+    [0. 1. 0. 2. 0. 3. 0. 0. 0. 0.]
+
+
 ## 2. Sorting
 
 ```{code-cell} ipython3
-x = range(10)
-for n in x:
-    print(n)
-
 ## First, let's get an array to be sorted
 
-# import random
-# x = random.sample(range(10), 10)
-# x
+import random
+x = random.sample(range(10), 10)
+x
 ```
+
+    [2, 8, 5, 0, 6, 7, 3, 4, 1, 9]
 
 ```{code-cell} ipython3
 np.sort(x)
@@ -831,12 +825,12 @@ np.sort(x)
     array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 
 ```{code-cell} ipython3
-np.argsort(x)
+np.argsort(x) # Returns the indices,
 
-# Equivalent to order() in R, though start with index 0.
+#  Equivalent to order() in R, though start with index 0.
 ```
 
-    array([7, 3, 5, 1, 4, 8, 9, 6, 2, 0])
+    array([3, 8, 0, 6, 7, 2, 4, 5, 1, 9])
 
 ```{code-cell} ipython3
 x
@@ -844,7 +838,7 @@ x
 # x remains the same
 ```
 
-    [9, 3, 8, 1, 4, 2, 7, 0, 5, 6]
+    [2, 8, 5, 0, 6, 7, 3, 4, 1, 9]
 
 
 
@@ -867,9 +861,9 @@ X = np.random.randint(1, 10, (3,5))
 print(X)
 ```
 
-    [[4 8 3 2 9]
-     [8 1 1 3 9]
-     [8 2 2 2 9]]
+    [[5 5 7 1 8]
+     [4 3 9 6 6]
+     [8 9 9 7 1]]
 
 ```{code-cell} ipython3
 # sort each column of X
@@ -877,9 +871,9 @@ print(X)
 np.sort(X, axis=0)
 ```
 
-    array([[4, 1, 1, 2, 9],
-           [8, 2, 2, 2, 9],
-           [8, 8, 3, 3, 9]])
+    array([[4, 3, 7, 1, 1],
+           [5, 5, 9, 6, 6],
+           [8, 9, 9, 7, 8]])
 
 
 
@@ -893,9 +887,9 @@ so axis=0 means the first axis(row) will be collapsed, which means the values wi
 np.sort(X, axis=1)
 ```
 
-    array([[2, 3, 4, 8, 9],
-           [1, 1, 3, 8, 9],
-           [2, 2, 2, 8, 9]])
+    array([[1, 5, 5, 7, 8],
+           [3, 4, 6, 6, 9],
+           [1, 7, 8, 9, 9]])
 
 
 
@@ -922,9 +916,9 @@ X = np.random.randint(1, 10, (3,5))
 np.partition(X, 2, axis=1)
 ```
 
-    array([[1, 1, 2, 9, 4],
-           [1, 6, 8, 9, 9],
-           [1, 1, 2, 3, 9]])
+    array([[3, 5, 7, 9, 9],
+           [1, 3, 7, 9, 8],
+           [1, 2, 8, 9, 8]])
 
 
 
@@ -1051,3 +1045,7 @@ data.cyl
 
 
 ### Let's move onto Pandas!
+
+Pandas provides a DataFrame object, which is a structure built on NumPy arrays <br />
+that offers a variety of useful data manipulation functionality <br />
+similar to what we’ve shown here, as well as much, much more.

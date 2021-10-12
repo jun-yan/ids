@@ -1,4 +1,4 @@
-# Measures of classification accuracy and functions in Python
+# Measures of classification accuracy and functions in {code-cell} ipython3
 
 source: [Machine Learning Mastery](https://machinelearningmastery.com/precision-recall-and-f-measure-for-imbalanced-classification/)
 
@@ -34,6 +34,16 @@ negative outcome (e.g. such as “no change” or “negative test result“), a
 minority class is typically referred to as the positive outcome (e.g. “change”   
 or “positive test result”).
 
+```{code-cell} ipython3
+# make the table left aligned
+%%html
+<style>
+table {float:left}
+</style>
+```
+
+
+
 The confusion matrix provides more insight into not only the performance  
 of a predictive model, but also which classes are being predicted correctly,  
 which incorrectly, and what type of errors are being made.  
@@ -44,6 +54,7 @@ The **simplest confusion matrix** is for a two-class classification problem, wit
 In this type of confusion matrix, each cell in the table has a specific and   
 well-understood name, summarized as follows:  
 
+
 |               | Positive Prediction | Negative Prediction|
 | ------------- | ------------------- | ------------------ |
 |Positive Class | True Positive (TP)  | False Negative (FN)|
@@ -51,6 +62,8 @@ well-understood name, summarized as follows:
 
 The **precision and recall metrics** are defined in terms of the cells in  
 the confusion matrix, specifically terms like true positives and false negatives.
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Precisionrecall.svg/525px-Precisionrecall.svg.png" alt="Precision and Recall" width="400" height="400" />
 
 ## Precision metric
 
@@ -111,7 +124,7 @@ First, the case where there are 100 positive to 10,000 negative examples, and a 
 predicts 90 true positives and 30 false positives. The complete example is listed below.
 
 
-```python
+```{code-cell} ipython3
 # calculates precision for 1:100 dataset with 90 tp and 30 fp
 # pip install -U scikit-learn
 from sklearn.metrics import precision_score
@@ -127,9 +140,6 @@ y_pred = pred_pos + pred_neg
 precision = precision_score(y_true, y_pred, average='binary')
 print('Precision: %.3f' % precision)
 ```
-
-    Precision: 0.750
-    
 
 ## Recall Metric
 
@@ -176,7 +186,7 @@ respectively, and a model predicts 90 true positives and 10 false negatives.
 The complete example is listed below.
 
 
-```python
+```{code-cell} ipython3
 # calculates recall for 1:100 dataset with 90 tp and 10 fn
 from sklearn.metrics import recall_score
 # define actual
@@ -191,9 +201,6 @@ y_pred = pred_pos + pred_neg
 recall = recall_score(y_true, y_pred, average='binary')
 print('Recall: %.3f' % recall)
 ```
-
-    Recall: 0.900
-    
 
 ## Precision vs. Recall for Imbalanced Classification
 
@@ -228,6 +235,16 @@ The traditional F measure is calculated as follows:
 
 This is the [harmonic mean](https://en.wikipedia.org/wiki/Harmonic_mean) of the two fractions. This is sometimes called the  
 F-Score or the F1-Score and might be the most common metric used on imbalanced classification problems.
+
+A more general F score, $F_{\beta }$,   
+that uses a positive real factor β, **where β is chosen such that recall is  
+considered β times as important as precision**, is:  
+$F_\beta = (1 + \beta^2) \cdot \frac{\mathrm{precision} \cdot \mathrm{recall}}{(\beta^2 \cdot \mathrm{precision}) + \mathrm{recall}}$  
+The more generic $F_{\beta }$ score applies additional weights,   
+valuing one of precision or recall more than the other.
+
+The highest possible value of an F-score is 1.0, indicating perfect precision and recall,  
+and the lowest possible value is 0, if either the precision or the recall is zero.
 
 Like precision and recall, a poor F-Measure score is 0.0 and a best or perfect F-Measure score is 1.0  
 
@@ -279,7 +296,7 @@ and a model predicts 95 true positives, five false negatives, and 55 false posit
 The complete example is listed below.
 
 
-```python
+```{code-cell} i{code-cell} ipython33
 # calculates f1 for 1:100 dataset with 95tp, 5fn, 55fp
 from sklearn.metrics import f1_score
 # define actual
@@ -295,5 +312,48 @@ score = f1_score(y_true, y_pred, average='binary')
 print('F-Measure: %.3f' % score)
 ```
 
-    F-Measure: 0.760
-    
+### Extension
+
+sklearn.metrics.precision_score(y_true, y_pred, *, labels=None, pos_label=1, __average ='binary'__ , sample_weight=None, zero_division='warn')
+
+'binary':
+Only report results for the class specified by pos_label.   
+This is applicable only if targets ($y_{true,pred}$) are binary.  
+
+'micro':
+Calculate metrics globally by counting the total true positives,  
+false negatives and false positives.  
+
+'macro':
+Calculate metrics for each label, and find their unweighted mean.  
+This does not take label imbalance into account.  
+
+'weighted':
+Calculate metrics for each label, and find their average weighted by support   
+(the number of true instances for each label).  
+This alters ‘macro’ to account for label imbalance;  
+it can result in an F-score that is not between precision and recall.
+
+'samples':
+Calculate metrics for each instance, and find their average (only meaningful  
+for multilabel classification where this differs from accuracy_score).  
+
+
+```{code-cell} ipython3
+from sklearn.metrics import precision_score
+y_true = [0, 1, 2, 0, 1, 2]
+y_pred = [0, 2, 1, 0, 0, 1]
+precision_score(y_true, y_pred, average='macro')
+```
+
+
+```{code-cell} ipython3
+precision_score(y_true, y_pred, average='micro')
+```
+
+
+```{code-cell} ipython3
+precision_score(y_true, y_pred, average='weighted')
+```
+
+More resource: [Multi-Class Metrics](https://towardsdatascience.com/multi-class-metrics-made-simple-part-ii-the-f1-score-ebe8b2c2ca1)
