@@ -10,7 +10,7 @@ kernelspec:
   language: python
   name: python3
 ---
-# Measures of classification accuracy and functions in {code-cell} ipython3
+# Measures of classification accuracy and functions in Python
 
 source: [Machine Learning Mastery](https://machinelearningmastery.com/precision-recall-and-f-measure-for-imbalanced-classification/)
 
@@ -46,13 +46,6 @@ negative outcome (e.g. such as “no change” or “negative test result“), a
 minority class is typically referred to as the positive outcome (e.g. “change”   
 or “positive test result”).
 
-```{code-cell} ipython3
-# make the table left aligned
-%%html
-<style>
-table {float:left}
-</style>
-```
 
 
 
