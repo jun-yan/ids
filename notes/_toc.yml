@@ -6,6 +6,7 @@ sections:
 - file: docs/tasks
 - file: docs/intro
 - file: docs/pybasics
+- file: docs/profiling
 - file: docs/Numpy
 - file: docs/Scipy
 - file: docs/dict_in_python
