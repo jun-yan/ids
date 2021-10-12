@@ -283,8 +283,8 @@ def func2(x):
 ```{code-cell} ipython3
 try:
     func2(-1)
-except:
-    print("division by zero")
+except Exception as e:
+    print(e)
 ```
 
 Calling func2 results in an error, and reading the printed trace lets us see exactly what happened.By default, this trace includes several lines showing the context of each step that led to the error.
