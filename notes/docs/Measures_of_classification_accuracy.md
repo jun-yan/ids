@@ -386,7 +386,9 @@ best possible classifier that achieves perfect skill is the top-left of the plot
 
 We can plot a ROC curve for a model in Python using the [roc_curve() scikit-learn function](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_curve.html).
 
-The function takes both the true outcomes (0,1) from the test set and the predicted probabilities for the 1   class. The function returns the false positive rates for each threshold, true positive rates for each   threshold and thresholds.    
+The function takes both the true outcomes (0,1) from the test set and the predicted probabilities for the 1  
+class. The function returns the false positive rates for each threshold, true positive rates for each  
+ threshold and thresholds.    
 
 +++
 
@@ -426,7 +428,8 @@ pyplot.legend()
 pyplot.show()
 ```
 
-The ROC Curve for the Logistic Regression model is shown (orange with dots). A no skill classifier as a   diagonal line (blue with dashes).  
+The ROC Curve for the Logistic Regression model is shown (orange with dots). A no skill classifier as a  
+ diagonal line (blue with dashes).  
 
 +++
 
@@ -434,9 +437,11 @@ The ROC Curve for the Logistic Regression model is shown (orange with dots). A n
 
 +++
 
-Although the ROC Curve is a helpful diagnostic tool, it can be challenging to compare two or more classifiers   based on their curves.  
+Although the ROC Curve is a helpful diagnostic tool, it can be challenging to compare two or more   
+classifiers based on their curves.  
 
-Instead, the area under the curve can be calculated to give a single score for a classifier model across all    threshold values. This is called the ROC area under curve or ROC AUC or sometimes ROCAUC.  
+Instead, the area under the curve can be calculated to give a single score for a classifier model across  
+ all threshold values. This is called the ROC area under curve or ROC AUC or sometimes ROCAUC.     
 
 The score is a value between 0.0 and 1.0 for a perfect classifier.  
 
@@ -444,7 +449,8 @@ The score is a value between 0.0 and 1.0 for a perfect classifier.
 
 The AUC for the ROC can be calculated in scikit-learn using the [roc_auc_score() function](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html).  
 
-Like the roc_curve() function, the AUC function takes both the true outcomes (0,1) from the test set and the    predicted probabilities for the positive class.  
+Like the roc_curve() function, the AUC function takes both the true outcomes (0,1) from the test set and the  
+ predicted probabilities for the positive class.   
 
 +++
 
