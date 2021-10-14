@@ -11,11 +11,13 @@ chapters:
   - file: docs/profiling
 - file: docs/Numpy
 - file: docs/Scipy
-- file: docs/Optimization
+  sections:
+  - file: docs/Optimization
 - file: docs/pandas_objs
   sections:
   - file: docs/Pandas_missing_hierarchical
   - file: docs/Pandas_Dataset_Operations
   - file: docs/Measures_of_classification_accuracy
+- file: docs/dscompetition
 # appendix
 - file: docs/misc

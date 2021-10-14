@@ -5,7 +5,7 @@
 
 # Build
 
-Need to install python package jupytext.
+Need to install python package `jupyter-book`.
 
 ```shell
 cd notes
