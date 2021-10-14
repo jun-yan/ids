@@ -12,11 +12,11 @@ kernelspec:
   name: python3
 ---
 
-### Pandas: Missing Data and Hierarchical Indexing
+# Pandas: Missing Data and Hierarchical Indexing
 
 +++
 
-#### Missing Data
+## Missing Data
 
 +++
 
@@ -25,7 +25,7 @@ real-world data is rarely clean and homogeneous. In particular, many interesting
 datasets will have some amount of data missing. 
 
 ```{code-cell} ipython3
-### Example 1 of missing data
+# Example 1 of missing data
 
 import numpy as np
 import pandas as pd
@@ -47,7 +47,7 @@ except TypeError as e:
 When a "None" value is present in an array, any arithmetic operation done on the array will always result in an error. 
 
 ```{code-cell} ipython3
-### Example 2 of missing data
+# Example 2 of missing data
 
 data1 = np.array([1, np.nan, 2, 6])
 3 + np.nan
@@ -60,7 +60,7 @@ data1 = np.array([1, np.nan, 2, 6])
 Regardless of the operation, the result of arithmetic with NaN will be another NaN.
 
 ```{code-cell} ipython3
-### Detecting null values
+# Detecting null values
 
 data = pd.Series([1, np.nan, 'example', None])
 data.isnull()
@@ -71,7 +71,7 @@ data[data.notnull()]
 ```
 
 ```{code-cell} ipython3
-### Dropping null values
+# Dropping null values
 
 data.dropna()
 ```
@@ -105,7 +105,7 @@ data2.dropna(axis='rows',thresh=3)
 ```
 
 ```{code-cell} ipython3
-### Filling null values
+# Filling null values
 
 data = pd.Series([3, np.nan, 4, None], index=list('abcd'))
 data
@@ -116,13 +116,13 @@ data.fillna(0)
 ```
 
 ```{code-cell} ipython3
-###Forward fill
+#Forward fill
 
 data.fillna(method='ffill')
 ```
 
 ```{code-cell} ipython3
-### Back-fill
+# Back-fill
 
 data.fillna(method='bfill')
 ```
@@ -131,14 +131,14 @@ data.fillna(method='bfill')
 data2.fillna(method='ffill', axis=1)
 ```
 
-#### Hierarchical Indexing
+## Hierarchical Indexing
 
 +++
 
 It is useful to store higher-dimensional data indexed by more than one or two keys. It can be done using hierarchical indexing which incorporate multiple index levels within a single index. In this way, higher-dimensional data can be compactly represented within the familiar one-dimensional Series and two-dimensional DataFrame objects.
 
 ```{code-cell} ipython3
-### A Multiple Indexed Series
+# A Multiple Indexed Series
 
 index = [('California', 2000), ('California', 2015),('New York', 2000), ('New York', 2015),('Illinois', 2000), ('Illinois', 2015)] 
 populations = [24343547, 54343326,18976457, 23557766,12736448, 76453456]
@@ -151,7 +151,7 @@ pop
 ```
 
 ```{code-cell} ipython3
-### Selecting just data for year 2015
+# Selecting just data for year 2015
 
 pop[[i for i in pop.index if i[1] == 2015]]
 ```
@@ -173,7 +173,7 @@ pop[:, 2015]
 This syntax is much more convenient than the previous method.
 
 ```{code-cell} ipython3
-### Unstack
+# Unstack
 
 pop1 = pop.unstack()
 pop1
@@ -182,7 +182,7 @@ pop1
 The unstack() method will quickly convert a multiple indexed Series into a conventionally indexed DataFrame.
 
 ```{code-cell} ipython3
-### Stack
+# Stack
 
 pop1.stack()
 ```
@@ -204,7 +204,7 @@ func.unstack()
 All ufuncs and other functions used in pandas can be used in hierarchical indices too.
 
 ```{code-cell} ipython3
-### Constructing Multiple index series
+# Constructing Multiple index series
 
 data3 = pd.DataFrame(np.random.rand(4, 2),index=[['a', 'b', 'b', 'b'], [1, 1, 2, 3]],columns=['data1', 'data2'])
 data3
@@ -223,14 +223,14 @@ pd.Series(data)
 ```
 
 ```{code-cell} ipython3
-### MultiIndex level names
+# MultiIndex level names
 
 pop.index.names = ['State', 'Year']
 pop
 ```
 
 ```{code-cell} ipython3
-### MultiIndex for Rows and columns
+# MultiIndex for Rows and columns
 
 index = pd.MultiIndex.from_product([[2010, 2011], [1, 2]],names=['Year', 'Visit'])
 columns = pd.MultiIndex.from_product([['A', 'B', 'C'], ['HR', 'Temp']],names=['Subject', 'Type'])
@@ -245,10 +245,10 @@ health
 health['B']
 ```
 
-#### Indexing and Slicing a MultiIndex
+## Indexing and Slicing a MultiIndex
 
 ```{code-cell} ipython3
-### Multiple indexed Series
+# Multiple indexed Series
 
 pop['California', 2000]
 ```
@@ -266,7 +266,7 @@ pop[pop > 22000000]
 ```
 
 ```{code-cell} ipython3
-### Multiple indexed dataframe
+# Multiple indexed dataframe
 
 health['A', 'HR']
 ```
@@ -284,10 +284,10 @@ idx = pd.IndexSlice
 health.loc[idx[:, 1], idx[:, 'HR']]
 ```
 
-#### Rearranging Multi indices
+## Rearranging Multi indices
 
 ```{code-cell} ipython3
-### Sort
+# Sort
 
 index = pd.MultiIndex.from_product([['x', 'z', 'y'], [1, 2]])
 data = pd.Series(np.random.rand(6), index=index)
@@ -315,7 +315,7 @@ data['x':'y']
 ```
 
 ```{code-cell} ipython3
-### Unstack
+# Unstack
 
 pop.unstack(level=0)
 ```
@@ -325,13 +325,13 @@ pop.unstack(level=1)
 ```
 
 ```{code-cell} ipython3
-### Stack
+# Stack
 
 pop.unstack().stack()
 ```
 
 ```{code-cell} ipython3
-### Reset Index
+# Reset Index
 
 pop2 = pop.reset_index(name='population')
 pop2
@@ -340,12 +340,12 @@ pop2
 Often when you are working with data in the real world, the raw input data looks like this and it’s useful to build a MultiIndex from the column values.
 
 ```{code-cell} ipython3
-### Set Index
+# Set Index
 
 pop2.set_index(['State', 'Year'])
 ```
 
-#### Data Aggregation
+## Data Aggregation
 
 ```{code-cell} ipython3
 mean = health.groupby(level='Year').mean()

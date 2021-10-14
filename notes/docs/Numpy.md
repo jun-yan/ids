@@ -423,6 +423,8 @@ np.loadtxt('new_data.csv')
 ```
 
 ```{code-cell} ipython3
+%rm new_data.csv
+
 ## Copy array
 
 y2=y1.copy()
@@ -619,8 +621,6 @@ x = np.random.randint(100, size=10)
 print(x)
 ```
 
-    [64 90 19 13 66 37 12 38 64 82]
-
 ```{code-cell} ipython3
 # instead of simple indexing like these:
 [x[3], x[7], x[4], x[4]]
@@ -810,7 +810,7 @@ print(x)
 ## First, let's get an array to be sorted
 
 import random
-x = random.sample(range(10), 10)
+x = np.random.randint(10, size = 10) # random.sample(range(10), 10)
 x
 ```
 
