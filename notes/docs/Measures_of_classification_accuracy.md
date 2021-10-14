@@ -365,7 +365,7 @@ More resource: [Multi-Class Metrics](https://towardsdatascience.com/multi-class-
 
 +++
 
-An ROC curve (or receiver operating characteristic curve) is a plot that summarizes the performance of a
+An ROC curve (or receiver operating characteristic curve) is a plot that summarizes the performance of a      
  binary classification model on the positive class.
 
 The x-axis indicates the False Positive Rate and the y-axis indicates the True Positive Rate.
