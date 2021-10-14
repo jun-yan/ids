@@ -4,12 +4,13 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.3
+    jupytext_version: 1.13.0
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
+
 # Measures of classification accuracy and functions in Python
 
 source: [Machine Learning Mastery](https://machinelearningmastery.com/precision-recall-and-f-measure-for-imbalanced-classification/)
@@ -129,7 +130,6 @@ For example, we can use this function to calculate precision for the scenarios i
 First, the case where there are 100 positive to 10,000 negative examples, and a model   
 predicts 90 true positives and 30 false positives. The complete example is listed below.
 
-
 ```{code-cell} ipython3
 # calculates precision for 1:100 dataset with 90 tp and 30 fp
 # pip install -U scikit-learn
@@ -190,7 +190,6 @@ First, we can consider the case of a 1:100 imbalance with 100 and 10,000 example
 respectively, and a model predicts 90 true positives and 10 false negatives.  
 
 The complete example is listed below.
-
 
 ```{code-cell} ipython3
 # calculates recall for 1:100 dataset with 90 tp and 10 fn
@@ -301,8 +300,7 @@ and a model predicts 95 true positives, five false negatives, and 55 false posit
   
 The complete example is listed below.
 
-
-```{code-cell} i{code-cell} ipython33
+```{code-cell} ipython3
 # calculates f1 for 1:100 dataset with 95tp, 5fn, 55fp
 from sklearn.metrics import f1_score
 # define actual
@@ -318,7 +316,7 @@ score = f1_score(y_true, y_pred, average='binary')
 print('F-Measure: %.3f' % score)
 ```
 
-### Extension
+## Extension
 
 sklearn.metrics.precision_score(y_true, y_pred, *, labels=None, pos_label=1, __average ='binary'__ , sample_weight=None, zero_division='warn')
 
@@ -342,8 +340,7 @@ it can result in an F-score that is not between precision and recall.
 
 'samples':
 Calculate metrics for each instance, and find their average (only meaningful  
-for multilabel classification where this differs from accuracy_score).  
-
+for multilabel classification where this differs from accuracy_score).
 
 ```{code-cell} ipython3
 from sklearn.metrics import precision_score
@@ -352,14 +349,129 @@ y_pred = [0, 2, 1, 0, 0, 1]
 precision_score(y_true, y_pred, average='macro')
 ```
 
-
 ```{code-cell} ipython3
 precision_score(y_true, y_pred, average='micro')
 ```
-
 
 ```{code-cell} ipython3
 precision_score(y_true, y_pred, average='weighted')
 ```
 
 More resource: [Multi-Class Metrics](https://towardsdatascience.com/multi-class-metrics-made-simple-part-ii-the-f1-score-ebe8b2c2ca1)
+
++++
+
+## ROC Curves and ROC AUC
+
++++
+
+An ROC curve (or receiver operating characteristic curve) is a plot that summarizes the performance of a    binary classification model on the positive class.  
+
+The x-axis indicates the False Positive Rate and the y-axis indicates the True Positive Rate.  
+
++++
+
+- ROC Curve: Plot of False Positive Rate (x) vs. True Positive Rate (y).  
+- TruePositiveRate = TruePositives / (TruePositives + False Negatives)  
+- FalsePositiveRate = FalsePositives / (FalsePositives + TrueNegatives)  
+
++++
+
+Ideally, we want the fraction of correct positive class predictions to be 1 (top of the plot) and the    fraction of incorrect negative class predictions to be 0 (left of the plot). This highlights that the best     possible classifier that achieves perfect skill is the top-left of the plot (coordinate 0,1).    
+
++++
+
+We can plot a ROC curve for a model in Python using the [roc_curve() scikit-learn function](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_curve.html).
+
+The function takes both the true outcomes (0,1) from the test set and the predicted probabilities for the 1   class. The function returns the false positive rates for each threshold, true positive rates for each   threshold and thresholds.    
+
++++
+
+The complete example is listed below.
+
+```{code-cell} ipython3
+
+# example of a roc curve for a predictive model
+from sklearn.datasets import make_classification
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import roc_curve
+from matplotlib import pyplot
+# generate 2 class dataset
+X, y = make_classification(n_samples=1000, n_classes=2, random_state=1)
+# split into train/test sets
+trainX, testX, trainy, testy = train_test_split(X, y, test_size=0.5, random_state=2)
+# fit a model
+model = LogisticRegression(solver='lbfgs')
+model.fit(trainX, trainy)
+# predict probabilities
+yhat = model.predict_proba(testX)
+# retrieve just the probabilities for the positive class
+pos_probs = yhat[:, 1]
+# plot no skill roc curve
+pyplot.plot([0, 1], [0, 1], linestyle='--', label='No Skill')
+# calculate roc curve for model
+fpr, tpr, _ = roc_curve(testy, pos_probs)
+# plot model roc curve
+pyplot.plot(fpr, tpr, marker='.', label='Logistic')
+# axis labels
+pyplot.xlabel('False Positive Rate')
+pyplot.ylabel('True Positive Rate')
+# show the legend
+pyplot.legend()
+# show the plot
+pyplot.show()
+```
+
+The ROC Curve for the Logistic Regression model is shown (orange with dots). A no skill classifier as a   diagonal line (blue with dashes).  
+
++++
+
+### ROC Area Under Curve (AUC) Score
+
++++
+
+Although the ROC Curve is a helpful diagnostic tool, it can be challenging to compare two or more classifiers   based on their curves.  
+
+Instead, the area under the curve can be calculated to give a single score for a classifier model across all    threshold values. This is called the ROC area under curve or ROC AUC or sometimes ROCAUC.  
+
+The score is a value between 0.0 and 1.0 for a perfect classifier.  
+
++++
+
+The AUC for the ROC can be calculated in scikit-learn using the [roc_auc_score() function](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html).  
+
+Like the roc_curve() function, the AUC function takes both the true outcomes (0,1) from the test set and the    predicted probabilities for the positive class.  
+
++++
+
+The complete example is listed below.
+
+```{code-cell} ipython3
+# example of a roc auc for a predictive model
+from sklearn.datasets import make_classification
+from sklearn.dummy import DummyClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import roc_auc_score
+# generate 2 class dataset
+X, y = make_classification(n_samples=1000, n_classes=2, random_state=1)
+# split into train/test sets
+trainX, testX, trainy, testy = train_test_split(X, y, test_size=0.5, random_state=2)
+# no skill model, stratified random class predictions
+model = DummyClassifier(strategy='stratified')
+model.fit(trainX, trainy)
+yhat = model.predict_proba(testX)
+pos_probs = yhat[:, 1]
+# calculate roc auc
+roc_auc = roc_auc_score(testy, pos_probs)
+print('No Skill ROC AUC %.3f' % roc_auc)
+# skilled model
+model = LogisticRegression(solver='lbfgs')
+model.fit(trainX, trainy)
+yhat = model.predict_proba(testX)
+pos_probs = yhat[:, 1]
+# calculate roc auc
+roc_auc = roc_auc_score(testy, pos_probs)
+print('Logistic ROC AUC %.3f' % roc_auc)
+```
