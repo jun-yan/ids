@@ -378,9 +378,9 @@ The x-axis indicates the False Positive Rate and the y-axis indicates the True P
 
 +++
 
-Ideally, we want the fraction of correct positive class predictions to be 1 (top of the plot) and the
-fraction of incorrect negative class predictions to be 0 (left of the plot). This highlights that the
-best possible classifier that achieves perfect skill is the top-left of the plot (coordinate 0,1).      
+Ideally, we want the fraction of correct positive class predictions to be 1 (top of the plot) and the  
+fraction of incorrect negative class predictions to be 0 (left of the plot). This highlights that the  
+best possible classifier that achieves perfect skill is the top-left of the plot (coordinate 0,1).        
 
 +++
 
