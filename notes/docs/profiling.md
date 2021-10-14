@@ -13,9 +13,9 @@ kernelspec:
 
 <!-- (about_py)= -->
 
-# Profiling
+## Profiling
 
-## Motivation for Profiling
+### Motivation for Profiling
 
 Time optimization is one most common reason for timing and
 profiling. The understanding is that only some small chunk often makes
@@ -35,7 +35,7 @@ see which chunks use most resources and which chunks use less. Some coding
 contests often have a maximum time to run and these situations also
 lead to its necessity.
 
-## Resources mostly profiled
+### Resources mostly profiled
 
 The most common resources that we often optimize for projects are: 
 
@@ -47,7 +47,7 @@ if you wish to create a notebook that gathers stock data from one of many
 locations such as Yahoo Finance etc, and you only have a limited bandwidth, your
 choice could also depend on where you gather your data from.
 
-## Profiling CPU time
+### Profiling CPU time
 Profiling implies that it divides the entire code file into smaller code chunks
 (*functions/lines*) in order to show the resource usage and thus existence of
 bottlenecks in our code. It is best practice to find bottlenecks by means of
@@ -71,13 +71,13 @@ for C-level functions, and so the C code would seem faster than any Python
 one.
 ````
 
-### `timeit` function usage:
+#### `timeit` function usage:
 
 ```{code-cell} ipython3
 import pandas    ## !pip3 install pandas (uncomment to add)
 import timeit    ## base package
 
-### First interpretation using dynamic programming memorization
+#### First interpretation using dynamic programming memorization
 def fib_dm_helper(n,mem):
     if mem[n] is not None:
         return mem[n]
@@ -96,7 +96,7 @@ def fib_dm(n):
 ```
 
 ```{code-cell} ipython3
-### Using dynamic programming bottom up for timeit
+#### Using dynamic programming bottom up for timeit
 def fib_dbu(n):
     mem=[None]*(n+1)
     mem[1]=1;
@@ -109,14 +109,14 @@ def fib_dbu(n):
 %timeit fib_dbu(100)  ## timeit application of fib_dbu
 ```
 
-#### Command Line Interface for `timeit`
+##### Command Line Interface for `timeit`
 
 ```{code-cell} ipython3
 !python -m timeit -r 20 '"-".join(str(n) for n in range(100))'  ## r does repetition
-## The output suggests there were 20000 loops, repeated 20 times for accuracy, and 
+### The output suggests there were 20000 loops, repeated 20 times for accuracy, and 
 ```
 
-### `cProfile`  function usage
+#### `cProfile`  function usage
 
 `cProfile` allows to profile functions' CPU time. A lot more info on how this can be used can also be obtained at Source: [[The python Profilers]](https://docs.python.org/3/library/profile.html).  
 
@@ -154,7 +154,7 @@ The column headings are interpreted as:
 
 +++
 
-#### Save output for `cProfile.run()`
+##### Save output for `cProfile.run()`
 ```{note}
 You can also save the run output to a file by providing it as the second
 argument as follows:
@@ -164,7 +164,7 @@ argument as follows:
 cProfile.run('fib_dm(2000)', 'restats.log')
 ```
 
-#### Command Line for cProfile
+##### Command Line for cProfile
 
 The files cProfile and profile can also be invoked using command line to profile
 another python script containing multiple functions. But keep in mind, that 
@@ -174,17 +174,17 @@ For Example, the code commented below can also create `restats.log` by profiling
 `myscript.py` if there exists such a python script file in the directory.
 
 ```{code-cell} ipython3
-## run using bash and saved `py` file
-## !python -m cProfile -o restats.log myscript.py # myscript.py does not exist
+### run using bash and saved `py` file
+### !python -m cProfile -o restats.log myscript.py # myscript.py does not exist
 ```
 
-#### `pstats.Stats` for output log of `cProfile()`
+##### `pstats.Stats` for output log of `cProfile()`
 
 The pstats.Stats class reads profile results from a file and formats them in
 readable manner.
 
 ```{code-cell} ipython3
-# !pip install pstats   # pip install from within notebook using bash magic command
+## !pip install pstats   # pip install from within notebook using bash magic command
 import pstats  ## Clean reprsentation of profile
 from pstats import SortKey
 p = pstats.Stats('restats.log') ## uses the above file created with output
@@ -192,13 +192,13 @@ p.print_stats()
 ```
 
 ```{code-cell} ipython3
-### some possible print outputs
+#### some possible print outputs
 p.strip_dirs().sort_stats(-1).print_stats(.1)
 p.sort_stats(SortKey.CUMULATIVE).print_stats(10) ## sort cumulative time spent
 p.sort_stats(SortKey.TIME).print_stats(10)  ## sort time spent within each function
 ```
 
-#### Deterministic Profiling of cProfile
+##### Deterministic Profiling of cProfile
 Deterministic profiling is meant to reflect the fact that all function call,
 function return, and exception events are monitored, and precise timings are
 made for the intervals between these events (during which time the user’s code
@@ -209,7 +209,7 @@ time is being spent. The latter technique traditionally involves less overhead
 indications of where time is being spent.
 
 
-#### Interpretation of cProfile
+##### Interpretation of cProfile
 Call count statistics can be used to identify bugs in code (surprising counts),
 and to identify possible inline-expansion points (high call counts). Internal
 time statistics can be used to identify “hot loops” that should be carefully
@@ -219,14 +219,14 @@ cumulative times in this profiler allows statistics for recursive
 implementations of algorithms to be directly compared to iterative
 implementations.
 
-### Line Profiler
+#### Line Profiler
 
 *line_profiler will profile the time individual lines of code take to
 execute. The profiler is implemented in C via Cython in order to reduce the
 overhead of profiling.* Also the timer unit is $10^{-6}$ or $\mu s$
 
 ```{code-cell} ipython3
-# !pip3 install line_profiler  ## install line_profiler ## check if it is installed first
+## !pip3 install line_profiler  ## install line_profiler ## check if it is installed first
 ```
 
 ```{code-cell} ipython3
@@ -246,7 +246,8 @@ lp.print_stats()
 ```
 
 ```{code-cell} ipython3
-## plot stats profiling by percentage
+### plot stats profiling by percentage
+### NEED to install gprof2dot (brew on mac)
 !gprof2dot -f pstats restats.log | dot -Tsvg -o mine.svg
 ```
 
@@ -254,30 +255,30 @@ lp.print_stats()
 from IPython.display import SVG
 SVG('mine.svg')
 
-# # !pip install ipyplot
-# import ipyplot
+## # !pip install ipyplot
+## import ipyplot
 
-# ipyplot.plot_images( ['mine.svg'], # images should be passed in as an array
-#     img_width=250,
-#     force_b64=True # this is important to be able to render the image correctly on GitHub
-# )
+## ipyplot.plot_images( ['mine.svg'], # images should be passed in as an array
+##     img_width=250,
+##     force_b64=True # this is important to be able to render the image correctly on GitHub
+## )
 ```
 
 ```{code-cell} ipython3
-## remove files
+### remove files
 !rm mine.svg
 !rm restats.log
 ```
 
-## Profiling Memory
+### Profiling Memory
 
 - memory_profiler (open source python package)
 - guppy
 
-### Memory_Profiler
+#### Memory_Profiler
 
 ```{code-cell} ipython3
-# !pip3 install -U memory_profiler    ## install memory_profiler
+## !pip3 install -U memory_profiler    ## install memory_profiler
 %load_ext memory_profiler
 ```
 
@@ -297,8 +298,8 @@ if __name__ == '__main__':
 from memscript import my_func
 %mprun -T mprof0 -f my_func my_func()
 
-## This goes into the pdb debugger as soon as 100MB is used
-## !python3.9 -m memory_profiler --pdb-mmem=100 memscript.py  
+### This goes into the pdb debugger as soon as 100MB is used
+### !python3.9 -m memory_profiler --pdb-mmem=100 memscript.py  
 ```
 
 ```{code-cell} ipython3
@@ -306,8 +307,8 @@ print(open('mprof0', 'r').read())
 ```
 
 ```{code-cell} ipython3
-## This can be improvised by mprof
-# !pip3 install matplotlib
+### This can be improvised by mprof
+## !pip3 install matplotlib
 import matplotlib
 import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
@@ -321,7 +322,7 @@ SVG('image.svg')
 ```
 
 ```{code-cell} ipython3
-## Remove if not required to show.
+### Remove if not required to show.
 !rm mprof0
 !rm memscript.py
 !rm image.svg

@@ -12,11 +12,11 @@ jupyter:
     name: python3
 ---
 
-# Python dictionary
+## Python dictionary
 
 
 
-## Python sequence types:
+### Python sequence types:
 To store collection of data. They are sequential so we can iterate over them. Some can be accessed by an integar index.
 - List:
 mutable, use a square brackets $[ \quad]$
@@ -49,7 +49,7 @@ b=[i for i in range(5)]
 print(b)
 ```
 
-## Mapping type: dictionary
+### Mapping type: dictionary
 A set of value pairs\
 Indexed by "keys": a immutable type, should be unique\
 Tuple can be used as keys
@@ -87,7 +87,7 @@ dict_pairs=dict(zip_pairs)
 print(dict_pairs)
 ```
 
-## Some useful functions:
+### Some useful functions:
 
 ```python
 score.items()
@@ -115,7 +115,7 @@ print(score.get('alice','not found'))
 "tom" not in score
 ```
 
-## Applications:
+### Applications:
 Find the winner of an election:
 The results is {"john", "johnny", "jackie", "johnny", "john", "jackie", "jamie", "jamie", "john", "johnny", "jamie", "johnny", "john"}\
 Try to write a function to out put people and their votes.
@@ -134,7 +134,7 @@ def vote(data,Mydict):
 vote(data,dict1)
 ```
 
-## Merging dictionaries
+### Merging dictionaries
 
 ```python
 fruit = {"A": {"Apple"}, "B":{"Grape","Pear"}}
@@ -143,7 +143,7 @@ fruit.update(fruit2)
 fruit
 ```
 
-## Iterating over dictionaries
+### Iterating over dictionaries
 
 ```python
 %%timeit  d = {"a":123, "b":34, "c":304, "d":99}

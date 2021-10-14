@@ -1,18 +1,21 @@
-format: jb-article
+format: jb-book
 root: docs/index
 options:
   numbered: true
-sections:
+chapters:
 - file: docs/tasks
 - file: docs/intro
 - file: docs/pybasics
-- file: docs/profiling
+  sections:
+  - file: docs/dict_in_python
+  - file: docs/profiling
 - file: docs/Numpy
 - file: docs/Scipy
-- file: docs/dict_in_python
 - file: docs/Optimization
 - file: docs/pandas_objs
-- file: docs/Pandas_missing_hierarchical
-- file: docs/Pandas_Dataset_Operations
+  sections:
+  - file: docs/Pandas_missing_hierarchical
+  - file: docs/Pandas_Dataset_Operations
+  - file: docs/Measures_of_classification_accuracy
+# appendix
 - file: docs/misc
-- file: docs/Measures_of_classification_accuracy

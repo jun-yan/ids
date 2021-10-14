@@ -12,15 +12,14 @@ kernelspec:
 ---
 
 
-<!-- #region -->
-# Optimization
+## Optimization
 
 SciPy optimize provides functions for minimizing (or maximizing) objective functions, possibly subject to constraints.  
 It includes solvers for nonlinear problems (with support for both local and global optimization algorithms),  
 linear programing, constrained and nonlinear least-squares, root finding, and curve fitting.  
 
 
-## Least-squares minimization (least_squares)
+### Least-squares minimization (least_squares)
 
 SciPy is capable of solving robustified bound-constrained nonlinear least-squares problems:  
 
@@ -38,7 +37,7 @@ Where $x_i$ is predictor, $f(x_i)$ is the residual,
 $\rho(f_{i}(x_i;\theta)^2)$ is to reduce the influence of outliers on the solution
 
 
-### Example of solving a fitting problem
+#### Example of solving a fitting problem
 
 $f_i(x_i;\theta)=\frac{1}{(x_{i}\theta+1)}-y_i, i=1,...,n$  
 where $y_i$ are measurement values.The unknown vector of parameters is $\theta$.  
@@ -99,13 +98,13 @@ plt.ylabel("y")
 plt.legend(loc='upper right')
 plt.show()
 ```
-## Univariate function minimizers (minimize_scalar)
+### Univariate function minimizers (minimize_scalar)
 
 Often only the minimum of an univariate function (i.e., a function that takes a scalar as input) is needed.  
 In these circumstances, other optimization techniques have been developed that can work faster.   
 These are accessible from the minimize_scalar function, which proposes several algorithms.  
 
-### Unconstrained minimization (method='brent')
+#### Unconstrained minimization (method='brent')
 
 There are, actually, two methods that can be used to minimize an univariate function: brent and golden,  
 but golden is included only for academic purposes and should rarely be used.    
