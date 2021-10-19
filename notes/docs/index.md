@@ -34,35 +34,37 @@ We will supplement the in-class exercises with topic presentations.
 
 # My Goals (Alphabetical order)
 
-## Jintao Zhang
-- Get to know more knowledge about computer languages
-- Try to capture the way data scientist build a project by git
-- Apply data analytic methods in my current study
-
-## Shike Xu
-- Get familiar with Python and Github commands
-- Develop Python coding skills and try to conduct some real data analysis
-- Contribute to some tutorial files of this class
-
-## Sreeram Anantharaman
+## Anantharaman, Sreeram
 
 - Become competent in Python
 - Successfully complete a project using python
 - Should be comfortable using python for data analysis
 
-## Sydney Hyde
+
+## Eada, Surya Teja
+
+- Be able to tutor or give an intro to python
+- Successfully complete class project in python
+- Be comfortable to change my project from R to python
+- Write a python book with an interactive course (of maybe Applied Statistics) 
+
+## Hyde, Sydney
 
 - To become more knowledgeable in Python
 - Develop more confidence when working with Github
 - Explore packages within Python for purposes of data visualization and possible interactive component
 - Complete a project in Python to develop skills which can be applied to the creation of a web application
 
-## Surya Teja Eada
+## Min, Zefang
+- Get started with python
+- Complete a Kaggle project in Python
+- Contribute to a project and collaborate with others on Github
+- Survive the class
 
-- Be able to tutor or give an intro to python
-- Successfully complete class project in python
-- Be comfortable to change my project from R to python
-- Write a python book with an interactive course (of maybe Applied Statistics) 
+## Xu, Shike
+- Get familiar with Python and Github commands
+- Develop Python coding skills and try to conduct some real data analysis
+- Contribute to some tutorial files of this class
 
 ## Yan, Jun
 
@@ -71,11 +73,11 @@ We will supplement the in-class exercises with topic presentations.
 - Write a book manuscript with Jupyter-book
 - Coach a data science competition on Kaggle
 
-## Zefang Min
-- Get started with python
-- Complete a Kaggle project in Python
-- Contribute to a project and collaborate with others on Github
-- Survive the class
+## Zhang, Jintao
+- Get to know more knowledge about computer languages
+- Try to capture the way data scientist build a project by git
+- Apply data analytic methods in my current study
+
 
 # Task Board
 
