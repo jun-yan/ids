@@ -22,6 +22,7 @@ chapters:
 - file: docs/sklearn
   sections:
   - file: docs/Measures_of_classification_accuracy
+  - file: docs/Fraud_Detection_Python_from_GitHub
 - file: docs/dscompetition
 # appendix
 - file: docs/misc
