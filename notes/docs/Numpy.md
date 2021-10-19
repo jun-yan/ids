@@ -12,7 +12,7 @@ kernelspec:
   name: python3
 ---
 
-## Numpy
+# Numpy
 
 By default Python does not have a concept of Arrays. And there is no inbuilt support for multidimensional arrays.
 
@@ -28,7 +28,7 @@ The NumPy API is used extensively in **Pandas, SciPy, Matplotlib, scikit-learn, 
 
 +++
 
-### Array
+## Array
 
 An array is a grid of values and it contains information about the raw data, how to locate an element, and how to interpret an element. 
 
