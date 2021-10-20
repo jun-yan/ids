@@ -2,7 +2,7 @@
 
 ## Decision Trees
 
-<img alt="Decision tree model.png" src="//upload.wikimedia.org/wikipedia/commons/f/ff/Decision_tree_model.png" decoding="async" width="573" height="404" data-file-width="573" data-file-height="404" title="Decision Trees Demo" style="">
+<img alt="Decision tree model.png" src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Decision_tree_model.png" decoding="async" width="573" height="404" data-file-width="573" data-file-height="404" title="Decision Trees Demo" style="">
 (Image by Wikipedia)
 
 Decision Trees (DTs) are a non-parametric supervised learning method used for classification and regression.  
@@ -29,7 +29,6 @@ Total cost over the entire trees is $O(n_{features}n_{samples}^2log(n_{samples})
 
 - [General explanation](https://scikit-learn.org/stable/modules/tree.html#mathematical-formulation)  
 
-![image.png](attachment:image.png)
 - [Criteria](https://scikit-learn.org/stable/modules/tree.html#mathematical-formulation)
 
 ### Classification
