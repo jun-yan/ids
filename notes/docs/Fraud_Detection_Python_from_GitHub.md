@@ -219,7 +219,7 @@ See how low the ratio of fraudulent cases is! This is what we need to deal with.
 Let's now plot the fraudulent and non-fraudulent data so we get a better idea of what we are working with. Lets define two functions: prep_data() and plot_data(). The first will take in our original DataFrame and return X and y DataFrames only containing the transaction data and if the account is fraudulent respectively. The second will take our data from prep_data() and plot the V2 vs V3 values coloring them by if they are fraudulent.
 
 ```{code-cell} ipython3
-fraudulentdef prep_data(df: pd.DataFrame) -> (np.ndarray, np.ndarray):
+def prep_data(df: pd.DataFrame) -> (np.ndarray, np.ndarray):
     """
     Convert the DataFrame into two variable
     X: data columns (V2 - Amount)
@@ -614,7 +614,7 @@ Here there wasn't much improvement. The only major change is that false positive
 #### Hyperparamaters
 Random Forest also has other options, one of which we mentioned previously. These options are called _hyperparamaters_ as they control the learning process of the algorithm. Here is an example of specifying a few potentially important ones.
 
-```{cell-block} ipython3
+```{code-block}
 model = RandomForestClassifier(n_estimators = 10, 
                                criterion = ’gini’, 
                                max_depth = None, 
