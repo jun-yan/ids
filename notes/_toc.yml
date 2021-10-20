@@ -9,6 +9,7 @@ chapters:
   sections:
   - file: docs/dict_in_python
   - file: docs/profiling
+  - file: docs/mle-gamma
 - file: docs/Numpy
   sections:
   - file: docs/NumpyAdvanced
