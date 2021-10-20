@@ -91,51 +91,17 @@ sklearn.tree.plot_tree(decision_tree, *, max_depth=None, feature_names=None, cla
 
 ```python
 fig = plt.figure(figsize=(12,10))
-_ = tree.plot_tree(clf, max_depth=2,
+_ = tree.plot_tree(clf, max_depth=None,
                    feature_names=iris.feature_names,  
                    class_names=iris.target_names,
                    filled=True)
 ```
 
 
-    
-![svg](Decision_Trees_and_Random_Forest_files/Decision_Trees_and_Random_Forest_16_0.svg)
-    
-
-
-
 ```python
 text_representation = tree.export_text(clf)
 print(text_representation)
 ```
-
-    |--- feature_2 <= 2.45
-    |   |--- class: 0
-    |--- feature_2 >  2.45
-    |   |--- feature_3 <= 1.75
-    |   |   |--- feature_2 <= 4.95
-    |   |   |   |--- feature_3 <= 1.65
-    |   |   |   |   |--- class: 1
-    |   |   |   |--- feature_3 >  1.65
-    |   |   |   |   |--- class: 2
-    |   |   |--- feature_2 >  4.95
-    |   |   |   |--- feature_3 <= 1.55
-    |   |   |   |   |--- class: 2
-    |   |   |   |--- feature_3 >  1.55
-    |   |   |   |   |--- feature_2 <= 5.45
-    |   |   |   |   |   |--- class: 1
-    |   |   |   |   |--- feature_2 >  5.45
-    |   |   |   |   |   |--- class: 2
-    |   |--- feature_3 >  1.75
-    |   |   |--- feature_2 <= 4.85
-    |   |   |   |--- feature_1 <= 3.10
-    |   |   |   |   |--- class: 2
-    |   |   |   |--- feature_1 >  3.10
-    |   |   |   |   |--- class: 1
-    |   |   |--- feature_2 >  4.85
-    |   |   |   |--- class: 2
-    
-    
 
 ### Tips on Decision Trees Usage
 - [Tips](https://scikit-learn.org/stable/modules/tree.html#mathematical-formulation)
@@ -146,6 +112,25 @@ print(text_representation)
 (Image by Wikipedia)
 
 Random forests or random decision forests are an ensemble learning method for classification, regression and other tasks that operates by constructing a multitude of decision trees at training time.  
+
+### Advantages:
+- Random Forest is based on the bagging algorithm and uses Ensemble Learning technique. It creates as many trees on the subset of the data and combines the output of all the trees. In this way it reduces overfitting problem in decision trees and also reduces the variance and therefore improves the accuracy.
+
+- No feature scaling required: No feature scaling (standardization and normalization) required in case of Random Forest as it uses rule based approach instead of distance calculation.
+
+- Handles non-linear parameters efficiently: Non linear parameters don't affect the performance of a Random Forest unlike curve based algorithms. So, if there is high non-linearity between the independent variables, Random Forest may outperform as compared to other curve based algorithms.
+
+- Random Forest is usually robust to outliers and can handle them automatically.
+
+- Random Forest algorithm is very stable. Even if a new data point is introduced in the dataset, the overall algorithm is not affected much since the new data may impact one tree, but it is very hard for it to impact all the trees.  
+
+
+### Disadvantages: 
+-  Complexity: Random Forest creates a lot of trees (unlike only one tree in case of decision tree) and combines their outputs. By default, it creates 100 trees in Python sklearn library. To do so, this algorithm requires much more computational power and resources. On the other hand decision tree is simple and does not require so much computational resources.  
+
+In random forests, each tree in the ensemble is built from a sample drawn with replacement (i.e., a bootstrap sample) from the training set.
+
+class sklearn.ensemble.RandomForestClassifier(n_estimators=100, *, criterion='gini', max_depth=None, min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features='auto', max_leaf_nodes=None, min_impurity_decrease=0.0, bootstrap=True, oob_score=False, n_jobs=None, random_state=None, verbose=0, warm_start=False, class_weight=None, ccp_alpha=0.0, max_samples=None) [details](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html#sklearn.ensemble.RandomForestClassifier)
 
 
 ```python
@@ -191,28 +176,10 @@ y_pred=clf.predict(X_test)
 ```python
 #Import scikit-learn metrics module for accuracy calculation
 from sklearn import metrics
-# Model Accuracy, how often is the classifier correct?
+# Model Accuracy, how often is the classifier correct
 print("Accuracy:",metrics.accuracy_score(y_test, y_pred))
 ```
 
-    Accuracy: 0.9523809523809523
-    
+### Extensions
 
-
-```python
-import numpy as np
-from sklearn.linear_model import LogisticRegression
-from sklearn.naive_bayes import GaussianNB
-from sklearn.ensemble import RandomForestClassifier, VotingClassifier
-clf1 = LogisticRegression(multi_class='multinomial', random_state=1)
-clf2 = RandomForestClassifier(n_estimators=50, random_state=1)
-clf3 = GaussianNB()
-X = np.array([[-1, -1], [-2, -1], [-3, -2], [1, 1], [2, 1], [3, 2]])
-y = np.array([1, 1, 1, 2, 2, 2])
-eclf1 = VotingClassifier(estimators=[('l', clf1), ('rf', clf2), ('gnb', clf3)], voting='hard')
-eclf1 = eclf1.fit(X, y)
-print(eclf1.predict(X))
-```
-
-    [1 1 1 2 2 2]
-    
+<img src="https://i.stack.imgur.com/Q18mk.png" alt="enter image description here">
