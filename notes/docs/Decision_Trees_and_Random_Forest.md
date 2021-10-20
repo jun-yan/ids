@@ -1,0 +1,219 @@
+# Decision Trees and Random Forest
+
+## Decision Trees
+
+<img alt="Decision tree model.png" src="//upload.wikimedia.org/wikipedia/commons/f/ff/Decision_tree_model.png" decoding="async" width="573" height="404" data-file-width="573" data-file-height="404" title="Decision Trees Demo" style="">
+(Image by Wikipedia)
+
+Decision Trees (DTs) are a non-parametric supervised learning method used for classification and regression.  
+The goal is to create a model that predicts the value of a target variable by learning simple decision rules inferred from the data features.   
+A tree can be seen as a piecewise constant approximation.   
+The deeper the tree, the more complex the decision rules and the fitter the model.  
+
+
+### Advantages:
+- Simple to understand and to interpret. Trees can be visualised.  
+- Requires little data preparation.  
+- The cost of using the tree (i.e., predicting data) is logarithmic in the number of data points used to train the tree.    
+Total cost over the entire trees is $O(n_{features}n_{samples}^2log(n_{samples}))$    
+- Able to handle both numerical and categorical data (However, see disadvatange ...).  
+- Uses a white box model rather than a black box model such as neural network. (See figure above)     
+
+### Disadvantages:
+- Decision-tree learners can create over-complex trees that do not generalise the data well. This is called overfitting. Mechanisms such as pruning, setting the minimum number of samples required at a leaf node or setting the maximum depth of the tree are necessary to avoid this problem.  
+- Decision trees can be unstable because small variations in the data might result in a completely different tree being generated. This problem is mitigated by using decision trees within an ensemble.  
+- Predictions of decision trees are neither smooth nor continuous.  
+- Practical decision-tree learning algorithms cannot guarantee to return the globally optimal decision tree.   
+
+### Mathematical formulation
+
+- [General explanation](https://scikit-learn.org/stable/modules/tree.html#mathematical-formulation)  
+
+![image.png](attachment:image.png)
+- [Criteria](https://scikit-learn.org/stable/modules/tree.html#mathematical-formulation)
+
+### Classification
+
+[DecisionTreeClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html#sklearn.tree.DecisionTreeClassifier) is a class capable of performing multi-class classification on a dataset.  
+DecisionTreeClassifier takes two arrays as input : an array X, sparse or dense, of shape (n_samples, n_features) holding the training samples, and an array Y of integer values, shape (n_samples,), holding the class labels for the training samples  
+
+sklearn.tree.DecisionTreeClassifier(*, criterion='gini', splitter='best', max_depth=None, min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features=None, random_state=None, max_leaf_nodes=None, min_impurity_decrease=0.0, class_weight=None, ccp_alpha=0.0) [details](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html#sklearn.tree.DecisionTreeClassifier)
+
+Splitter:
+
+The splitter is used to decide which feature and which threshold is used.
+
+Using **best**, the model if taking the feature with the highest importance  
+Using **random**, the model if taking the feature randomly but with the same distribution
+
+ random_state’s value may be:
+
+**None (default)**
+Use the global random state instance from numpy.random.  
+Calling the function multiple times will reuse the same instance, and will produce different results.  
+
+**An integer**
+Use a new random number generator seeded by the given integer.  
+Using an int will produce the same results across different calls.  
+However, it may be worthwhile checking that your results are stable  
+across a number of different distinct random seeds. Popular integer random seeds are 0 and 42.
+
+
+```python
+%config InlineBackend.figure_formats = ['svg']
+from matplotlib import pyplot as plt
+from sklearn.datasets import load_iris
+from sklearn import tree
+
+# Prepare the data data
+iris = load_iris()
+X, y = iris.data, iris.target
+
+# Fit the classifier with default hyper-parameters
+clf = tree.DecisionTreeClassifier()
+clf = clf.fit(X, y)
+
+```
+
+The data set contains 3 classes of 50 instances each, where each class refers to a type of iris plant. One class is linearly separable from the other 2; the latter are NOT linearly separable from each other.  
+Attribute Information:
+
+1. sepal length in cm
+2. sepal width in cm
+3. petal length in cm
+4. petal width in cm
+5. class:
+- Iris Setosa
+- Iris Versicolour
+- Iris Virginica  
+
+sklearn.tree.plot_tree(decision_tree, *, max_depth=None, feature_names=None, class_names=None, label='all', filled=False, impurity=True, node_ids=False, proportion=False, rounded=False, precision=3, ax=None, fontsize=None) [details](https://scikit-learn.org/stable/modules/generated/sklearn.tree.plot_tree.html)
+
+
+```python
+fig = plt.figure(figsize=(12,10))
+_ = tree.plot_tree(clf, max_depth=2,
+                   feature_names=iris.feature_names,  
+                   class_names=iris.target_names,
+                   filled=True)
+```
+
+
+    
+![svg](Decision_Trees_and_Random_Forest_files/Decision_Trees_and_Random_Forest_16_0.svg)
+    
+
+
+
+```python
+text_representation = tree.export_text(clf)
+print(text_representation)
+```
+
+    |--- feature_2 <= 2.45
+    |   |--- class: 0
+    |--- feature_2 >  2.45
+    |   |--- feature_3 <= 1.75
+    |   |   |--- feature_2 <= 4.95
+    |   |   |   |--- feature_3 <= 1.65
+    |   |   |   |   |--- class: 1
+    |   |   |   |--- feature_3 >  1.65
+    |   |   |   |   |--- class: 2
+    |   |   |--- feature_2 >  4.95
+    |   |   |   |--- feature_3 <= 1.55
+    |   |   |   |   |--- class: 2
+    |   |   |   |--- feature_3 >  1.55
+    |   |   |   |   |--- feature_2 <= 5.45
+    |   |   |   |   |   |--- class: 1
+    |   |   |   |   |--- feature_2 >  5.45
+    |   |   |   |   |   |--- class: 2
+    |   |--- feature_3 >  1.75
+    |   |   |--- feature_2 <= 4.85
+    |   |   |   |--- feature_1 <= 3.10
+    |   |   |   |   |--- class: 2
+    |   |   |   |--- feature_1 >  3.10
+    |   |   |   |   |--- class: 1
+    |   |   |--- feature_2 >  4.85
+    |   |   |   |--- class: 2
+    
+    
+
+### Tips on Decision Trees Usage
+- [Tips](https://scikit-learn.org/stable/modules/tree.html#mathematical-formulation)
+
+## Random Forests
+
+<img crossorigin="anonymous" src="https://upload.wikimedia.org/wikipedia/commons/7/76/Random_forest_diagram_complete.png" class="png" alt="">  
+(Image by Wikipedia)
+
+Random forests or random decision forests are an ensemble learning method for classification, regression and other tasks that operates by constructing a multitude of decision trees at training time.  
+
+
+```python
+# Import train_test_split function
+from sklearn.model_selection import train_test_split
+```
+
+
+```python
+# Creating a DataFrame of given iris dataset.
+import pandas as pd
+data=pd.DataFrame({
+    'sepal length':iris.data[:,0],
+    'sepal width':iris.data[:,1],
+    'petal length':iris.data[:,2],
+    'petal width':iris.data[:,3],
+    'species':iris.target
+})
+# data.head()
+
+# Split dataset into features and labels
+X=data[['petal length', 'petal width','sepal length']]  # Removed feature "sepal length"
+y=data['species']                                       
+# Split dataset into training set and test set
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.70, random_state=5) # 70% training and 30% test
+```
+
+
+```python
+#Import Random Forest Model
+from sklearn.ensemble import RandomForestClassifier
+
+#Create a Gaussian Classifier
+clf=RandomForestClassifier(n_estimators=100)
+
+#Train the model using the training sets y_pred=clf.predict(X_test)
+clf.fit(X_train,y_train)
+
+y_pred=clf.predict(X_test)
+```
+
+
+```python
+#Import scikit-learn metrics module for accuracy calculation
+from sklearn import metrics
+# Model Accuracy, how often is the classifier correct?
+print("Accuracy:",metrics.accuracy_score(y_test, y_pred))
+```
+
+    Accuracy: 0.9523809523809523
+    
+
+
+```python
+import numpy as np
+from sklearn.linear_model import LogisticRegression
+from sklearn.naive_bayes import GaussianNB
+from sklearn.ensemble import RandomForestClassifier, VotingClassifier
+clf1 = LogisticRegression(multi_class='multinomial', random_state=1)
+clf2 = RandomForestClassifier(n_estimators=50, random_state=1)
+clf3 = GaussianNB()
+X = np.array([[-1, -1], [-2, -1], [-3, -2], [1, 1], [2, 1], [3, 2]])
+y = np.array([1, 1, 1, 2, 2, 2])
+eclf1 = VotingClassifier(estimators=[('l', clf1), ('rf', clf2), ('gnb', clf3)], voting='hard')
+eclf1 = eclf1.fit(X, y)
+print(eclf1.predict(X))
+```
+
+    [1 1 1 2 2 2]
+    
