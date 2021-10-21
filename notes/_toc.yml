@@ -24,6 +24,7 @@ chapters:
   - file: docs/Measures_of_classification_accuracy
   - file: docs/Fraud_Detection_Python_from_GitHub
   - file: docs/Decision_Trees_and_Random_Forest
+  - file: docs/naive_bayes
 - file: docs/dscompetition
 # appendix
 - file: docs/misc
