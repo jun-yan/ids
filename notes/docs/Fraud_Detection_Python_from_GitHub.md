@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.12.0
+    jupytext_version: 1.10.3
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -16,7 +16,7 @@ kernelspec:
 
 +++
 
-The notes are based off of McKinney, T. (2019, July 19). Fraud Detection with Python. Fraud Detection with Python - GitHub (Using Jupyter Book). https://trenton3983.github.io/files/projects/2019-07-19_fraud_detection_python/2019-07-19_fraud_detection_python.html
+The notes are based off of McKinney, T. (2019, July 19). Fraud Detection with Python. Fraud Detection with Python - GitHub (Using Jupyter Book): <https://trenton3983.github.io/files/projects/2019-07-19_fraud_detection_python/2019-07-19_fraud_detection_python.html>.
 
 +++
 
@@ -250,7 +250,7 @@ plot_data(X, y)
 ```
 
 ### Data Resampling
-We can resample our data to better account for the imbalance in the dataset. This can be done by Undersampling or Oversampling. To be able to compare the resampled datasets lets define a `compare_plot()` function which will take in two DataFrames and return a comparison of the two plots.
+We can resample our data to better account for the imbalance in the dataset. This can be done by Undersampling or Oversampling. To be able to compare the resampled datasets let us define a `compare_plot()` function which will take in two DataFrames and return a comparison of the two plots.
 
 ```{code-cell} ipython3
 def compare_plot(X: np.ndarray, y: np.ndarray, X_resampled: np.ndarray, y_resampled: np.ndarray, method: str):
@@ -1212,15 +1212,15 @@ For our flagged cases roughly 2/3 are actually fraud! Because we only took the t
 Now that we are done using our data files we are going to get rid of them. I hope this was informative!
 
 ```{code-cell} ipython3
-if os.path.exists("data/chapter_1"):
-    shutil.rmtree("data/chapter_1")
+# if os.path.exists("data/chapter_1"):
+#     shutil.rmtree("data/chapter_1")
 
-if os.path.exists("data/chapter_2"):         
-    shutil.rmtree("data/chapter_2")
+# if os.path.exists("data/chapter_2"):
+#     shutil.rmtree("data/chapter_2")
+
+# if os.path.exists("data/chapter_3"):
+#     shutil.rmtree("data/chapter_3")
         
-if os.path.exists("data/chapter_3"):         
-    shutil.rmtree("data/chapter_3")
-        
-if os.path.exists("data/chapter_4"):         
-    shutil.rmtree("data/chapter_4")
+# if os.path.exists("data/chapter_4"):
+#     shutil.rmtree("data/chapter_4")
 ```

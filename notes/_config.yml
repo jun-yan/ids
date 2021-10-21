@@ -8,7 +8,7 @@ description: >-
 
 execute:
   execute_notebooks           : cache
-
+  timeout                     : 200
 # HTML-specific settings
 html:
   home_page_in_navbar         : false
