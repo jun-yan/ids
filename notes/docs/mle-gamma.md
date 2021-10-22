@@ -76,7 +76,7 @@ def mysim(nrep, theta, n):
     for i in range(nrep):
         x = gamma.rvs(a = theta[0], scale = theta[1], size = n)
         mle[i,], se[i,] = mle_gamma(x)
-    return [mle, se]
+    return {'mle': mle, 'se': se}
 ```
 
 It works as expected:
@@ -93,9 +93,9 @@ To summarize the results of a simulation study, we investigate: 1) whether the m
 
 ```{code-cell} ipython3
 def sumsim(sim):
-    avg = sim[0].mean(axis = 0)
-    ase = sim[1].mean(axis = 0)
-    ese = sim[0].std(axis = 0)
+    avg = sim['mle'].mean(axis = 0)
+    ase = sim['se'].mean(axis = 0)
+    ese = sim['mle'].std(axis = 0)
     return [avg, ase, ese]
 ```
 
@@ -117,7 +117,7 @@ sumsim(sim_100)
 ```
 
 ```{code-cell} ipython3
-sim_200 = mysim(nrep, theta, 100)
+sim_200 = mysim(nrep, theta, 200)
 sumsim(sim_200)
 ```
 
