@@ -200,3 +200,121 @@ print(f"Recall: {metrics.recall_score(y_test, model_pred)}")
 print(f"F1 Score: {metrics.f1_score(y_test, model_pred)}")
 print(f"AUC: {metrics.roc_auc_score(y_test, model_pred)}")
 ```
+
+## Text documents
+
+We can also work on text documents especially using `MultinomialNB` to determine and classify text. This can be used in identifying SPAM emails etc. 
+
+I am considering the example noted in: [Scikit Learn Website](https://scikit-learn.org/stable/tutorial/text_analytics/working_with_text_data.html)
+
+```{code-cell} ipython3
+categories = ['alt.atheism', 'soc.religion.christian', 'comp.graphics', 'sci.med']
+
+from sklearn.datasets import fetch_20newsgroups
+twenty_train = fetch_20newsgroups(subset='train', categories=categories, shuffle=True, random_state=42)
+```
+
+We download the dataset called 20newsgroups and consider all text corresponding to four categories.
+
+```{code-cell} ipython3
+print(f"Target: {twenty_train.target_names}")
+print(f"data: {len(twenty_train.data)}")
+print(f"Type of training data: {type(twenty_train)}")
+print(f"Type of data component: {type(twenty_train.data)}")
+```
+
+```{code-cell} ipython3
+twenty_train.data[1]  ## just to give an idea of the data. (It is a list)
+```
+
+```{code-cell} ipython3
+twenty_train.target[:10]
+```
+
+```{code-cell} ipython3
+for t in twenty_train.target[:10]:
+    print(twenty_train.target_names[t])
+```
+
+## Using Bag of Words
+
+- We use the words in each text in training dataset and construct a dictionary mapped to integer indices.
+- For each text, we can count the instance of words and let that determine using NB method.
+
+We use `CountVectorizer` and CountVectorizer supports counts of N-grams of words or consecutive characters. Once fitted, the vectorizer has built a dictionary of feature indices.
+
+```{code-cell} ipython3
+## Occurence count
+
+from sklearn.feature_extraction.text import CountVectorizer
+count_vect = CountVectorizer()
+X_train_counts = count_vect.fit_transform(twenty_train.data)
+X_train_counts.shape
+```
+
+```{code-cell} ipython3
+X_train_counts[:10, :10]
+```
+
+```{code-cell} ipython3
+## Frequency count
+
+from sklearn.feature_extraction.text import TfidfTransformer
+tfidf_transformer = TfidfTransformer()
+X_train_tfidf = tfidf_transformer.fit_transform(X_train_counts)
+X_train_tfidf.shape
+```
+
+## Training a Classifier (NB method)
+
+Now that we have the frequency data in a sparse data, and also our targets, we can train a classifier using NB method. 
+
+```{code-cell} ipython3
+from sklearn.naive_bayes import MultinomialNB
+clf = MultinomialNB().fit(X_train_tfidf, twenty_train.target)
+```
+
+```{code-cell} ipython3
+docs_new = ['God is love', 'OpenGL on the GPU is fast']
+X_new_counts = count_vect.transform(docs_new)
+X_new_tfidf = tfidf_transformer.transform(X_new_counts)
+X_new_tfidf.shape
+```
+
+```{code-cell} ipython3
+predicted = clf.predict(X_new_tfidf)
+for doc, category in zip(docs_new, predicted):
+     print('%r => %s' % (doc, twenty_train.target_names[category]))
+```
+
+## Building a Pipeline
+
+In order to make the vectorizer => transformer => classifier easier to work with, scikit-learn provides a Pipeline class that behaves like a compound classifier:
+
+```{code-cell} ipython3
+from sklearn.pipeline import Pipeline
+text_clf = Pipeline([
+    ('vect', CountVectorizer()),
+    ('tfidf', TfidfTransformer()),
+    ('clf', MultinomialNB()),
+])
+```
+
+```{code-cell} ipython3
+text_clf.fit(twenty_train.data, twenty_train.target) 
+```
+
+## Predicting and checking metrics
+
+```{code-cell} ipython3
+import numpy as np
+twenty_test = fetch_20newsgroups(subset='test', categories=categories, shuffle=True, random_state=42)
+docs_test = twenty_test.data
+predicted = text_clf.predict(docs_test)
+np.mean(predicted == twenty_test.target)
+```
+
+```{code-cell} ipython3
+from sklearn import metrics
+metrics.confusion_matrix(twenty_test.target, predicted)
+```
