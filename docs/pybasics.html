@@ -1,0 +1,929 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3. Python for R Users &#8212; Introduction to Data Science</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.11. Python dictionary" href="dict_in_python.html" />
+    <link rel="prev" title="2. Introduction" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/tricircle.pdf" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="tasks.html">
+   1. Task Board
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   2. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   3. Python for R Users
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dict_in_python.html">
+     3.11. Python dictionary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="profiling.html">
+     3.12. Profiling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mle-gamma.html">
+     3.13. Gamma MLE Simulation Study
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="Numpy.html">
+   4. Numpy
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="NumpyAdvanced.html">
+     4.2. Numpy Advanced
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="Scipy.html">
+   5. Scipy
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Optimization.html">
+     5.3. Optimization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="pandas_objs.html">
+   6. Pandas
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Pandas_missing_hierarchical.html">
+     6.12. Pandas: Missing Data and Hierarchical Indexing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Pandas_Dataset_Operations.html">
+     6.13. Pandas: Dataset Operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="sklearn.html">
+   7. Scikit Learn
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Measures_of_classification_accuracy.html">
+     7.1. Measures of classification accuracy and functions in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Fraud_Detection_Python_from_GitHub.html">
+     7.2. Fraud Detection with Python (Github Trenton McKinney)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Support_vector_machine.html">
+     7.3. Support vector machine
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Decision_Trees_and_Random_Forest.html">
+     7.5. Decision Trees and Random Forest
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="naive_bayes.html">
+     7.6. Naive Bayes Classification Problem:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dscompetition.html">
+   8. Data Science Competition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="misc.html">
+   9. Miscellaneous learnings
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../_sources/docs/pybasics.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/pybasics.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/jun-yan/ids/master?urlpath=tree/notes/docs/pybasics.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading-data-and-manipulations">
+   3.1. Reading data and manipulations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#writing-a-function">
+   3.2. Writing a function
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#variables-versus-objects">
+   3.3. Variables versus Objects
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualization">
+   3.4. Visualization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numbers-in-computer">
+   3.5. Numbers in Computer
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-google-recruiting-problem">
+   3.6. Example: Google recruiting problem
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#export-e">
+     3.6.1. Export
+     <span class="math notranslate nohighlight">
+      \(e\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#write-functions-to-check-whether-a-number-is-a-prime">
+     3.6.2. Write functions to check whether a number is a prime
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#error-and-debugging">
+   3.7. Error and Debugging
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#error">
+     3.7.1. Error
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#debugging">
+     3.7.2. Debugging
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#partial-list-of-debugging-commands">
+     3.7.3. Partial list of debugging commands
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#general-resources">
+   3.8. General Resources
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bibliography">
+   3.9. Bibliography
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   3.10. Exercises
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <!-- (about_py)= -->
+<div class="tex2jax_ignore mathjax_ignore section" id="python-for-r-users">
+<h1><span class="section-number">3. </span>Python for R Users<a class="headerlink" href="#python-for-r-users" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://github.com/MangoTheCat/python-for-r-users-workshop">Workshop by Mango
+Solutions</a></p>
+<ul class="simple">
+<li><p>Jupyter notebook keyboard shortcuts</p></li>
+<li><p>Models, packages, and libraries</p></li>
+<li><p>Getting help</p></li>
+</ul>
+<div class="section" id="reading-data-and-manipulations">
+<h2><span class="section-number">3.1. </span>Reading data and manipulations<a class="headerlink" href="#reading-data-and-manipulations" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.width&quot;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+
+<span class="n">mtcars</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/mtcars.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">mtcars</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">mtcars</span><span class="p">[[</span><span class="s1">&#39;mpg&#39;</span><span class="p">,</span> <span class="s1">&#39;wt&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="writing-a-function">
+<h2><span class="section-number">3.2. </span>Writing a function<a class="headerlink" href="#writing-a-function" title="Permalink to this headline">¶</a></h2>
+<p>Consider the Fibonacci Sequence
+<span class="math notranslate nohighlight">\(1, 1, 2, 3, 5, 8, 13, 21, 34, ...\)</span>.
+The next number is found by adding up the two numbers before it.
+We are going to use 3 ways to solve the problems.</p>
+<ol class="simple">
+<li><p>Recurisive solution;</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fib_rs</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">1</span> <span class="ow">or</span> <span class="n">n</span><span class="o">==</span><span class="mi">2</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">fib_rs</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fib_rs</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="o">%</span><span class="n">timeit</span> <span class="n">fib_rs</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="simple">
+<li><p>Dynamic programming memoization;</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fib_dm_helper</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">mem</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">mem</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">mem</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">1</span> <span class="ow">or</span> <span class="n">n</span><span class="o">==</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">fib_dm_helper</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mem</span><span class="p">)</span> <span class="o">+</span> <span class="n">fib_dm_helper</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="n">mem</span><span class="p">)</span>
+    <span class="n">mem</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">=</span><span class="n">result</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="k">def</span> <span class="nf">fib_dm</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">mem</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fib_dm_helper</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">mem</span><span class="p">)</span>
+
+<span class="o">%</span><span class="n">timeit</span> <span class="n">fib_dm</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="simple">
+<li><p>Dynamic programming bottom-up.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fib_dbu</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">mem</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">mem</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+    <span class="n">mem</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">mem</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">mem</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">mem</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">mem</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+	
+
+<span class="o">%</span><span class="n">timeit</span> <span class="n">fib_dbu</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="variables-versus-objects">
+<h2><span class="section-number">3.3. </span>Variables versus Objects<a class="headerlink" href="#variables-versus-objects" title="Permalink to this headline">¶</a></h2>
+<p>See materials and exercises of Dr. Eubank’s <a class="reference external" href="https://www.practicaldatascience.org/html/index.html">PDS site</a>.</p>
+</div>
+<div class="section" id="visualization">
+<h2><span class="section-number">3.4. </span>Visualization<a class="headerlink" href="#visualization" title="Permalink to this headline">¶</a></h2>
+<p>Change the default plot format to <code class="docutils literal notranslate"><span class="pre">svg</span></code> for high quality display.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="o">.</span><span class="n">figure_formats</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;svg&#39;</span><span class="p">]</span>
+
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;darkgrid&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;penguins&quot;</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;flipper_length_mm&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="s2">&quot;sex&quot;</span><span class="p">,</span>
+    <span class="n">binwidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">facet_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">margin_titles</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s see some plots using the <code class="docutils literal notranslate"><span class="pre">mtcars</span></code> example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;mpg&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;wt&quot;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">mtcars</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span><span class="n">mtcars</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;mpg&quot;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s2">&quot;gear&quot;</span><span class="p">,</span> <span class="n">binwidth</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;mpg&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;wt&quot;</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span> <span class="s2">&quot;gear&quot;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">mtcars</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;mpg&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;wt&quot;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s2">&quot;gear&quot;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">mtcars</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="numbers-in-computer">
+<h2><span class="section-number">3.5. </span>Numbers in Computer<a class="headerlink" href="#numbers-in-computer" title="Permalink to this headline">¶</a></h2>
+<p>Pitfall one: Integer overflow</p>
+<p>We my encounter the Overflow problem when dealing with integers when using Numpy and Pandas in Python.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">63</span> <span class="o">-</span><span class="mi">1</span> <span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
+<span class="n">x</span>
+<span class="c1"># This should be the largest number numpy can display, with the default integer size being 64 bits in most computers.</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
+<span class="n">y</span>
+<span class="c1"># Because of the overflow, when we add 1 to this number, it becomes negative!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For vanilla Python, the overflow errors are checked and more digits are allocated when needed, at the cost of being slow.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span><span class="o">**</span><span class="mi">63</span> <span class="o">*</span> <span class="mi">1000</span> <span class="c1"># this number is 1000 times largger than the prior number, but still displayed perfectly without any overflows</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pitfall two: floating point numbers’ impresicion</p>
+<p>Because our computers use binary to store information, some simple numbers in decimal are not represented and replaced by a rounded approximation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">==</span> <span class="mf">0.3</span>
+
+<span class="mf">0.3</span> <span class="o">-</span> <span class="mf">0.2</span>
+
+<span class="kn">import</span> <span class="nn">decimal</span>
+<span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span> <span class="c1"># this is the true decimal value of the binary approximation stored for 0.1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pitfall three: trade-off between size and presicion</p>
+<p>To represent a floating points number, a 64-bit computer typically uses 1 bit to strore the sign, 52 bits to store the mantissa and 11 bits to store the exponent. Because the mantissa bits are limited, it can not represent a floating point that’s both very big and very precise. Most computers can represent all integers up to 2^53, after that it starts skipping numbers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">2.1</span><span class="o">**</span><span class="mi">53</span> <span class="o">+</span><span class="mi">1</span> <span class="o">==</span> <span class="mf">2.1</span><span class="o">**</span><span class="mi">53</span>
+
+<span class="c1"># Find a number larger than 2 to the 53rd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mf">2.1</span><span class="o">**</span><span class="mi">53</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span>
+<span class="n">x</span> <span class="o">==</span> <span class="mf">2.1</span><span class="o">**</span><span class="mi">53</span>
+
+<span class="c1"># we add 1 to x by 1000000 times, but it still equal to its initial value, 2.1**53, because this number is too big that computer can&#39;t handle it with precision like add 1.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For floating points, we can find the smallest value we can get by calling machine epsilon. It is formally defined as the difference between 1 and the next largest floating point number.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">float_epsilon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">float_epsilon</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="example-google-recruiting-problem">
+<h2><span class="section-number">3.6. </span>Example: Google recruiting problem<a class="headerlink" href="#example-google-recruiting-problem" title="Permalink to this headline">¶</a></h2>
+<p>Find the first 10-digit prime found in consecutive digits of <span class="math notranslate nohighlight">\(e\)</span>.</p>
+<ul class="simple">
+<li><p>Get the list of digits of <span class="math notranslate nohighlight">\(e\)</span></p></li>
+<li><p>Write functions to achieve our goals(can be a loop, running over the list)</p></li>
+<li><p>Try to make it more efficient!</p></li>
+</ul>
+<div class="section" id="export-e">
+<h3><span class="section-number">3.6.1. </span>Export <span class="math notranslate nohighlight">\(e\)</span><a class="headerlink" href="#export-e" title="Permalink to this headline">¶</a></h3>
+<p>If you try to export <span class="math notranslate nohighlight">\(e\)</span> using the format command in Python, you will
+not get the precise <span class="math notranslate nohighlight">\(e\)</span> value due to the double type data’s feature!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%0.10f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">math</span><span class="o">.</span><span class="n">e</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%0.20f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">math</span><span class="o">.</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The digits after 16 positions of <span class="math notranslate nohighlight">\(e\)</span> are wrong, compare this to the
+<span class="math notranslate nohighlight">\(e\)</span> value export by “decimal”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">operator</span> <span class="c1"># ?</span>
+<span class="kn">import</span> <span class="nn">decimal</span>  <span class="c1"># for what?</span>
+
+<span class="c1">## set the required digits</span>
+<span class="n">decimal</span><span class="o">.</span><span class="n">getcontext</span><span class="p">()</span><span class="o">.</span><span class="n">prec</span> <span class="o">=</span> <span class="mi">150</span>
+<span class="n">e_decimal</span> <span class="o">=</span> <span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">exp</span><span class="p">()</span><span class="o">.</span><span class="n">to_eng_string</span><span class="p">()[</span><span class="mi">2</span><span class="p">:]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">e_decimal</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Besides the “decimal” module, we have lazy ways to find <span class="math notranslate nohighlight">\(e\)</span> from
+an existed list. For example, the website
+<a class="reference external" href="https://apod.nasa.gov/htmltest/gifcity/e.2mil">https://apod.nasa.gov/htmltest/gifcity/e.2mil</a> provides a list of <span class="math notranslate nohighlight">\(e\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="c1"># get text from the website</span>
+<span class="n">reply</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://apod.nasa.gov/htmltest/gifcity/e.2mil&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+
+<span class="c1"># remove the space in the lines</span>
+<span class="n">line_strip</span><span class="o">=</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">reply</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)]</span>
+
+<span class="c1"># connect all the digital lines</span>
+<span class="n">e</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">LINE</span> <span class="k">for</span> <span class="n">LINE</span> <span class="ow">in</span> <span class="n">line_strip</span> <span class="k">if</span> <span class="n">LINE</span> <span class="ow">and</span> <span class="n">LINE</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">[:</span><span class="mi">20</span><span class="p">:])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="write-functions-to-check-whether-a-number-is-a-prime">
+<h3><span class="section-number">3.6.2. </span>Write functions to check whether a number is a prime<a class="headerlink" href="#write-functions-to-check-whether-a-number-is-a-prime" title="Permalink to this headline">¶</a></h3>
+<p>Here the most basic and bruteforce way is used. Check all the factors
+less than <span class="math notranslate nohighlight">\(\sqrt n+1\)</span> for all the odd numbers <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>We have many powerful algorithms to achieve this if we need to check
+for very large numbers. For this problem, this method is efficcient
+enough.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+<span class="k">def</span> <span class="nf">is_prime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span><span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">n</span><span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">se</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="n">se</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">10</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">is_prime</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">number</span><span class="p">)):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+        <span class="k">break</span>
+    <span class="n">i</span><span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="error-and-debugging">
+<h2><span class="section-number">3.7. </span>Error and Debugging<a class="headerlink" href="#error-and-debugging" title="Permalink to this headline">¶</a></h2>
+<p>Resource: Python Data Science Handbook</p>
+<p>Code development and data analysis always require a bit of trial and error, and IPython contains tools to streamline this process.</p>
+<div class="section" id="error">
+<h3><span class="section-number">3.7.1. </span>Error<a class="headerlink" href="#error" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+
+<span class="k">def</span> <span class="nf">func2</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">func1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">func2</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calling func2 results in an error, and reading the printed trace lets us see exactly what <a class="reference external" href="http://happened.By">happened.By</a> default, this trace includes several lines showing the context of each step that led to the error.</p>
+</div>
+<div class="section" id="debugging">
+<h3><span class="section-number">3.7.2. </span>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h3>
+<p>The standard Python tool for interactive debugging is pdb, the Python debugger. This debugger lets the user step through the code line by line in order to see what might be causing a more difficult error. The IPython-enhanced version of this is ipdb, the IPython debugger.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">debug</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The interactive debugger allows much more than this, though–we can even step up and down through the stack and explore the values of variables there</p>
+</div>
+<div class="section" id="partial-list-of-debugging-commands">
+<h3><span class="section-number">3.7.3. </span>Partial list of debugging commands<a class="headerlink" href="#partial-list-of-debugging-commands" title="Permalink to this headline">¶</a></h3>
+<p>There are many more available commands for interactive debugging than we’ve listed here; the following table contains a description of some of the more common and useful ones:</p>
+<p><strong>Command	Description</strong></p>
+<p><strong>list</strong>	Show the current location in the file<br />
+<strong>h(elp)</strong>	Show a list of commands, or find help on a specific command<br />
+<strong>q(uit)</strong>	Quit the debugger and the program<br />
+<strong>c(ontinue)</strong>	Quit the debugger, continue in the program<br />
+<strong>n(ext)</strong>	Go to the next step of the program<br />
+<strong>(enter)</strong>	Repeat the previous command<br />
+<strong>p(rint)</strong>	Print variables<br />
+<strong>s(tep)</strong>	Step into a subroutine<br />
+<strong>r(eturn)</strong>	Return out of a subroutine</p>
+</div>
+</div>
+<div class="section" id="general-resources">
+<h2><span class="section-number">3.8. </span>General Resources<a class="headerlink" href="#general-resources" title="Permalink to this headline">¶</a></h2>
+<p>Popular textbooks on Python programming include
+<span id="id1">[<a class="reference internal" href="#id4">Gut16</a>]</span> and <span id="id2">[<a class="reference internal" href="#id5">Hil16</a>]</span>.</p>
+<p>Python is either the dominant player or a major player in</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://scikit-learn.org/stable/">machine learning and data science</a></p></li>
+<li><p><a class="reference external" href="http://www.astropy.org/">astronomy</a></p></li>
+<li><p><a class="reference external" href="https://wiki.python.org/moin/PythonForArtificialIntelligence">artificial intelligence</a></p></li>
+<li><p><a class="reference external" href="http://chemlab.github.io/chemlab/">chemistry</a></p></li>
+<li><p><a class="reference external" href="http://biopython.org/wiki/Main_Page">computational biology</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/meteorology/">meteorology</a></p></li>
+</ul>
+</div>
+<div class="section" id="bibliography">
+<h2><span class="section-number">3.9. </span>Bibliography<a class="headerlink" href="#bibliography" title="Permalink to this headline">¶</a></h2>
+<p id="id3"><dl class="citation">
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id1">Gut16</a></span></dt>
+<dd><p>John Guttag. <em>Introduction to computation and programming using Python: With application to understanding data</em>. MIT Press, 2016.</p>
+</dd>
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id2">Hil16</a></span></dt>
+<dd><p>Christian Hill. <em>Learning scientific programming with python</em>. Cambridge University Press, 2016.</p>
+</dd>
+</dl>
+</p>
+</div>
+<div class="section" id="exercises">
+<h2><span class="section-number">3.10. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Write a function to demonstrate the Monty Hall problem through
+simulation. The function takes two arguments <code class="docutils literal notranslate"><span class="pre">ndoors</span></code> and
+<code class="docutils literal notranslate"><span class="pre">ntrials</span></code>, representing the number of doors in the experiment and
+the number of trails in a simulation, respectively. The function
+should return the proportion of wins for both the switch and
+no-switch strategy. Apply your function with 3 doors and 5 doors,
+both with 1000 trials.</p></li>
+<li><p>Write a function to do a Monte Carlo approximation of <span class="math notranslate nohighlight">\(\pi\)</span>. The
+function takes a Monte Carlo sample size <code class="docutils literal notranslate"><span class="pre">n</span></code> as input, and returns
+a point estimate of <span class="math notranslate nohighlight">\(\pi\)</span> and a 95% confidence interval. Apply your
+function with sample size 1000, 2000, 4000, and 8000. Comment on
+the results.</p></li>
+<li><p>Find the first 10-digit prime number occurring in consecutive
+digits of <span class="math notranslate nohighlight">\(e\)</span>. This was a
+<a class="reference external" href="http://mathworld.wolfram.com/news/2004-10-13/google/">Google recruiting ad</a>.</p></li>
+<li><p>Write a function to obtain the MLE of the parameters of a gamma
+distribution with a random sample. The input is the random sample
+vector, and the output is the MLE. For shape parameter <span class="math notranslate nohighlight">\(\alpha\)</span> and
+scale parameter <span class="math notranslate nohighlight">\(\beta\)</span>, generate a random sample of size <span class="math notranslate nohighlight">\(n\)</span>, and
+then use your function to obtain the MLE. Conduct a simulation
+study with <span class="math notranslate nohighlight">\(\alpha = \beta = 2\)</span> for sample size
+<span class="math notranslate nohighlight">\(n \in \{50, 100, 200\}\)</span>. Do 1000 replicates and summarize your
+results.</p></li>
+<li><p>Continue with the gamma MLE. Add the standard error of the MLE into
+the output of your function. Repeat the simulation study and check
+whether your standard errors match the empirical standard error
+from the 1000 replicates.</p></li>
+<li><p>Consider a telecommunication service company. To simplify the
+setting, suppose that the starting points of new customers are
+uniformly distributed over time. Suppose that a customer stays
+with the company for a duration of gamma distribution with shape
+<code class="docutils literal notranslate"><span class="pre">alpha</span></code> and scale <code class="docutils literal notranslate"><span class="pre">sigma</span></code>. The company hires a data scientist to
+estimate the distribution of the duration of the customer’s
+stay. The data scientist decides to include in the sample all
+customers who are with the company at time <code class="docutils literal notranslate"><span class="pre">t</span></code>. Write a function to
+conduct a simulation study. For each replicate, the function
+generates <code class="docutils literal notranslate"><span class="pre">n</span></code> customers and select those that are active at time
+<code class="docutils literal notranslate"><span class="pre">t</span></code> to form a sample; returns the mean and standard deviation of
+the durations in the sample. Repeat the experiment 1000 times for
+various values of <code class="docutils literal notranslate"><span class="pre">alpha</span></code>, <code class="docutils literal notranslate"><span class="pre">sigma</span></code>, <code class="docutils literal notranslate"><span class="pre">n</span></code>, and <code class="docutils literal notranslate"><span class="pre">t</span></code>. Discuss
+your findings.</p></li>
+<li><p>Continue with the telecommunication service company. Suppose now
+that the data scientists decides to include in the sample all
+custermers that are active during a time interval from <code class="docutils literal notranslate"><span class="pre">t0</span></code> to
+<code class="docutils literal notranslate"><span class="pre">t1</span></code>. Modify your function and carry out the simulation
+study. Discuss your findings.</p></li>
+</ol>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="intro.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">2. </span>Introduction</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="dict_in_python.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">3.11. </span>Python dictionary</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Jun Yan and students in STAT 5255, Fall 2021<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

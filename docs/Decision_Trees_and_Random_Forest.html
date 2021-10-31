@@ -1,0 +1,680 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>7.5. Decision Trees and Random Forest &#8212; Introduction to Data Science</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="7.6. Naive Bayes Classification Problem:" href="naive_bayes.html" />
+    <link rel="prev" title="7.3. Support vector machine" href="Support_vector_machine.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/tricircle.pdf" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="tasks.html">
+   1. Task Board
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   2. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="pybasics.html">
+   3. Python for R Users
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dict_in_python.html">
+     3.11. Python dictionary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="profiling.html">
+     3.12. Profiling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mle-gamma.html">
+     3.13. Gamma MLE Simulation Study
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="Numpy.html">
+   4. Numpy
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="NumpyAdvanced.html">
+     4.2. Numpy Advanced
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="Scipy.html">
+   5. Scipy
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Optimization.html">
+     5.3. Optimization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="pandas_objs.html">
+   6. Pandas
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Pandas_missing_hierarchical.html">
+     6.12. Pandas: Missing Data and Hierarchical Indexing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Pandas_Dataset_Operations.html">
+     6.13. Pandas: Dataset Operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="sklearn.html">
+   7. Scikit Learn
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="Measures_of_classification_accuracy.html">
+     7.1. Measures of classification accuracy and functions in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Fraud_Detection_Python_from_GitHub.html">
+     7.2. Fraud Detection with Python (Github Trenton McKinney)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Support_vector_machine.html">
+     7.3. Support vector machine
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     7.5. Decision Trees and Random Forest
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="naive_bayes.html">
+     7.6. Naive Bayes Classification Problem:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dscompetition.html">
+   8. Data Science Competition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="misc.html">
+   9. Miscellaneous learnings
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../_sources/docs/Decision_Trees_and_Random_Forest.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/Decision_Trees_and_Random_Forest.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/jun-yan/ids/master?urlpath=tree/notes/docs/Decision_Trees_and_Random_Forest.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decision-trees">
+   7.5.1. Decision Trees
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#advantages">
+     7.5.1.1. Advantages:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#disadvantages">
+     7.5.1.2. Disadvantages:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mathematical-formulation">
+     7.5.1.3. Mathematical formulation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classification">
+     7.5.1.4. Classification
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tips-on-decision-trees-usage">
+     7.5.1.5. Tips on Decision Trees Usage
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#random-forests">
+   7.5.2. Random Forests
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     7.5.2.1. Advantages:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     7.5.2.2. Disadvantages:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extensions">
+     7.5.2.3. Extensions
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="decision-trees-and-random-forest">
+<h1><span class="section-number">7.5. </span>Decision Trees and Random Forest<a class="headerlink" href="#decision-trees-and-random-forest" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="decision-trees">
+<h2><span class="section-number">7.5.1. </span>Decision Trees<a class="headerlink" href="#decision-trees" title="Permalink to this headline">¶</a></h2>
+<img alt="Decision tree model.png" src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Decision_tree_model.png" decoding="async" width="573" height="404" data-file-width="573" data-file-height="404" title="Decision Trees Demo" style="">
+(Image by Wikipedia)
+<p>Decision Trees (DTs) are a non-parametric supervised learning method used for classification and regression.<br />
+The goal is to create a model that predicts the value of a target variable by learning simple decision rules inferred from the data
+features.<br />
+A tree can be seen as a piecewise constant approximation.<br />
+The deeper the tree, the more complex the decision rules and the fitter the model.</p>
+<div class="section" id="advantages">
+<h3><span class="section-number">7.5.1.1. </span>Advantages:<a class="headerlink" href="#advantages" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Simple to understand and to interpret. Trees can be visualised.</p></li>
+<li><p>Requires little data preparation.</p></li>
+<li><p>The cost of using the tree (i.e., predicting data) is logarithmic in the number of data points used to train the tree.<br />
+Total cost over the entire trees is <span class="math notranslate nohighlight">\(O(n_{features}n_{samples}^2log(n_{samples}))\)</span></p></li>
+<li><p>Able to handle both numerical and categorical data (However, see disadvatange …).</p></li>
+<li><p>Uses a white box model rather than a black box model such as neural network. (See figure above)</p></li>
+</ul>
+</div>
+<div class="section" id="disadvantages">
+<h3><span class="section-number">7.5.1.2. </span>Disadvantages:<a class="headerlink" href="#disadvantages" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Decision-tree learners can create over-complex trees that do not generalise the data well. This is called overfitting. Mechanisms
+such as pruning, setting the minimum number of samples required at a leaf node or setting the maximum depth of the tree are
+necessary to avoid this problem.</p></li>
+<li><p>Decision trees can be unstable because small variations in the data might result in a completely different tree being generated.
+This problem is mitigated by using decision trees within an ensemble.</p></li>
+<li><p>Predictions of decision trees are neither smooth nor continuous.</p></li>
+<li><p>Practical decision-tree learning algorithms cannot guarantee to return the globally optimal decision tree.</p></li>
+</ul>
+</div>
+<div class="section" id="mathematical-formulation">
+<h3><span class="section-number">7.5.1.3. </span>Mathematical formulation<a class="headerlink" href="#mathematical-formulation" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/tree.html#mathematical-formulation">General explanation</a></p></li>
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/tree.html#mathematical-formulation">Criteria</a></p></li>
+</ul>
+</div>
+<div class="section" id="classification">
+<h3><span class="section-number">7.5.1.4. </span>Classification<a class="headerlink" href="#classification" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html#sklearn.tree.DecisionTreeClassifier">DecisionTreeClassifier</a> is a class capable of performing multi-class classification on a dataset.<br />
+DecisionTreeClassifier takes two arrays as input : an array X, sparse or dense, of shape (n_samples, n_features) holding the
+training samples, and an array Y of integer values, shape (n_samples,), holding the class labels for the training samples.</p>
+<p>sklearn.tree.DecisionTreeClassifier(*, criterion=’gini’, splitter=’best’, max_depth=None, min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features=None, random_state=None, max_leaf_nodes=None, min_impurity_decrease=0.0, class_weight=None, ccp_alpha=0.0) <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html#sklearn.tree.DecisionTreeClassifier">details</a></p>
+<p>Splitter:</p>
+<p>The splitter is used to decide which feature and which threshold is used.</p>
+<p>Using <strong>best</strong>, the model if taking the feature with the highest importance<br />
+Using <strong>random</strong>, the model if taking the feature randomly but with the same distribution</p>
+<p>random_state’s value may be:</p>
+<p><strong>None (default)</strong>
+Use the global random state instance from numpy.random.<br />
+Calling the function multiple times will reuse the same instance, and will produce different results.</p>
+<p><strong>An integer</strong>
+Use a new random number generator seeded by the given integer.<br />
+Using an int will produce the same results across different calls.<br />
+However, it may be worthwhile checking that your results are stable<br />
+across a number of different distinct random seeds. Popular integer random seeds are 0 and 42.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="o">.</span><span class="n">figure_formats</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;svg&#39;</span><span class="p">]</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">tree</span>
+
+<span class="c1"># Prepare the data data</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
+
+<span class="c1"># Fit the classifier with default hyper-parameters</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">()</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The data set contains 3 classes of 50 instances each, where each class refers to a type of iris plant. One class is linearly
+separable from the other 2; the latter are NOT linearly separable from each other.<br />
+Attribute Information:</p>
+<ol class="simple">
+<li><p>sepal length in cm</p></li>
+<li><p>sepal width in cm</p></li>
+<li><p>petal length in cm</p></li>
+<li><p>petal width in cm</p></li>
+<li><p>class:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Iris Setosa</p></li>
+<li><p>Iris Versicolour</p></li>
+<li><p>Iris Virginica</p></li>
+</ul>
+<p>sklearn.tree.plot_tree(decision_tree, *, max_depth=None, feature_names=None, class_names=None, label=’all’, filled=False, impurity=True, node_ids=False, proportion=False, rounded=False, precision=3, ax=None, fontsize=None) <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.plot_tree.html">details</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">plot_tree</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                   <span class="n">feature_names</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span><span class="p">,</span>  
+                   <span class="n">class_names</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">target_names</span><span class="p">,</span>
+                   <span class="n">filled</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">text_representation</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">export_text</span><span class="p">(</span><span class="n">clf</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">text_representation</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="tips-on-decision-trees-usage">
+<h3><span class="section-number">7.5.1.5. </span>Tips on Decision Trees Usage<a class="headerlink" href="#tips-on-decision-trees-usage" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/tree.html#mathematical-formulation">Tips</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="random-forests">
+<h2><span class="section-number">7.5.2. </span>Random Forests<a class="headerlink" href="#random-forests" title="Permalink to this headline">¶</a></h2>
+<img crossorigin="anonymous" src="https://upload.wikimedia.org/wikipedia/commons/7/76/Random_forest_diagram_complete.png" class="png" alt="">  
+(Image by Wikipedia)
+<p>Random forests or random decision forests are an ensemble learning method for classification, regression and other tasks that
+operates by constructing a multitude of decision trees at training time.</p>
+<div class="section" id="id1">
+<h3><span class="section-number">7.5.2.1. </span>Advantages:<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Random Forest is based on the bagging algorithm and uses Ensemble Learning technique. It creates as many trees on the subset of
+the data and combines the output of all the trees. In this way it reduces overfitting problem in decision trees and also reduces the
+variance and therefore improves the accuracy.</p></li>
+<li><p>No feature scaling required: No feature scaling (standardization and normalization) required in case of Random Forest as it uses
+rule based approach instead of distance calculation.</p></li>
+<li><p>Handles non-linear parameters efficiently: Non linear parameters don’t affect the performance of a Random Forest unlike curve
+based algorithms. So, if there is high non-linearity between the independent variables, Random Forest may outperform as compared to
+other curve based algorithms.</p></li>
+<li><p>Random Forest is usually robust to outliers and can handle them automatically.</p></li>
+<li><p>Random Forest algorithm is very stable. Even if a new data point is introduced in the dataset, the overall algorithm is not
+affected much since the new data may impact one tree, but it is very hard for it to impact all the trees.</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h3><span class="section-number">7.5.2.2. </span>Disadvantages:<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Complexity: Random Forest creates a lot of trees (unlike only one tree in case of decision tree) and combines their outputs. By
+default, it creates 100 trees in Python sklearn library. To do so, this algorithm requires much more computational power and
+resources. On the other hand decision tree is simple and does not require so much computational resources.</p></li>
+</ul>
+<p>In random forests, each tree in the ensemble is built from a sample drawn with replacement (i.e., a bootstrap sample) from the
+training set.</p>
+<p>class sklearn.ensemble.RandomForestClassifier(n_estimators=100, *, criterion=’gini’, max_depth=None, min_samples_split=2,
+min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features=’auto’, max_leaf_nodes=None, min_impurity_decrease=0.0,
+bootstrap=True, oob_score=False, n_jobs=None, random_state=None, verbose=0, warm_start=False, class_weight=None, ccp_alpha=0.0,
+max_samples=None) [details](<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html#sklearn">https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html#sklearn</a>.
+ensemble.RandomForestClassifier)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import train_test_split function</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creating a DataFrame of given iris dataset.</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;sepal length&#39;</span><span class="p">:</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">&#39;sepal width&#39;</span><span class="p">:</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span>
+    <span class="s1">&#39;petal length&#39;</span><span class="p">:</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span>
+    <span class="s1">&#39;petal width&#39;</span><span class="p">:</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span><span class="mi">3</span><span class="p">],</span>
+    <span class="s1">&#39;species&#39;</span><span class="p">:</span><span class="n">iris</span><span class="o">.</span><span class="n">target</span>
+<span class="p">})</span>
+<span class="c1"># data.head()</span>
+
+<span class="c1"># Split dataset into features and labels</span>
+<span class="n">X</span><span class="o">=</span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;petal length&#39;</span><span class="p">,</span> <span class="s1">&#39;petal width&#39;</span><span class="p">,</span><span class="s1">&#39;sepal length&#39;</span><span class="p">]]</span>  <span class="c1"># Removed feature &quot;sepal length&quot;</span>
+<span class="n">y</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span>                                       
+<span class="c1"># Split dataset into training set and test set</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.70</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># 70% training and 30% test</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Import Random Forest Model</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+
+<span class="c1">#Create a Gaussian Classifier</span>
+<span class="n">clf</span><span class="o">=</span><span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1">#Train the model using the training sets y_pred=clf.predict(X_test)</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">y_pred</span><span class="o">=</span><span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Import scikit-learn metrics module for accuracy calculation</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
+<span class="c1"># Model Accuracy, how often is the classifier correct</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy:&quot;</span><span class="p">,</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="extensions">
+<h3><span class="section-number">7.5.2.3. </span>Extensions<a class="headerlink" href="#extensions" title="Permalink to this headline">¶</a></h3>
+<img src="https://i.stack.imgur.com/Q18mk.png" alt="enter image description here"></div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="Support_vector_machine.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">7.3. </span>Support vector machine</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="naive_bayes.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">7.6. </span>Naive Bayes Classification Problem:</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Jun Yan and students in STAT 5255, Fall 2021<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

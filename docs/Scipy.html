@@ -1,0 +1,1748 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5. Scipy &#8212; Introduction to Data Science</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5.3. Optimization" href="Optimization.html" />
+    <link rel="prev" title="4.2. Numpy Advanced" href="NumpyAdvanced.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/tricircle.pdf" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="tasks.html">
+   1. Task Board
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   2. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="pybasics.html">
+   3. Python for R Users
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dict_in_python.html">
+     3.11. Python dictionary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="profiling.html">
+     3.12. Profiling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mle-gamma.html">
+     3.13. Gamma MLE Simulation Study
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="Numpy.html">
+   4. Numpy
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="NumpyAdvanced.html">
+     4.2. Numpy Advanced
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   5. Scipy
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Optimization.html">
+     5.3. Optimization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="pandas_objs.html">
+   6. Pandas
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Pandas_missing_hierarchical.html">
+     6.12. Pandas: Missing Data and Hierarchical Indexing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Pandas_Dataset_Operations.html">
+     6.13. Pandas: Dataset Operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="sklearn.html">
+   7. Scikit Learn
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Measures_of_classification_accuracy.html">
+     7.1. Measures of classification accuracy and functions in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Fraud_Detection_Python_from_GitHub.html">
+     7.2. Fraud Detection with Python (Github Trenton McKinney)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Support_vector_machine.html">
+     7.3. Support vector machine
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Decision_Trees_and_Random_Forest.html">
+     7.5. Decision Trees and Random Forest
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="naive_bayes.html">
+     7.6. Naive Bayes Classification Problem:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dscompetition.html">
+   8. Data Science Competition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="misc.html">
+   9. Miscellaneous learnings
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../_sources/docs/Scipy.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/Scipy.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/jun-yan/ids/master?urlpath=tree/notes/docs/Scipy.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#discrete-distributions">
+   5.1. Discrete Distributions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bernoulli">
+     5.1.1. Bernoulli
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#betabinom">
+     5.1.2. Betabinom
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#binomial">
+     5.1.3. Binomial
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#geometric">
+     5.1.4. Geometric
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hypergeometric">
+     5.1.5. Hypergeometric
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#negative-binomial">
+     5.1.6. Negative Binomial
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#poisson">
+     5.1.7. Poisson
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uniform">
+     5.1.8. Uniform
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#continuous-distributions">
+   5.2. Continuous Distributions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#beta">
+     5.2.1. Beta
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cauchy">
+     5.2.2. Cauchy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#chi-square">
+     5.2.3. Chi square
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exponential">
+     5.2.4. Exponential
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gamma">
+     5.2.5. Gamma
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#laplace">
+     5.2.6. Laplace
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#logistic">
+     5.2.7. Logistic
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#noncentral-chi-square">
+     5.2.8. Noncentral Chi-square
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#noncentral-f">
+     5.2.9. Noncentral F
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#noncentral-t">
+     5.2.10. Noncentral t
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#normal">
+     5.2.11. Normal
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pareto">
+     5.2.12. Pareto
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rayleigh">
+     5.2.13. Rayleigh
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#student-t">
+     5.2.14. Student t
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     5.2.15. Uniform
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="scipy">
+<h1><span class="section-number">5. </span>Scipy<a class="headerlink" href="#scipy" title="Permalink to this headline">¶</a></h1>
+<p>SciPy is a collection of mathematical algorithms and convenience functions built on the NumPy extension of Python. It adds significant power to the interactive Python session by providing the user with high-level commands and classes for manipulating and visualizing data. With SciPy, an interactive Python session becomes a data-processing and system-prototyping environment.</p>
+<p>The additional benefit of basing SciPy on Python is that this also makes a powerful programming language available for use in developing sophisticated programs and specialized applications. Everything from parallel programming to web and data-base subroutines and classes have been made available to the Python programmer. All of this power is available in addition to the mathematical libraries in SciPy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Importing stats from scipy package</span>
+
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="discrete-distributions">
+<h2><span class="section-number">5.1. </span>Discrete Distributions<a class="headerlink" href="#discrete-distributions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="bernoulli">
+<h3><span class="section-number">5.1.1. </span>Bernoulli<a class="headerlink" href="#bernoulli" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">bernoulli</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Calculate the first four moments</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.6</span>
+<span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span> <span class="o">=</span> <span class="n">bernoulli</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mvsk&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Probability mass function</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">bernoulli</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span>
+<span class="n">bernoulli</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Where bernoulli.ppf is similar to “qbern()” function and bernoulli.pmf is similar to “dbern()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Cummulative distribution function</span>
+
+<span class="n">bernoulli</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “pbern()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Generate random numbers</span>
+
+<span class="n">bernoulli</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “rbern()” function in r.</p>
+</div>
+<div class="section" id="betabinom">
+<h3><span class="section-number">5.1.2. </span>Betabinom<a class="headerlink" href="#betabinom" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">betabinom</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Calculate the first four moments</span>
+
+<span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">7</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">,</span> <span class="mf">0.42</span>
+<span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span> <span class="o">=</span> <span class="n">betabinom</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mvsk&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Probability mass function</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">betabinom</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+<span class="n">betabinom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Where betabinom.ppf is similar to “qbb()” function and betabinom.pmf is similar to “dbb()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Cummulative distribution function</span>
+
+<span class="n">betabinom</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “pbb()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Generate random numbers</span>
+
+<span class="n">betabinom</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “rbb()” function in r.</p>
+</div>
+<div class="section" id="binomial">
+<h3><span class="section-number">5.1.3. </span>Binomial<a class="headerlink" href="#binomial" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">binom</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Calculate the first four moments</span>
+
+<span class="n">n</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">7</span><span class="p">,</span> <span class="mf">0.7</span>
+<span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span> <span class="o">=</span> <span class="n">binom</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mvsk&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Probability mass function</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">binom</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span>
+<span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Where binom.ppf is similar to “qbinom()” function and binom.pmf is similar to “dbinom()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Cummulative distribution function</span>
+
+<span class="n">binom</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “pbinom()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Generate random numbers</span>
+
+<span class="n">binom</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “rbinom()” function in r.</p>
+</div>
+<div class="section" id="geometric">
+<h3><span class="section-number">5.1.4. </span>Geometric<a class="headerlink" href="#geometric" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">geom</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Calculate the first four moments</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span> <span class="o">=</span> <span class="n">geom</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mvsk&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Probability mass function</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">geom</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span>
+<span class="n">geom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Where geom.ppf is similar to “qgeom()” function and geom.pmf is similar to “dgeom()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Cummulative distribution function</span>
+
+<span class="n">geom</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “pgeom()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Generate random numbers</span>
+
+<span class="n">geom</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “rgeom()” function in r.</p>
+</div>
+<div class="section" id="hypergeometric">
+<h3><span class="section-number">5.1.5. </span>Hypergeometric<a class="headerlink" href="#hypergeometric" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">hypergeom</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Calculate the first four moments</span>
+
+<span class="n">M</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">12</span>
+<span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span> <span class="o">=</span> <span class="n">hypergeom</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mvsk&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Probability mass function</span>
+
+<span class="n">x</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">hypergeom</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">N</span><span class="p">))</span>
+<span class="n">hypergeom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">M</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Where hypergeom.ppf is similar to “qhyper()” function and hypergeom.pmf is similar to “dhyper()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Cummulative distribution function</span>
+
+<span class="n">hypergeom</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “phyper()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Generate random numbers</span>
+
+<span class="n">hypergeom</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “rhyper()” function in r.</p>
+</div>
+<div class="section" id="negative-binomial">
+<h3><span class="section-number">5.1.6. </span>Negative Binomial<a class="headerlink" href="#negative-binomial" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">nbinom</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Calculate the first four moments</span>
+
+<span class="n">n</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">7</span><span class="p">,</span> <span class="mf">0.7</span>
+<span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span> <span class="o">=</span> <span class="n">nbinom</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mvsk&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Probability mass function</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nbinom</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span>
+<span class="n">nbinom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Where nbinom.ppf is similar to “qnbinom()” function and nbinom.pmf is similar to “dnbinom()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Cummulative distribution function</span>
+
+<span class="n">nbinom</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “pnbinom()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Generate random numbers</span>
+
+<span class="n">nbinom</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “rnbinom()” function in r.</p>
+</div>
+<div class="section" id="poisson">
+<h3><span class="section-number">5.1.7. </span>Poisson<a class="headerlink" href="#poisson" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">poisson</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Calculate the first four moments</span>
+
+<span class="n">mu</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span> <span class="o">=</span> <span class="n">poisson</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mvsk&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Probability mass function</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">poisson</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">mu</span><span class="p">))</span>
+<span class="n">poisson</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Where poisson.ppf is similar to “qpois()” function and poisson.pmf is similar to “dpois()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Cummulative distribution function</span>
+
+<span class="n">poisson</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “ppois()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Generate random numbers</span>
+
+<span class="n">poisson</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “rpois()” function in r.</p>
+</div>
+<div class="section" id="uniform">
+<h3><span class="section-number">5.1.8. </span>Uniform<a class="headerlink" href="#uniform" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">randint</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Calculate the first four moments</span>
+
+<span class="n">low</span><span class="p">,</span> <span class="n">high</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">25</span>
+<span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span> <span class="o">=</span> <span class="n">randint</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mvsk&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Probability mass function</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">randint</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">))</span>
+<span class="n">randint</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Where randint.ppf is similar to “qdunif()” function and randint.pmf is similar to “ddunif()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Cummulative distribution function</span>
+
+<span class="n">randint</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “pdunif()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Generate random numbers</span>
+
+<span class="n">randint</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “rdunif()” function in r.</p>
+<p>Few more distributions that are also supported in this package is:</p>
+<ul class="simple">
+<li><p>Boltzmann (truncated Planck) Distribution</p></li>
+<li><p>Planck (discrete exponential) Distribution</p></li>
+<li><p>Fisher’s Noncentral Hypergeometric Distribution</p></li>
+<li><p>Wallenius’ Noncentral Hypergeometric Distribution</p></li>
+<li><p>Negative Hypergeometric Distribution</p></li>
+<li><p>Zipf (Zeta) Distribution</p></li>
+<li><p>Zipfian Distribution</p></li>
+<li><p>Logarithmic (Log-Series, Series) Distribution</p></li>
+<li><p>Discrete Laplacian Distribution</p></li>
+<li><p>Yule-Simon Distribution</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="continuous-distributions">
+<h2><span class="section-number">5.2. </span>Continuous Distributions<a class="headerlink" href="#continuous-distributions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="beta">
+<h3><span class="section-number">5.2.1. </span>Beta<a class="headerlink" href="#beta" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">beta</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Calculate the first four moments</span>
+
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mf">1.76</span><span class="p">,</span> <span class="mf">0.35</span>
+<span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span> <span class="o">=</span> <span class="n">beta</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mvsk&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Probability density function</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">beta</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">beta</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Where beta.ppf is similar to “qbeta()” function and beta.pmf is similar to “dbeta()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Cummulative distribution function</span>
+
+<span class="n">beta</span><span class="o">.</span><span class="n">ppf</span><span class="p">([</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.999</span><span class="p">],</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “pbeta()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Generate random numbers</span>
+
+<span class="n">beta</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “rbeta()” function in r.</p>
+</div>
+<div class="section" id="cauchy">
+<h3><span class="section-number">5.2.2. </span>Cauchy<a class="headerlink" href="#cauchy" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">cauchy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Probability density function</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">cauchy</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">cauchy</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Where cauchy.ppf is similar to “qcauchy()” function and cauchy.pmf is similar to “dcauchy()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Cummulative distribution function</span>
+
+<span class="n">cauchy</span><span class="o">.</span><span class="n">ppf</span><span class="p">([</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.999</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “pcauchy()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Generate random numbers</span>
+
+<span class="n">cauchy</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “rcauchy()” function in r.</p>
+</div>
+<div class="section" id="chi-square">
+<h3><span class="section-number">5.2.3. </span>Chi square<a class="headerlink" href="#chi-square" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">chi2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Calculate the first four moments</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span> <span class="o">=</span> <span class="n">chi2</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mvsk&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Probability density function</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">chi2</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">df</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">chi2</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Where chi2.ppf is similar to “qchisq()” function and chi2.pmf is similar to “dchisq()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Cummulative distribution function</span>
+
+<span class="n">chi2</span><span class="o">.</span><span class="n">ppf</span><span class="p">([</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.999</span><span class="p">],</span> <span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “pchisq()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Generate random numbers</span>
+
+<span class="n">chi2</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “rchisq()” function in r.</p>
+</div>
+<div class="section" id="exponential">
+<h3><span class="section-number">5.2.4. </span>Exponential<a class="headerlink" href="#exponential" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">expon</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Calculate the first four moments</span>
+
+<span class="n">loc</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">3</span>
+<span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span> <span class="o">=</span> <span class="n">expon</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mvsk&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Probability density function</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">expon</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">expon</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">loc</span><span class="p">,</span><span class="n">scale</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Where expon.ppf is similar to “qexp()” function and expon.pmf is similar to “dexp()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Cummulative distribution function</span>
+
+<span class="n">expon</span><span class="o">.</span><span class="n">ppf</span><span class="p">([</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.999</span><span class="p">],</span><span class="n">loc</span><span class="p">,</span><span class="n">scale</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “pexp()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Generate random numbers</span>
+
+<span class="n">expon</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span><span class="n">scale</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “rexp()” function in r.</p>
+</div>
+<div class="section" id="gamma">
+<h3><span class="section-number">5.2.5. </span>Gamma<a class="headerlink" href="#gamma" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">gamma</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Calculate the first four moments</span>
+
+<span class="n">a</span><span class="p">,</span> <span class="n">loc</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span>
+<span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span> <span class="o">=</span> <span class="n">gamma</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">loc</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mvsk&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Probability density function</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">gamma</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">a</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">gamma</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">loc</span><span class="p">,</span><span class="n">scale</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Where gamma.ppf is similar to “qgamma()” function and gamma.pmf is similar to “dgamma()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Cummulative distribution function</span>
+
+<span class="n">gamma</span><span class="o">.</span><span class="n">ppf</span><span class="p">([</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.999</span><span class="p">],</span> <span class="n">a</span><span class="p">,</span><span class="n">loc</span><span class="p">,</span><span class="n">scale</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “pgamma()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Generate random numbers</span>
+
+<span class="n">gamma</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">scale</span><span class="p">,</span><span class="n">a</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “rgamma()” function in r.</p>
+</div>
+<div class="section" id="laplace">
+<h3><span class="section-number">5.2.6. </span>Laplace<a class="headerlink" href="#laplace" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">laplace</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Calculate the first four moments</span>
+
+<span class="n">loc</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">3</span>
+<span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span> <span class="o">=</span> <span class="n">laplace</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mvsk&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Probability density function</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">laplace</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">laplace</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">loc</span><span class="p">,</span><span class="n">scale</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Where laplace.ppf is similar to “qlaplace()” function and laplace.pmf is similar to “dlaplace()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Cummulative distribution function</span>
+
+<span class="n">laplace</span><span class="o">.</span><span class="n">ppf</span><span class="p">([</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.999</span><span class="p">],</span><span class="n">loc</span><span class="p">,</span><span class="n">scale</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “plaplace()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Generate random numbers</span>
+
+<span class="n">laplace</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span><span class="n">scale</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “rlaplace()” function in r.</p>
+</div>
+<div class="section" id="logistic">
+<h3><span class="section-number">5.2.7. </span>Logistic<a class="headerlink" href="#logistic" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">logistic</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Calculate the first four moments</span>
+
+<span class="n">loc</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">3</span>
+<span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span> <span class="o">=</span> <span class="n">logistic</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mvsk&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Probability density function</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">logistic</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">logistic</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">loc</span><span class="p">,</span> <span class="n">scale</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Where logistic.ppf is similar to “qlogis()” function and logistic.pmf is similar to “dlogis()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Cummulative distribution function</span>
+
+<span class="n">logistic</span><span class="o">.</span><span class="n">ppf</span><span class="p">([</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.999</span><span class="p">],</span><span class="n">loc</span><span class="p">,</span> <span class="n">scale</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “plogis()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Generate random numbers</span>
+
+<span class="n">logistic</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “rlogis()” function in r.</p>
+</div>
+<div class="section" id="noncentral-chi-square">
+<h3><span class="section-number">5.2.8. </span>Noncentral Chi-square<a class="headerlink" href="#noncentral-chi-square" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">ncx2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Calculate the first four moments</span>
+
+<span class="n">df</span><span class="p">,</span> <span class="n">nc</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span> <span class="mf">0.88</span>
+<span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span> <span class="o">=</span> <span class="n">ncx2</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">nc</span><span class="p">,</span> <span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mvsk&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Probability density function</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">ncx2</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">nc</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">ncx2</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">nc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Cummulative distribution function</span>
+
+<span class="n">ncx2</span><span class="o">.</span><span class="n">ppf</span><span class="p">([</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.999</span><span class="p">],</span> <span class="n">df</span><span class="p">,</span> <span class="n">nc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Generate random numbers</span>
+
+<span class="n">ncx2</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">nc</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The corresponding r codes are same as the central chisquare.</p>
+</div>
+<div class="section" id="noncentral-f">
+<h3><span class="section-number">5.2.9. </span>Noncentral F<a class="headerlink" href="#noncentral-f" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">ncf</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Calculate the first four moments</span>
+
+<span class="n">dfn</span><span class="p">,</span> <span class="n">dfd</span><span class="p">,</span> <span class="n">nc</span> <span class="o">=</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mf">0.342</span>
+<span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span> <span class="o">=</span> <span class="n">ncf</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">dfn</span><span class="p">,</span> <span class="n">dfd</span><span class="p">,</span> <span class="n">nc</span><span class="p">,</span> <span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mvsk&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Probability density function</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">ncf</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">dfn</span><span class="p">,</span> <span class="n">dfd</span><span class="p">,</span> <span class="n">nc</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">ncf</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dfn</span><span class="p">,</span> <span class="n">dfd</span><span class="p">,</span> <span class="n">nc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Cummulative distribution function</span>
+
+<span class="n">ncf</span><span class="o">.</span><span class="n">ppf</span><span class="p">([</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.999</span><span class="p">],</span> <span class="n">dfn</span><span class="p">,</span> <span class="n">dfd</span><span class="p">,</span> <span class="n">nc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Generate random numbers</span>
+
+<span class="n">ncf</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">dfn</span><span class="p">,</span> <span class="n">dfd</span><span class="p">,</span> <span class="n">nc</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="noncentral-t">
+<h3><span class="section-number">5.2.10. </span>Noncentral t<a class="headerlink" href="#noncentral-t" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">nct</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Calculate the first four moments</span>
+
+<span class="n">df</span><span class="p">,</span> <span class="n">nc</span> <span class="o">=</span> <span class="mi">22</span><span class="p">,</span> <span class="mf">0.13</span>
+<span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span> <span class="o">=</span> <span class="n">nct</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">nc</span><span class="p">,</span> <span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mvsk&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Probability density function</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">nct</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">nc</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">nct</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">nc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Cummulative distribution function</span>
+
+<span class="n">nct</span><span class="o">.</span><span class="n">ppf</span><span class="p">([</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.999</span><span class="p">],</span> <span class="n">df</span><span class="p">,</span> <span class="n">nc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Generate random numbers</span>
+
+<span class="n">nct</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">nc</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="normal">
+<h3><span class="section-number">5.2.11. </span>Normal<a class="headerlink" href="#normal" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Calculate the first four moments</span>
+
+<span class="n">loc</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span><span class="mf">2.4</span>
+<span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span><span class="n">scale</span><span class="p">,</span> <span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mvsk&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Probability density function</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">loc</span><span class="p">,</span><span class="n">scale</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Where norm.ppf is similar to “qnorm()” function and norm.pmf is similar to “dnorm()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Cummulative distribution function</span>
+
+<span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">([</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.999</span><span class="p">],</span><span class="n">loc</span><span class="p">,</span><span class="n">scale</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “pnorm()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Generate random numbers</span>
+
+<span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “rnorm()” function in r.</p>
+</div>
+<div class="section" id="pareto">
+<h3><span class="section-number">5.2.12. </span>Pareto<a class="headerlink" href="#pareto" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">pareto</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Calculate the first four moments</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span> <span class="o">=</span> <span class="n">pareto</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mvsk&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Probability density function</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">pareto</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">pareto</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Where pareto.ppf is similar to “qpareto()” function and pareto.pmf is similar to “dpareto()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Cummulative distribution function</span>
+
+<span class="n">pareto</span><span class="o">.</span><span class="n">ppf</span><span class="p">([</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.999</span><span class="p">],</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “ppareto()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Generate random numbers</span>
+
+<span class="n">pareto</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “rpareto()” function in r.</p>
+</div>
+<div class="section" id="rayleigh">
+<h3><span class="section-number">5.2.13. </span>Rayleigh<a class="headerlink" href="#rayleigh" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">rayleigh</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Calculate the first four moments</span>
+
+<span class="n">loc</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">3</span>
+<span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span> <span class="o">=</span> <span class="n">rayleigh</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mvsk&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Probability density function</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">rayleigh</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">rayleigh</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">loc</span><span class="p">,</span> <span class="n">scale</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Where rayleigh.ppf is similar to “qrayleigh()” function and rayleigh.pmf is similar to “drayleigh()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Cummulative distribution function</span>
+
+<span class="n">rayleigh</span><span class="o">.</span><span class="n">ppf</span><span class="p">([</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.999</span><span class="p">],</span><span class="n">loc</span><span class="p">,</span> <span class="n">scale</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “prayleigh()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Generate random numbers</span>
+
+<span class="n">rayleigh</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “rrayleigh()” function in r.</p>
+</div>
+<div class="section" id="student-t">
+<h3><span class="section-number">5.2.14. </span>Student t<a class="headerlink" href="#student-t" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">t</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Calculate the first four moments</span>
+
+<span class="n">df</span><span class="p">,</span><span class="n">loc</span><span class="p">,</span><span class="n">scale</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">3</span> 
+<span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">loc</span><span class="p">,</span><span class="n">scale</span><span class="p">,</span> <span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mvsk&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Probability density function</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">df</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">t</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span><span class="n">loc</span><span class="p">,</span><span class="n">scale</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Where t.ppf is similar to “qt()” function and t.pmf is similar to “dt()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Cummulative distribution function</span>
+
+<span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">([</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.999</span><span class="p">],</span> <span class="n">df</span><span class="p">,</span><span class="n">loc</span><span class="p">,</span><span class="n">scale</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “pt()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Generate random numbers</span>
+
+<span class="n">t</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “rt()” function in r.</p>
+</div>
+<div class="section" id="id1">
+<h3><span class="section-number">5.2.15. </span>Uniform<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">uniform</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Calculate the first four moments</span>
+
+<span class="n">loc</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span>
+<span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span> <span class="o">=</span> <span class="n">uniform</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span><span class="n">scale</span><span class="p">,</span><span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mvsk&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Probability density function</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">uniform</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">uniform</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">loc</span><span class="p">,</span><span class="n">scale</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Where uniform.ppf is similar to “qunif()” function and uniform.pmf is similar to “dunif()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Cummulative distribution function</span>
+
+<span class="n">uniform</span><span class="o">.</span><span class="n">ppf</span><span class="p">([</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.999</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “punif()” function in r.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Generate random numbers</span>
+
+<span class="n">uniform</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to “runif()” function in r.</p>
+<p>Also there are several other continuous distributions under scipy.stats.</p>
+</div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="NumpyAdvanced.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">4.2. </span>Numpy Advanced</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="Optimization.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">5.3. </span>Optimization</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Jun Yan and students in STAT 5255, Fall 2021<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

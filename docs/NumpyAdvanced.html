@@ -1,0 +1,870 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4.2. Numpy Advanced &#8212; Introduction to Data Science</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. Scipy" href="Scipy.html" />
+    <link rel="prev" title="4. Numpy" href="Numpy.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/tricircle.pdf" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="tasks.html">
+   1. Task Board
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   2. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="pybasics.html">
+   3. Python for R Users
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dict_in_python.html">
+     3.11. Python dictionary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="profiling.html">
+     3.12. Profiling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mle-gamma.html">
+     3.13. Gamma MLE Simulation Study
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="Numpy.html">
+   4. Numpy
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     4.2. Numpy Advanced
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="Scipy.html">
+   5. Scipy
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Optimization.html">
+     5.3. Optimization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="pandas_objs.html">
+   6. Pandas
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Pandas_missing_hierarchical.html">
+     6.12. Pandas: Missing Data and Hierarchical Indexing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Pandas_Dataset_Operations.html">
+     6.13. Pandas: Dataset Operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="sklearn.html">
+   7. Scikit Learn
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Measures_of_classification_accuracy.html">
+     7.1. Measures of classification accuracy and functions in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Fraud_Detection_Python_from_GitHub.html">
+     7.2. Fraud Detection with Python (Github Trenton McKinney)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Support_vector_machine.html">
+     7.3. Support vector machine
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Decision_Trees_and_Random_Forest.html">
+     7.5. Decision Trees and Random Forest
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="naive_bayes.html">
+     7.6. Naive Bayes Classification Problem:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dscompetition.html">
+   8. Data Science Competition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="misc.html">
+   9. Miscellaneous learnings
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/NumpyAdvanced.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fancy-indexing">
+   4.2.1. Fancy Indexing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fancy-indexing-in-one-dimensional-array">
+     4.2.1.1. fancy indexing in one dimensional array:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fancy-indexing-in-multiple-dimensional-arrays">
+     4.2.1.2. fancy indexing in multiple dimensional arrays:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#combine-fancy-indexing-with-slicing-simple-indexing-and-mask">
+     4.2.1.3. Combine fancy indexing with slicing, simple indexing and mask
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modify-values-with-fancy-indexing">
+     4.2.1.4. Modify values with fancy indexing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sorting">
+   4.2.2. Sorting
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sorting-along-rows-or-columns">
+     4.2.2.1. Sorting along rows or columns
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#partitioning">
+     4.2.2.2. partitioning
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#structured-data-numpys-structured-arrays">
+   4.2.3. Structured Data: NumPy’s Structured Arrays
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-a-structured-array">
+     4.2.3.1. Creating a structured array
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#refer-to-values-in-structured-arrays">
+     4.2.3.2. Refer to values in structured arrays
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#record-arrays">
+     4.2.3.3. record arrays
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#let-s-move-onto-pandas">
+     4.2.3.4. Let’s move onto Pandas!
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="numpy-advanced">
+<h1><span class="section-number">4.2. </span>Numpy Advanced<a class="headerlink" href="#numpy-advanced" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="fancy-indexing">
+<h2><span class="section-number">4.2.1. </span>Fancy Indexing<a class="headerlink" href="#fancy-indexing" title="Permalink to this headline">¶</a></h2>
+<p>Fancy indexing means passing an array of indices to access multiple array elements at once</p>
+<p>Remamber the simple indexing we’v seen before? Let’s replace the singlel scaler with arrays of indices.</p>
+<div class="section" id="fancy-indexing-in-one-dimensional-array">
+<h3><span class="section-number">4.2.1.1. </span>fancy indexing in one dimensional array:<a class="headerlink" href="#fancy-indexing-in-one-dimensional-array" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[64  8 21 64 45 96 85 30 27 62]
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># instead of simple indexing like these:</span>
+<span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]]</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[64, 30, 45, 45]
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># we can now do this</span>
+<span class="n">x</span><span class="p">[[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>array([64, 30, 45, 45])
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<span class="n">x</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>array([[64, 30],
+       [45, 45]])
+</pre></div>
+</div>
+<p>With fancy indexing, the shape of the result reflects the shape <br />
+of the index arrays rather than the shape of the array being indexed</p>
+</div>
+<div class="section" id="fancy-indexing-in-multiple-dimensional-arrays">
+<h3><span class="section-number">4.2.1.2. </span>fancy indexing in multiple dimensional arrays:<a class="headerlink" href="#fancy-indexing-in-multiple-dimensional-arrays" title="Permalink to this headline">¶</a></h3>
+<p>Let’s work in multiple dimensions</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">X</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>array([[ 0,  1,  2,  3],
+       [ 4,  5,  6,  7],
+       [ 8,  9, 10, 11]])
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">row</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">col</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">X</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span>
+
+<span class="c1">#  Fancy indexing reflects the broadcasted shape of the indeces.</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>array([ 2,  5, 11])
+</pre></div>
+</div>
+<p>What if we want to select all 3 rows and 3 columns specified?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">row</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> 
+
+<span class="c1"># one dimensional array becomes two dimensional array, 3 by 1, i.e., a column vector</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0],
+       [1],
+       [2]])
+</pre></div>
+</div>
+<p>Remember numpy.newaxis is used to increase the dimension of the existing array by one more dimension when used once?</p>
+<p>1D array will become 2D array
+2D array will become 3D array
+3D array will become 4D array……</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">[</span><span class="n">row</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">],</span> <span class="n">col</span><span class="p">]</span> 
+
+<span class="c1">## This is what we want</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>array([[ 2,  1,  3],
+       [ 6,  5,  7],
+       [10,  9, 11]])
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">row</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="n">col</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0, 0, 0],
+       [2, 1, 3],
+       [4, 2, 6]])
+</pre></div>
+</div>
+</div>
+<div class="section" id="combine-fancy-indexing-with-slicing-simple-indexing-and-mask">
+<h3><span class="section-number">4.2.1.3. </span>Combine fancy indexing with slicing, simple indexing and mask<a class="headerlink" href="#combine-fancy-indexing-with-slicing-simple-indexing-and-mask" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">[:</span> <span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">]]</span> 
+
+<span class="c1"># Or we can combine fancy indexing with slicing.</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>array([[ 2,  1,  3],
+       [ 6,  5,  7],
+       [10,  9, 11]])
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">[</span><span class="mi">1</span> <span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">]]</span> 
+
+<span class="c1"># we can combine fancy indexing with simple indexing.</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>array([6, 5, 7])
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>array([[ 0,  1,  2,  3],
+       [ 4,  5,  6,  7],
+       [ 8,  9, 10, 11]])
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+<span class="n">X</span><span class="p">[</span><span class="n">row</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">],</span> <span class="n">mask</span><span class="p">]</span>
+
+<span class="c1"># There are only 1st column and 3rd column now</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>array([[ 0,  2],
+       [ 4,  6],
+       [ 8, 10]])
+</pre></div>
+</div>
+</div>
+<div class="section" id="modify-values-with-fancy-indexing">
+<h3><span class="section-number">4.2.1.4. </span>Modify values with fancy indexing<a class="headerlink" href="#modify-values-with-fancy-indexing" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">x</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">x</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span> <span class="c1"># minus 1 to the previous value</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+[9. 9. 9. 9. 0. 0. 0. 0. 0. 0.]
+[8. 8. 8. 8. 0. 0. 0. 0. 0. 0.]
+</pre></div>
+</div>
+<p>Repeated indices with these operations can cause some unexpected results.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">x</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># multiple modifies at index 0, only the last one shows</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[8. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">x</span><span class="p">[</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span> <span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>array([0., 1., 0., 1., 0., 1., 0., 0., 0., 0.])
+</pre></div>
+</div>
+<p>Why didn’t we get x[3] = 2 and x[5] = 3?</p>
+<p>Because under the hook, x[i] +1 is evaluated and the resaul is assigned to the index in x. <br />
+So it is the assignment , not the augument, that happens mulitple times. <br />
+To make the operation happen repeatedly, use ‘.at()’:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">ind</span> <span class="o">=</span>  <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ind</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[0. 1. 0. 2. 0. 3. 0. 0. 0. 0.]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="sorting">
+<h2><span class="section-number">4.2.2. </span>Sorting<a class="headerlink" href="#sorting" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">## First, let&#39;s get an array to be sorted</span>
+
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[2, 0, 7, 3, 5, 6, 8, 9, 1, 4]
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1">## Equivalent to sort() in R</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># Returns the indices,</span>
+
+<span class="c1">#  Equivalent to order() in R, though start with index 0.</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>array([1, 8, 0, 3, 9, 4, 5, 2, 6, 7])
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span>
+
+<span class="c1"># x remains the same</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[2, 0, 7, 3, 5, 6, 8, 9, 1, 4]
+</pre></div>
+</div>
+<p>We can see that np.sort() does not modify the input. <br /></p>
+<p>To sort directly in place, we can use the sort method of arrays:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span> <span class="c1"># To sort directly in place</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+</pre></div>
+</div>
+<div class="section" id="sorting-along-rows-or-columns">
+<h3><span class="section-number">4.2.2.1. </span>Sorting along rows or columns<a class="headerlink" href="#sorting-along-rows-or-columns" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[[1 4 4 2 3]
+ [6 6 2 4 7]
+ [1 1 8 4 3]]
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># sort each column of X</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>array([[1, 1, 2, 2, 3],
+       [1, 4, 4, 4, 3],
+       [6, 6, 8, 4, 7]])
+</pre></div>
+</div>
+<p>Remember “axis” specifies the dimension of the array that will be collapsed, rather than the dimension that will be returned <br /></p>
+<p>so axis=0 means the first axis(row) will be collapsed, which means the values within each columns will be sorted.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># sort each row of X</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>array([[1, 2, 3, 4, 4],
+       [2, 4, 6, 6, 7],
+       [1, 1, 3, 4, 8]])
+</pre></div>
+</div>
+</div>
+<div class="section" id="partitioning">
+<h3><span class="section-number">4.2.2.2. </span>partitioning<a class="headerlink" href="#partitioning" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">np</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>array([ 0,  1,  0,  2,  4,  5,  6,  6, 10,  8,  9])
+</pre></div>
+</div>
+<p>The result is a new array with the smallest 3 values to the left of the partition, <br />
+and the remaining values to the right.</p>
+<p>Within each group, the order is arbituray.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">## we can partition along any axis of a multidimensional array</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span> 
+<span class="n">np</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>array([[3, 3, 5, 8, 7],
+       [4, 4, 4, 5, 7],
+       [3, 4, 4, 9, 9]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="structured-data-numpys-structured-arrays">
+<h2><span class="section-number">4.2.3. </span>Structured Data: NumPy’s Structured Arrays<a class="headerlink" href="#structured-data-numpys-structured-arrays" title="Permalink to this headline">¶</a></h2>
+<p>extend from homogeneous data to compound, heterogeneous data.</p>
+<div class="section" id="creating-a-structured-array">
+<h3><span class="section-number">4.2.3.1. </span>Creating a structured array<a class="headerlink" href="#creating-a-structured-array" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">x</span>
+
+<span class="c1"># Just like creating a simple array</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>array([0, 0, 0, 0])
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creating a structured array : the dictionary method</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;names&#39;</span><span class="p">:(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;cyl&#39;</span><span class="p">,</span> <span class="s1">&#39;mpg&#39;</span><span class="p">),</span>
+                                     <span class="s1">&#39;formats&#39;</span><span class="p">:(</span><span class="s1">&#39;U20&#39;</span><span class="p">,</span> <span class="s1">&#39;i4&#39;</span><span class="p">,</span> <span class="s1">&#39;f8&#39;</span><span class="p">)})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[(&#39;&#39;, 0, 0.) (&#39;&#39;, 0, 0.) (&#39;&#39;, 0, 0.) (&#39;&#39;, 0, 0.)]
+[(&#39;name&#39;, &#39;&lt;U20&#39;), (&#39;cyl&#39;, &#39;&lt;i4&#39;), (&#39;mpg&#39;, &#39;&lt;f8&#39;)]
+</pre></div>
+</div>
+<p>‘U10’ translates to “Unicode string of maximum length 10”</p>
+<p>‘i4’ translates to “4-byte (i.e., 32 bit) signed integer”</p>
+<p>and ‘f8’ translates to “8-byte (i.e., 64 bit) float” —See more by searching “Numpy data types”</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="p">[</span><span class="s1">&#39;Honda Civic&#39;</span><span class="p">,</span> <span class="s1">&#39;Toyota Corolla&#39;</span><span class="p">,</span> <span class="s1">&#39;Ferrari Dino&#39;</span><span class="p">,</span> <span class="s1">&#39;Lincoln Continental&#39;</span><span class="p">]</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;cyl&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;mpg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">30.4</span><span class="p">,</span> <span class="mf">33.9</span><span class="p">,</span> <span class="mf">19.7</span><span class="p">,</span> <span class="mf">10.4</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[(&#39;Honda Civic&#39;, 4, 30.4) (&#39;Toyota Corolla&#39;, 4, 33.9)
+ (&#39;Ferrari Dino&#39;, 6, 19.7) (&#39;Lincoln Continental&#39;, 8, 10.4)]
+</pre></div>
+</div>
+<p>A compound type can also be specified as a list of tuples:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creating a structured array : the list-of-tuple method</span>
+
+<span class="n">data1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;U20&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;cyl&#39;</span><span class="p">,</span> <span class="s1">&#39;i4&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;mpg&#39;</span><span class="p">,</span> <span class="s1">&#39;f8&#39;</span><span class="p">)])</span>
+<span class="n">data1</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="p">[</span><span class="s1">&#39;Honda Civic&#39;</span><span class="p">,</span> <span class="s1">&#39;Toyota Corolla&#39;</span><span class="p">,</span> <span class="s1">&#39;Ferrari Dino&#39;</span><span class="p">,</span> <span class="s1">&#39;Lincoln Continental&#39;</span><span class="p">]</span>
+<span class="n">data1</span><span class="p">[</span><span class="s1">&#39;cyl&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<span class="n">data1</span><span class="p">[</span><span class="s1">&#39;mpg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">30.4</span><span class="p">,</span> <span class="mf">33.9</span><span class="p">,</span> <span class="mf">19.7</span><span class="p">,</span> <span class="mf">10.4</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data1</span><span class="p">)</span>
+
+<span class="c1">## This generate a same result</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[(&#39;Honda Civic&#39;, 4, 30.4) (&#39;Toyota Corolla&#39;, 4, 33.9)
+ (&#39;Ferrari Dino&#39;, 6, 19.7) (&#39;Lincoln Continental&#39;, 8, 10.4)]
+</pre></div>
+</div>
+</div>
+<div class="section" id="refer-to-values-in-structured-arrays">
+<h3><span class="section-number">4.2.3.2. </span>Refer to values in structured arrays<a class="headerlink" href="#refer-to-values-in-structured-arrays" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># By name: get all names</span>
+
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>array([&#39;Honda Civic&#39;, &#39;Toyota Corolla&#39;, &#39;Ferrari Dino&#39;,
+       &#39;Lincoln Continental&#39;], dtype=&#39;&lt;U20&#39;)
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># By index: get first row of data </span>
+
+<span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(&#39;Honda Civic&#39;, 4, 30.4)
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># By index and name: get the name from the last row </span>
+
+<span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;Lincoln Continental&#39;
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using Boolean masking to filter the data on age </span>
+
+<span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;cyl&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>array([&#39;Honda Civic&#39;, &#39;Toyota Corolla&#39;], dtype=&#39;&lt;U20&#39;)
+</pre></div>
+</div>
+</div>
+<div class="section" id="record-arrays">
+<h3><span class="section-number">4.2.3.3. </span>record arrays<a class="headerlink" href="#record-arrays" title="Permalink to this headline">¶</a></h3>
+<p>NumPy also provides the np.recarray class <br />
+The only difference is that, fields can be accessed as attributes rather than dictionary keys</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Previously we access cyl by dictionary keys:</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;cyl&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>array([4, 4, 6, 8], dtype=int32)
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># View the data as record array:</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">recarray</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">cyl</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>array([4, 4, 6, 8], dtype=int32)
+</pre></div>
+</div>
+</div>
+<div class="section" id="let-s-move-onto-pandas">
+<h3><span class="section-number">4.2.3.4. </span>Let’s move onto Pandas!<a class="headerlink" href="#let-s-move-onto-pandas" title="Permalink to this headline">¶</a></h3>
+<p>Pandas provides a DataFrame object, which is a structure built on NumPy arrays <br />
+that offers a variety of useful data manipulation functionality <br />
+similar to what we’ve shown here, as well as much, much more.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="Numpy.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">4. </span>Numpy</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="Scipy.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">5. </span>Scipy</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Jun Yan and students in STAT 5255, Fall 2021<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

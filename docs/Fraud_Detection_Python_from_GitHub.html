@@ -1,0 +1,2024 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>7.2. Fraud Detection with Python (Github Trenton McKinney) &#8212; Introduction to Data Science</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="7.3. Support vector machine" href="Support_vector_machine.html" />
+    <link rel="prev" title="7.1. Measures of classification accuracy and functions in Python" href="Measures_of_classification_accuracy.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/tricircle.pdf" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="tasks.html">
+   1. Task Board
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   2. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="pybasics.html">
+   3. Python for R Users
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dict_in_python.html">
+     3.11. Python dictionary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="profiling.html">
+     3.12. Profiling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mle-gamma.html">
+     3.13. Gamma MLE Simulation Study
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="Numpy.html">
+   4. Numpy
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="NumpyAdvanced.html">
+     4.2. Numpy Advanced
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="Scipy.html">
+   5. Scipy
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Optimization.html">
+     5.3. Optimization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="pandas_objs.html">
+   6. Pandas
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Pandas_missing_hierarchical.html">
+     6.12. Pandas: Missing Data and Hierarchical Indexing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Pandas_Dataset_Operations.html">
+     6.13. Pandas: Dataset Operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="sklearn.html">
+   7. Scikit Learn
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="Measures_of_classification_accuracy.html">
+     7.1. Measures of classification accuracy and functions in Python
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     7.2. Fraud Detection with Python (Github Trenton McKinney)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Support_vector_machine.html">
+     7.3. Support vector machine
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Decision_Trees_and_Random_Forest.html">
+     7.5. Decision Trees and Random Forest
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="naive_bayes.html">
+     7.6. Naive Bayes Classification Problem:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dscompetition.html">
+   8. Data Science Competition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="misc.html">
+   9. Miscellaneous learnings
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../_sources/docs/Fraud_Detection_Python_from_GitHub.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/Fraud_Detection_Python_from_GitHub.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/jun-yan/ids/master?urlpath=tree/notes/docs/Fraud_Detection_Python_from_GitHub.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#background">
+   7.2.1. Background
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setting-up-working-enviroment">
+   7.2.2. Setting Up Working Enviroment
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#installation-process">
+     7.2.2.1. Installation Process
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#importing">
+     7.2.2.2. Importing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pandas-configuration-options">
+     7.2.2.3. Pandas Configuration Options
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-file-objects">
+     7.2.2.4. Data File Objects
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preparing-the-data">
+   7.2.3. Preparing the Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualizing-the-fraudulent-data">
+     7.2.3.1. Visualizing the Fraudulent data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-resampling">
+     7.2.3.2. Data Resampling
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#undersampling">
+       7.2.3.2.1. Undersampling
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#random-oversampling">
+       7.2.3.2.2. Random Oversampling
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#synthetic-minority-oversampling-technique-smote">
+       7.2.3.2.3. Synthetic Minority Oversampling Technique (SMOTE)
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#applying-fraud-detection-algorithms">
+   7.2.4. Applying Fraud Detection Algorithms
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#traditional-fraud-detection">
+     7.2.4.1. Traditional Fraud Detection
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-ml-classification-logistic-regression">
+     7.2.4.2. Using ML Classification - Logistic Regression
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#combining-logistic-regression-with-smote">
+     7.2.4.3. Combining Logistic Regression with SMOTE
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fraud-detection-using-labeled-data">
+   7.2.5. Fraud detection using labeled data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classification">
+     7.2.5.1. Classification
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#logistic-regression">
+       7.2.5.1.1. Logistic Regression
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#neural-network">
+       7.2.5.1.2. Neural Network
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#decision-trees">
+       7.2.5.1.3. Decision Trees
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#random-forests">
+       7.2.5.1.4. Random Forests
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#random-forest-implementation">
+         7.2.5.1.4.1. Random Forest Implementation
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#performance-evaluation">
+     7.2.5.2. Performance Evaluation
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#getting-basic-performance-metrics">
+       7.2.5.2.1. Getting basic performance metrics
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#plotting-the-precision-vs-recall-curve">
+       7.2.5.2.2. Plotting the Precision vs. Recall Curve
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adjusting-algorithm-weights">
+     7.2.5.3. Adjusting algorithm weights
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#balanced-subsample">
+       7.2.5.3.1. Balanced Subsample
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#hyperparamaters">
+       7.2.5.3.2. Hyperparamaters
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#adjusting-rf-manually">
+       7.2.5.3.3. Adjusting RF manually
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#parameter-optimization-with-gridsearchcv">
+       7.2.5.3.4. Parameter optimization with GridSearchCV
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ensemble-methods">
+     7.2.5.4. Ensemble Methods
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#stacking-ensemble-methods">
+       7.2.5.4.1. Stacking Ensemble Methods
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#adjusting-weights-within-the-voting-classifier">
+         7.2.5.4.1.1. Adjusting weights within the Voting Classifier
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fraud-detection-using-unlabled-data">
+   7.2.6. Fraud Detection using unlabled data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#normal-vs-abnormal-behavior">
+     7.2.6.1. Normal vs Abnormal Behavior
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#exploring-the-data">
+       7.2.6.1.1. Exploring the Data
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#customer-segmentation">
+       7.2.6.1.2. Customer Segmentation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#using-statistics-to-define-normal-behavior">
+       7.2.6.1.3. Using statistics to define normal behavior
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clustering-methods-to-detect-fraud">
+     7.2.6.2. Clustering methods to detect fraud
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#scaling-the-data">
+       7.2.6.2.1. Scaling the data
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#k-means-clustering">
+       7.2.6.2.2. K-means clustering
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#elbow-method-for-determining-clusters">
+       7.2.6.2.3. Elbow Method for determining clusters
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assigning-fraud-vs-non-fraud">
+     7.2.6.3. Assigning fraud vs non-fraud
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#detecting-outliers">
+       7.2.6.3.1. Detecting Outliers
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#checking-model-results">
+       7.2.6.3.2. Checking model results
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-methods-dbscan">
+     7.2.6.4. Other methods: DBSCAN
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#implementing-dbscan">
+       7.2.6.4.1. Implementing DBSCAN
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#assessing-smallest-clusters">
+       7.2.6.4.2. Assessing smallest clusters
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#verifying-our-results">
+       7.2.6.4.3. Verifying our Results
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cleaning-up">
+   7.2.7. Cleaning up
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="fraud-detection-with-python-github-trenton-mckinney">
+<h1><span class="section-number">7.2. </span>Fraud Detection with Python (Github Trenton McKinney)<a class="headerlink" href="#fraud-detection-with-python-github-trenton-mckinney" title="Permalink to this headline">¶</a></h1>
+<p>The notes are based off of McKinney, T. (2019, July 19). Fraud Detection with Python. Fraud Detection with Python - GitHub (Using Jupyter Book): <a class="reference external" href="https://trenton3983.github.io/files/projects/2019-07-19_fraud_detection_python/2019-07-19_fraud_detection_python.html">https://trenton3983.github.io/files/projects/2019-07-19_fraud_detection_python/2019-07-19_fraud_detection_python.html</a>.</p>
+<div class="section" id="background">
+<h2><span class="section-number">7.2.1. </span>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<p>Fraud is intentional deception with the aim of providing the perpetrator with some gain or to deny the rights of a victim. There are a few models to detect fraud in datasets that we will be going over here.Fraud is intentional deception with the aim of providing the perpetrator with some gain or to deny the rights of a victim. There are a few models to detect fraud in datasets that we will be going over here.</p>
+</div>
+<div class="section" id="setting-up-working-enviroment">
+<h2><span class="section-number">7.2.2. </span>Setting Up Working Enviroment<a class="headerlink" href="#setting-up-working-enviroment" title="Permalink to this headline">¶</a></h2>
+<p>First we will be importing what will be used in these notes. The packages imblearn and gensim are not by default installed with anaconda and will need to be installed with pip install <code class="docutils literal notranslate"><span class="pre">imblearn</span></code>, <code class="docutils literal notranslate"><span class="pre">gensim</span></code>, and <code class="docutils literal notranslate"><span class="pre">nltk</span></code>. We will also set our configuration options for Pandas at this time.</p>
+<div class="section" id="installation-process">
+<h3><span class="section-number">7.2.2.1. </span>Installation Process<a class="headerlink" href="#installation-process" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Installing necessary pacakges using <code class="docutils literal notranslate"><span class="pre">!pip3</span> <span class="pre">install</span></code> using Jupyter Notebook. Commenting out the installation process.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip3 install matplotlib</span>
+<span class="c1">#!pip3 install gensim</span>
+<span class="c1">#!pip3 install imblearn</span>
+<span class="c1">#!pip3 install nltk</span>
+<span class="c1">#!pip3 install pyldavis</span>
+<span class="c1">#!pip3 install wget</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="importing">
+<h3><span class="section-number">7.2.2.2. </span>Importing<a class="headerlink" href="#importing" title="Permalink to this headline">¶</a></h3>
+<p>Importing necessary packages</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Rectangle</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span> <span class="k">as</span> <span class="n">pp</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+<span class="kn">import</span> <span class="nn">string</span>
+
+<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<span class="kn">from</span> <span class="nn">nltk.stem.wordnet</span> <span class="kn">import</span> <span class="n">WordNetLemmatizer</span>
+
+<span class="kn">from</span> <span class="nn">imblearn.over_sampling</span> <span class="kn">import</span> <span class="n">SMOTE</span>
+<span class="kn">from</span> <span class="nn">imblearn.over_sampling</span> <span class="kn">import</span> <span class="n">BorderlineSMOTE</span>
+<span class="kn">from</span> <span class="nn">imblearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span> 
+
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span><span class="p">,</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">confusion_matrix</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">roc_auc_score</span><span class="p">,</span> <span class="n">roc_curve</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">average_precision_score</span><span class="p">,</span> <span class="n">precision_recall_curve</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">homogeneity_score</span><span class="p">,</span> <span class="n">silhouette_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span><span class="p">,</span> <span class="n">VotingClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">MiniBatchKMeans</span><span class="p">,</span> <span class="n">DBSCAN</span>
+
+<span class="kn">import</span> <span class="nn">gensim</span>
+<span class="kn">from</span> <span class="nn">gensim</span> <span class="kn">import</span> <span class="n">corpora</span>
+
+<span class="kn">import</span> <span class="nn">wget</span> <span class="c1"># helps with installation </span>
+<span class="kn">import</span> <span class="nn">zipfile</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="pandas-configuration-options">
+<h3><span class="section-number">7.2.2.3. </span>Pandas Configuration Options<a class="headerlink" href="#pandas-configuration-options" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_columns&#39;</span><span class="p">,</span> <span class="mi">700</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_rows&#39;</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.min_rows&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.expand_frame_repr&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-file-objects">
+<h3><span class="section-number">7.2.2.4. </span>Data File Objects<a class="headerlink" href="#data-file-objects" title="Permalink to this headline">¶</a></h3>
+<p>We are going to need some data to check for fraud. This chunk of code will download and unpack the data we will be using.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;chapter_1.zip&quot;</span><span class="p">):</span>
+    <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">&quot;https://assets.datacamp.com/production/repositories/2162/datasets/cc3a36b722c0806e4a7df2634e345975a0724958/chapter_1.zip&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;chapter_2.zip&quot;</span><span class="p">):</span>
+    <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">&quot;https://assets.datacamp.com/production/repositories/2162/datasets/4fb6199be9b89626dcd6b36c235cbf60cf4c1631/chapter_2.zip&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;chapter_3.zip&quot;</span><span class="p">):</span>
+    <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">&quot;https://assets.datacamp.com/production/repositories/2162/datasets/08cfcd4158b3a758e72e9bd077a9e44fec9f773b/chapter_3.zip&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;chapter_4.zip&quot;</span><span class="p">):</span>    
+    <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">&quot;https://assets.datacamp.com/production/repositories/2162/datasets/94f2356652dc9ea8f0654b5e9c29645115b6e77f/chapter_4.zip&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;data/chapter_1&quot;</span><span class="p">):</span> 
+    <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="s2">&quot;chapter_1.zip&quot;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
+        <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;chapter_1.zip&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;data/chapter_2&quot;</span><span class="p">):</span>         
+    <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="s2">&quot;chapter_2.zip&quot;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
+        <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;chapter_2.zip&quot;</span><span class="p">)</span>
+        
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;data/chapter_3&quot;</span><span class="p">):</span>         
+    <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="s2">&quot;chapter_3.zip&quot;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
+        <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;chapter_3.zip&quot;</span><span class="p">)</span>
+        
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;data/chapter_4&quot;</span><span class="p">):</span>         
+    <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="s2">&quot;chapter_4.zip&quot;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
+        <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;chapter_4.zip&quot;</span><span class="p">)</span>
+        
+<span class="c1">#!unzip chapter_1.zip</span>
+<span class="c1">#!unzip chapter_2.zip</span>
+<span class="c1">#!unzip chapter_3.zip</span>
+<span class="c1">#!unzip chapter_4.zip</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span> <span class="o">/</span> <span class="s1">&#39;data&#39;</span>  
+
+
+<span class="n">ch1</span> <span class="o">=</span> <span class="n">data</span> <span class="o">/</span> <span class="s1">&#39;chapter_1&#39;</span>
+<span class="n">cc1_file</span> <span class="o">=</span> <span class="n">ch1</span> <span class="o">/</span> <span class="s1">&#39;creditcard_sampledata.csv&#39;</span>
+<span class="n">cc3_file</span> <span class="o">=</span> <span class="n">ch1</span> <span class="o">/</span> <span class="s1">&#39;creditcard_sampledata_3.csv&#39;</span>
+
+<span class="n">ch2</span> <span class="o">=</span> <span class="n">data</span> <span class="o">/</span> <span class="s1">&#39;chapter_2&#39;</span>
+<span class="n">cc2_file</span> <span class="o">=</span> <span class="n">ch2</span> <span class="o">/</span> <span class="s1">&#39;creditcard_sampledata_2.csv&#39;</span>
+
+<span class="n">ch3</span> <span class="o">=</span> <span class="n">data</span> <span class="o">/</span> <span class="s1">&#39;chapter_3&#39;</span>
+<span class="n">banksim_file</span> <span class="o">=</span> <span class="n">ch3</span> <span class="o">/</span> <span class="s1">&#39;banksim.csv&#39;</span>
+<span class="n">banksim_adj_file</span> <span class="o">=</span> <span class="n">ch3</span> <span class="o">/</span> <span class="s1">&#39;banksim_adj.csv&#39;</span>
+<span class="n">db_full_file</span> <span class="o">=</span> <span class="n">ch3</span> <span class="o">/</span> <span class="s1">&#39;db_full.pickle&#39;</span>
+<span class="n">labels_file</span> <span class="o">=</span> <span class="n">ch3</span> <span class="o">/</span> <span class="s1">&#39;labels.pickle&#39;</span>
+<span class="n">labels_full_file</span> <span class="o">=</span> <span class="n">ch3</span> <span class="o">/</span> <span class="s1">&#39;labels_full.pickle&#39;</span>
+<span class="n">x_scaled_file</span> <span class="o">=</span> <span class="n">ch3</span> <span class="o">/</span> <span class="s1">&#39;x_scaled.pickle&#39;</span>
+<span class="n">x_scaled_full_file</span> <span class="o">=</span> <span class="n">ch3</span> <span class="o">/</span> <span class="s1">&#39;x_scaled_full.pickle&#39;</span>
+
+<span class="n">ch4</span> <span class="o">=</span> <span class="n">data</span> <span class="o">/</span> <span class="s1">&#39;chapter_4&#39;</span>
+<span class="n">enron_emails_clean_file</span> <span class="o">=</span> <span class="n">ch4</span> <span class="o">/</span> <span class="s1">&#39;enron_emails_clean.csv&#39;</span>
+<span class="n">cleantext_file</span> <span class="o">=</span> <span class="n">ch4</span> <span class="o">/</span> <span class="s1">&#39;cleantext.pickle&#39;</span>
+<span class="n">corpus_file</span> <span class="o">=</span> <span class="n">ch4</span> <span class="o">/</span> <span class="s1">&#39;corpus.pickle&#39;</span>
+<span class="n">dict_file</span> <span class="o">=</span> <span class="n">ch4</span> <span class="o">/</span> <span class="s1">&#39;dict.pickle&#39;</span>
+<span class="n">ldamodel_file</span> <span class="o">=</span> <span class="n">ch4</span> <span class="o">/</span> <span class="s1">&#39;ldamodel.pickle&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="preparing-the-data">
+<h2><span class="section-number">7.2.3. </span>Preparing the Data<a class="headerlink" href="#preparing-the-data" title="Permalink to this headline">¶</a></h2>
+<p>Fraud occurs only in an extreme minority of transactions. However, machine learning algorithms learn best when the cases they are looking at are fairly even. Without many datapoints of actual fraud, it is difficult to teach it how to detect fraud. This is called a <em>class imbalance</em>.</p>
+<p>Lets start by taking the <code class="docutils literal notranslate"><span class="pre">'creditcard_sampledata.csv'</span></code> file and converting it into a Pandas <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> and looking at the the DataFrame so we know what we’re working with.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">cc3_file</span><span class="p">)</span> <span class="c1"># Create Pandas DataFrame from our file</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span> <span class="c1"># Gives information on the type of data in the DataFrame</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> <span class="c1"># Shows the first few rows of the DataFrame</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="visualizing-the-fraudulent-data">
+<h3><span class="section-number">7.2.3.1. </span>Visualizing the Fraudulent data<a class="headerlink" href="#visualizing-the-fraudulent-data" title="Permalink to this headline">¶</a></h3>
+<p>Here, the fraudulent status of the data is already known in the <code class="docutils literal notranslate"><span class="pre">Class</span></code> column (0 is non-fraudulent, 1 is fraudulent). The data in columns V1-V28 are about the transactions for each account. Lets take a look at how many fraudulent cases there are and what the ratio of fraudulent to non-fraudulent cases is.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Counts the number of fraud and no fraud occurances</span>
+<span class="n">occ</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Class&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="n">occ</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prints the ratio of fraud to non-fraud cases</span>
+<span class="n">ratio_cases</span> <span class="o">=</span> <span class="n">occ</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Ratio of fraudulent cases: </span><span class="si">{</span><span class="n">ratio_cases</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s1">Ratio of non-fraudulent cases: </span><span class="si">{</span><span class="n">ratio_cases</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>See how low the ratio of fraudulent cases is! This is what we need to deal with.</p>
+<p>Let’s now plot the fraudulent and non-fraudulent data so we get a better idea of what we are working with. Lets define two functions: prep_data() and plot_data(). The first will take in our original DataFrame and return X and y DataFrames only containing the transaction data and if the account is fraudulent respectively. The second will take our data from prep_data() and plot the V2 vs V3 values coloring them by if they are fraudulent.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">prep_data</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert the DataFrame into two variable</span>
+<span class="sd">    X: data columns (V2 - Amount)</span>
+<span class="sd">    y: lable column</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">30</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">Class</span><span class="o">.</span><span class="n">values</span>
+    <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
+
+<span class="c1"># Define a function to create a scatter plot of our data and labels with x being V2 and y being V3</span>
+<span class="k">def</span> <span class="nf">plot_data</span><span class="p">(</span><span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> 
+                <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Class #0&quot;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mf">0.15</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> 
+                <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Class #1&quot;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mf">0.15</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;V2&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;V3&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create X and y from the prep_data function </span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">prep_data</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="c1"># Plot our data by running our plot data function on X and y</span>
+<span class="n">plot_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-resampling">
+<h3><span class="section-number">7.2.3.2. </span>Data Resampling<a class="headerlink" href="#data-resampling" title="Permalink to this headline">¶</a></h3>
+<p>We can resample our data to better account for the imbalance in the dataset. This can be done by Undersampling or Oversampling. To be able to compare the resampled datasets let us define a <code class="docutils literal notranslate"><span class="pre">compare_plot()</span></code> function which will take in two DataFrames and return a comparison of the two plots.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compare_plot</span><span class="p">(</span><span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">X_resampled</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">y_resampled</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> 
+                <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Class #0&quot;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mf">0.15</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Class #1&quot;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mf">0.15</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;V2&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;V3&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Original Set&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_resampled</span><span class="p">[</span><span class="n">y_resampled</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+                <span class="n">X_resampled</span><span class="p">[</span><span class="n">y_resampled</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> 
+                <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Class #0&quot;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mf">0.15</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_resampled</span><span class="p">[</span><span class="n">y_resampled</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+                <span class="n">X_resampled</span><span class="p">[</span><span class="n">y_resampled</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> 
+                <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Class #1&quot;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mf">0.15</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;V2&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">method</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="undersampling">
+<h4><span class="section-number">7.2.3.2.1. </span>Undersampling<a class="headerlink" href="#undersampling" title="Permalink to this headline">¶</a></h4>
+<p>Straightforward method that randomly samples our majority (non-fraudulent) cases to get a new set which is about equal to our minority (fraudulent) data. This can be convenient if there is a lot of data with a great deal of minority cases, however usually we do not want to throw away data.</p>
+</div>
+<div class="section" id="random-oversampling">
+<h4><span class="section-number">7.2.3.2.2. </span>Random Oversampling<a class="headerlink" href="#random-oversampling" title="Permalink to this headline">¶</a></h4>
+<p>Oversampling involves somehow creating more minority (fraudulent) data. The most straightforward method involves randomly duplicating the minority (fraudulent) datapoints. There is a function in <code class="docutils literal notranslate"><span class="pre">imblearn</span></code> which can do this. This trains the model on duplicates and isn’t always ideal. You can tell the points are duplicated in the comparison plot because they are darker, having multiple points on the same location.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">imblearn.over_sampling</span> <span class="kn">import</span> <span class="n">RandomOverSampler</span>
+
+<span class="n">method</span> <span class="o">=</span> <span class="n">RandomOverSampler</span><span class="p">()</span>
+<span class="n">X_resampled</span><span class="p">,</span> <span class="n">y_resampled</span> <span class="o">=</span>  <span class="n">method</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">compare_plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">X_resampled</span><span class="p">,</span> <span class="n">y_resampled</span><span class="p">,</span> 
+             <span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;RandomOverSampling&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="synthetic-minority-oversampling-technique-smote">
+<h4><span class="section-number">7.2.3.2.3. </span>Synthetic Minority Oversampling Technique (SMOTE)<a class="headerlink" href="#synthetic-minority-oversampling-technique-smote" title="Permalink to this headline">¶</a></h4>
+<p>SMOTE is a technique which attempts to rectify imbalances by using the characteristics of neighbor minority data to create synthetic fraud cases. This avoids duplicating any data, is fairly realistic, but only works if the minority cases have similar features.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the prep_data function</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">prep_data</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="c1"># Define the resampling method</span>
+<span class="n">method</span> <span class="o">=</span> <span class="n">SMOTE</span><span class="p">()</span>
+
+<span class="c1"># Create the resampled data set</span>
+<span class="n">X_resampled</span><span class="p">,</span> <span class="n">y_resampled</span> <span class="o">=</span> <span class="n">method</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show the number of datapoints for non-fraudulent and fraudulent cases in the original data</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show the number of datapoints for non-fraudulent and fraudulent cases in the resampled data</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_resampled</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">compare_plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">X_resampled</span><span class="p">,</span> <span class="n">y_resampled</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;SMOTE&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="applying-fraud-detection-algorithms">
+<h2><span class="section-number">7.2.4. </span>Applying Fraud Detection Algorithms<a class="headerlink" href="#applying-fraud-detection-algorithms" title="Permalink to this headline">¶</a></h2>
+<p>Generally there are two types of systems for detecting fraud: Rules Based and Machine Learning (ML) Based.</p>
+<p>Rules based uses a set of rules to catch fraud such as transactions occurring at odd zipcodes or too frequent transactions. This can catch fraud but also generates a lot of false positives. In addition they do not adapt over time, are limited to yes/no outcomes, and fail to recognize possible interactions between features.</p>
+<p>ML based adapt to data, using all the combined data to deliver a probability a transaction is fraudulent. This works much better and can be combined with a rules based approach.</p>
+<div class="section" id="traditional-fraud-detection">
+<h3><span class="section-number">7.2.4.1. </span>Traditional Fraud Detection<a class="headerlink" href="#traditional-fraud-detection" title="Permalink to this headline">¶</a></h3>
+<p>Traditional fraud detection involves defining threshold values using common statistics for split fraud and non-fraud data, then use those thresholds to detect fraud. This is often done by looking at the means for differences.</p>
+<p>First we will clean up the data slightly and use Pandas <code class="docutils literal notranslate"><span class="pre">.groupby()</span></code> and <code class="docutils literal notranslate"><span class="pre">.mean()</span></code> functions to find the means of each column of interest split up by non-fraud and fraud cases. We can then look at this to create a rule which might catch fraud cases.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Unnamed: 0&#39;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Class&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It looks like fraud cases have V1 &lt; -3 and V3 &lt; -5, so lets implement that as a rule. We will add a new column called <code class="docutils literal notranslate"><span class="pre">flag_as_fraud</span></code> and place a 1 where that rule is true and 0 where it is false using <code class="docutils literal notranslate"><span class="pre">numpy.where()</span></code>. We will compare this to if there is a case of actual fraud using <code class="docutils literal notranslate"><span class="pre">pandas.crossttab()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;flag_as_fraud&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">V1</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">V3</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">5</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Class</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">flag_as_fraud</span><span class="p">,</span>
+            <span class="n">rownames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Actual Fraud&#39;</span><span class="p">],</span> <span class="n">colnames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Flagged Fraud&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With this rule 22/50 of fraud cases were detected, 28/50 were not detected, and there were 16 false positives. Not ideal!</p>
+</div>
+<div class="section" id="using-ml-classification-logistic-regression">
+<h3><span class="section-number">7.2.4.2. </span>Using ML Classification - Logistic Regression<a class="headerlink" href="#using-ml-classification-logistic-regression" title="Permalink to this headline">¶</a></h3>
+<p>Lets use machine learning on our credit card data instead by implementing a Logistic Regression model.</p>
+<p>When fitting models there are a few things to keep in mind. The data should be first split into test and train data using functions such as <code class="docutils literal notranslate"><span class="pre">sklearn.model_selection.train_test_split()</span></code>. Then only the training data should be resampled. The model is then fitted to the resampled data. Then the results predicted from the model are to be compared using functions such as <code class="docutils literal notranslate"><span class="pre">sklearn.metrics.classification_report()</span></code> and <code class="docutils literal notranslate"><span class="pre">sklearn.metrics.confusion_matrix()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the training and testing sets, with 30% of the data used for our test data.</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Fit a logistic regression model to our data</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">solver</span> <span class="o">=</span> <span class="s1">&#39;liblinear&#39;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Obtain model predictions</span>
+<span class="n">predicted</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Print the classifcation report and confusion matrix</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Classification report:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predicted</span><span class="p">))</span>
+<span class="n">conf_mat</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_true</span> <span class="o">=</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span> <span class="o">=</span> <span class="n">predicted</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Confusion matrix:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">conf_mat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we get results that are significantly better than the rules based results. We find 8/10 fraud cases, miss 2/10, and have 1 false positive. The lower numbers here are because we only are using 30% of the data to test.</p>
+</div>
+<div class="section" id="combining-logistic-regression-with-smote">
+<h3><span class="section-number">7.2.4.3. </span>Combining Logistic Regression with SMOTE<a class="headerlink" href="#combining-logistic-regression-with-smote" title="Permalink to this headline">¶</a></h3>
+<p>Here we will be trying to improve our results by resampling using SMOTE. We will be using the <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> class from the <code class="docutils literal notranslate"><span class="pre">imblearn</span></code> package. This will allow us to combine both logistic regression and SMOTE as if they were a single machine learning model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define which resampling method and which ML model to use in the pipeline</span>
+<span class="c1"># resampling = SMOTE(kind=&#39;borderline2&#39;)  # has been changed to BorderlineSMOTE</span>
+<span class="n">resampling</span> <span class="o">=</span> <span class="n">BorderlineSMOTE</span><span class="p">()</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">solver</span> <span class="o">=</span> <span class="s1">&#39;liblinear&#39;</span><span class="p">)</span>
+
+<span class="c1"># Combine the two into a single pipeline</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;SMOTE&#39;</span><span class="p">,</span> <span class="n">resampling</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Logistic Regression&#39;</span><span class="p">,</span> <span class="n">model</span><span class="p">)])</span>
+
+<span class="c1"># Create the training and testing sets, with 30% of the data used for our test data.</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1">#Fit the combined pipeline model to our data</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span> 
+
+<span class="c1"># Obtain model predictions</span>
+<span class="n">predicted</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Obtain the results from the classification report and confusion matrix </span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Classifcation report:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predicted</span><span class="p">))</span>
+<span class="n">conf_mat</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_true</span> <span class="o">=</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span> <span class="o">=</span> <span class="n">predicted</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Confusion matrix:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">conf_mat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here there was a slight improvement over just using logistic regression. 10/10 fraud cases were caught, and 0/10 were missed. There were more false positives however. Resampling doesn’t necessarily lead to better results. If fraud cases are scattered all over the data using SMOTE can introduce bias. The nearest neighbors of fraud cases aren’t necessarily fraud cases themselves, and can confuse the model.</p>
+</div>
+</div>
+<div class="section" id="fraud-detection-using-labeled-data">
+<h2><span class="section-number">7.2.5. </span>Fraud detection using labeled data<a class="headerlink" href="#fraud-detection-using-labeled-data" title="Permalink to this headline">¶</a></h2>
+<p>Now we will be learning how to flag fraudulent transaction with supervised learning, and comparing to find the most efficient fraud detection model.</p>
+<div class="section" id="classification">
+<h3><span class="section-number">7.2.5.1. </span>Classification<a class="headerlink" href="#classification" title="Permalink to this headline">¶</a></h3>
+<p>Classification is the problem of identifying which class a new observation belongs to based on a set of training data with known classes. Many classification problems relating to fraud are binary classification problems, meaning there are only two possible classes (yes/no, 1/0, True/False). In these cases we either want to assign new observations to:</p>
+<ul class="simple">
+<li><p>0: negative class (‘majority’ normal cases)</p></li>
+<li><p>1: positive class (‘minority’ fraud cases)</p></li>
+</ul>
+<p>Here are four example classification methods:</p>
+<div class="section" id="logistic-regression">
+<h4><span class="section-number">7.2.5.1.1. </span>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline">¶</a></h4>
+<p>Logistic Regression is one of the most used ML algorithms for binary classification, it can be adjusted well to work with imbalanced data which is common in fraud detection as we have shown earlier.</p>
+</div>
+<div class="section" id="neural-network">
+<h4><span class="section-number">7.2.5.1.2. </span>Neural Network<a class="headerlink" href="#neural-network" title="Permalink to this headline">¶</a></h4>
+<p>Neural Networks can also be used for fraud detection. They are capable of fitting highly non-linear models to data but are more complex to implement than other classifiers, thus we wont be going over them in detail.</p>
+</div>
+<div class="section" id="decision-trees">
+<h4><span class="section-number">7.2.5.1.3. </span>Decision Trees<a class="headerlink" href="#decision-trees" title="Permalink to this headline">¶</a></h4>
+<p>Decision Trees are commonly used for fraud detection. They provide very transparent results that are easily interpreted. They are however prone to overfitting the data.</p>
+</div>
+<div class="section" id="random-forests">
+<h4><span class="section-number">7.2.5.1.4. </span>Random Forests<a class="headerlink" href="#random-forests" title="Permalink to this headline">¶</a></h4>
+<p>Random Forests are similar to decision trees but are more robust. They involve the construction of multiple decision trees when training the model and output whatever class is either the mode or mean of the predicted classes from the individual trees. These trees are on a random subset of dataset features.</p>
+<p>Random Forests can handle complex data and are not prone to overfitting. They can be interpreted by looking at feature importance, and can be adjusted so that they work well with imbalanced data.</p>
+<p>The Drawback is that they are computationally complex.</p>
+<p>We will be optimizing a random forest model in this section.</p>
+<div class="section" id="random-forest-implementation">
+<h5><span class="section-number">7.2.5.1.4.1. </span>Random Forest Implementation<a class="headerlink" href="#random-forest-implementation" title="Permalink to this headline">¶</a></h5>
+<p>Once again we will be dealing with highly-imbalanced credit card data. First we create the DataFrame from our file and take a look at it so we know its similar to what we had in our last example. Then we use our <code class="docutils literal notranslate"><span class="pre">prep_data()</span></code> function defined earlier to create our X and y DataFrames.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">cc2_file</span><span class="p">)</span>
+<span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="o">.</span><span class="n">Class</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">prep_data</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The next step is to again use <code class="docutils literal notranslate"><span class="pre">test_train_split()</span></code> from <code class="docutils literal notranslate"><span class="pre">sklearn.model_selection</span></code> to create a set of training and test data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Split your data into training and test set</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And then we specify the <code class="docutils literal notranslate"><span class="pre">model</span></code> variable using <code class="docutils literal notranslate"><span class="pre">RandomForestClassifier()</span></code> then fit <code class="docutils literal notranslate"><span class="pre">model</span></code> to our data. For each tree the model will <em>bootstrap</em>  the training data, that is take a random sample with replacement. This randomness can be controlled by setting <code class="docutils literal notranslate"><span class="pre">random_state</span></code> to create consistent results. We can specify the number of trees created using
+<code class="docutils literal notranslate"><span class="pre">n_estimators</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the model as the random forest</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">n_estimators</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="c1"># Fit the model to our training set</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The model has now been sucessfully applied to our data. Now to determine how well it worked and adjust to improve it.</p>
+</div>
+</div>
+</div>
+<div class="section" id="performance-evaluation">
+<h3><span class="section-number">7.2.5.2. </span>Performance Evaluation<a class="headerlink" href="#performance-evaluation" title="Permalink to this headline">¶</a></h3>
+<p>As we have gone over in class, there are several performance metrics for fraud detection models. We have already learned that <em>Accuracy</em> is a poor performance metric when working with highly imbalanced data. We have learned about the alternatives:</p>
+<ul class="simple">
+<li><p><em>Precision</em>: quantifies the correct positive predictions made</p></li>
+<li><p><em>Recall</em>: quantifies the number of correct positive predictions made out of all positive predictions that could have been made</p></li>
+<li><p><em>F-Measure</em>: combines both precision and recall into a single measure that captures both properties</p></li>
+</ul>
+<p>We also have seen how to use the <em>Confusion Matrix</em> to look at True/False Positives/Negatives.</p>
+<p>In addition to those we can look at <em>Receiver Operating Characteristic (ROC) curves</em> which plot the true positive rate vs the false positive rate at different threshold settings. This can be used to compare the performance of different algorithms. These are often summed up by computing the area under the ROC curve.
+<a class="reference external" href="https://raw.githubusercontent.com/trenton3983/DataCamp/master/Images/fraud_detection/roc_curve.JPG"><img alt="Example of ROC curve" src="https://raw.githubusercontent.com/trenton3983/DataCamp/master/Images/fraud_detection/roc_curve.JPG" /></a></p>
+<div class="section" id="getting-basic-performance-metrics">
+<h4><span class="section-number">7.2.5.2.1. </span>Getting basic performance metrics<a class="headerlink" href="#getting-basic-performance-metrics" title="Permalink to this headline">¶</a></h4>
+<p>Now lets get the performance metrics from our RF model we just created. We can do this by using <code class="docutils literal notranslate"><span class="pre">.predict()</span></code> and <code class="docutils literal notranslate"><span class="pre">.predict_proba()</span></code> to obtain the predictions and probabilities from our model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Obtain the predictions from our random forest model </span>
+<span class="n">predicted</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="c1"># Predict probabilities</span>
+<span class="n">probs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next we can use <code class="docutils literal notranslate"><span class="pre">roc_auc_socre()</span></code> to get the ROC score, <code class="docutils literal notranslate"><span class="pre">classification_report()</span></code> to get the precision, recall, and f-score, and <code class="docutils literal notranslate"><span class="pre">confusion_matrix()</span></code> to get the confusion matrix.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the ROC curve, classification report and confusion matrix</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ROC Score:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">probs</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Classification Report:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predicted</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Confusion Matrix:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predicted</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we see we have a much higher precision (less false positives) but lower recall (more false negatives).</p>
+</div>
+<div class="section" id="plotting-the-precision-vs-recall-curve">
+<h4><span class="section-number">7.2.5.2.2. </span>Plotting the Precision vs. Recall Curve<a class="headerlink" href="#plotting-the-precision-vs-recall-curve" title="Permalink to this headline">¶</a></h4>
+<p>The Precision-Recall curve allows us to investigate the trade-off between focusing on either of the two in our model. A good model balances the two. First we will need to calculate the average precision as well as the precision and recall.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate average precision and the PR curve</span>
+<span class="n">average_precision</span> <span class="o">=</span> <span class="n">average_precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predicted</span><span class="p">)</span>
+<span class="n">average_precision</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Obtain precision and recall </span>
+<span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">precision_recall_curve</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predicted</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Precision: </span><span class="si">{</span><span class="n">precision</span><span class="si">}</span><span class="se">\n</span><span class="s1">Recall: </span><span class="si">{</span><span class="n">recall</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we define a function <code class="docutils literal notranslate"><span class="pre">plot_pr_curve()</span></code> which will plot our precision-recall curve for us.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_pr_curve</span><span class="p">(</span><span class="n">recall</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">average_precision</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    https://scikit-learn.org/stable/auto_examples/model_selection/plot_precision_recall.html</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">inspect</span> <span class="kn">import</span> <span class="n">signature</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">step_kwargs</span> <span class="o">=</span> <span class="p">({</span><span class="s1">&#39;step&#39;</span><span class="p">:</span> <span class="s1">&#39;post&#39;</span><span class="p">}</span>
+                   <span class="k">if</span> <span class="s1">&#39;step&#39;</span> <span class="ow">in</span> <span class="n">signature</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span>
+                   <span class="k">else</span> <span class="p">{})</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">recall</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">where</span> <span class="o">=</span> <span class="s1">&#39;post&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">recall</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">step_kwargs</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Recall&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Precision&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;2-class Precision-Recall curve: AP=</span><span class="si">{</span><span class="n">average_precision</span><span class="si">:</span><span class="s1">0.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Running this code for our data gives the following</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the recall precision tradeoff</span>
+<span class="n">plot_pr_curve</span><span class="p">(</span><span class="n">recall</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">average_precision</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="adjusting-algorithm-weights">
+<h3><span class="section-number">7.2.5.3. </span>Adjusting algorithm weights<a class="headerlink" href="#adjusting-algorithm-weights" title="Permalink to this headline">¶</a></h3>
+<p>When training a model we often want to tweak it to get the best recall-precision balance.</p>
+<p><code class="docutils literal notranslate"><span class="pre">sklearn</span></code> has simple options to tweak its models for imbalanced data relating to the <code class="docutils literal notranslate"><span class="pre">class_weight</span></code> parameter which can be applied to Random Forests.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">class_weight</span> <span class="pre">=</span> <span class="pre">'balanced'</span></code>: the model uses the values of y to automatically adjust weights inversely proportional to class frequencies in the the input data. This can also be applied to other classifiers like Logistic Regression and SVC</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">class_weight</span> <span class="pre">=</span> <span class="pre">'balanced_subsample'</span></code>: same as balanced, except weights are calculated again at each iteration of a growing tree. This only applies to Random Forests.</p></li>
+<li><p>manual input: you can also manually adjust weights to any ratio, for example <code class="docutils literal notranslate"><span class="pre">class_weight={0:1,1:4}</span></code></p></li>
+</ul>
+<div class="section" id="balanced-subsample">
+<h4><span class="section-number">7.2.5.3.1. </span>Balanced Subsample<a class="headerlink" href="#balanced-subsample" title="Permalink to this headline">¶</a></h4>
+<p>Lets try using the <code class="docutils literal notranslate"><span class="pre">balanced_subsample</span></code> option with our data. We will follow the same steps as earlier but now with <code class="docutils literal notranslate"><span class="pre">class_weight</span> <span class="pre">=</span> <span class="pre">'balanced_subsample'</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the model with balanced subsample</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">class_weight</span> <span class="o">=</span> <span class="s1">&#39;balanced_subsample&#39;</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">n_estimators</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Fit your training model to your training set</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Obtain the predicted values and probabilities from the model </span>
+<span class="n">predicted</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">probs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Print the ROC curve, classification report and confusion matrix</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ROC Score:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">probs</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Classification Report:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predicted</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Confusion Matrix:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predicted</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here there wasn’t much improvement. The only major change is that false positives went down by 1. This was a nice simple option to try but we can do better.</p>
+</div>
+<div class="section" id="hyperparamaters">
+<h4><span class="section-number">7.2.5.3.2. </span>Hyperparamaters<a class="headerlink" href="#hyperparamaters" title="Permalink to this headline">¶</a></h4>
+<p>Random Forest also has other options, one of which we mentioned previously. These options are called <em>hyperparamaters</em> as they control the learning process of the algorithm. Here is an example of specifying a few potentially important ones.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>model = RandomForestClassifier(n_estimators = 10, 
+                               criterion = ’gini’, 
+                               max_depth = None, 
+                               min_samples_split = 2, 
+                               min_samples_leaf = 1, 
+                               max_features = ’auto’
+                               n_jobs = -1
+                               class_weight = None)
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n_estimators</span></code>: number of trees in the forest (very important)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">criterion</span></code>: changes the way the data is split at each node, defaults to the gini coefficient</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_depth</span></code>, <code class="docutils literal notranslate"><span class="pre">min_samples_split</span></code>, <code class="docutils literal notranslate"><span class="pre">min_samples_leaf</span></code>, and <code class="docutils literal notranslate"><span class="pre">max_features</span></code>: some of the options determining the shape of the trees</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_jobs</span></code>: specifies how many jobs to do in parallel (how many processors to use). This defaults to 1, and -1 uses all processors available.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">class_weight</span></code>: discussed previously</p></li>
+</ul>
+</div>
+<div class="section" id="adjusting-rf-manually">
+<h4><span class="section-number">7.2.5.3.3. </span>Adjusting RF manually<a class="headerlink" href="#adjusting-rf-manually" title="Permalink to this headline">¶</a></h4>
+<p>It is possible to get better results by <em>assigning weights</em> and <em>tweaking the shape</em> of our decision trees.</p>
+<p>We will start by first defining a function <code class="docutils literal notranslate"><span class="pre">get_model_results()</span></code> which will fit a model on data and print the same preformance metrics as we have done previously.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_model_results</span><span class="p">(</span><span class="n">X_train</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">y_train</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+                      <span class="n">X_test</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">y_test</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    model: sklearn model (e.g. RandomForestClassifier)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Fit your training model to your training set</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+    <span class="c1"># Obtain the predicted values and probabilities from the model </span>
+    <span class="n">predicted</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">probs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ROC Score:&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">probs</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="c1"># Print the ROC curve, classification report and confusion matrix</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Classification Report:&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predicted</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Confusion Matrix:&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predicted</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In our example we have 300 fraud to 7000 non-fraud cases, so if we set the weight ratio to 1:12 we would get 1/3 fraud to 2/3 non-fraud to train our model on each time it samples the training data.</p>
+<p>In addition we can set the criterion to entropy, maximum tree dept to 10, minimal samples in leaf nodes to 10, and the number of trees in the model to 20 to try and get a good result. These are just used as an example, we will go over the optimization of these options later.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Change the model options</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">bootstrap</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                               <span class="n">class_weight</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">12</span><span class="p">},</span>
+                               <span class="n">criterion</span> <span class="o">=</span> <span class="s1">&#39;entropy&#39;</span><span class="p">,</span>
+                               <span class="c1"># Change depth of model</span>
+                               <span class="n">max_depth</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+                               <span class="c1"># Change the number of samples in leaf nodes</span>
+                               <span class="n">min_samples_leaf</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> 
+                               <span class="c1"># Change the number of trees to use</span>
+                               <span class="n">n_estimators</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
+                               <span class="n">n_jobs</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+                               <span class="n">random_state</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Run the function get_model_results</span>
+<span class="n">get_model_results</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we can see the model has improved! The false negatives have gone down by 4, without compromising the false positives.</p>
+</div>
+<div class="section" id="parameter-optimization-with-gridsearchcv">
+<h4><span class="section-number">7.2.5.3.4. </span>Parameter optimization with GridSearchCV<a class="headerlink" href="#parameter-optimization-with-gridsearchcv" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> (from <code class="docutils literal notranslate"><span class="pre">sklearn.model_selection</span></code>) allows us to tweak our model parameters in a more systematic way. It evaluates all combinations of parameters as defined in a parameter grid (a dictionary relating parameters to their possible values) in relation to a scoring metric (precision, recall or f1) to determine which combination is best.</p>
+<p>We start by defining our parameter grid and define our model. Here we want to test:</p>
+<ul class="simple">
+<li><p>1 vs 30 for number of trees</p></li>
+<li><p>gini vs entropy for criterion</p></li>
+<li><p>auto vs log2 for max features</p></li>
+<li><p>4 vs 8 vs 10 vs 12 for max tree depth</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the parameter sets to test</span>
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span>
+              <span class="s1">&#39;criterion&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;gini&#39;</span><span class="p">,</span> <span class="s1">&#39;entropy&#39;</span><span class="p">],</span>
+              <span class="s1">&#39;max_features&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="s1">&#39;log2&#39;</span><span class="p">],</span> 
+              <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">]}</span>
+
+<span class="c1"># Define the model to use</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next we will call <code class="docutils literal notranslate"><span class="pre">GridSearchCV()</span></code> using our model and parameter grid to create a new model taking into account the parameter set. <code class="docutils literal notranslate"><span class="pre">cv</span> <span class="pre">=</span> <span class="pre">5</span></code> specifies our cross-validation splitting strategy as being a 5-fold cross validation. <code class="docutils literal notranslate"><span class="pre">scoring</span> <span class="pre">=</span> <span class="pre">'recall'</span></code> tells the function to optimize for recall.  <code class="docutils literal notranslate"><span class="pre">njobs</span> <span class="pre">=</span> <span class="pre">-1</span></code> will allow GridSearchCV to use all of our processor cores to speed up the computation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Combine the parameter sets with the defined model</span>
+<span class="n">CV_model</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">estimator</span> <span class="o">=</span> <span class="n">model</span><span class="p">,</span> <span class="n">param_grid</span> <span class="o">=</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">scoring</span> <span class="o">=</span> <span class="s1">&#39;recall&#39;</span><span class="p">,</span> <span class="n">n_jobs</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally we fit the model the same as done previously. We can use <code class="docutils literal notranslate"><span class="pre">.best_params_</span></code> to get the best parameter from our fit.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit the model to our training data and obtain best parameters</span>
+<span class="n">CV_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">CV_model</span><span class="o">.</span><span class="n">best_params_</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So it appears that from our options the best criterion is <code class="docutils literal notranslate"><span class="pre">'gini'</span></code>, the max depth should be 8, the max features should be <code class="docutils literal notranslate"><span class="pre">'log2'</span></code> and the number of trees should be 30. Now lets apply this information by adjusting the parameter as we have done before and generating a report.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Input the optimal parameters in the model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">class_weight</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="mi">12</span><span class="p">},</span>
+                               <span class="n">criterion</span> <span class="o">=</span> <span class="s1">&#39;gini&#39;</span><span class="p">,</span>
+                               <span class="n">max_depth</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
+                               <span class="n">max_features</span> <span class="o">=</span> <span class="s1">&#39;log2&#39;</span><span class="p">,</span> 
+                               <span class="n">min_samples_leaf</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+                               <span class="n">n_estimators</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
+                               <span class="n">n_jobs</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+                               <span class="n">random_state</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Get results from your model</span>
+<span class="n">get_model_results</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>When compared to the balanced subsample results false negatives went down by 3, however false positives also went up by three. To determine which model is best decisions should be made based on how important it is to catch fraud vs how many false positives can be dealt with.</p>
+</div>
+</div>
+<div class="section" id="ensemble-methods">
+<h3><span class="section-number">7.2.5.4. </span>Ensemble Methods<a class="headerlink" href="#ensemble-methods" title="Permalink to this headline">¶</a></h3>
+<p>Ensemble methods create multiple machine learning models and combine them to produce a final result which is usually more accurate than a single model alone. These methods take into account a selection of models and average them to produce a final model. This ensures predictions are robust, there is less overfitting, and improves prediction performance (particularly in the case of models with different recall and precision scores). Many Kaggle competition winners use ensemble models.</p>
+<p>Random Forests are an example of an ensemble method, as it is an ensemble of decision trees. It uses the <em>bootstrap aggregation</em> or _bagging ensemble_method for creating an ensemble method. Here models are trained on random subsamples of data and the results from each model are aggregated by taking the average prediction of all the trees.</p>
+<div class="section" id="stacking-ensemble-methods">
+<h4><span class="section-number">7.2.5.4.1. </span>Stacking Ensemble Methods<a class="headerlink" href="#stacking-ensemble-methods" title="Permalink to this headline">¶</a></h4>
+<p>One way of creating an ensemble method is by stacking. In this multiple models are trained on the entire training dataset. These models are then combined via a “voting” method where the classification probabilities from each model are compared. This is often done with models who differ from one another, unlike bagging ensembles which often use the same type of model multiple times.</p>
+<p>Lets try to improve upon a logistic regression model by combining it with a random forest and decision tree. First we need to establish the baseline of the logistic regression model alone the same way we have done previously.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the Logistic Regression model with weights</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">class_weight</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">15</span><span class="p">},</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">solver</span> <span class="o">=</span> <span class="s1">&#39;liblinear&#39;</span><span class="p">)</span>
+
+<span class="c1"># Get the model results</span>
+<span class="n">get_model_results</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we see that the logistic regression had a great deal more false positives than the random forest, but also had a better recall. This means that combing them in an ensemble method would be useful. Lets start by defining the three models we will use in our ensemble:</p>
+<ul class="simple">
+<li><p>Logistic Regression from before</p></li>
+<li><p>Random Forest from before</p></li>
+<li><p>Decision Tree with balanced class weights</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the three classifiers to use in the ensemble</span>
+<span class="n">clf1</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">class_weight</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">15</span><span class="p">},</span>
+                          <span class="n">random_state</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+                          <span class="n">solver</span> <span class="o">=</span> <span class="s1">&#39;liblinear&#39;</span><span class="p">)</span>
+
+<span class="n">clf2</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">class_weight</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">12</span><span class="p">},</span> 
+                              <span class="n">criterion</span> <span class="o">=</span> <span class="s1">&#39;gini&#39;</span><span class="p">,</span> 
+                              <span class="n">max_depth</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> 
+                              <span class="n">max_features</span> <span class="o">=</span> <span class="s1">&#39;log2&#39;</span><span class="p">,</span>
+                              <span class="n">min_samples_leaf</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> 
+                              <span class="n">n_estimators</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span> 
+                              <span class="n">n_jobs</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+                              <span class="n">random_state</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="n">clf3</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+                              <span class="n">class_weight</span> <span class="o">=</span> <span class="s2">&quot;balanced&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can use <code class="docutils literal notranslate"><span class="pre">VotingClassifier()</span></code> from <code class="docutils literal notranslate"><span class="pre">sklearn.ensemble</span></code> to combine the three. We can specify the <code class="docutils literal notranslate"><span class="pre">voting</span></code> parameter to be <code class="docutils literal notranslate"><span class="pre">'hard'</span></code> or <code class="docutils literal notranslate"><span class="pre">'soft'</span></code>. <code class="docutils literal notranslate"><span class="pre">'hard'</span></code> will use the predicted class labels and take the majority vote (i.e. 2/3 of the models said this case is fraud, therefore it is fraud). <code class="docutils literal notranslate"><span class="pre">'soft'</span></code> will take the average probability of a class by combining the individual models.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Combine the classifiers in the ensemble model</span>
+<span class="n">ensemble_model</span> <span class="o">=</span> <span class="n">VotingClassifier</span><span class="p">(</span><span class="n">estimators</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;lr&#39;</span><span class="p">,</span> <span class="n">clf1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;rf&#39;</span><span class="p">,</span> <span class="n">clf2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;dt&#39;</span><span class="p">,</span> <span class="n">clf3</span><span class="p">)],</span>
+                                  <span class="n">voting</span> <span class="o">=</span> <span class="s1">&#39;hard&#39;</span><span class="p">)</span>
+
+<span class="c1"># Get the results </span>
+<span class="n">get_model_results</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">ensemble_model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we can see that the number of false positives has dramatically reduced, while we are getting the smallest amount of false negatives of any algorithm we have tried so far.</p>
+<div class="section" id="adjusting-weights-within-the-voting-classifier">
+<h5><span class="section-number">7.2.5.4.1.1. </span>Adjusting weights within the Voting Classifier<a class="headerlink" href="#adjusting-weights-within-the-voting-classifier" title="Permalink to this headline">¶</a></h5>
+<p>We can potentially improve performance even more by adjusting the weights given to each model in our ensemble. This allows us to change how much emphasis we place on a particular model relative to the others. This can be done by specifying a list for the <code class="docutils literal notranslate"><span class="pre">weights</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">VotingClassifier()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the ensemble model</span>
+<span class="n">ensemble_model</span> <span class="o">=</span> <span class="n">VotingClassifier</span><span class="p">(</span><span class="n">estimators</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;lr&#39;</span><span class="p">,</span> <span class="n">clf1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;rf&#39;</span><span class="p">,</span> <span class="n">clf2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;gnb&#39;</span><span class="p">,</span> <span class="n">clf3</span><span class="p">)],</span>
+                                  <span class="n">voting</span> <span class="o">=</span> <span class="s1">&#39;soft&#39;</span><span class="p">,</span> <span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                                  <span class="n">flatten_transform</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Get results </span>
+<span class="n">get_model_results</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">ensemble_model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Playing around with weights will allow us to tweak the performance of our model even further to achieve the kind of results we are looking for. In this case it decreased the false positives by 4, but increased the false positives by 1.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="fraud-detection-using-unlabled-data">
+<h2><span class="section-number">7.2.6. </span>Fraud Detection using unlabled data<a class="headerlink" href="#fraud-detection-using-unlabled-data" title="Permalink to this headline">¶</a></h2>
+<p>Oftentimes the data we get isn’t prelabled as fraudulent. In that case we need to use unsupervised learning techniques to detect fraud.</p>
+<div class="section" id="normal-vs-abnormal-behavior">
+<h3><span class="section-number">7.2.6.1. </span>Normal vs Abnormal Behavior<a class="headerlink" href="#normal-vs-abnormal-behavior" title="Permalink to this headline">¶</a></h3>
+<p>To do this we must make a distinction between normal and abnormal behavior. Abnormal behavior isn’t necessarily fraudulent, but it can be used to make a determination on how likely a case is fraud. This is generally difficult since it is difficult to validate your data.</p>
+<p>When looking for abnormal behavior there are a few things to consider:</p>
+<ul class="simple">
+<li><p>thoroughly describe the data:</p>
+<ul>
+<li><p>plot histograms</p></li>
+<li><p>check for outliers</p></li>
+<li><p>investigate correlations</p></li>
+</ul>
+</li>
+<li><p>Are there any known historic cases of fraud? What typifies those cases?</p></li>
+<li><p>Investigate whether the data is homogeneous, or whether different types of clients display different behavior</p></li>
+<li><p>Check patterns within subgroups of data: is your data homogeneous?</p></li>
+<li><p>Verify data points are the same type:</p>
+<ul>
+<li><p>individuals</p></li>
+<li><p>groups</p></li>
+<li><p>companies</p></li>
+<li><p>governmental organizations</p></li>
+</ul>
+</li>
+<li><p>Do the data points differ on:</p>
+<ul>
+<li><p>spending patterns</p></li>
+<li><p>age</p></li>
+<li><p>location</p></li>
+<li><p>frequency</p></li>
+</ul>
+</li>
+<li><p>For credit card fraud, location can be an indication of fraud</p></li>
+<li><p>This goes for e-commerce sites</p>
+<ul>
+<li><p>where’s the IP address located and where is the product ordered to ship?</p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="exploring-the-data">
+<h4><span class="section-number">7.2.6.1.1. </span>Exploring the Data<a class="headerlink" href="#exploring-the-data" title="Permalink to this headline">¶</a></h4>
+<p>Here we will be looking at payment transaction data. Transactions are categorized by type of expense and amount spent. We also have another data file with some information on client characteristics such as age group and gender. Some transactions have been labeled as fraud which we will use to validate our results later. To understand what is normal you need a good understanding of the data and its characteristics.</p>
+<p>Lets get our data into some DataFrames and get an idea of what they look like.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">banksim_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">banksim_file</span><span class="p">)</span>
+<span class="n">banksim_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Unnamed: 0&#39;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">banksim_adj_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">banksim_adj_file</span><span class="p">)</span>
+<span class="n">banksim_adj_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Unnamed: 0&#39;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">banksim_df</span><span class="o">.</span><span class="n">shape</span> <span class="c1"># 7200 rows and 5 columns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">banksim_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">banksim_adj_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">banksim_adj_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we will use <code class="docutils literal notranslate"><span class="pre">groupby</span></code> from <code class="docutils literal notranslate"><span class="pre">pandas</span></code> to take a mean of the data based on transaction type.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">banksim_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;category&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we can already see that the majority of fraud is in travel, leisure, and sports related transactions.</p>
+</div>
+<div class="section" id="customer-segmentation">
+<h4><span class="section-number">7.2.6.1.2. </span>Customer Segmentation<a class="headerlink" href="#customer-segmentation" title="Permalink to this headline">¶</a></h4>
+<p>Lets look for some obvious patterns in the data to determine if we need to segment the data into groups or if it’s fairly homogeneous. Lets look at age groups and see if there is any significant difference in behavior.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">banksim_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;age&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">banksim_df</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since the largest age groups are relatively similar, we should probably not split the data into age segments before running fraud detection.</p>
+</div>
+<div class="section" id="using-statistics-to-define-normal-behavior">
+<h4><span class="section-number">7.2.6.1.3. </span>Using statistics to define normal behavior<a class="headerlink" href="#using-statistics-to-define-normal-behavior" title="Permalink to this headline">¶</a></h4>
+<p>Lets see how fraudulent transactions differ structurally from normal transactions by looking at the average amounts spent. We will create two new dataframes for fraud and non fraud data then plot the two as histograms.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create two dataframes with fraud and non-fraud data </span>
+<span class="n">df_fraud</span> <span class="o">=</span> <span class="n">banksim_df</span><span class="p">[</span><span class="n">banksim_df</span><span class="o">.</span><span class="n">fraud</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span> 
+<span class="n">df_non_fraud</span> <span class="o">=</span> <span class="n">banksim_df</span><span class="p">[</span><span class="n">banksim_df</span><span class="o">.</span><span class="n">fraud</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Plot histograms of the amounts in fraud and non-fraud data </span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df_fraud</span><span class="o">.</span><span class="n">amount</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;fraud&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df_non_fraud</span><span class="o">.</span><span class="n">amount</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;nonfraud&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;amount&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since there are less fraudulent transactions lets take a look at only a histogram of them to see their distribution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df_fraud</span><span class="o">.</span><span class="n">amount</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;fraud&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;amount&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we see that fraudulent transactions tend to be on the larger side! This will help in distinguishing fraud from non-fraud.</p>
+</div>
+</div>
+<div class="section" id="clustering-methods-to-detect-fraud">
+<h3><span class="section-number">7.2.6.2. </span>Clustering methods to detect fraud<a class="headerlink" href="#clustering-methods-to-detect-fraud" title="Permalink to this headline">¶</a></h3>
+<p>The objective of any clustering model is to detect patterns in data. Specifically it is to group the data into distinct data clusters made of points similar to each other but distinct from other points.</p>
+<div class="section" id="scaling-the-data">
+<h4><span class="section-number">7.2.6.2.1. </span>Scaling the data<a class="headerlink" href="#scaling-the-data" title="Permalink to this headline">¶</a></h4>
+<p>For any ML algorithm using distance its crucial to always scale your data, so lets do that first. We can use <code class="docutils literal notranslate"><span class="pre">MinMaxScaler</span></code> from <code class="docutils literal notranslate"><span class="pre">sklearn.preprocessing</span></code> to scale our data.</p>
+<p>First we will create a Numpy array from our dataframe only containing the values from df as floats.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="n">banksim_adj_df</span><span class="o">.</span><span class="n">fraud</span>
+
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;amount&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;es_barsandrestaurants&#39;</span><span class="p">,</span> <span class="s1">&#39;es_contents&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;es_fashion&#39;</span><span class="p">,</span> <span class="s1">&#39;es_food&#39;</span><span class="p">,</span> <span class="s1">&#39;es_health&#39;</span><span class="p">,</span> <span class="s1">&#39;es_home&#39;</span><span class="p">,</span> <span class="s1">&#39;es_hotelservices&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;es_hyper&#39;</span><span class="p">,</span> <span class="s1">&#39;es_leisure&#39;</span><span class="p">,</span> <span class="s1">&#39;es_otherservices&#39;</span><span class="p">,</span> <span class="s1">&#39;es_sportsandtoys&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;es_tech&#39;</span><span class="p">,</span> <span class="s1">&#39;es_transportation&#39;</span><span class="p">,</span> <span class="s1">&#39;es_travel&#39;</span><span class="p">]</span>
+
+<span class="c1"># Take the float values of df for X</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">banksim_adj_df</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+
+<span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we can define the scaler and apply it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the scaler and apply to the data</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+<span class="n">X_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="k-means-clustering">
+<h4><span class="section-number">7.2.6.2.2. </span>K-means clustering<a class="headerlink" href="#k-means-clustering" title="Permalink to this headline">¶</a></h4>
+<p>K-means clustering tries to minimize the sum of all distances between the data samples and their associated cluster centroids. The score of K-means clustering is the inverse of that minimization, so should be close to 0 ideally. It is a straightforward and relatively powerful method of predicting suspicious cases. With very large data however MiniBatch K-means is a more efficient way to implement K-means and is what we will be doing.</p>
+<p>We can use <code class="docutils literal notranslate"><span class="pre">MiniBatchKMeans</span></code> from <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> to do so. We will specify that there is to be 8 clusters and set the random state to 0 to have repeatable results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the model </span>
+<span class="n">kmeans</span> <span class="o">=</span> <span class="n">MiniBatchKMeans</span><span class="p">(</span><span class="n">n_clusters</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Fit the model to the scaled data</span>
+<span class="n">kmeans</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="elbow-method-for-determining-clusters">
+<h4><span class="section-number">7.2.6.2.3. </span>Elbow Method for determining clusters<a class="headerlink" href="#elbow-method-for-determining-clusters" title="Permalink to this headline">¶</a></h4>
+<p>While we picked 8 clusters in the previous example, this might not be ideal! It’s very important to get the number of clusters correct, particularly when doing fraud detection. There are a few ways to do so, but here we apply the <em>Elbow Method</em> to do just that. To do this we will generate an elbow curve which scores each model and plots them vs the number of clusters in them.</p>
+<p>In this example we will be looking at 1 to 10 clusters, running MiniBatch K-means on all the clusters in this range, fit the models, and plotting them with their respective scores</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the range of clusters to try</span>
+<span class="n">clustno</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Run MiniBatch Kmeans over the number of clusters</span>
+<span class="n">kmeans</span> <span class="o">=</span> <span class="p">[</span><span class="n">MiniBatchKMeans</span><span class="p">(</span><span class="n">n_clusters</span> <span class="o">=</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">clustno</span><span class="p">]</span>
+
+<span class="c1"># Obtain the score for each model</span>
+<span class="n">score</span> <span class="o">=</span> <span class="p">[</span><span class="n">kmeans</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">kmeans</span><span class="p">))]</span>
+
+<span class="c1"># Plot the models and their respective score </span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">clustno</span><span class="p">,</span> <span class="n">score</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Clusters&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Score&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Elbow Curve&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To determine which is the ideal number of clusters we look for the <em>elbow</em> of the curve. That is where the score begins to increase less as the number of clusters increase. In this case it is at 3 clusters.</p>
+</div>
+</div>
+<div class="section" id="assigning-fraud-vs-non-fraud">
+<h3><span class="section-number">7.2.6.3. </span>Assigning fraud vs non-fraud<a class="headerlink" href="#assigning-fraud-vs-non-fraud" title="Permalink to this headline">¶</a></h3>
+<p>The general method of assigning fraud after clustering is to take the outliers of each cluster and flag those as fraud. We do this by finding the distance of each point to their cluster’s centroid and establishing a cutoff distance beyond which a point is an outlier (i.e. 95%). These outliers are abnormal or suspicious, but aren’t necessarily fraudulent.<br />
+<a class="reference external" href="https://raw.githubusercontent.com/trenton3983/DataCamp/master/Images/fraud_detection/clusters_4.JPG"><img alt="Visualization of finding outliers in clustered data" src="https://raw.githubusercontent.com/trenton3983/DataCamp/master/Images/fraud_detection/clusters_4.JPG" /></a></p>
+<div class="section" id="detecting-outliers">
+<h4><span class="section-number">7.2.6.3.1. </span>Detecting Outliers<a class="headerlink" href="#detecting-outliers" title="Permalink to this headline">¶</a></h4>
+<p>To do this first we will split our data into training and testing sets as we have done before.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Split the data into training and test set</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we will define our K-means model with 3 clusters as we determined with the elbow test.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define K-means model </span>
+<span class="n">kmeans</span> <span class="o">=</span> <span class="n">MiniBatchKMeans</span><span class="p">(</span><span class="n">n_clusters</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we need to get the cluster predictions as well as the cluster centroids.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Obtain predictions and calculate distance from cluster centroid</span>
+<span class="n">X_test_clusters</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">X_test_clusters_centers</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">cluster_centers_</span>
+<span class="n">dist</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">X_test_clusters_centers</span><span class="p">[</span><span class="n">X_test_clusters</span><span class="p">])]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally we define the boundry between fraud and non-fraud at 95% of the distance distribution or higher.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create fraud predictions based on outliers on clusters </span>
+<span class="n">km_y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span>
+<span class="n">km_y_pred</span><span class="p">[</span><span class="n">dist</span> <span class="o">&gt;=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="mi">95</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">km_y_pred</span><span class="p">[</span><span class="n">dist</span> <span class="o">&lt;</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="mi">95</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="checking-model-results">
+<h4><span class="section-number">7.2.6.3.2. </span>Checking model results<a class="headerlink" href="#checking-model-results" title="Permalink to this headline">¶</a></h4>
+<p>Lets create some preformance metrics to see how well this was at detecting fraud.</p>
+<p>Lets define a function that can create a nice looking confusion matrix first.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_confusion_matrix</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Not Fraud&#39;</span><span class="p">,</span> <span class="s1">&#39;Fraud&#39;</span><span class="p">],</span>
+                          <span class="n">normalize</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                          <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Fraud Confusion matrix&#39;</span><span class="p">,</span>
+                          <span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function prints and plots the confusion matrix.</span>
+<span class="sd">    Normalization can be applied by setting `normalize=True`.</span>
+<span class="sd">    From:</span>
+<span class="sd">        http://scikit-learn.org/stable/auto_examples/model_selection/plot_confusion_matrix.html#sphx-glr-auto-</span>
+<span class="sd">        examples-model-selection-plot-confusion-matrix-py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
+        <span class="n">cm</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="n">cm</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Normalized confusion matrix&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Confusion matrix, without normalization&#39;</span><span class="p">)</span>
+
+    <span class="c1"># print(cm)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="n">cmap</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+    <span class="n">tick_marks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">classes</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">tick_marks</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">rotation</span> <span class="o">=</span> <span class="mi">45</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">tick_marks</span><span class="p">,</span> <span class="n">classes</span><span class="p">)</span>
+
+    <span class="n">fmt</span> <span class="o">=</span> <span class="s1">&#39;.2f&#39;</span> <span class="k">if</span> <span class="n">normalize</span> <span class="k">else</span> <span class="s1">&#39;d&#39;</span>
+    <span class="n">thresh</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">/</span> <span class="mf">2.</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">range</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="nb">format</span><span class="p">(</span><span class="n">cm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span> <span class="n">fmt</span><span class="p">),</span>
+                 <span class="n">horizontalalignment</span> <span class="o">=</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span>
+                 <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;white&quot;</span> <span class="k">if</span> <span class="n">cm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">thresh</span> <span class="k">else</span> <span class="s2">&quot;black&quot;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;True label&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted label&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now lets get the ROC score and confusion matrix</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ROC Score:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">km_y_pred</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="c1"># Create a confusion matrix</span>
+<span class="n">km_cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">km_y_pred</span><span class="p">)</span>
+
+<span class="c1"># Plot the confusion matrix in a figure to visualize results </span>
+<span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">km_cm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This wasn’t nearly as good as our models created with labled data, however it does work for detecting fraud!</p>
+</div>
+</div>
+<div class="section" id="other-methods-dbscan">
+<h3><span class="section-number">7.2.6.4. </span>Other methods: DBSCAN<a class="headerlink" href="#other-methods-dbscan" title="Permalink to this headline">¶</a></h3>
+<p>K-means works well with data clustered into normal, round shapes but has it’s downsides. It can’t handle any data clusters not in that shape. It can also end up identifying multiple outliers as their own smaller cluster. There are many other clustering methods out there.</p>
+<p><a class="reference external" href="https://raw.githubusercontent.com/trenton3983/DataCamp/master/Images/fraud_detection/clustering_methods.JPG"><img alt="Examples of different clustering methods" src="https://raw.githubusercontent.com/trenton3983/DataCamp/master/Images/fraud_detection/clustering_methods.JPG" /></a></p>
+<p>One that we will look at today is DBSCAN. DBSCAN stands for Density-Based Spatial Clustering of Applications with Noise. It does not require the number of clusters to be predefined. Instead it finds core samples of high density and expands clusters from them. This means it works well with data containing clusters of similar density. It can be used to ID fraud as very small clusters. It does require you to assign the maximum allowed distance between points in a cluster and the minimum points which constitute a cluster. It has the best performance on weirdly shaped data, however it is computationally heavier than MiniBatch K-means.</p>
+<div class="section" id="implementing-dbscan">
+<h4><span class="section-number">7.2.6.4.1. </span>Implementing DBSCAN<a class="headerlink" href="#implementing-dbscan" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">DBSCAN</span></code> is available from <code class="docutils literal notranslate"><span class="pre">sklearn.cluster</span></code>. We will need to set the max distance between samples (0.9) and minimum observations (10) to fit our data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize and fit the DBscan model</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">DBSCAN</span><span class="p">(</span><span class="n">eps</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">min_samples</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">n_jobs</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now lets see how many clusters we have and the preformance metrics.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Obtain the predicted labels and calculate number of clusters</span>
+<span class="n">pred_labels</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">labels_</span>
+<span class="n">n_clusters</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">pred_labels</span><span class="p">))</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">in</span> <span class="n">labels</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Print performance metrics for DBscan</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Estimated number of clusters: </span><span class="si">{</span><span class="n">n_clusters</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Homogeneity: </span><span class="si">{</span><span class="n">homogeneity_score</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">pred_labels</span><span class="p">)</span><span class="si">:</span><span class="s1">0.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Silhouette Coefficient: </span><span class="si">{</span><span class="n">silhouette_score</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">pred_labels</span><span class="p">)</span><span class="si">:</span><span class="s1">0.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="assessing-smallest-clusters">
+<h4><span class="section-number">7.2.6.4.2. </span>Assessing smallest clusters<a class="headerlink" href="#assessing-smallest-clusters" title="Permalink to this headline">¶</a></h4>
+<p>We now need to filter out the smallest clusters from the 23 we identified. We will start by counting the samples in each cluster by running a bincount on the cluster numbers under <code class="docutils literal notranslate"><span class="pre">pred_labels</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Count observations in each cluster number</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">pred_labels</span><span class="p">[</span><span class="n">pred_labels</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Print the result</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will then sort <code class="docutils literal notranslate"><span class="pre">counts</span></code> and take the three smallest clusters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sort the sample counts of the clusters and take the top 3 smallest clusters</span>
+<span class="n">smallest_clusters</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">counts</span><span class="p">)[:</span><span class="mi">3</span><span class="p">]</span>
+
+<span class="c1"># Print the results </span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The smallest clusters are clusters: </span><span class="si">{</span><span class="n">smallest_clusters</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Within <code class="docutils literal notranslate"><span class="pre">counts</span></code>, we will select only these smallest clusters and print the number of samples in each.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the counts of the smallest clusters only</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Their counts are: </span><span class="si">{</span><span class="n">counts</span><span class="p">[</span><span class="n">smallest_clusters</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="verifying-our-results">
+<h4><span class="section-number">7.2.6.4.3. </span>Verifying our Results<a class="headerlink" href="#verifying-our-results" title="Permalink to this headline">¶</a></h4>
+<p>While in reality you usually don’t have labels to do this, we can verify our results to see how well DBSCAN did.</p>
+<p>First we will create a dataframe combining the cluster numbers and their actual labels.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a dataframe of the predicted cluster numbers and fraud labels </span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;clusternr&#39;</span><span class="p">:</span><span class="n">pred_labels</span><span class="p">,</span><span class="s1">&#39;fraud&#39;</span><span class="p">:</span><span class="n">labels</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next we will create a condition that flags fraud for the three smallest clusters: 21, 17, and 9.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a condition flagging fraud for the smallest clusters </span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;predicted_fraud&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;clusternr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">21</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">9</span><span class="p">])),</span> <span class="mi">1</span> <span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally we run a crosstab on our results</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run a crosstab on the results </span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;fraud&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;predicted_fraud&#39;</span><span class="p">],</span>
+                  <span class="n">rownames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Actual Fraud&#39;</span><span class="p">],</span>
+                  <span class="n">colnames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Flagged Fraud&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For our flagged cases roughly 2/3 are actually fraud! Because we only took the three smallest clusters we flag less cases of fraud, causing more false negatives. We could increase this number, however this will risk increasing the number of false positives in turn.</p>
+</div>
+</div>
+</div>
+<div class="section" id="cleaning-up">
+<h2><span class="section-number">7.2.7. </span>Cleaning up<a class="headerlink" href="#cleaning-up" title="Permalink to this headline">¶</a></h2>
+<p>Now that we are done using our data files we are going to get rid of them. I hope this was informative!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># if os.path.exists(&quot;data/chapter_1&quot;):</span>
+<span class="c1">#     shutil.rmtree(&quot;data/chapter_1&quot;)</span>
+
+<span class="c1"># if os.path.exists(&quot;data/chapter_2&quot;):</span>
+<span class="c1">#     shutil.rmtree(&quot;data/chapter_2&quot;)</span>
+
+<span class="c1"># if os.path.exists(&quot;data/chapter_3&quot;):</span>
+<span class="c1">#     shutil.rmtree(&quot;data/chapter_3&quot;)</span>
+        
+<span class="c1"># if os.path.exists(&quot;data/chapter_4&quot;):</span>
+<span class="c1">#     shutil.rmtree(&quot;data/chapter_4&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="Measures_of_classification_accuracy.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">7.1. </span>Measures of classification accuracy and functions in Python</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="Support_vector_machine.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">7.3. </span>Support vector machine</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Jun Yan and students in STAT 5255, Fall 2021<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

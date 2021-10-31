@@ -1,0 +1,888 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>7.1. Measures of classification accuracy and functions in Python &#8212; Introduction to Data Science</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="7.2. Fraud Detection with Python (Github Trenton McKinney)" href="Fraud_Detection_Python_from_GitHub.html" />
+    <link rel="prev" title="7. Scikit Learn" href="sklearn.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/tricircle.pdf" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="tasks.html">
+   1. Task Board
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   2. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="pybasics.html">
+   3. Python for R Users
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dict_in_python.html">
+     3.11. Python dictionary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="profiling.html">
+     3.12. Profiling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mle-gamma.html">
+     3.13. Gamma MLE Simulation Study
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="Numpy.html">
+   4. Numpy
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="NumpyAdvanced.html">
+     4.2. Numpy Advanced
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="Scipy.html">
+   5. Scipy
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Optimization.html">
+     5.3. Optimization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="pandas_objs.html">
+   6. Pandas
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Pandas_missing_hierarchical.html">
+     6.12. Pandas: Missing Data and Hierarchical Indexing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Pandas_Dataset_Operations.html">
+     6.13. Pandas: Dataset Operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="sklearn.html">
+   7. Scikit Learn
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     7.1. Measures of classification accuracy and functions in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Fraud_Detection_Python_from_GitHub.html">
+     7.2. Fraud Detection with Python (Github Trenton McKinney)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Support_vector_machine.html">
+     7.3. Support vector machine
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Decision_Trees_and_Random_Forest.html">
+     7.5. Decision Trees and Random Forest
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="naive_bayes.html">
+     7.6. Naive Bayes Classification Problem:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dscompetition.html">
+   8. Data Science Competition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="misc.html">
+   9. Miscellaneous learnings
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../_sources/docs/Measures_of_classification_accuracy.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/Measures_of_classification_accuracy.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/jun-yan/ids/master?urlpath=tree/notes/docs/Measures_of_classification_accuracy.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#confusion-matrix-for-imbalanced-classification">
+   7.1.1. Confusion Matrix for Imbalanced Classification
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#precision-metric">
+   7.1.2. Precision metric
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#precision-for-binary-classification">
+     7.1.2.1. Precision for Binary Classification
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculate-precision-with-scikit-learn">
+     7.1.2.2. Calculate Precision With Scikit-Learn
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recall-metric">
+   7.1.3. Recall Metric
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recall-for-binary-classification">
+     7.1.3.1. Recall for Binary Classification
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculate-recall-with-scikit-learn">
+     7.1.3.2. Calculate Recall With Scikit-Learn
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#precision-vs-recall-for-imbalanced-classification">
+   7.1.4. Precision vs. Recall for Imbalanced Classification
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#f-measure-for-imbalanced-classification">
+   7.1.5. F-Measure for Imbalanced Classification
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculate-f-measure-with-scikit-learn">
+     7.1.5.1. Calculate F-Measure With Scikit-Learn
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#extension">
+   7.1.6. Extension
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#roc-curves-and-roc-auc">
+   7.1.7. ROC Curves and ROC AUC
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#roc-area-under-curve-auc-score">
+     7.1.7.1. ROC Area Under Curve (AUC) Score
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="measures-of-classification-accuracy-and-functions-in-python">
+<h1><span class="section-number">7.1. </span>Measures of classification accuracy and functions in Python<a class="headerlink" href="#measures-of-classification-accuracy-and-functions-in-python" title="Permalink to this headline">¶</a></h1>
+<p>source: <a class="reference external" href="https://machinelearningmastery.com/precision-recall-and-f-measure-for-imbalanced-classification/">Machine Learning Mastery</a></p>
+<p>Classification accuracy is the total number of correct predictions divided by the<br />
+total number of predictions made for a dataset.</p>
+<p>As a performance measure, accuracy is inappropriate for imbalanced classification problems.</p>
+<p>The main reason is that the overwhelming number of examples from the majority class (or classes)<br />
+will overwhelm the number of examples in the minority class, meaning that even unskillful models<br />
+can achieve accuracy scores of 90 percent, or 99 percent, depending on how severe<br />
+the class imbalance happens to be.</p>
+<p>An alternative to using classification accuracy is to use <strong>precision</strong> and <strong>recall</strong> metrics.</p>
+<p>After completing this tutorial, you will know:</p>
+<p>* <strong>Precision</strong> quantifies the number of positive class predictions that actually<br />
+belong to the positive class.</p>
+<p>* <strong>Recall</strong> quantifies the number of positive class predictions made out of all<br />
+positive examples in the dataset.</p>
+<p>* <strong>F-Measure</strong> provides a single score that balances both the concerns of precision<br />
+and recall in one number.</p>
+<div class="section" id="confusion-matrix-for-imbalanced-classification">
+<h2><span class="section-number">7.1.1. </span>Confusion Matrix for Imbalanced Classification<a class="headerlink" href="#confusion-matrix-for-imbalanced-classification" title="Permalink to this headline">¶</a></h2>
+<p>Before we dive into precision and recall, it is important to review the <a class="reference external" href="https://machinelearningmastery.com/confusion-matrix-machine-learning/">confusion matrix</a>.</p>
+<p>For classification problems, the majority class is typically referred to as the<br />
+negative outcome (e.g. such as “no change” or “negative test result“), and the<br />
+minority class is typically referred to as the positive outcome (e.g. “change”<br />
+or “positive test result”).</p>
+<p>The confusion matrix provides more insight into not only the performance<br />
+of a predictive model, but also which classes are being predicted correctly,<br />
+which incorrectly, and what type of errors are being made.</p>
+<p>The <strong>simplest confusion matrix</strong> is for a two-class classification problem, with<br />
+<strong>negative (class 0) and positive (class 1) classes</strong>.</p>
+<p>In this type of confusion matrix, each cell in the table has a specific and<br />
+well-understood name, summarized as follows:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Positive Prediction</p></th>
+<th class="head"><p>Negative Prediction</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Positive Class</p></td>
+<td><p>True Positive (TP)</p></td>
+<td><p>False Negative (FN)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Negative Class</p></td>
+<td><p>False Positive (FP)</p></td>
+<td><p>True Negative (TN)</p></td>
+</tr>
+</tbody>
+</table>
+<p>The <strong>precision and recall metrics</strong> are defined in terms of the cells in<br />
+the confusion matrix, specifically terms like true positives and false negatives.</p>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Precisionrecall.svg/525px-Precisionrecall.svg.png" alt="Precision and Recall" width="400" height="400" /> 
+(Image by Wikipedia)  
+</div>
+<div class="section" id="precision-metric">
+<h2><span class="section-number">7.1.2. </span>Precision metric<a class="headerlink" href="#precision-metric" title="Permalink to this headline">¶</a></h2>
+<p><strong>Precision</strong> is a metric that quantifies the number of correct positive predictions made.</p>
+<p><strong>Precision</strong>, therefore, calculates the accuracy for the <strong>minority</strong> class.</p>
+<p>It is calculated as the <strong>ratio of correctly predicted positive examples divided by the<br />
+total number of positive examples that were predicted</strong>.</p>
+<div class="section" id="precision-for-binary-classification">
+<h3><span class="section-number">7.1.2.1. </span>Precision for Binary Classification<a class="headerlink" href="#precision-for-binary-classification" title="Permalink to this headline">¶</a></h3>
+<p>In an imbalanced classification problem with two classes,<br />
+<strong>precision</strong> is calculated as <strong>the number of true positives divided by<br />
+the total number of true positives and false positives</strong>.</p>
+<p>* <strong>Precision = TruePositives / (TruePositives + FalsePositives)</strong></p>
+<p>The result is a value between 0.0 for no precision and 1.0 for full or perfect precision.</p>
+<p>A model makes predictions and predicts 120 examples as belonging<br />
+to the minority class, 90 of which are correct, and 30 of which are incorrect.</p>
+<p>The precision for this model is calculated as:</p>
+<p>Precision = TruePositives / (TruePositives + FalsePositives)<br />
+Precision = 90 / (90 + 30)<br />
+Precision = 90 / 120<br />
+Precision = 0.75</p>
+<p>The result is a precision of 0.75, which is a reasonable value but not outstanding.</p>
+<p>You can see that precision is simply the ratio of correct positive predictions out<br />
+of all positive predictions made, or the accuracy of minority class predictions.</p>
+<p>Consider the same dataset, where a model predicts 50 examples belonging to the minority<br />
+class, 45 of which are true positives and five of which are false positives. We can<br />
+calculate the precision for this model as follows:</p>
+<p>Precision = TruePositives / (TruePositives + FalsePositives)<br />
+Precision = 45 / (45 + 5)<br />
+Precision = 45 / 50<br />
+Precision = 0.90<br />
+In this case, although the model predicted far fewer examples as belonging to the<br />
+minority class, the ratio of correct positive examples is much better.</p>
+<p>This highlights that although precision is useful, it does not tell the whole story.<br />
+It does not comment on how many real positive class examples were predicted as belonging<br />
+to the negative class, so-called false negatives.</p>
+</div>
+<div class="section" id="calculate-precision-with-scikit-learn">
+<h3><span class="section-number">7.1.2.2. </span>Calculate Precision With Scikit-Learn<a class="headerlink" href="#calculate-precision-with-scikit-learn" title="Permalink to this headline">¶</a></h3>
+<p>The precision score can be calculated using the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html">precision_score() scikit-learn function</a>.</p>
+<p>For example, we can use this function to calculate precision for the scenarios in the previous section.</p>
+<p>First, the case where there are 100 positive to 10,000 negative examples, and a model<br />
+predicts 90 true positives and 30 false positives. The complete example is listed below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculates precision for 1:100 dataset with 90 tp and 30 fp</span>
+<span class="c1"># pip install -U scikit-learn</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">precision_score</span>
+<span class="c1"># define actual</span>
+<span class="n">act_pos</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)]</span>
+<span class="n">act_neg</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">)]</span>
+<span class="n">y_true</span> <span class="o">=</span> <span class="n">act_pos</span> <span class="o">+</span> <span class="n">act_neg</span>
+<span class="c1"># define predictions</span>
+<span class="n">pred_pos</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">1</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">90</span><span class="p">)]</span>
+<span class="n">pred_neg</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9970</span><span class="p">)]</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">pred_pos</span> <span class="o">+</span> <span class="n">pred_neg</span>
+<span class="c1"># calculate prediction</span>
+<span class="n">precision</span> <span class="o">=</span> <span class="n">precision_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;binary&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Precision: </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">precision</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="recall-metric">
+<h2><span class="section-number">7.1.3. </span>Recall Metric<a class="headerlink" href="#recall-metric" title="Permalink to this headline">¶</a></h2>
+<p><strong>Recall</strong> is a metric that quantifies <strong>the number of correct positive predictions<br />
+made out of all positive predictions that could have been made</strong>.</p>
+<p>Unlike precision that only comments on the correct positive predictions out of<br />
+all positive predictions, recall provides an indication of missed positive predictions.</p>
+<p>In this way, <strong>recall</strong> provides some <strong>notion of the coverage of the positive class</strong>.</p>
+<div class="section" id="recall-for-binary-classification">
+<h3><span class="section-number">7.1.3.1. </span>Recall for Binary Classification<a class="headerlink" href="#recall-for-binary-classification" title="Permalink to this headline">¶</a></h3>
+<p>In an imbalanced classification problem with two classes, <strong>recall</strong><br />
+is calculated as <strong>the number of true positives divided by the total<br />
+number of true positives and false negatives</strong>.</p>
+<p><strong>Recall = TruePositives / (TruePositives + FalseNegatives)</strong><br />
+The result is a value between 0.0 for no recall and 1.0 for full or perfect recall.</p>
+<p>Let’s make this calculation concrete with some examples.</p>
+<p>As in the previous section, consider a dataset with 1:100 minority to majority ratio,<br />
+with 100 minority examples and 10,000 majority class examples.</p>
+<p>A model makes predictions and predicts 90 of the positive class predictions correctly<br />
+and 10 incorrectly. We can calculate the recall for this model as follows:</p>
+<p>Recall = TruePositives / (TruePositives + FalseNegatives)<br />
+Recall = 90 / (90 + 10)<br />
+Recall = 90 / 100<br />
+Recall = 0.9<br />
+This model has a good recall.</p>
+</div>
+<div class="section" id="calculate-recall-with-scikit-learn">
+<h3><span class="section-number">7.1.3.2. </span>Calculate Recall With Scikit-Learn<a class="headerlink" href="#calculate-recall-with-scikit-learn" title="Permalink to this headline">¶</a></h3>
+<p>The recall score can be calculated using the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.recall_score.html">recall_score() scikit-learn function</a>.</p>
+<p>For example, we can use this function to calculate recall for the scenarios above.</p>
+<p>First, we can consider the case of a 1:100 imbalance with 100 and 10,000 examples<br />
+respectively, and a model predicts 90 true positives and 10 false negatives.</p>
+<p>The complete example is listed below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculates recall for 1:100 dataset with 90 tp and 10 fn</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">recall_score</span>
+<span class="c1"># define actual</span>
+<span class="n">act_pos</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)]</span>
+<span class="n">act_neg</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">)]</span>
+<span class="n">y_true</span> <span class="o">=</span> <span class="n">act_pos</span> <span class="o">+</span> <span class="n">act_neg</span>
+<span class="c1"># define predictions</span>
+<span class="n">pred_pos</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">1</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">90</span><span class="p">)]</span>
+<span class="n">pred_neg</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">)]</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">pred_pos</span> <span class="o">+</span> <span class="n">pred_neg</span>
+<span class="c1"># calculate recall</span>
+<span class="n">recall</span> <span class="o">=</span> <span class="n">recall_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;binary&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Recall: </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">recall</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="precision-vs-recall-for-imbalanced-classification">
+<h2><span class="section-number">7.1.4. </span>Precision vs. Recall for Imbalanced Classification<a class="headerlink" href="#precision-vs-recall-for-imbalanced-classification" title="Permalink to this headline">¶</a></h2>
+<p>You may decide to use precision or recall on your imbalanced classification problem.</p>
+<p>Maximizing precision will minimize the number false positives, whereas maximizing<br />
+the recall will minimize the number of false negatives.</p>
+<p><strong>Precision: Appropriate when minimizing false positives is the focus.<br />
+Recall: Appropriate when minimizing false negatives is the focus.</strong><br />
+Sometimes, we want excellent predictions of the positive class. We want high precision and high recall.</p>
+<p>This can be challenging, as often increases in recall often come at the expense of decreases in precision.</p>
+</div>
+<div class="section" id="f-measure-for-imbalanced-classification">
+<h2><span class="section-number">7.1.5. </span>F-Measure for Imbalanced Classification<a class="headerlink" href="#f-measure-for-imbalanced-classification" title="Permalink to this headline">¶</a></h2>
+<p><strong>Classification accuracy</strong> is widely used because it is one single measure used<br />
+to summarize model performance.</p>
+<p><strong>F-Measure</strong> provides a way to <strong>combine both precision and recall</strong> into a single measure<br />
+that captures both properties.</p>
+<p>Alone, neither precision or recall tells the whole story. We can have excellent precision<br />
+with terrible recall, or alternately, terrible precision with excellent recall.<br />
+F-measure provides a way to express both concerns with a single score.</p>
+<p>Once precision and recall have been calculated for a classification problem,<br />
+the two scores can be combined into the calculation of the F-Measure.</p>
+<p>The traditional F measure is calculated as follows:<br />
+<strong>F-Measure = (2 * Precision * Recall) / (Precision + Recall)</strong></p>
+<p>This is the <a class="reference external" href="https://en.wikipedia.org/wiki/Harmonic_mean">harmonic mean</a> of the two fractions. This is sometimes called the<br />
+F-Score or the F1-Score and might be the most common metric used on imbalanced classification problems.</p>
+<p>A more general F score, <span class="math notranslate nohighlight">\(F_{\beta }\)</span>,<br />
+that uses a positive real factor β, <strong>where β is chosen such that recall is<br />
+considered β times as important as precision</strong>, is:<br />
+<span class="math notranslate nohighlight">\(F_\beta = (1 + \beta^2) \cdot \frac{\mathrm{precision} \cdot \mathrm{recall}}{(\beta^2 \cdot \mathrm{precision}) + \mathrm{recall}}\)</span><br />
+The more generic <span class="math notranslate nohighlight">\(F_{\beta }\)</span> score applies additional weights,<br />
+valuing one of precision or recall more than the other.</p>
+<p>The highest possible value of an F-score is 1.0, indicating perfect precision and recall,<br />
+and the lowest possible value is 0, if either the precision or the recall is zero.</p>
+<p>Like precision and recall, a poor F-Measure score is 0.0 and a best or perfect F-Measure score is 1.0</p>
+<p>For example, a perfect precision and recall score would result in a perfect F-Measure score:</p>
+<p>F-Measure = (2 * Precision * Recall) / (Precision + Recall)<br />
+F-Measure = (2 * 1.0 * 1.0) / (1.0 + 1.0)<br />
+F-Measure = (2 * 1.0) / 2.0<br />
+F-Measure = 1.0</p>
+<p>Let’s make this calculation concrete with a worked example.</p>
+<p>Consider a binary classification dataset with 1:100 minority to majority ratio,<br />
+with 100 minority examples and 10,000 majority class examples.</p>
+<p>Consider a model that predicts 150 examples for the positive class, 95 are correct<br />
+(true positives), meaning five were missed (false negatives) and 55 are incorrect (false positives).</p>
+<p>We can calculate the precision as follows:</p>
+<p>Precision = TruePositives / (TruePositives + FalsePositives)<br />
+Precision = 95 / (95 + 55)<br />
+Precision = 0.633<br />
+We can calculate the recall as follows:</p>
+<p>Recall = TruePositives / (TruePositives + FalseNegatives)<br />
+Recall = 95 / (95 + 5)<br />
+Recall = 0.95<br />
+This shows that the model has poor precision, but excellent recall.</p>
+<p>Finally, we can calculate the F-Measure as follows:</p>
+<p>F-Measure = (2 * Precision * Recall) / (Precision + Recall)<br />
+F-Measure = (2 * 0.633 * 0.95) / (0.633 + 0.95)<br />
+F-Measure = (2 * 0.601) / 1.583<br />
+F-Measure = 1.202 / 1.583<br />
+F-Measure = 0.759<br />
+We can see that the good recall levels-out the poor precision, giving an okay or reasonable F-measure score.</p>
+<div class="section" id="calculate-f-measure-with-scikit-learn">
+<h3><span class="section-number">7.1.5.1. </span>Calculate F-Measure With Scikit-Learn<a class="headerlink" href="#calculate-f-measure-with-scikit-learn" title="Permalink to this headline">¶</a></h3>
+<p>The F-measure score can be calculated using the f1_score() scikit-learn function.</p>
+<p>For example, we use this function to calculate F-Measure for the scenario above.</p>
+<p>This is the case of a 1:100 imbalance with 100 and 10,000 examples respectively,<br />
+and a model predicts 95 true positives, five false negatives, and 55 false positives.</p>
+<p>The complete example is listed below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculates f1 for 1:100 dataset with 95tp, 5fn, 55fp</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">f1_score</span>
+<span class="c1"># define actual</span>
+<span class="n">act_pos</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)]</span>
+<span class="n">act_neg</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">)]</span>
+<span class="n">y_true</span> <span class="o">=</span> <span class="n">act_pos</span> <span class="o">+</span> <span class="n">act_neg</span>
+<span class="c1"># define predictions</span>
+<span class="n">pred_pos</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">1</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">95</span><span class="p">)]</span>
+<span class="n">pred_neg</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">55</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9945</span><span class="p">)]</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">pred_pos</span> <span class="o">+</span> <span class="n">pred_neg</span>
+<span class="c1"># calculate score</span>
+<span class="n">score</span> <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;binary&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;F-Measure: </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">score</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="extension">
+<h2><span class="section-number">7.1.6. </span>Extension<a class="headerlink" href="#extension" title="Permalink to this headline">¶</a></h2>
+<p>sklearn.metrics.precision_score(y_true, y_pred, *, labels=None, pos_label=1, <strong>average =’binary’</strong> , sample_weight=None, zero_division=’warn’)</p>
+<p>‘binary’:
+Only report results for the class specified by pos_label.<br />
+This is applicable only if targets (<span class="math notranslate nohighlight">\(y_{true,pred}\)</span>) are binary.</p>
+<p>‘micro’:
+Calculate metrics globally by counting the total true positives,<br />
+false negatives and false positives.</p>
+<p>‘macro’:
+Calculate metrics for each label, and find their unweighted mean.<br />
+This does not take label imbalance into account.</p>
+<p>‘weighted’:
+Calculate metrics for each label, and find their average weighted by support<br />
+(the number of true instances for each label).<br />
+This alters ‘macro’ to account for label imbalance;<br />
+it can result in an F-score that is not between precision and recall.</p>
+<p>‘samples’:
+Calculate metrics for each instance, and find their average (only meaningful<br />
+for multilabel classification where this differs from accuracy_score).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">precision_score</span>
+<span class="n">y_true</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">precision_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;macro&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">precision_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;micro&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">precision_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;weighted&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>More resource: <a class="reference external" href="https://towardsdatascience.com/multi-class-metrics-made-simple-part-ii-the-f1-score-ebe8b2c2ca1">Multi-Class Metrics</a></p>
+</div>
+<div class="section" id="roc-curves-and-roc-auc">
+<h2><span class="section-number">7.1.7. </span>ROC Curves and ROC AUC<a class="headerlink" href="#roc-curves-and-roc-auc" title="Permalink to this headline">¶</a></h2>
+<p>An ROC curve (or receiver operating characteristic curve) is a plot that summarizes the performance of a<br />
+binary classification model on the positive class.</p>
+<p>The x-axis indicates the False Positive Rate and the y-axis indicates the True Positive Rate.</p>
+<ul class="simple">
+<li><p>ROC Curve: Plot of False Positive Rate (x) vs. True Positive Rate (y).</p></li>
+<li><p>TruePositiveRate = TruePositives / (TruePositives + False Negatives)</p></li>
+<li><p>FalsePositiveRate = FalsePositives / (FalsePositives + TrueNegatives)</p></li>
+</ul>
+<p>Ideally, we want the fraction of correct positive class predictions to be 1 (top of the plot) and the<br />
+fraction of incorrect negative class predictions to be 0 (left of the plot). This highlights that the<br />
+best possible classifier that achieves perfect skill is the top-left of the plot (coordinate 0,1).</p>
+<p>We can plot a ROC curve for a model in Python using the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_curve.html">roc_curve() scikit-learn function</a>.</p>
+<p>The function takes both the true outcomes (0,1) from the test set and the predicted probabilities for the 1<br />
+class. The function returns the false positive rates for each threshold, true positive rates for each<br />
+threshold and thresholds.</p>
+<p>The complete example is listed below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># example of a roc curve for a predictive model</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_curve</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
+<span class="c1"># generate 2 class dataset</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">n_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># split into train/test sets</span>
+<span class="n">trainX</span><span class="p">,</span> <span class="n">testX</span><span class="p">,</span> <span class="n">trainy</span><span class="p">,</span> <span class="n">testy</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># fit a model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s1">&#39;lbfgs&#39;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">trainX</span><span class="p">,</span> <span class="n">trainy</span><span class="p">)</span>
+<span class="c1"># predict probabilities</span>
+<span class="n">yhat</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">testX</span><span class="p">)</span>
+<span class="c1"># retrieve just the probabilities for the positive class</span>
+<span class="n">pos_probs</span> <span class="o">=</span> <span class="n">yhat</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="c1"># plot no skill roc curve</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;No Skill&#39;</span><span class="p">)</span>
+<span class="c1"># calculate roc curve for model</span>
+<span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">testy</span><span class="p">,</span> <span class="n">pos_probs</span><span class="p">)</span>
+<span class="c1"># plot model roc curve</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Logistic&#39;</span><span class="p">)</span>
+<span class="c1"># axis labels</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;False Positive Rate&#39;</span><span class="p">)</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;True Positive Rate&#39;</span><span class="p">)</span>
+<span class="c1"># show the legend</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="c1"># show the plot</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The ROC Curve for the Logistic Regression model is shown (orange with dots). A no skill classifier as a<br />
+diagonal line (blue with dashes).</p>
+<div class="section" id="roc-area-under-curve-auc-score">
+<h3><span class="section-number">7.1.7.1. </span>ROC Area Under Curve (AUC) Score<a class="headerlink" href="#roc-area-under-curve-auc-score" title="Permalink to this headline">¶</a></h3>
+<p>Although the ROC Curve is a helpful diagnostic tool, it can be challenging to compare two or more<br />
+classifiers based on their curves.</p>
+<p>Instead, the area under the curve can be calculated to give a single score for a classifier model across<br />
+all threshold values. This is called the ROC area under curve or ROC AUC or sometimes ROCAUC.</p>
+<p>The score is a value between 0.0 and 1.0 for a perfect classifier.</p>
+<p>The AUC for the ROC can be calculated in scikit-learn using the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html">roc_auc_score() function</a>.</p>
+<p>Like the roc_curve() function, the AUC function takes both the true outcomes (0,1) from the test set and the<br />
+predicted probabilities for the positive class.</p>
+<p>The complete example is listed below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># example of a roc auc for a predictive model</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
+<span class="kn">from</span> <span class="nn">sklearn.dummy</span> <span class="kn">import</span> <span class="n">DummyClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_auc_score</span>
+<span class="c1"># generate 2 class dataset</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">n_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># split into train/test sets</span>
+<span class="n">trainX</span><span class="p">,</span> <span class="n">testX</span><span class="p">,</span> <span class="n">trainy</span><span class="p">,</span> <span class="n">testy</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># no skill model, stratified random class predictions</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">DummyClassifier</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;stratified&#39;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">trainX</span><span class="p">,</span> <span class="n">trainy</span><span class="p">)</span>
+<span class="n">yhat</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">testX</span><span class="p">)</span>
+<span class="n">pos_probs</span> <span class="o">=</span> <span class="n">yhat</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="c1"># calculate roc auc</span>
+<span class="n">roc_auc</span> <span class="o">=</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">testy</span><span class="p">,</span> <span class="n">pos_probs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No Skill ROC AUC </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">roc_auc</span><span class="p">)</span>
+<span class="c1"># skilled model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s1">&#39;lbfgs&#39;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">trainX</span><span class="p">,</span> <span class="n">trainy</span><span class="p">)</span>
+<span class="n">yhat</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">testX</span><span class="p">)</span>
+<span class="n">pos_probs</span> <span class="o">=</span> <span class="n">yhat</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="c1"># calculate roc auc</span>
+<span class="n">roc_auc</span> <span class="o">=</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">testy</span><span class="p">,</span> <span class="n">pos_probs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Logistic ROC AUC </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">roc_auc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="sklearn.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">7. </span>Scikit Learn</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="Fraud_Detection_Python_from_GitHub.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">7.2. </span>Fraud Detection with Python (Github Trenton McKinney)</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Jun Yan and students in STAT 5255, Fall 2021<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

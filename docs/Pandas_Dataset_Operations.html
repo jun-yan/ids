@@ -1,0 +1,1092 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>6.13. Pandas: Dataset Operations &#8212; Introduction to Data Science</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="7. Scikit Learn" href="sklearn.html" />
+    <link rel="prev" title="6.12. Pandas: Missing Data and Hierarchical Indexing" href="Pandas_missing_hierarchical.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/tricircle.pdf" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="tasks.html">
+   1. Task Board
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   2. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="pybasics.html">
+   3. Python for R Users
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dict_in_python.html">
+     3.11. Python dictionary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="profiling.html">
+     3.12. Profiling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mle-gamma.html">
+     3.13. Gamma MLE Simulation Study
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="Numpy.html">
+   4. Numpy
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="NumpyAdvanced.html">
+     4.2. Numpy Advanced
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="Scipy.html">
+   5. Scipy
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Optimization.html">
+     5.3. Optimization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="pandas_objs.html">
+   6. Pandas
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="Pandas_missing_hierarchical.html">
+     6.12. Pandas: Missing Data and Hierarchical Indexing
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     6.13. Pandas: Dataset Operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="sklearn.html">
+   7. Scikit Learn
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Measures_of_classification_accuracy.html">
+     7.1. Measures of classification accuracy and functions in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Fraud_Detection_Python_from_GitHub.html">
+     7.2. Fraud Detection with Python (Github Trenton McKinney)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Support_vector_machine.html">
+     7.3. Support vector machine
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Decision_Trees_and_Random_Forest.html">
+     7.5. Decision Trees and Random Forest
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="naive_bayes.html">
+     7.6. Naive Bayes Classification Problem:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dscompetition.html">
+   8. Data Science Competition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="misc.html">
+   9. Miscellaneous learnings
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../_sources/docs/Pandas_Dataset_Operations.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/Pandas_Dataset_Operations.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/jun-yan/ids/master?urlpath=tree/notes/docs/Pandas_Dataset_Operations.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simple-concatenation-using-pd-concat">
+   6.13.1. Simple Concatenation Using pd.concat
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#concatinating-with-duplicate-indices">
+     6.13.1.1. Concatinating with Duplicate Indices
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#concatenations-with-joins">
+     6.13.1.2. Concatenations with joins
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#append-method">
+     6.13.1.3. Append() Method
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#combining-datasets-merge-and-join">
+   6.13.2. Combining Datasets: Merge and Join
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#categories-of-joins">
+     6.13.2.1. Categories of Joins
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#one-to-one-join">
+       6.13.2.1.1. One-to-One Join
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#many-to-one-joins">
+       6.13.2.1.2. Many-to-One Joins
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#many-to-many-joins">
+       6.13.2.1.3. Many-to-Many Joins
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-merge-keys">
+     6.13.2.2. Using Merge Keys
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aggregation-and-grouping">
+   6.13.3. Aggregation and Grouping
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simple-aggregration">
+     6.13.3.1. Simple Aggregration
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#groupby">
+     6.13.3.2. GroupBy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-groupby-object">
+     6.13.3.3. Using GroupBy Object
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#groupby-aggregration">
+     6.13.3.4. GroupBy Aggregration
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#groupby-filtering">
+     6.13.3.5. GroupBy Filtering
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#groupby-apply-method">
+     6.13.3.6. GroupBy apply() Method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#specifying-the-split-key">
+     6.13.3.7. Specifying the Split Key
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pivot-tables">
+   6.13.4. Pivot Tables
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basics">
+     6.13.4.1. Basics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multilevel-pivot-tables">
+     6.13.4.2. Multilevel Pivot Tables
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#additional-pivot-tables-options">
+     6.13.4.3. Additional Pivot Tables Options
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="pandas-dataset-operations">
+<h1><span class="section-number">6.13. </span>Pandas: Dataset Operations<a class="headerlink" href="#pandas-dataset-operations" title="Permalink to this headline">¶</a></h1>
+<p>Dataset can be combined in a multidue of different ways from other datasets. Operations that can be used can be from a straightforward approch such as using concatenation from two datasets. Alternatively, one could use database-style joins and merges to correctly handle any overlaps between datasets.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Series</span></code> and <code class="docutils literal notranslate"><span class="pre">DataFrames</span></code> both use the concatenation function, and Pandas includes functions and methods that make this sort of data wrangling fast and straightforward.</p>
+<div class="section" id="simple-concatenation-using-pd-concat">
+<h2><span class="section-number">6.13.1. </span>Simple Concatenation Using pd.concat<a class="headerlink" href="#simple-concatenation-using-pd-concat" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># !pip3 install pandas</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># pd. __version__</span>
+
+<span class="k">def</span> <span class="nf">create_df</span><span class="p">(</span><span class="n">cols</span><span class="p">,</span> <span class="n">ind</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ind</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ind</span><span class="p">)</span>
+
+<span class="n">create_df</span><span class="p">([</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">],</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">pd.concat()</span></code> can be used for simple concatenation of Series and DataFrames, it defaults to row-wise but can be specified to take place along any axis.</p>
+<p>Here is an example of row-wise concatination.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">series1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">series2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;yellow&quot;</span><span class="p">,</span> <span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="s2">&quot;purple&quot;</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+<span class="n">series_concat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">series1</span><span class="p">,</span> <span class="n">series2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">series1</span><span class="p">);</span> <span class="nb">print</span><span class="p">();</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">series2</span><span class="p">);</span> <span class="nb">print</span><span class="p">();</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">series_concat</span><span class="p">);</span> <span class="nb">print</span><span class="p">()</span> <span class="c1"># final result</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can concatinate two DataFrames that have shared columns and merge the columns together, as seen here.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df1</span> <span class="o">=</span> <span class="n">create_df</span><span class="p">([</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">create_df</span><span class="p">([</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">df_concat1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df1</span><span class="p">);</span> <span class="nb">print</span><span class="p">();</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df2</span><span class="p">);</span> <span class="nb">print</span><span class="p">();</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_concat1</span><span class="p">);</span> <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also concatinate column-wise by passing the argument <code class="docutils literal notranslate"><span class="pre">axis</span> <span class="pre">=</span> <span class="pre">1</span></code> or <code class="docutils literal notranslate"><span class="pre">axis</span> <span class="pre">=</span> <span class="pre">'col'</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span> <span class="o">=</span> <span class="n">create_df</span><span class="p">([</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">df4</span> <span class="o">=</span> <span class="n">create_df</span><span class="p">([</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;yellow&quot;</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">df_concat2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df3</span><span class="p">,</span> <span class="n">df4</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># axis = &#39;col&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df3</span><span class="p">);</span> <span class="nb">print</span><span class="p">();</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df4</span><span class="p">);</span> <span class="nb">print</span><span class="p">();</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_concat2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="concatinating-with-duplicate-indices">
+<h3><span class="section-number">6.13.1.1. </span>Concatinating with Duplicate Indices<a class="headerlink" href="#concatinating-with-duplicate-indices" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">pd.concat()</span></code> can be used to handle situations where you concatinate with dulpicate indicies. By default it raises an error if this is done.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">create_df</span><span class="p">([</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">create_df</span><span class="p">([</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">y</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">index</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">],</span> <span class="n">verify_integrity</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="c1"># duplicated indices</span>
+<span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ValueError:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span> <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can bypass this error by passing the argument <code class="docutils literal notranslate"><span class="pre">ignore_index</span> <span class="pre">=</span> <span class="pre">True</span></code> which will cause <code class="docutils literal notranslate"><span class="pre">concat</span></code> to ignore the indicies of the DataFrames it is concatinating.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df_concat3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">],</span> <span class="n">ignore_index</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">);</span> <span class="nb">print</span><span class="p">();</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">);</span> <span class="nb">print</span><span class="p">();</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_concat3</span><span class="p">);</span> <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Another option is to pass an argument specifying keys. The <code class="docutils literal notranslate"><span class="pre">keys</span></code> argument must be a list, tuple, or some other sequence which corisponds to the DataFrames you are concatenating. Here we use <code class="docutils literal notranslate"><span class="pre">keys</span> <span class="pre">=</span> <span class="pre">[&quot;x&quot;,</span> <span class="pre">&quot;y&quot;]</span></code> to add x and y as keys for the two DataFrames.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df_concat4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">],</span> <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">);</span> <span class="nb">print</span><span class="p">();</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">);</span> <span class="nb">print</span><span class="p">();</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_concat4</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="concatenations-with-joins">
+<h3><span class="section-number">6.13.1.2. </span>Concatenations with joins<a class="headerlink" href="#concatenations-with-joins" title="Permalink to this headline">¶</a></h3>
+<p>When concatinating dataframes with different column names <code class="docutils literal notranslate"><span class="pre">pd.concat</span></code> defaults to filling entries where no data is available with NA values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df5</span> <span class="o">=</span> <span class="n">create_df</span><span class="p">([</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="s2">&quot;cyan&quot;</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">df6</span> <span class="o">=</span> <span class="n">create_df</span><span class="p">([</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="s2">&quot;cyan&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df5</span><span class="p">);</span> <span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df6</span><span class="p">);</span> <span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df5</span><span class="p">,</span> <span class="n">df6</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In order to remove the NA’s we want to use the argument <code class="docutils literal notranslate"><span class="pre">join</span></code> to concatenate the function. The default statement is a union join, <code class="docutils literal notranslate"><span class="pre">join</span> <span class="pre">=</span> <span class="pre">'outer'</span></code>. This can be changed to an intersection of the columns by using <code class="docutils literal notranslate"><span class="pre">join</span> <span class="pre">=</span> <span class="pre">'inner'</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df5</span><span class="p">);</span> <span class="nb">print</span><span class="p">();</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df6</span><span class="p">);</span> <span class="nb">print</span><span class="p">();</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df5</span><span class="p">,</span> <span class="n">df6</span><span class="p">],</span> <span class="n">join</span> <span class="o">=</span> <span class="s1">&#39;inner&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="append-method">
+<h3><span class="section-number">6.13.1.3. </span>Append() Method<a class="headerlink" href="#append-method" title="Permalink to this headline">¶</a></h3>
+<p>Direct array concatentation is very common, <code class="docutils literal notranslate"><span class="pre">series</span></code> and <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> objects have an additional method that can be used in similar fashion.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df1</span><span class="p">);</span> <span class="nb">print</span><span class="p">();</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df2</span><span class="p">);</span> <span class="nb">print</span><span class="p">();</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">.append()</span></code> is a very simple function that does not check for duplicate indicies and will create a new DataFrame that is simply both DataFrames together, as seen here.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df1</span><span class="p">);</span> <span class="nb">print</span><span class="p">();</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df1</span><span class="p">);</span> <span class="nb">print</span><span class="p">();</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="combining-datasets-merge-and-join">
+<h2><span class="section-number">6.13.2. </span>Combining Datasets: Merge and Join<a class="headerlink" href="#combining-datasets-merge-and-join" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="categories-of-joins">
+<h3><span class="section-number">6.13.2.1. </span>Categories of Joins<a class="headerlink" href="#categories-of-joins" title="Permalink to this headline">¶</a></h3>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">pd.merge()</span></code> function carries out a number of types of joins: <em>one-to-one</em>, <em>many-to-one</em>, and <em>many-to-many</em> joins.</p>
+<div class="section" id="one-to-one-join">
+<h4><span class="section-number">6.13.2.1.1. </span>One-to-One Join<a class="headerlink" href="#one-to-one-join" title="Permalink to this headline">¶</a></h4>
+<p>A one-to-one join is perhaps the simplist, being very simmilar to column-wise concatenation. To do this we simply run <code class="docutils literal notranslate"><span class="pre">pd.merge()</span></code> with our data frames as arguments. In this case <code class="docutils literal notranslate"><span class="pre">pd.merge()</span></code> sees that the <code class="docutils literal notranslate"><span class="pre">ID</span></code> column is shared between df7 and df8 and will use it as a key to merge the two. What results is an intersection of the two DataFrames.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df7</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;ID&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">101</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">103</span><span class="p">,</span> <span class="mi">104</span><span class="p">,</span> <span class="mi">105</span><span class="p">,</span> <span class="mi">106</span><span class="p">,</span> <span class="mi">107</span><span class="p">],</span>
+    <span class="s1">&#39;Product_Name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;SmartWatch&#39;</span><span class="p">,</span> <span class="s1">&#39;Backpack&#39;</span><span class="p">,</span> <span class="s1">&#39;Shoes&#39;</span><span class="p">,</span> <span class="s1">&#39;Smartphone&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;Books&#39;</span><span class="p">,</span> <span class="s1">&#39;Oil&#39;</span><span class="p">,</span><span class="s1">&#39;Laptop&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Category&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Electronics&#39;</span><span class="p">,</span> <span class="s1">&#39;Study&#39;</span><span class="p">,</span> <span class="s1">&#39;Fashion&#39;</span><span class="p">,</span> <span class="s1">&#39;Electronics&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;Study&#39;</span><span class="p">,</span> <span class="s1">&#39;Grocery&#39;</span><span class="p">,</span> <span class="s1">&#39;Electronics&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Price&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">299.0</span><span class="p">,</span> <span class="mf">150.50</span><span class="p">,</span> <span class="mf">2999.0</span><span class="p">,</span> <span class="mf">14999.0</span><span class="p">,</span> <span class="mf">145.0</span><span class="p">,</span> <span class="mf">110.0</span><span class="p">,</span> <span class="mf">79999.0</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">df8</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Ref_Num&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
+    <span class="s1">&#39;Name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Ollie&#39;</span><span class="p">,</span> <span class="s1">&#39;Ivy&#39;</span><span class="p">,</span> <span class="s1">&#39;Ethan&#39;</span><span class="p">,</span> <span class="s1">&#39;Maya&#39;</span><span class="p">,</span> 
+             <span class="s1">&#39;Lucas&#39;</span><span class="p">,</span> <span class="s1">&#39;Levi&#39;</span><span class="p">,</span> <span class="s1">&#39;Miles&#39;</span><span class="p">,</span> <span class="s1">&#39;Daniel&#39;</span><span class="p">,</span> 
+             <span class="s1">&#39;Owen&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Age&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">23</span><span class="p">],</span>
+    <span class="s1">&#39;ID&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">101</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">106</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">103</span><span class="p">,</span> <span class="mi">104</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">107</span><span class="p">],</span>
+    <span class="s1">&#39;Purchased_Product&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;SmartWatch&#39;</span><span class="p">,</span> <span class="s1">&#39;NA&#39;</span><span class="p">,</span> <span class="s1">&#39;Oil&#39;</span><span class="p">,</span> <span class="s1">&#39;NA&#39;</span><span class="p">,</span> <span class="s1">&#39;Shoes&#39;</span><span class="p">,</span> 
+                          <span class="s1">&#39;Smartphone&#39;</span><span class="p">,</span><span class="s1">&#39;NA&#39;</span><span class="p">,</span><span class="s1">&#39;NA&#39;</span><span class="p">,</span><span class="s1">&#39;Laptop&#39;</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">df7</span> <span class="c1"># Left DataFrame</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df8</span> <span class="c1"># Right DataFrame</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using pd.merge()</span>
+<span class="n">df9</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df7</span><span class="p">,</span> <span class="n">df8</span><span class="p">)</span>
+<span class="n">df9</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="many-to-one-joins">
+<h4><span class="section-number">6.13.2.1.2. </span>Many-to-One Joins<a class="headerlink" href="#many-to-one-joins" title="Permalink to this headline">¶</a></h4>
+<p>Many-to-one joins are joins in which one of the two key columns contains duplicated entries. This is simmilarly done by calling <code class="docutils literal notranslate"><span class="pre">pd.merge()</span></code> and will result in the new DataFrame preserving the duplicated entries as appropriate. In this example the <code class="docutils literal notranslate"><span class="pre">Category</span></code> columns are shared and used as a key to merge the two DataFrames. In essence a new column was added to df9 called <code class="docutils literal notranslate"><span class="pre">Need</span></code> using df10 almost like a dictionary to determine what goes in <code class="docutils literal notranslate"><span class="pre">Need</span></code> for each entry.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df10</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Category&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Electronics&#39;</span><span class="p">,</span> <span class="s1">&#39;Fashion&#39;</span><span class="p">,</span> <span class="s1">&#39;Grocery&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Need&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Personal&#39;</span><span class="p">,</span> <span class="s1">&#39;Unnecessary&#39;</span><span class="p">,</span> <span class="s1">&#39;Necessary&#39;</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">df9</span> <span class="c1"># Left Dataframe</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df10</span> <span class="c1"># Right DataFrame</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using pd.merge()</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df9</span><span class="p">,</span> <span class="n">df10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="many-to-many-joins">
+<h4><span class="section-number">6.13.2.1.3. </span>Many-to-Many Joins<a class="headerlink" href="#many-to-many-joins" title="Permalink to this headline">¶</a></h4>
+<p>Many-to-many joins if the key column in both left and right DataFrame contains any duplicates, it can result in many-to-many joins. Calling <code class="docutils literal notranslate"><span class="pre">pd.merge()</span></code> will preserve the duplicate entries for both. In this example the key column is <code class="docutils literal notranslate"><span class="pre">Category</span></code> and for both DataFrames there are some duplicate entries. It preserves these by creating new instances for each combination possible. So for here there are 3 entries for Electronics for df7 and 2 entries for Electronics for df11. Combining those there is now 6 entries for Electronics, representing the 6 possible combinations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df11</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Category&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Electronics&#39;</span><span class="p">,</span> <span class="s1">&#39;Electronics&#39;</span><span class="p">,</span> <span class="s1">&#39;Study&#39;</span><span class="p">,</span> <span class="s1">&#39;Study&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;Fashion&#39;</span><span class="p">,</span> <span class="s1">&#39;Fashion&#39;</span><span class="p">,</span> <span class="s1">&#39;Grocery&#39;</span><span class="p">,</span> <span class="s1">&#39;Grocery&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Occupation&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;College&#39;</span><span class="p">,</span> <span class="s1">&#39;Part-Time&#39;</span><span class="p">,</span> <span class="s1">&#39;Retired&#39;</span><span class="p">,</span> <span class="s1">&#39;Not Working&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;Working&#39;</span><span class="p">,</span> <span class="s1">&#39;Full-Time&#39;</span><span class="p">,</span> <span class="s1">&#39;High School&#39;</span><span class="p">,</span> <span class="s1">&#39;Chores&#39;</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">df7</span> <span class="c1"># Left DataFrame</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df11</span> <span class="c1"># Right DataFrame</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using pd.merge()</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df7</span><span class="p">,</span> <span class="n">df11</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="using-merge-keys">
+<h3><span class="section-number">6.13.2.2. </span>Using Merge Keys<a class="headerlink" href="#using-merge-keys" title="Permalink to this headline">¶</a></h3>
+<p>By default, <code class="docutils literal notranslate"><span class="pre">pd.merge()</span></code> looks for one or more matching column names to use as a key. However you can specify this column name using the argument <code class="docutils literal notranslate"><span class="pre">on</span> <span class="pre">=</span> <span class="pre">'column_name'</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df7</span><span class="p">);</span> <span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df11</span><span class="p">);</span> <span class="nb">print</span><span class="p">()</span>
+
+<span class="c1"># using on </span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df7</span><span class="p">,</span> <span class="n">df11</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s1">&#39;Category&#39;</span><span class="p">));</span> <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If two colums that are the same have different names you can merge them using <code class="docutils literal notranslate"><span class="pre">left_on</span></code> and <code class="docutils literal notranslate"><span class="pre">right_on</span></code> to specify which column for each DataFrame is supposed to be the key. This will also preserve both columns in the resulting DataFrame, however they will be identical besides the name.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df12</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Type&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Electronics&#39;</span><span class="p">,</span> <span class="s1">&#39;Electronics&#39;</span><span class="p">,</span> <span class="s1">&#39;Study&#39;</span><span class="p">,</span> <span class="s1">&#39;Study&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;Fashion&#39;</span><span class="p">,</span> <span class="s1">&#39;Fashion&#39;</span><span class="p">,</span> <span class="s1">&#39;Grocery&#39;</span><span class="p">,</span> <span class="s1">&#39;Grocery&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Occupation&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;College&#39;</span><span class="p">,</span> <span class="s1">&#39;Part-Time&#39;</span><span class="p">,</span> <span class="s1">&#39;Retired&#39;</span><span class="p">,</span> <span class="s1">&#39;Not Working&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;Working&#39;</span><span class="p">,</span> <span class="s1">&#39;Full-Time&#39;</span><span class="p">,</span> <span class="s1">&#39;High School&#39;</span><span class="p">,</span> <span class="s1">&#39;Chores&#39;</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df7</span><span class="p">);</span> <span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df12</span><span class="p">);</span> <span class="nb">print</span><span class="p">()</span>
+
+<span class="c1"># using left_on and right_on</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df7</span><span class="p">,</span> <span class="n">df12</span><span class="p">,</span> <span class="n">left_on</span> <span class="o">=</span> <span class="s1">&#39;Category&#39;</span><span class="p">,</span> <span class="n">right_on</span> <span class="o">=</span> <span class="s1">&#39;Type&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It is even possible to merge by index using the arguments <code class="docutils literal notranslate"><span class="pre">left_index</span> <span class="pre">=</span> <span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">right_index</span> <span class="pre">=</span> <span class="pre">True</span></code> to specify you want to merge by index.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df13</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Kelly&#39;</span><span class="p">,</span> <span class="s1">&#39;Ann&#39;</span><span class="p">,</span> <span class="s1">&#39;Suzy&#39;</span><span class="p">,</span> <span class="s1">&#39;Bob&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Sydney&#39;</span><span class="p">,</span> <span class="s1">&#39;Jacob&#39;</span><span class="p">,</span> <span class="s1">&#39;Will&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Occupation&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;College&#39;</span><span class="p">,</span> <span class="s1">&#39;Part-Time&#39;</span><span class="p">,</span> <span class="s1">&#39;Retired&#39;</span><span class="p">,</span> <span class="s1">&#39;Not Working&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;Working&#39;</span><span class="p">,</span> <span class="s1">&#39;Full-Time&#39;</span><span class="p">,</span> <span class="s1">&#39;High School&#39;</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">df14</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Jacob&#39;</span><span class="p">,</span> <span class="s1">&#39;Sydney&#39;</span><span class="p">,</span> <span class="s1">&#39;Suzy&#39;</span><span class="p">,</span> <span class="s1">&#39;Will&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;Ann&#39;</span><span class="p">,</span> <span class="s1">&#39;Kelly&#39;</span><span class="p">,</span> <span class="s1">&#39;Bob&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Favorite_Color&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Blue&#39;</span><span class="p">,</span> <span class="s1">&#39;Red&#39;</span><span class="p">,</span> <span class="s1">&#39;Green&#39;</span><span class="p">,</span> <span class="s1">&#39;Yellow&#39;</span><span class="p">,</span>
+                       <span class="s1">&#39;Orange&#39;</span><span class="p">,</span> <span class="s1">&#39;Brown&#39;</span><span class="p">,</span> <span class="s1">&#39;Purple&#39;</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">df13</span> <span class="o">=</span> <span class="n">df13</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Name&#39;</span><span class="p">)</span>
+<span class="n">df14</span> <span class="o">=</span> <span class="n">df14</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Name&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df13</span><span class="p">);</span> <span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df14</span><span class="p">);</span> <span class="nb">print</span><span class="p">()</span>
+
+<span class="c1"># Using left_index and right_index</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df13</span><span class="p">,</span> <span class="n">df14</span><span class="p">,</span> <span class="n">left_index</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span> <span class="o">=</span> <span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="aggregation-and-grouping">
+<h2><span class="section-number">6.13.3. </span>Aggregation and Grouping<a class="headerlink" href="#aggregation-and-grouping" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="simple-aggregration">
+<h3><span class="section-number">6.13.3.1. </span>Simple Aggregration<a class="headerlink" href="#simple-aggregration" title="Permalink to this headline">¶</a></h3>
+<p>For Pandas <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> aggrigates return results within each column. All common aggrigates are available, and in addition there is a method <code class="docutils literal notranslate"><span class="pre">describe()</span></code> which computes several common aggrigates at once for each column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip3 install seaborn</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">mpg</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;mpg&#39;</span><span class="p">)</span>
+
+<span class="n">mpg</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="groupby">
+<h3><span class="section-number">6.13.3.2. </span>GroupBy<a class="headerlink" href="#groupby" title="Permalink to this headline">¶</a></h3>
+<p>Conditional Aggrigation by some label or index can be done by <code class="docutils literal notranslate"><span class="pre">groupby</span></code> operation, which does the “split, apply, combine” operation by default.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpg</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;origin&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="using-groupby-object">
+<h3><span class="section-number">6.13.3.3. </span>Using GroupBy Object<a class="headerlink" href="#using-groupby-object" title="Permalink to this headline">¶</a></h3>
+<p>It is possible to think of the <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> object as a collection of <code class="docutils literal notranslate"><span class="pre">DataFrames</span></code>, and it has a variety of operations that can be used. It is possible to index a <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> object as you would a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> to return a modified GroupBy object.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Index the mpg data grouped by origin to look at the median</span>
+<span class="n">mpg</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;origin&#39;</span><span class="p">)[</span><span class="s1">&#39;mpg&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> object also supports direct iteration over groups, returning each group as a <code class="docutils literal notranslate"><span class="pre">Series</span></code> or <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Iterate over the origin </span>
+<span class="k">for</span> <span class="p">(</span><span class="n">origin</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span> <span class="ow">in</span> <span class="n">mpg</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;origin&#39;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0:30s}</span><span class="s2"> shape = </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">origin</span><span class="p">,</span> <span class="n">group</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In addition any method not specifically called by the <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> object will be called on the indivdual groups within the <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> object.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Applying the describe() method to each group after</span>
+<span class="c1"># grouping by region of origin</span>
+<span class="n">mpg</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;origin&#39;</span><span class="p">)[</span><span class="s1">&#39;mpg&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="groupby-aggregration">
+<h3><span class="section-number">6.13.3.4. </span>GroupBy Aggregration<a class="headerlink" href="#groupby-aggregration" title="Permalink to this headline">¶</a></h3>
+<p>The aggregate function can take a string or function or list of those and compute all aggregates at once.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df17</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Color&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Red&#39;</span><span class="p">,</span> <span class="s1">&#39;Green&#39;</span><span class="p">,</span> <span class="s1">&#39;Blue&#39;</span><span class="p">,</span> <span class="s1">&#39;Red&#39;</span><span class="p">,</span> <span class="s1">&#39;Green&#39;</span><span class="p">,</span> <span class="s2">&quot;Blue&quot;</span><span class="p">],</span>
+    <span class="s1">&#39;Data1&#39;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span>
+    <span class="s1">&#39;Data2&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">)},</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Color&#39;</span><span class="p">,</span> <span class="s1">&#39;Data1&#39;</span><span class="p">,</span> <span class="s1">&#39;Data2&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Returns the groups by color looking at the aggregates </span>
+<span class="n">df17</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Color&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">aggregate</span><span class="p">([</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">,</span> <span class="nb">max</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also pass a dictionary which maps colum names to operations to be used in those columns.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Returns only the min for data1 and max for data2</span>
+<span class="n">df17</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Color&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">aggregate</span><span class="p">({</span><span class="s1">&#39;Data1&#39;</span><span class="p">:</span><span class="s1">&#39;min&#39;</span><span class="p">,</span>
+                                 <span class="s1">&#39;Data2&#39;</span><span class="p">:</span><span class="s1">&#39;max&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="groupby-filtering">
+<h3><span class="section-number">6.13.3.5. </span>GroupBy Filtering<a class="headerlink" href="#groupby-filtering" title="Permalink to this headline">¶</a></h3>
+<p>Filtering allows us to keep data based on group properties. It returns a Boolian value saying if the group passes the filtering.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Keep data only if standard deviation is greater than 3</span>
+<span class="k">def</span> <span class="nf">filter_function</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;Data2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">4</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df17</span><span class="p">);</span> <span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df17</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Color&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">());</span> <span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df17</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Color&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">filter_function</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="groupby-apply-method">
+<h3><span class="section-number">6.13.3.6. </span>GroupBy apply() Method<a class="headerlink" href="#groupby-apply-method" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">apply()</span></code> lets you apply an arbitrary function to the results of a group. The function takes a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> as an argument and returns either a Pandas <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>, Pandas <code class="docutils literal notranslate"><span class="pre">Series</span></code> or a scalar.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Divides data1 by the mean of data2</span>
+<span class="k">def</span> <span class="nf">dev_by_mean_data2</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">[</span><span class="s1">&#39;Data1&#39;</span><span class="p">]</span> <span class="o">/=</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;Data2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df17</span><span class="p">);</span> <span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df17</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Color&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">dev_by_mean_data2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="specifying-the-split-key">
+<h3><span class="section-number">6.13.3.7. </span>Specifying the Split Key<a class="headerlink" href="#specifying-the-split-key" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> can be split by more than just a single column name. It can be split by any list, array, series, or index providing the grouping keys so long as the length matches the <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Split using a list of groups in order for each </span>
+<span class="c1"># index in the dataframe</span>
+<span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df17</span><span class="p">);</span> <span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df17</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">());</span> <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It can also be split by a dictionary which maps index values to group keys.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Split using a dictionary mapping colors to if </span>
+<span class="c1"># they are primary or secondary</span>
+<span class="n">df18</span> <span class="o">=</span> <span class="n">df17</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Color&#39;</span><span class="p">)</span>
+<span class="n">mapping</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Red&#39;</span><span class="p">:</span><span class="s1">&#39;Primary&#39;</span><span class="p">,</span> <span class="s1">&#39;Blue&#39;</span><span class="p">:</span><span class="s1">&#39;Primary&#39;</span><span class="p">,</span> <span class="s1">&#39;Green&#39;</span><span class="p">:</span><span class="s1">&#39;Secondary&#39;</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df18</span><span class="p">);</span> <span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df18</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">mapping</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">());</span> <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It can also be split by any Python function so long as it inputs the index value and outputs the group.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Split using str.upper to make all indicies uppercase</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df18</span><span class="p">);</span> <span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df18</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">upper</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">());</span> <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally it can be done by mixing any of these together in a list of valid keys to create a multi-index.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Split using both str.upper and the dictionary mapping </span>
+<span class="c1"># colors to primary and secondary</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df18</span><span class="p">);</span> <span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df18</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="nb">str</span><span class="o">.</span><span class="n">upper</span><span class="p">,</span> <span class="n">mapping</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="pivot-tables">
+<h2><span class="section-number">6.13.4. </span>Pivot Tables<a class="headerlink" href="#pivot-tables" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="basics">
+<h3><span class="section-number">6.13.4.1. </span>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">¶</a></h3>
+<p>While <code class="docutils literal notranslate"><span class="pre">groupby</span></code> is useful for gaining basic understanding of data, it can become messy when you try to do anything in more than one-dimension. This is why Pandas has the built in routine <code class="docutils literal notranslate"><span class="pre">pivot_table</span></code> which can easily handle multidimensional aggregation. <code class="docutils literal notranslate"><span class="pre">pivot_table</span></code> allows us to generate a new table of aggrigates which can be broken down further to allow for multidimensional analysis. For example here we are finding the mean mpg for cars based on region of origin and their number of cylinders at the same time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpg</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="s1">&#39;mpg&#39;</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="s1">&#39;origin&#39;</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="s1">&#39;cylinders&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="multilevel-pivot-tables">
+<h3><span class="section-number">6.13.4.2. </span>Multilevel Pivot Tables<a class="headerlink" href="#multilevel-pivot-tables" title="Permalink to this headline">¶</a></h3>
+<p>We can bin data to show multilevel tables using the <code class="docutils literal notranslate"><span class="pre">pd.cut</span></code> and <code class="docutils literal notranslate"><span class="pre">pd.qcut</span></code> functions. Here are examples of three-dimensional and four-dimensional tables done in this way.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Three-dimensional table looking at model year as a third dimension</span>
+<span class="n">years</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">mpg</span><span class="p">[</span><span class="s1">&#39;model_year&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mi">70</span><span class="p">,</span> <span class="mi">73</span><span class="p">,</span> <span class="mi">76</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">82</span><span class="p">])</span>
+<span class="n">mpg</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="s1">&#39;mpg&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;origin&#39;</span><span class="p">,</span> <span class="n">years</span><span class="p">],</span> <span class="s1">&#39;cylinders&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Four-dimensional table dividing the results into two weight categories</span>
+<span class="n">weight</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">mpg</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">mpg</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="s1">&#39;mpg&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;origin&#39;</span><span class="p">,</span> <span class="n">years</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;cylinders&#39;</span><span class="p">,</span> <span class="n">weight</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="additional-pivot-tables-options">
+<h3><span class="section-number">6.13.4.3. </span>Additional Pivot Tables Options<a class="headerlink" href="#additional-pivot-tables-options" title="Permalink to this headline">¶</a></h3>
+<p>There are five arguments we havent covered for pivot tables. <code class="docutils literal notranslate"><span class="pre">fill_value</span></code> and <code class="docutils literal notranslate"><span class="pre">dropna</span></code> deal with missing data. <code class="docutils literal notranslate"><span class="pre">aggfunc</span></code> keyword determines which type of aggrigation is applied, which is mean by default. It can specify <code class="docutils literal notranslate"><span class="pre">'sum'</span></code>, <code class="docutils literal notranslate"><span class="pre">'mean'</span></code>, <code class="docutils literal notranslate"><span class="pre">'count'</span></code>, <code class="docutils literal notranslate"><span class="pre">'min'</span></code>, <code class="docutils literal notranslate"><span class="pre">'max'</span></code>, etc.. or a function for an aggrigation (<code class="docutils literal notranslate"><span class="pre">np.sum()</span></code>, <code class="docutils literal notranslate"><span class="pre">min()</span></code>, <code class="docutils literal notranslate"><span class="pre">sum()</span></code>, etc) It can also be a dictionary mapping a collumn to any of the previous options. When using aggfunc the values keyword is determined automatically</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pivot table looking at both the median mpg and max </span>
+<span class="c1"># horsepower for each cylinder count for each region</span>
+<span class="n">mpg</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">index</span> <span class="o">=</span> <span class="s1">&#39;origin&#39;</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="s1">&#39;cylinders&#39;</span><span class="p">,</span> 
+                <span class="n">aggfunc</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;mpg&#39;</span><span class="p">:</span><span class="s1">&#39;median&#39;</span><span class="p">,</span> <span class="s1">&#39;horsepower&#39;</span><span class="p">:</span><span class="s1">&#39;max&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">margins</span></code> keyword can be used to compute totals along each grouping. The name defaults to “All” but can be specified using <code class="docutils literal notranslate"><span class="pre">margins_names</span> <span class="pre">=</span> <span class="pre">&quot;your_name&quot;</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pivot tqble looking at mean mpg per region and in all regions</span>
+<span class="n">mpg</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="s1">&#39;mpg&#39;</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="s1">&#39;origin&#39;</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="s1">&#39;cylinders&#39;</span><span class="p">,</span>
+                <span class="n">margins</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="Pandas_missing_hierarchical.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">6.12. </span>Pandas: Missing Data and Hierarchical Indexing</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="sklearn.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">7. </span>Scikit Learn</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Jun Yan and students in STAT 5255, Fall 2021<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
