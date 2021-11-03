@@ -37,6 +37,7 @@ When you pick a task, cross it out and add your name.
 1. Surya Eada ~~Naive Bayes classification~~
 1. Support vector machine
 1. Jintao Zhang ~~Decision trees and random forests~~
+1. Sreeram Anantharaman ~~XGBoost~~
 1. TensorFlow
 1. A Kaggle competition walkthrough
 1. Zefang Min ~~Scope of variables~~
