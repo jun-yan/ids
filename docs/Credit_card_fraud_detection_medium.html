@@ -1,0 +1,940 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>7.7. Credit Card Fraud Detection &#8212; Introduction to Data Science</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8. XGBoost" href="XGBoost.html" />
+    <link rel="prev" title="7.6. Naive Bayes Classification Problem:" href="naive_bayes.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/tricircle.pdf" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="tasks.html">
+   1. Task Board
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   2. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="pybasics.html">
+   3. Python for R Users
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dict_in_python.html">
+     3.11. Python dictionary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="profiling.html">
+     3.12. Profiling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mle-gamma.html">
+     3.13. Gamma MLE Simulation Study
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="Numpy.html">
+   4. Numpy
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="NumpyAdvanced.html">
+     4.2. Numpy Advanced
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="Scipy.html">
+   5. Scipy
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Optimization.html">
+     5.3. Optimization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="pandas_objs.html">
+   6. Pandas
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Pandas_missing_hierarchical.html">
+     6.12. Pandas: Missing Data and Hierarchical Indexing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Pandas_Dataset_Operations.html">
+     6.13. Pandas: Dataset Operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="sklearn.html">
+   7. Scikit Learn
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="Measures_of_classification_accuracy.html">
+     7.1. Measures of classification accuracy and functions in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Fraud_Detection_Python_from_GitHub.html">
+     7.2. Fraud Detection with Python (Github Trenton McKinney)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Support_vector_machine.html">
+     7.3. Support vector machine
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Decision_Trees_and_Random_Forest.html">
+     7.5. Decision Trees and Random Forest
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="naive_bayes.html">
+     7.6. Naive Bayes Classification Problem:
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     7.7. Credit Card Fraud Detection
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="XGBoost.html">
+   8. XGBoost
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dscompetition.html">
+   9. Data Science Competition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="misc.html">
+   10. Miscellaneous learnings
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../_sources/docs/Credit_card_fraud_detection_medium.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/Credit_card_fraud_detection_medium.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/jun-yan/ids/master?urlpath=tree/notes/docs/Credit_card_fraud_detection_medium.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#importing-packages">
+   7.7.1. Importing packages
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#importing-data">
+   7.7.2. Importing Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exploratory-data-analysis">
+   7.7.3. Exploratory Data Analysis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-split">
+   7.7.4. Data Split
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modeling">
+   7.7.5. Modeling
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decision-tree">
+     7.7.5.1. Decision Tree
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#k-nearest-neighbors">
+     7.7.5.2. K-Nearest Neighbors
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#logistic-regression">
+     7.7.5.3. Logistic Regression
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#support-vector-machine">
+     7.7.5.4. Support Vector Machine
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#random-forest-tree">
+     7.7.5.5. Random Forest Tree
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#xgboost">
+     7.7.5.6. XGBoost
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-evaluation">
+   7.7.6. Model Evaluation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#accuracy-score">
+     7.7.6.1. Accuracy Score
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#f1-score">
+     7.7.6.2. F1 Score
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#confusion-matrix">
+     7.7.6.3. Confusion Matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     7.7.6.4. Decision tree
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     7.7.6.5. K-Nearest Neighbors
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     7.7.6.6. Logistic regression
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     7.7.6.7. Support Vector Machine
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     7.7.6.8. Random forest tree
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     7.7.6.9. XGBoost
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="credit-card-fraud-detection">
+<h1><span class="section-number">7.7. </span>Credit Card Fraud Detection<a class="headerlink" href="#credit-card-fraud-detection" title="Permalink to this headline">¶</a></h1>
+<p>Our goal is to identify fraudulent transactions using classification models to classify and distinguish them.</p>
+<p>Steps involved:</p>
+<ul class="simple">
+<li><p>Importing the required packages</p></li>
+<li><p>Importing the data</p></li>
+<li><p>Exploratory Data Analysis</p></li>
+<li><p>Data Split</p></li>
+<li><p>Building various classification models</p></li>
+<li><p>Evaluating the classification models using the evaluation metrics</p></li>
+</ul>
+<div class="section" id="importing-packages">
+<h2><span class="section-number">7.7.1. </span>Importing packages<a class="headerlink" href="#importing-packages" title="Permalink to this headline">¶</a></h2>
+<p>We will be using the following packages: Pandas to manipulate data, NumPy to manipulate arrays, scikit-learn for spliting the data into train and test, building and evaluating the classification models, and xgboost to use the xgboost classifier model algorithm.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
+<span class="kn">from</span> <span class="nn">termcolor</span> <span class="kn">import</span> <span class="n">colored</span> <span class="k">as</span> <span class="n">cl</span> <span class="c1"># text customization</span>
+<span class="kn">import</span> <span class="nn">itertools</span> <span class="c1"># advanced tools</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span> 
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span> 
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span> 
+<span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBClassifier</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span> 
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span> 
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">f1_score</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="importing-data">
+<h2><span class="section-number">7.7.2. </span>Importing Data<a class="headerlink" href="#importing-data" title="Permalink to this headline">¶</a></h2>
+<p>The variables V1 to V28 in the data are the principal components obtained by PCA. Since the variable time does not help our modeling we are going to remove it from our data. The variable ‘Amount’ contains the total amount of money being transacted and the variable ‘Class’ contains the information whether the transaction is a fraudulent one or not.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/creditcard.csv&#39;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="exploratory-data-analysis">
+<h2><span class="section-number">7.7.3. </span>Exploratory Data Analysis<a class="headerlink" href="#exploratory-data-analysis" title="Permalink to this headline">¶</a></h2>
+<p>Next we look at the number of fraudulent and non-fraudulent cases that are present in our dataset and also compute the percentage of fraudulent cases.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cases</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">nonfraud_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">Class</span> <span class="o">==</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">fraud_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">Class</span> <span class="o">==</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">fraud_percentage</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">fraud_count</span><span class="o">/</span><span class="n">nonfraud_count</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;CASE COUNT&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;--------------------------------------------&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;Total number of cases are </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cases</span><span class="p">),</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;Number of Non-fraud cases are </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nonfraud_count</span><span class="p">),</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;Number of fraud cases are </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fraud_count</span><span class="p">),</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;Percentage of fraud cases is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fraud_percentage</span><span class="p">),</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;--------------------------------------------&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Descriptive Statistics</span>
+
+<span class="n">nonfraud_cases</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">Class</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">fraud_cases</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">Class</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;CASE AMOUNT STATISTICS&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;--------------------------------------------&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;NON-FRAUD CASE AMOUNT STATS&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nonfraud_cases</span><span class="o">.</span><span class="n">Amount</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;--------------------------------------------&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;FRAUD CASE AMOUNT STATS&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fraud_cases</span><span class="o">.</span><span class="n">Amount</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;--------------------------------------------&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see that the values in the variable ‘Amount’ has a high variability in comparison to the other variables. In order to tackle this issue we are going to standardize this variable using the ‘StandardScaler’ method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sc</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">amount</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Amount&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Amount&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">amount</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Amount&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-split">
+<h2><span class="section-number">7.7.4. </span>Data Split<a class="headerlink" href="#data-split" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Class&#39;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Class&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;X_train samples : &#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]),</span> <span class="n">X_train</span><span class="p">[:</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;X_test samples : &#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]),</span> <span class="n">X_test</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;y_train samples : &#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]),</span> <span class="n">y_train</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">20</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;y_test samples : &#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]),</span> <span class="n">y_test</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">20</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="modeling">
+<h2><span class="section-number">7.7.5. </span>Modeling<a class="headerlink" href="#modeling" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="decision-tree">
+<h3><span class="section-number">7.7.5.1. </span>Decision Tree<a class="headerlink" href="#decision-tree" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tree_model</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">criterion</span> <span class="o">=</span> <span class="s1">&#39;entropy&#39;</span><span class="p">)</span>
+<span class="n">tree_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">tree_yhat</span> <span class="o">=</span> <span class="n">tree_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The ‘DecisionTreeClassifier’ algorithm is used to build the model. And the ‘max_depth’ specification in the function refers to the number of splits in the tree and the ‘criterion’ specification determines when to stop splitting the tree.</p>
+</div>
+<div class="section" id="k-nearest-neighbors">
+<h3><span class="section-number">7.7.5.2. </span>K-Nearest Neighbors<a class="headerlink" href="#k-nearest-neighbors" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span> <span class="o">=</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">knn_yhat</span> <span class="o">=</span> <span class="n">knn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The ‘KNeighborsClassifier’ algorithm is used to build the model. The value of the ‘n_neighbors’ is chosen randomly but it can also be chosen optimistically by iterating through a range of values.</p>
+</div>
+<div class="section" id="logistic-regression">
+<h3><span class="section-number">7.7.5.3. </span>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">lr_yhat</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="support-vector-machine">
+<h3><span class="section-number">7.7.5.4. </span>Support Vector Machine<a class="headerlink" href="#support-vector-machine" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">svm</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">()</span>
+<span class="n">svm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">svm_yhat</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="random-forest-tree">
+<h3><span class="section-number">7.7.5.5. </span>Random Forest Tree<a class="headerlink" href="#random-forest-tree" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">max_depth</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">rf_yhat</span> <span class="o">=</span> <span class="n">rf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The ‘RandomForestClassifier’ algorithm is used to build the model and the ‘max_depth’ specification in the function refers to the number of splits in the tree. The main difference between the decision tree and the random forest is that, the decision tree uses the entire dataset to construct a single model whereas, the random forest uses randomly selected features to construct multiple models.</p>
+</div>
+<div class="section" id="xgboost">
+<h3><span class="section-number">7.7.5.6. </span>XGBoost<a class="headerlink" href="#xgboost" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xgb</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">max_depth</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">use_label_encoder</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">eval_metric</span><span class="o">=</span><span class="s1">&#39;error&#39;</span><span class="p">)</span>
+<span class="n">xgb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">xgb_yhat</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The ‘XGBClassifier’ algorithm provided is used to build the model.</p>
+</div>
+</div>
+<div class="section" id="model-evaluation">
+<h2><span class="section-number">7.7.6. </span>Model Evaluation<a class="headerlink" href="#model-evaluation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="accuracy-score">
+<h3><span class="section-number">7.7.6.1. </span>Accuracy Score<a class="headerlink" href="#accuracy-score" title="Permalink to this headline">¶</a></h3>
+<p>The accuracy score is calculated by dividing the number of correct predictions made by the model by the total number of predictions made by the model. It can generally be expressed as:</p>
+<p>Accuracy score = No.of correct predictions / Total no.of predictions</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;ACCURACY SCORE&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;------------------------------------------------------------------------&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;Accuracy score of the Decision Tree model is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">tree_yhat</span><span class="p">)),</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;------------------------------------------------------------------------&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;Accuracy score of the KNN model is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">knn_yhat</span><span class="p">)),</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;green&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;------------------------------------------------------------------------&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;Accuracy score of the Logistic Regression model is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">lr_yhat</span><span class="p">)),</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;------------------------------------------------------------------------&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;Accuracy score of the SVM model is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">svm_yhat</span><span class="p">)),</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;------------------------------------------------------------------------&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;Accuracy score of the Random Forest Tree model is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">rf_yhat</span><span class="p">)),</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;------------------------------------------------------------------------&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;Accuracy score of the XGBoost model is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">xgb_yhat</span><span class="p">)),</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;------------------------------------------------------------------------&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>According to the accuracy score evaluation metric, the KNN model seems to be the most accurate model and the Logistic regression model seems to be the least accurate model.</p>
+</div>
+<div class="section" id="f1-score">
+<h3><span class="section-number">7.7.6.2. </span>F1 Score<a class="headerlink" href="#f1-score" title="Permalink to this headline">¶</a></h3>
+<p>The F1 score or F-score can be defined as the harmonic mean of the model’s precision and recall. It is calculated by dividing the product of the model’s precision and recall by the value obtained on adding the model’s precision and recall and finally multiplying the result with 2 (We are giving equal weights to precision and recall). It can be expressed as:</p>
+<p>F1 score = 2( (precision * recall) / (precision + recall) )</p>
+<p>Precision = True Positive / (True Positive + False Positive)</p>
+<p>Recall = True Positive / (True Positive + False Negative)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;F1 SCORE&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;------------------------------------------------------------------------&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;F1 score of the Decision Tree model is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">tree_yhat</span><span class="p">)),</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;------------------------------------------------------------------------&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;F1 score of the KNN model is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">knn_yhat</span><span class="p">)),</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;green&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;------------------------------------------------------------------------&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;F1 score of the Logistic Regression model is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">lr_yhat</span><span class="p">)),</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;------------------------------------------------------------------------&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;F1 score of the SVM model is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">svm_yhat</span><span class="p">)),</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;------------------------------------------------------------------------&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;F1 score of the Random Forest Tree model is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">rf_yhat</span><span class="p">)),</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;------------------------------------------------------------------------&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;F1 score of the XGBoost model is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">xgb_yhat</span><span class="p">)),</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="p">(</span><span class="s1">&#39;------------------------------------------------------------------------&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>On basis of the F1 score evaluation metric, the KNN model is the best performing model and the Logistic regression model seems to be the least accurate model.</p>
+</div>
+<div class="section" id="confusion-matrix">
+<h3><span class="section-number">7.7.6.3. </span>Confusion Matrix<a class="headerlink" href="#confusion-matrix" title="Permalink to this headline">¶</a></h3>
+<p>Typically, a confusion matrix is a visualization of a classification model that shows how well the model has predicted the outcomes when compared to the original ones. Usually, the predicted outcomes are stored in a variable that is then converted into a correlation table. Using the correlation table, the confusion matrix is plotted in the form of a heatmap.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># defining the plot function</span>
+
+<span class="k">def</span> <span class="nf">plot_confusion_matrix</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">normalize</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span><span class="p">):</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Confusion Matrix of </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
+        <span class="n">cm</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">/</span> <span class="n">cm</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="n">cmap</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+    <span class="n">tick_marks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">classes</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">tick_marks</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">rotation</span> <span class="o">=</span> <span class="mi">45</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">tick_marks</span><span class="p">,</span> <span class="n">classes</span><span class="p">)</span>
+
+    <span class="n">fmt</span> <span class="o">=</span> <span class="s1">&#39;.2f&#39;</span> <span class="k">if</span> <span class="n">normalize</span> <span class="k">else</span> <span class="s1">&#39;d&#39;</span>
+    <span class="n">thresh</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">/</span> <span class="mf">2.</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">range</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="nb">format</span><span class="p">(</span><span class="n">cm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span> <span class="n">fmt</span><span class="p">),</span>
+                 <span class="n">horizontalalignment</span> <span class="o">=</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span>
+                 <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;white&#39;</span> <span class="k">if</span> <span class="n">cm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">thresh</span> <span class="k">else</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;True label&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted label&#39;</span><span class="p">)</span>
+
+<span class="c1"># Compute confusion matrix for the models</span>
+
+<span class="n">tree_matrix</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">tree_yhat</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="c1"># Decision Tree</span>
+<span class="n">knn_matrix</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">knn_yhat</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="c1"># K-Nearest Neighbors</span>
+<span class="n">lr_matrix</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">lr_yhat</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="c1"># Logistic Regression</span>
+<span class="n">svm_matrix</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">svm_yhat</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="c1"># Support Vector Machine</span>
+<span class="n">rf_matrix</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">rf_yhat</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="c1"># Random Forest Tree</span>
+<span class="n">xgb_matrix</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">xgb_yhat</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="c1"># XGBoost</span>
+
+<span class="c1"># Plot the confusion matrix</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3><span class="section-number">7.7.6.4. </span>Decision tree<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tree_cm_plot</span> <span class="o">=</span> <span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">tree_matrix</span><span class="p">,</span> 
+                                <span class="n">classes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Non-Default(0)&#39;</span><span class="p">,</span><span class="s1">&#39;Default(1)&#39;</span><span class="p">],</span> 
+                                <span class="n">normalize</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Decision Tree&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first row represents transactions whose actual fraud value in the test dataset is 0. As we can see, the total number of non-fraud transactions is 56861. And out of these 56861 non-fraud transactions, the classifier correctly predicted 56849 of them as 0 and 12 of them as 1.</p>
+<p>Let’s look at the second row. It looks like there were 101 fraudulent transactions. The classifier correctly predicted 77 of them as 1, and 24 of them wrongly as 0.</p>
+</div>
+<div class="section" id="id2">
+<h3><span class="section-number">7.7.6.5. </span>K-Nearest Neighbors<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">knn_cm_plot</span> <span class="o">=</span> <span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">knn_matrix</span><span class="p">,</span> 
+                                <span class="n">classes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Non-Default(0)&#39;</span><span class="p">,</span><span class="s1">&#39;Default(1)&#39;</span><span class="p">],</span> 
+                                <span class="n">normalize</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;KNN&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Out of these 56861 non-fraud transactions, the classifier correctly predicted 56854 of them as 0 and 7 of them as 1.</p>
+<p>Out of 101 fraudulent cases the classifier correctly predicted 81 of them as 1, and 20 of them wrongly as 0.</p>
+</div>
+<div class="section" id="id3">
+<h3><span class="section-number">7.7.6.6. </span>Logistic regression<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lr_cm_plot</span> <span class="o">=</span> <span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">lr_matrix</span><span class="p">,</span> 
+                                <span class="n">classes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Non-Default(0)&#39;</span><span class="p">,</span><span class="s1">&#39;Default(1)&#39;</span><span class="p">],</span> 
+                                <span class="n">normalize</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Logistic Regression&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Out of these 56861 non-fraud transactions, the classifier correctly predicted 56852 of them as 0 and 9 of them as 1.</p>
+<p>Out of 101 fraudulent cases the classifier correctly predicted 64 of them as 1, and 37 of them wrongly as 0.</p>
+</div>
+<div class="section" id="id4">
+<h3><span class="section-number">7.7.6.7. </span>Support Vector Machine<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">svm_cm_plot</span> <span class="o">=</span> <span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">svm_matrix</span><span class="p">,</span> 
+                                <span class="n">classes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Non-Default(0)&#39;</span><span class="p">,</span><span class="s1">&#39;Default(1)&#39;</span><span class="p">],</span> 
+                                <span class="n">normalize</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;SVM&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Out of these 56861 non-fraud transactions, the classifier correctly predicted 56855 of them as 0 and 6 of them as 1.</p>
+<p>Out of 101 fraudulent cases the classifier correctly predicted 68 of them as 1, and 33 of them wrongly as 0.</p>
+</div>
+<div class="section" id="id5">
+<h3><span class="section-number">7.7.6.8. </span>Random forest tree<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rf_cm_plot</span> <span class="o">=</span> <span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">rf_matrix</span><span class="p">,</span> 
+                                <span class="n">classes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Non-Default(0)&#39;</span><span class="p">,</span><span class="s1">&#39;Default(1)&#39;</span><span class="p">],</span> 
+                                <span class="n">normalize</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Random Forest Tree&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Out of these 56861 non-fraud transactions, the classifier correctly predicted 56854 of them as 0 and 7 of them as 1.</p>
+<p>Out of 101 fraudulent cases the classifier correctly predicted 69 of them as 1, and 32 of them wrongly as 0.</p>
+</div>
+<div class="section" id="id6">
+<h3><span class="section-number">7.7.6.9. </span>XGBoost<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xgb_cm_plot</span> <span class="o">=</span> <span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">xgb_matrix</span><span class="p">,</span> 
+                                <span class="n">classes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Non-Default(0)&#39;</span><span class="p">,</span><span class="s1">&#39;Default(1)&#39;</span><span class="p">],</span> 
+                                <span class="n">normalize</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;XGBoost&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Out of these 56861 non-fraud transactions, the classifier correctly predicted 56854 of them as 0 and 7 of them as 1.</p>
+<p>Out of 101 fraudulent cases the classifier correctly predicted 79 of them as 1, and 22 of them wrongly as 0.</p>
+<p>Comparing the confusion matrix of all the models, it can be seen that the K-Nearest Neighbors model has performed really well in classifying the fraud transactions from the non-fraud transactions followed. So we can conclude that the most appropriate model which can be used for our case is the K-Nearest Neighbors model and the least appropraite model is the Logistic regression model.</p>
+<p>Reference:</p>
+<ul class="simple">
+<li><p>Credit Card Fraud Detection With Machine Learning in Python by Nikhil Adityan
+<a class="reference external" href="https://medium.com/codex/credit-card-fraud-detection-with-machine-learning-in-python-ac7281991d87">https://medium.com/codex/credit-card-fraud-detection-with-machine-learning-in-python-ac7281991d87</a></p></li>
+</ul>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="naive_bayes.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">7.6. </span>Naive Bayes Classification Problem:</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="XGBoost.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">8. </span>XGBoost</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Jun Yan and students in STAT 5255, Fall 2021<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

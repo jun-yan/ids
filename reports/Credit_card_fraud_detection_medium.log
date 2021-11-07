@@ -17,23 +17,35 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import numpy as np
-from scipy.stats import gamma
-from scipy.optimize import minimize
+import pandas as pd 
+import numpy as np 
+import matplotlib.pyplot as plt 
+from termcolor import colored as cl # text customization
+import itertools # advanced tools
 
-def nllk_gamma(theta, x):
-    return(- np.sum(gamma.logpdf(x, a = theta[0], scale = theta[1])))
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.neighbors import KNeighborsClassifier 
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC 
+from sklearn.ensemble import RandomForestClassifier 
+from xgboost import XGBClassifier
+
+from sklearn.metrics import confusion_matrix 
+from sklearn.metrics import accuracy_score 
+from sklearn.metrics import f1_score
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m/tmp/ipykernel_3077/1042541827.py[0m in [0;36m<module>[0;34m[0m
-[0;32m----> 1[0;31m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      2[0m [0;32mfrom[0m [0mscipy[0m[0;34m.[0m[0mstats[0m [0;32mimport[0m [0mgamma[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      3[0m [0;32mfrom[0m [0mscipy[0m[0;34m.[0m[0moptimize[0m [0;32mimport[0m [0mminimize[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      4[0m [0;34m[0m[0m
-[1;32m      5[0m [0;32mdef[0m [0mnllk_gamma[0m[0;34m([0m[0mtheta[0m[0;34m,[0m [0mx[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m/tmp/ipykernel_3263/1835379006.py[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;32mimport[0m [0mpandas[0m [0;32mas[0m [0mpd[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;32mfrom[0m [0mtermcolor[0m [0;32mimport[0m [0mcolored[0m [0;32mas[0m [0mcl[0m [0;31m# text customization[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;32mimport[0m [0mitertools[0m [0;31m# advanced tools[0m[0;34m[0m[0;34m[0m[0m
 
-[0;31mModuleNotFoundError[0m: No module named 'numpy'
-ModuleNotFoundError: No module named 'numpy'
+[0;31mModuleNotFoundError[0m: No module named 'pandas'
+ModuleNotFoundError: No module named 'pandas'
 
