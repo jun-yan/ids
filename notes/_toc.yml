@@ -27,6 +27,7 @@ chapters:
   - file: docs/Support_vector_machine
   - file: docs/Decision_Trees_and_Random_Forest
   - file: docs/naive_bayes
+  - file: docs/Credit_card_fraud_detection_medium
 - file: docs/XGBoost
 - file: docs/dscompetition
 # appendix
