@@ -35,11 +35,13 @@ When you pick a task, cross it out and add your name.
 1. Sreeram Anantharaman ~~Credit card fraud detection by Nikhil Adithyan on Medium.com~~
 1. Zefang Min ~~Machine learning: jumpstart (JVP: p. 331-381)~~
 1. Surya Eada ~~Naive Bayes classification~~
-1. Support vector machine
+1. Shike Xu ~~Support vector machine~~
 1. Jintao Zhang ~~Decision trees and random forests~~
 1. Sreeram Anantharaman ~~XGBoost~~
+1. Jun Yan ~~Bagging verus boosting~~
+1. Neural network and deep learning
 1. TensorFlow
-1. A Kaggle competition walkthrough
+1. ~~A Kaggle competition walkthrough~~
 1. Zefang Min ~~Scope of variables~~
 1. Sydney Hyde ~~Web scraping~~
 1. Calling R from Python
