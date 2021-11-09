@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>8. XGBoost &#8212; Introduction to Data Science</title>
+    <title>7.8. XGBoost &#8212; Introduction to Data Science</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -51,7 +51,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="9. Data Science Competition" href="dscompetition.html" />
+    <link rel="next" title="8. Data Science Competition" href="dscompetition.html" />
     <link rel="prev" title="7.7. Credit Card Fraud Detection" href="Credit_card_fraud_detection_medium.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -180,16 +180,16 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="sklearn.html">
    7. Scikit Learn
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
   <label for="toctree-checkbox-5">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="Measures_of_classification_accuracy.html">
      7.1. Measures of classification accuracy and functions in Python
@@ -220,21 +220,21 @@
      7.7. Credit Card Fraud Detection
     </a>
    </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     7.8. XGBoost
+    </a>
+   </li>
   </ul>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   8. XGBoost
-  </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="dscompetition.html">
-   9. Data Science Competition
+   8. Data Science Competition
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="misc.html">
-   10. Miscellaneous learnings
+   9. Miscellaneous learnings
   </a>
  </li>
 </ul>
@@ -330,62 +330,62 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#what-is-xgboost">
-   8.1. What is XGBoost?
+   7.8.1. What is XGBoost?
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#what-is-boosting">
-   8.2. What is Boosting?
+   7.8.2. What is Boosting?
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#what-makes-xgboost-so-popular">
-   8.3. What makes XGBoost so popular?
+   7.8.3. What makes XGBoost so popular?
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#importing-packages">
-   8.4. Importing Packages
+   7.8.4. Importing Packages
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#importing-dataset">
-   8.5. Importing Dataset
+   7.8.5. Importing Dataset
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exploratory-data-analysis">
-   8.6. Exploratory data analysis
+   7.8.6. Exploratory data analysis
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-manipulation">
-   8.7. Data Manipulation
+   7.8.7. Data Manipulation
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#model-building">
-   8.8. Model building
+   7.8.8. Model building
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#xgboost-hyperparamaters">
-     8.8.1. XGBoost hyperparamaters
+     7.8.8.1. XGBoost hyperparamaters
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#model-fitting">
-     8.8.2. Model fitting
+     7.8.8.2. Model fitting
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#model-prediction">
-     8.8.3. Model prediction
+     7.8.8.3. Model prediction
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#model-validatoion">
-     8.8.4. Model validatoion
+     7.8.8.4. Model validatoion
     </a>
    </li>
   </ul>
@@ -402,17 +402,17 @@
               <div>
                 
   <div class="section" id="xgboost">
-<h1><span class="section-number">8. </span>XGBoost<a class="headerlink" href="#xgboost" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">7.8. </span>XGBoost<a class="headerlink" href="#xgboost" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-is-xgboost">
-<h2><span class="section-number">8.1. </span>What is XGBoost?<a class="headerlink" href="#what-is-xgboost" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.8.1. </span>What is XGBoost?<a class="headerlink" href="#what-is-xgboost" title="Permalink to this headline">¶</a></h2>
 <p>XGBoost (Extreme Gradient Boosting) belongs to a family of boosting algorithms and uses the gradient boosting (GBM) framework at its core. It is an optimized distributed gradient boosting library.</p>
 </div>
 <div class="section" id="what-is-boosting">
-<h2><span class="section-number">8.2. </span>What is Boosting?<a class="headerlink" href="#what-is-boosting" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.8.2. </span>What is Boosting?<a class="headerlink" href="#what-is-boosting" title="Permalink to this headline">¶</a></h2>
 <p>Boosting is a sequential technique which works on the principle of an ensemble. It combines a set of weak learners and delivers improved prediction accuracy. At any instant t, the model outcomes are weighed based on the outcomes of previous instant t-1. The outcomes predicted correctly are given a lower weight and the ones miss-classified are weighted higher. Note that a weak learner is one which is slightly better than random guessing. The basic idea behind boosting algorithms is building a weak model, making conclusions about the various feature importance and parameters, and then using those conclusions to build a new, stronger model and capitalize on the misclassification error of the previous model and try to reduce it. Now, let’s come to XGBoost. To begin with, you should know about the default base learners of XGBoost: tree ensembles. The tree ensemble model is a set of classification and regression trees (CART). Trees are grown one after another ,and attempts to reduce the misclassification rate are made in subsequent iterations. Each tree gives a different prediction score depending on the data it sees and the scores of each individual tree are summed up to get the final score.</p>
 </div>
 <div class="section" id="what-makes-xgboost-so-popular">
-<h2><span class="section-number">8.3. </span>What makes XGBoost so popular?<a class="headerlink" href="#what-makes-xgboost-so-popular" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.8.3. </span>What makes XGBoost so popular?<a class="headerlink" href="#what-makes-xgboost-so-popular" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Speed and performance : It is comparatively faster than other ensemble classifiers.</p></li>
 <li><p>Core algorithm is parallelizable : It can use the power of multi-core computers. It is also parallelizable onto GPU’s and across networks of computers making it feasible to train on very large datasets as well.</p></li>
@@ -422,7 +422,7 @@
 <p>We will be using the credit card fraud data as an example to see how XGBoost works.</p>
 </div>
 <div class="section" id="importing-packages">
-<h2><span class="section-number">8.4. </span>Importing Packages<a class="headerlink" href="#importing-packages" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.8.4. </span>Importing Packages<a class="headerlink" href="#importing-packages" title="Permalink to this headline">¶</a></h2>
 <p>We will be using the following packages: Pandas to manipulate data, NumPy to manipulate arrays, scikit-learn for spliting the data into train and test, building and evaluating the classification models, and xgboost to use the xgboost classifier model algorithm.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -444,7 +444,7 @@
 </div>
 </div>
 <div class="section" id="importing-dataset">
-<h2><span class="section-number">8.5. </span>Importing Dataset<a class="headerlink" href="#importing-dataset" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.8.5. </span>Importing Dataset<a class="headerlink" href="#importing-dataset" title="Permalink to this headline">¶</a></h2>
 <p>The variables V1 to V28 in the data are the principal components obtained by PCA. Since the variable time does not help our modeling we are going to remove it from our data. The variable ‘Amount’ contains the total amount of money being transacted and the variable ‘Class’ contains the information whether the transaction is a fraudulent one or not.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -458,7 +458,7 @@
 </div>
 </div>
 <div class="section" id="exploratory-data-analysis">
-<h2><span class="section-number">8.6. </span>Exploratory data analysis<a class="headerlink" href="#exploratory-data-analysis" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.8.6. </span>Exploratory data analysis<a class="headerlink" href="#exploratory-data-analysis" title="Permalink to this headline">¶</a></h2>
 <p>Next we look at the number of fraudulent and non-fraudulent cases that are present in our dataset and also compute the percentage of fraudulent cases.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -501,7 +501,7 @@
 <p>If your dataset has categorical features you may want to consider applying some encoding (like one-hot encoding) to such features before training the model using XGBoost. Also, XGBoost is capable of handling missing values internally so its not neccesary to address this issue before you fit the model.</p>
 </div>
 <div class="section" id="data-manipulation">
-<h2><span class="section-number">8.7. </span>Data Manipulation<a class="headerlink" href="#data-manipulation" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.8.7. </span>Data Manipulation<a class="headerlink" href="#data-manipulation" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Class&#39;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
@@ -532,9 +532,9 @@
 </div>
 </div>
 <div class="section" id="model-building">
-<h2><span class="section-number">8.8. </span>Model building<a class="headerlink" href="#model-building" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.8.8. </span>Model building<a class="headerlink" href="#model-building" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="xgboost-hyperparamaters">
-<h3><span class="section-number">8.8.1. </span>XGBoost hyperparamaters<a class="headerlink" href="#xgboost-hyperparamaters" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">7.8.8.1. </span>XGBoost hyperparamaters<a class="headerlink" href="#xgboost-hyperparamaters" title="Permalink to this headline">¶</a></h3>
 <p>The most common parameters in xgboost are:</p>
 <ul class="simple">
 <li><p>learning_rate: step size shrinkage used to prevent overfitting. Range is [0,1]</p></li>
@@ -553,7 +553,7 @@
 <p>It’s also worth mentioning that though you are using trees as your base learners, you can also use XGBoost’s relatively less popular linear base learners and one other tree learner known as dart. All you have to do is set the booster parameter to either gbtree (default),gblinear or dart.</p>
 </div>
 <div class="section" id="model-fitting">
-<h3><span class="section-number">8.8.2. </span>Model fitting<a class="headerlink" href="#model-fitting" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">7.8.8.2. </span>Model fitting<a class="headerlink" href="#model-fitting" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xg_reg</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">XGBClassifier</span><span class="p">(</span><span class="n">objective</span> <span class="o">=</span><span class="s1">&#39;reg:logistic&#39;</span><span class="p">,</span> <span class="n">colsample_bytree</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span><span class="n">max_depth</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">n_estimators</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span><span class="n">use_label_encoder</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -563,7 +563,7 @@
 </div>
 </div>
 <div class="section" id="model-prediction">
-<h3><span class="section-number">8.8.3. </span>Model prediction<a class="headerlink" href="#model-prediction" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">7.8.8.3. </span>Model prediction<a class="headerlink" href="#model-prediction" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xg_reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span><span class="n">eval_metric</span><span class="o">=</span><span class="s1">&#39;error&#39;</span><span class="p">)</span>
@@ -575,7 +575,7 @@
 </div>
 </div>
 <div class="section" id="model-validatoion">
-<h3><span class="section-number">8.8.4. </span>Model validatoion<a class="headerlink" href="#model-validatoion" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">7.8.8.4. </span>Model validatoion<a class="headerlink" href="#model-validatoion" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">preds</span><span class="p">))</span>
@@ -651,7 +651,7 @@
         <a class="right-next" href="dscompetition.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title"><span class="section-number">9. </span>Data Science Competition</p>
+                <p class="prevnext-title"><span class="section-number">8. </span>Data Science Competition</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>
