@@ -33,3 +33,5 @@ chapters:
 - file: docs/dscompetition
 # appendix
 - file: docs/misc
+# backmatter
+- file: docs/back
