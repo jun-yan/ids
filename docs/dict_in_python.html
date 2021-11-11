@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3.11. Python dictionary &#8212; Introduction to Data Science</title>
+    <title>3.10. Python dictionary &#8212; Introduction to Data Science</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -42,7 +42,7 @@
     <script src="../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
@@ -53,10 +53,13 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3.12. Profiling" href="profiling.html" />
+    <link rel="next" title="3.11. Profiling" href="profiling.html" />
     <link rel="prev" title="3. Python for R Users" href="pybasics.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -111,17 +114,17 @@
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     3.11. Python dictionary
+     3.10. Python dictionary
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="profiling.html">
-     3.12. Profiling
+     3.11. Profiling
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="mle-gamma.html">
-     3.13. Gamma MLE Simulation Study
+     3.12. Gamma MLE Simulation Study
     </a>
    </li>
   </ul>
@@ -312,32 +315,32 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#python-sequence-types">
-   3.11.1. Python sequence types:
+   3.10.1. Python sequence types:
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#mapping-type-dictionary">
-   3.11.2. Mapping type: dictionary
+   3.10.2. Mapping type: dictionary
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#some-useful-functions">
-   3.11.3. Some useful functions:
+   3.10.3. Some useful functions:
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#applications">
-   3.11.4. Applications:
+   3.10.4. Applications:
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#merging-dictionaries">
-   3.11.5. Merging dictionaries
+   3.10.5. Merging dictionaries
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#iterating-over-dictionaries">
-   3.11.6. Iterating over dictionaries
+   3.10.6. Iterating over dictionaries
   </a>
  </li>
 </ul>
@@ -352,9 +355,9 @@
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="python-dictionary">
-<h1><span class="section-number">3.11. </span>Python dictionary<a class="headerlink" href="#python-dictionary" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">3.10. </span>Python dictionary<a class="headerlink" href="#python-dictionary" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="python-sequence-types">
-<h2><span class="section-number">3.11.1. </span>Python sequence types:<a class="headerlink" href="#python-sequence-types" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.10.1. </span>Python sequence types:<a class="headerlink" href="#python-sequence-types" title="Permalink to this headline">¶</a></h2>
 <p>To store collection of data. They are sequential so we can iterate over them. Some can be accessed by an integar index.</p>
 <ul class="simple">
 <li><p>List:
@@ -387,7 +390,7 @@ sequence of integars</p></li>
 </div>
 </div>
 <div class="section" id="mapping-type-dictionary">
-<h2><span class="section-number">3.11.2. </span>Mapping type: dictionary<a class="headerlink" href="#mapping-type-dictionary" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.10.2. </span>Mapping type: dictionary<a class="headerlink" href="#mapping-type-dictionary" title="Permalink to this headline">¶</a></h2>
 <p>A set of value pairs<br />
 Indexed by “keys”: a immutable type, should be unique<br />
 Tuple can be used as keys</p>
@@ -418,7 +421,7 @@ Tuple can be used as keys</p>
 </div>
 </div>
 <div class="section" id="some-useful-functions">
-<h2><span class="section-number">3.11.3. </span>Some useful functions:<a class="headerlink" href="#some-useful-functions" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.10.3. </span>Some useful functions:<a class="headerlink" href="#some-useful-functions" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">score</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -441,7 +444,7 @@ Tuple can be used as keys</p>
 </div>
 </div>
 <div class="section" id="applications">
-<h2><span class="section-number">3.11.4. </span>Applications:<a class="headerlink" href="#applications" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.10.4. </span>Applications:<a class="headerlink" href="#applications" title="Permalink to this headline">¶</a></h2>
 <p>Find the winner of an election:
 The results is {“john”, “johnny”, “jackie”, “johnny”, “john”, “jackie”, “jamie”, “jamie”, “john”, “johnny”, “jamie”, “johnny”, “john”}<br />
 Try to write a function to out put people and their votes.</p>
@@ -460,7 +463,7 @@ Try to write a function to out put people and their votes.</p>
 </div>
 </div>
 <div class="section" id="merging-dictionaries">
-<h2><span class="section-number">3.11.5. </span>Merging dictionaries<a class="headerlink" href="#merging-dictionaries" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.10.5. </span>Merging dictionaries<a class="headerlink" href="#merging-dictionaries" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fruit</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Apple&quot;</span><span class="p">},</span> <span class="s2">&quot;B&quot;</span><span class="p">:{</span><span class="s2">&quot;Grape&quot;</span><span class="p">,</span><span class="s2">&quot;Pear&quot;</span><span class="p">}}</span>
 <span class="n">fruit2</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;A&quot;</span><span class="p">:{</span><span class="s2">&quot;Banana&quot;</span><span class="p">},</span> <span class="s2">&quot;C&quot;</span><span class="p">:{</span><span class="s2">&quot;Pear&quot;</span><span class="p">}}</span>
 <span class="n">fruit</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">fruit2</span><span class="p">)</span>
@@ -469,7 +472,7 @@ Try to write a function to out put people and their votes.</p>
 </div>
 </div>
 <div class="section" id="iterating-over-dictionaries">
-<h2><span class="section-number">3.11.6. </span>Iterating over dictionaries<a class="headerlink" href="#iterating-over-dictionaries" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.10.6. </span>Iterating over dictionaries<a class="headerlink" href="#iterating-over-dictionaries" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">timeit</span>  <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span><span class="mi">123</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span><span class="mi">34</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">:</span><span class="mi">304</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">:</span><span class="mi">99</span><span class="p">}</span>
 <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
@@ -507,31 +510,22 @@ Try to write a function to out put people and their votes.</p>
               </div>
               
         
-            
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="pybasics.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title"><span class="section-number">3. </span>Python for R Users</p>
-            </div>
-        </a>
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="pybasics.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">3. </span>Python for R Users</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="profiling.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3.11. </span>Profiling</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="profiling.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title"><span class="section-number">3.12. </span>Profiling</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
         
         </div>
@@ -552,8 +546,7 @@ Try to write a function to out put people and their votes.</p>
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

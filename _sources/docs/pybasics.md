@@ -332,11 +332,6 @@ Python is either the dominant player or a major player in
 -   [meteorology](https://pypi.org/project/meteorology/)
 
 
-## Bibliography
-
-```{bibliography} ../_bibliography/references.bib
-```
-
 ## Exercises
 
 1. Write a function to demonstrate the Monty Hall problem through
