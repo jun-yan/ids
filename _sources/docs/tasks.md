@@ -39,6 +39,7 @@ When you pick a task, cross it out and add your name.
 1. Jintao Zhang ~~Decision trees and random forests~~
 1. Sreeram Anantharaman ~~XGBoost~~
 1. Jun Yan ~~Bagging verus boosting~~
+1. Sydney Hyde ~~Basics on Neural Network~~
 1. Neural network and deep learning
 1. TensorFlow
 1. ~~A Kaggle competition walkthrough~~
