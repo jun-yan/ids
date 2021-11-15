@@ -1,0 +1,808 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>7.9. Neural Networks in Python &#8212; Introduction to Data Science</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8. Data Science Competition" href="dscompetition.html" />
+    <link rel="prev" title="7.8. XGBoost" href="XGBoost.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/tricircle.pdf" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="tasks.html">
+   1. Task Board
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   2. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="pybasics.html">
+   3. Python for R Users
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dict_in_python.html">
+     3.10. Python dictionary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="profiling.html">
+     3.11. Profiling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mle-gamma.html">
+     3.12. Gamma MLE Simulation Study
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="Numpy.html">
+   4. Numpy
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="NumpyAdvanced.html">
+     4.2. Numpy Advanced
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="Scipy.html">
+   5. Scipy
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Optimization.html">
+     5.3. Optimization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="pandas_objs.html">
+   6. Pandas
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Pandas_missing_hierarchical.html">
+     6.12. Pandas: Missing Data and Hierarchical Indexing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Pandas_Dataset_Operations.html">
+     6.13. Pandas: Dataset Operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="sklearn.html">
+   7. Scikit Learn
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="Measures_of_classification_accuracy.html">
+     7.1. Measures of classification accuracy and functions in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Fraud_Detection_Python_from_GitHub.html">
+     7.2. Fraud Detection with Python (Github Trenton McKinney)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Support_vector_machine.html">
+     7.3. Support vector machine
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Decision_Trees_and_Random_Forest.html">
+     7.5. Decision Trees and Random Forest
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="naive_bayes.html">
+     7.6. Naive Bayes Classification Problem:
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Credit_card_fraud_detection_medium.html">
+     7.7. Credit Card Fraud Detection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="XGBoost.html">
+     7.8. XGBoost
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     7.9. Neural Networks in Python
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dscompetition.html">
+   8. Data Science Competition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="misc.html">
+   9. Miscellaneous learnings
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../_sources/docs/Neural_networks_in_Python.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/Neural_networks_in_Python.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/jun-yan/ids/master?urlpath=tree/notes/docs/Neural_networks_in_Python.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-a-neural-network">
+   7.9.1. What is a Neural Network?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-a-neural-network">
+   7.9.2. Training a Neural Network
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#keras-a-python-module-for-neural-networks">
+   7.9.3. Keras: A Python Module for Neural Networks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-keras">
+     7.9.3.1. Install Keras:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-data">
+     7.9.3.2. Load Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#defining-the-keras-model">
+     7.9.3.3. Defining the Keras Model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compiling-the-keras-model">
+     7.9.3.4. Compiling the Keras Model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fitting-the-keras-model">
+     7.9.3.5. Fitting the Keras Model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#evaluating-the-keras-model">
+     7.9.3.6. Evaluating the Keras Model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#making-predictions-using-the-keras-model">
+     7.9.3.7. Making Predictions using the Keras Model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#f1-score">
+     7.9.3.8. F1-Score
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="neural-networks-in-python">
+<h1><span class="section-number">7.9. </span>Neural Networks in Python<a class="headerlink" href="#neural-networks-in-python" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-a-neural-network">
+<h2><span class="section-number">7.9.1. </span>What is a Neural Network?<a class="headerlink" href="#what-is-a-neural-network" title="Permalink to this headline">¶</a></h2>
+<p>In these notes we will be implementing a predictive Neural Network in Python. Artificial Neural Networks are a specific type of machine learning model loosely based on the Biological Neural Networks that our own brains run on. Neural Networks have seen extremely broad applications including but not limited to pattern recognition, medical diagnostics, geosciences, cybersecurity, and quantum chemistry.</p>
+<p>At their core, Neural Networks consist of the following:</p>
+<ul class="simple">
+<li><p>An input layer, <span class="math notranslate nohighlight">\(x\)</span></p></li>
+<li><p>An arbitrary amount of <strong>hidden layers</strong> comprised of nodes which process data from previous layers</p></li>
+<li><p>An output layer, <span class="math notranslate nohighlight">\(\hat{y}\)</span></p></li>
+<li><p>A set of <strong>weights</strong> and <strong>biases</strong> connecting the nodes in each layer, <span class="math notranslate nohighlight">\(W\)</span> and <span class="math notranslate nohighlight">\(b\)</span></p></li>
+<li><p>An <strong>activation function</strong> for each hidden layer, <span class="math notranslate nohighlight">\(\sigma\)</span>, which takes the layers’ input and outputs a value between 0 and 1 (or -1 and 1).</p></li>
+</ul>
+<p>These layers act to progressively extract higher level features from raw input in a process known as Deep Learning (so long as there is more than two hidden layers). A simplified diagram of a Neural Network is shown below. You can see the input layer on the left which is inputted into the hidden layer in the middle, which outputs to the output layer and classifies the image.</p>
+<p><img alt="Neural Network simplified diagram" src="https://miro.medium.com/max/1080/1*36MELEhgZsPFuzlZvObnxA.gif" /></p>
+<p>There can be any number of hidden layers and nodes in each layer, and multiple different activation functions (linear, sigmoid, etc.) can be used. Part of the challenge of successfully implementing a Neural Network is determining these things.</p>
+</div>
+<div class="section" id="training-a-neural-network">
+<h2><span class="section-number">7.9.2. </span>Training a Neural Network<a class="headerlink" href="#training-a-neural-network" title="Permalink to this headline">¶</a></h2>
+<p>Another key part of a neural network is its ability to self train. Commonly this is done in two steps that are repeated until the desired performance is achieved.</p>
+<ul class="simple">
+<li><p>Calculating the predicted output <span class="math notranslate nohighlight">\(\hat{y}\)</span>, called <strong>feedforward</strong></p></li>
+<li><p>Updating the weights <span class="math notranslate nohighlight">\(W\)</span> and biases <span class="math notranslate nohighlight">\(b\)</span>, called <strong>backpropogation</strong></p></li>
+</ul>
+<p>This allows Neural Networks to learn so long as they have already classified data to be trained on. An diagram of what this looks like with a one layer Neural Network is shown below. Here we can see the input <span class="math notranslate nohighlight">\(x\)</span>, as well as the weights <span class="math notranslate nohighlight">\(W\)</span> and biases <span class="math notranslate nohighlight">\(b\)</span> used at the start which are used to <em>feedforward</em> and get the <span class="math notranslate nohighlight">\(\hat{y}\)</span>. Then the weights and biases are updated based on the derivative of the loss function.</p>
+<p><img alt="feedforward and backpropogation" src="https://miro.medium.com/max/700/1*CEtt0h8Rss_qPu7CyqMTdQ.png" /></p>
+<p>Generally training a Neural Network will occur over <strong>Epochs</strong> split into <strong>Batches</strong>. An Epoch is one pass through all rows of the training dataset. A Batch is one (or more) samples considered by the model within an epoch before updating weights (backpropogation).</p>
+</div>
+<div class="section" id="keras-a-python-module-for-neural-networks">
+<h2><span class="section-number">7.9.3. </span>Keras: A Python Module for Neural Networks<a class="headerlink" href="#keras-a-python-module-for-neural-networks" title="Permalink to this headline">¶</a></h2>
+<p>Keras is a versatile module for python to implement neural networks.</p>
+<div class="section" id="install-keras">
+<h3><span class="section-number">7.9.3.1. </span>Install Keras:<a class="headerlink" href="#install-keras" title="Permalink to this headline">¶</a></h3>
+<p>Please install package below beforehand and dependencies.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip3 install keras</span>
+<span class="c1">#!pip3 install tensorflow</span>
+<span class="c1">#!pip3 install uszipcode</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="load-data">
+<h3><span class="section-number">7.9.3.2. </span>Load Data<a class="headerlink" href="#load-data" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">uszipcode</span> <span class="kn">import</span> <span class="n">SearchEngine</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">OrdinalEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">ConfusionMatrixDisplay</span>
+
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span>
+<span class="kn">from</span> <span class="nn">keras.utils.vis_utils</span> <span class="kn">import</span> <span class="n">plot_model</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;kaggle/input/train_2021.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This dataset has a number of non-numeric variables that need to be properly processed first. This is borrowed from a previous version of my group’s Travelers competition work.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">train</span><span class="o">.</span><span class="n">marital_status</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>    <span class="c1"># fill the five values with majority</span>
+<span class="n">train</span><span class="o">.</span><span class="n">witness_present_ind</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>  <span class="c1"># fill with majority as well as witness not present when na</span>
+<span class="n">train</span><span class="o">.</span><span class="n">age_of_vehicle</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="n">input_mod1</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">input_mod1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">train</span><span class="o">.</span><span class="n">claim_est_payout</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span> <span class="o">==</span> <span class="kc">False</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;vehicle_price&#39;</span><span class="p">,</span> <span class="s1">&#39;age_of_vehicle&#39;</span><span class="p">]],</span>
+               <span class="n">train</span><span class="o">.</span><span class="n">claim_est_payout</span><span class="p">[</span><span class="n">train</span><span class="o">.</span><span class="n">claim_est_payout</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span> <span class="o">==</span> <span class="kc">False</span><span class="p">])</span>
+
+<span class="c1"># predicted values for NA&#39;s</span>
+<span class="n">input_output</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">input_mod1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">train</span><span class="o">.</span><span class="n">claim_est_payout</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span> <span class="o">==</span> <span class="kc">True</span><span class="p">,</span>
+                                                      <span class="p">[</span><span class="s1">&#39;vehicle_price&#39;</span><span class="p">,</span> <span class="s1">&#39;age_of_vehicle&#39;</span><span class="p">]]),</span>
+                         <span class="n">index</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">train</span><span class="o">.</span><span class="n">claim_est_payout</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">==</span><span class="kc">True</span><span class="p">])</span>
+
+<span class="n">train</span><span class="o">.</span><span class="n">claim_est_payout</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">input_output</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="n">train</span><span class="p">[</span><span class="s1">&#39;claim_date_d&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="s1">&#39;%m/</span><span class="si">%d</span><span class="s1">/%Y&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+                                   <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">train</span><span class="o">.</span><span class="n">claim_date</span><span class="p">],</span> <span class="n">index</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">train</span><span class="p">[</span><span class="s1">&#39;claim_date_m&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="s1">&#39;%m/</span><span class="si">%d</span><span class="s1">/%Y&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%m&#39;</span><span class="p">)</span>
+                                   <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">train</span><span class="o">.</span><span class="n">claim_date</span><span class="p">],</span> <span class="n">index</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="c1"># Capping &#39;age_of_driver&#39; at 80</span>
+<span class="n">train</span><span class="p">[</span><span class="s1">&#39;age_of_driver&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;age_of_driver&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">upper</span> <span class="o">=</span> <span class="mi">80</span><span class="p">)</span>
+
+<span class="c1"># fitting regression of claim_est_payout using vehicle_price and `age_of_vehicle`</span>
+
+<span class="n">input_mod2</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">input_mod2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">train</span><span class="o">.</span><span class="n">annual_income</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;age_of_driver&#39;</span><span class="p">]],</span>
+               <span class="n">train</span><span class="o">.</span><span class="n">annual_income</span><span class="p">[</span><span class="n">train</span><span class="o">.</span><span class="n">annual_income</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># predicted values for -1&#39;s</span>
+<span class="n">input_output2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">input_mod2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">train</span><span class="o">.</span><span class="n">annual_income</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+                                                      <span class="p">[</span><span class="s1">&#39;age_of_driver&#39;</span><span class="p">]]),</span>
+                         <span class="n">index</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">train</span><span class="o">.</span><span class="n">annual_income</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># replacing -1 values with predicted values</span>
+<span class="n">train</span><span class="o">.</span><span class="n">annual_income</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">to_replace</span> <span class="o">=</span> <span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_output2</span><span class="p">)),</span> 
+                            <span class="n">value</span> <span class="o">=</span> <span class="n">input_output2</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="n">engine</span> <span class="o">=</span> <span class="n">SearchEngine</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">zip_lookup</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">row</span><span class="o">.</span><span class="n">zip_code</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;state&quot;</span> <span class="p">:</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span>
+                <span class="s2">&quot;lat&quot;</span> <span class="p">:</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span>
+                <span class="s2">&quot;lng&quot;</span> <span class="p">:</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">]</span>
+               <span class="p">})</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">by_zipcode</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">zip_code</span><span class="p">))</span>
+        <span class="c1"># changing to pandas dataframe</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;state&quot;</span> <span class="p">:</span> <span class="p">[</span><span class="n">info</span><span class="o">.</span><span class="n">state</span><span class="p">],</span>
+                <span class="s2">&quot;lat&quot;</span> <span class="p">:</span> <span class="p">[</span><span class="n">info</span><span class="o">.</span><span class="n">lat</span><span class="p">],</span>
+                <span class="s2">&quot;lng&quot;</span> <span class="p">:</span> <span class="p">[</span><span class="n">info</span><span class="o">.</span><span class="n">lng</span><span class="p">]</span>
+               <span class="p">})</span>
+    
+<span class="n">train</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">zip_lookup</span><span class="p">(</span><span class="n">row</span><span class="p">)</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;state&#39;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">train</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">zip_lookup</span><span class="p">(</span><span class="n">row</span><span class="p">)</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;lat&#39;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">train</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">zip_lookup</span><span class="p">(</span><span class="n">row</span><span class="p">)</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;lng&#39;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">train</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;bfill&quot;</span><span class="p">)</span>
+<span class="n">train</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">latitude</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;bfill&quot;</span><span class="p">)</span>
+<span class="n">train</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">longitude</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;bfill&quot;</span><span class="p">)</span>
+
+<span class="n">train_encoded</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="c1"># modify all numerical to binned variables</span>
+<span class="n">train_encoded</span><span class="p">[</span><span class="s1">&#39;claim_number&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;claim_number&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">train_encoded</span><span class="p">[</span><span class="s1">&#39;dr_age_bins&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">age_of_driver</span><span class="p">,</span> 
+                                      <span class="n">bins</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">age_of_driver</span><span class="o">.</span><span class="n">quantile</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">.05</span><span class="p">,</span> <span class="mf">.25</span><span class="p">,</span> <span class="mf">.75</span><span class="p">,</span> <span class="mf">.95</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> 
+                                      <span class="n">include_lowest</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">train_encoded</span><span class="p">[</span><span class="s1">&#39;dr_safty_bins&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">safty_rating</span><span class="p">,</span>
+                                        <span class="n">bins</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">safty_rating</span><span class="o">.</span><span class="n">quantile</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">.1</span><span class="p">,</span> <span class="mf">.3</span><span class="p">,</span> <span class="mf">.8</span><span class="p">,</span> <span class="mf">.95</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> 
+                                        <span class="n">include_lowest</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">train_encoded</span><span class="p">[</span><span class="s1">&#39;dr_annual_income&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">annual_income</span><span class="p">,</span> 
+                                           <span class="n">bins</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">annual_income</span><span class="o">.</span><span class="n">quantile</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">.1</span><span class="p">,</span> <span class="mf">.3</span><span class="p">,</span> <span class="mf">.8</span><span class="p">,</span> <span class="mf">.95</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+                                           <span class="n">include_lowest</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">train_encoded</span><span class="p">[</span><span class="s1">&#39;zip_code_1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">zip_code</span><span class="o">/</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>    <span class="c1"># satisfy the same state</span>
+<span class="n">train_encoded</span><span class="p">[</span><span class="s1">&#39;past_num_of_claims&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">past_num_of_claims</span><span class="p">,</span>
+                                             <span class="n">bins</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">past_num_of_claims</span><span class="o">.</span><span class="n">quantile</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+                                             <span class="n">include_lowest</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="c1"># ordinal</span>
+<span class="n">train_encoded</span><span class="p">[</span><span class="s1">&#39;liab_prct&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">liab_prct</span><span class="p">,</span> 
+                                    <span class="n">bins</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">liab_prct</span><span class="o">.</span><span class="n">quantile</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+                                    <span class="n">include_lowest</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">train_encoded</span><span class="p">[</span><span class="s1">&#39;claim_est_payout&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">claim_est_payout</span><span class="p">,</span>
+                                           <span class="n">bins</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">claim_est_payout</span><span class="o">.</span><span class="n">quantile</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">.25</span><span class="p">,</span> <span class="mf">.75</span><span class="p">,</span> <span class="mf">.95</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+                                           <span class="n">include_lowest</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">train_encoded</span><span class="p">[</span><span class="s1">&#39;age_of_vehicle&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">age_of_vehicle</span><span class="p">,</span>
+                                         <span class="n">bins</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">age_of_vehicle</span><span class="o">.</span><span class="n">quantile</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">.25</span><span class="p">,</span> <span class="mf">.75</span><span class="p">,</span> <span class="mf">.9</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+                                         <span class="n">include_lowest</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">train_encoded</span><span class="p">[</span><span class="s1">&#39;vehicle_price&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">vehicle_price</span><span class="p">,</span>
+                                        <span class="n">bins</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">vehicle_price</span><span class="o">.</span><span class="n">quantile</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">.1</span><span class="p">,</span> <span class="mf">.25</span><span class="p">,</span> <span class="mf">.75</span><span class="p">,</span> <span class="mf">.9</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+                                        <span class="n">include_lowest</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">train_encoded</span><span class="p">[</span><span class="s1">&#39;vehicle_weight&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">vehicle_weight</span><span class="p">,</span>
+                                         <span class="n">bins</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">vehicle_weight</span><span class="o">.</span><span class="n">quantile</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">.1</span><span class="p">,</span> <span class="mf">.25</span><span class="p">,</span> <span class="mf">.75</span><span class="p">,</span> <span class="mf">.9</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+                                         <span class="n">include_lowest</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># not binned numeric</span>
+<span class="n">train_encoded</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span>
+<span class="n">train_encoded</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span>
+
+
+<span class="c1"># derived variables as categorical</span>
+<span class="c1"># train_encoded[&#39;claim_date_d&#39;] = train[&#39;claim_date_d&#39;].astype(&#39;category&#39;)</span>
+<span class="c1"># train_encoded[&#39;claim_date_m&#39;] = train[&#39;claim_date_m&#39;].astype(&#39;category&#39;)</span>
+
+<span class="c1"># already categorical variables</span>
+<span class="n">train_encoded</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">]</span>
+<span class="n">train_encoded</span><span class="p">[</span><span class="s1">&#39;marital_status&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;marital_status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">train_encoded</span><span class="p">[</span><span class="s1">&#39;high_education_ind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;high_education_ind&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">train_encoded</span><span class="p">[</span><span class="s1">&#39;address_change_ind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;address_change_ind&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">train_encoded</span><span class="p">[</span><span class="s1">&#39;living_status&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;living_status&#39;</span><span class="p">]</span>
+<span class="n">train_encoded</span><span class="p">[</span><span class="s1">&#39;claim_day_of_week&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;claim_day_of_week&#39;</span><span class="p">]</span>
+<span class="n">train_encoded</span><span class="p">[</span><span class="s1">&#39;witness_present_ind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;witness_present_ind&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">train_encoded</span><span class="p">[</span><span class="s1">&#39;channel&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;channel&#39;</span><span class="p">]</span>
+<span class="n">train_encoded</span><span class="p">[</span><span class="s1">&#39;policy_report_filed_ind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;policy_report_filed_ind&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">train_encoded</span><span class="p">[</span><span class="s1">&#39;vehicle_category&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;vehicle_category&#39;</span><span class="p">]</span>
+<span class="n">train_encoded</span><span class="p">[</span><span class="s1">&#39;vehicle_color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;vehicle_color&#39;</span><span class="p">]</span>
+<span class="n">train_encoded</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">train_encoded</span><span class="p">[</span><span class="s1">&#39;fraud&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;fraud&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+
+<span class="n">list_ordinal</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dr_safty_bins&#39;</span><span class="p">,</span> <span class="s1">&#39;dr_annual_income&#39;</span><span class="p">,</span> <span class="s1">&#39;past_num_of_claims&#39;</span><span class="p">,</span><span class="s1">&#39;liab_prct&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;claim_est_payout&#39;</span><span class="p">,</span> <span class="s1">&#39;age_of_vehicle&#39;</span><span class="p">,</span> <span class="s1">&#39;vehicle_price&#39;</span><span class="p">,</span> <span class="s1">&#39;vehicle_weight&#39;</span><span class="p">]</span>
+<span class="n">list_other</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dr_age_bins&#39;</span><span class="p">,</span> <span class="s1">&#39;zip_code_1&#39;</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="s1">&#39;marital_status&#39;</span><span class="p">,</span> <span class="s1">&#39;high_education_ind&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;address_change_ind&#39;</span><span class="p">,</span> <span class="s1">&#39;living_status&#39;</span><span class="p">,</span> <span class="s1">&#39;claim_day_of_week&#39;</span><span class="p">,</span> 
+              <span class="s1">&#39;witness_present_ind&#39;</span><span class="p">,</span> <span class="s1">&#39;channel&#39;</span><span class="p">,</span> <span class="s1">&#39;policy_report_filed_ind&#39;</span><span class="p">,</span> <span class="s1">&#39;vehicle_category&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;vehicle_color&#39;</span><span class="p">,</span> <span class="s1">&#39;state&#39;</span><span class="p">]</span>
+
+<span class="n">encoding</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;ord&#39;</span><span class="p">,</span> <span class="n">OrdinalEncoder</span><span class="p">(),</span> <span class="n">list_ordinal</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(),</span> <span class="n">list_other</span><span class="p">)]</span>
+<span class="c1"># encoding = [(&#39;ord&#39;, OneHotEncoder(), list_ordinal), (&#39;cat&#39;, OneHotEncoder(), list_other)]</span>
+<span class="n">col_transform</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span><span class="n">transformers</span> <span class="o">=</span> <span class="n">encoding</span><span class="p">)</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">train_encoded</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">train_encoded</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span>  <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">X_1</span> <span class="o">=</span> <span class="n">col_transform</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="n">X_in1</span><span class="p">,</span> <span class="n">X_hold1</span><span class="p">,</span> <span class="n">y_in</span><span class="p">,</span> <span class="n">y_hold</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_1</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">341</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X_in1</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="defining-the-keras-model">
+<h3><span class="section-number">7.9.3.3. </span>Defining the Keras Model<a class="headerlink" href="#defining-the-keras-model" title="Permalink to this headline">¶</a></h3>
+<p>As discussed previously, Neural Networks are defined as a sequence of layers. In this example we will be creating a <em>Sequential model</em> where we will add one layer at a time until we are satisfied with the network structure. This is done by defining a new model using the <code class="docutils literal notranslate"><span class="pre">Sequential()</span></code> class from Keras.</p>
+<p>Knowing how many layers to add and their structure is a challenging problem, and is often best solved through trial and error. Though generally a Neural Network should be large enough to reflect the structure of the problem. In this example we will be using a fully connected structure (Each layers’ nodes connect to every node in the layers behind and ahead of them) with 5 layers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we will add our layers. Our input layer will be defined in the same command as our first hidden layer. This input layer will have a number of input features (nodes) equal to the number of input variables we have, in this case 57. We do this with the <code class="docutils literal notranslate"><span class="pre">input_dim</span></code> argument when adding our first layer.</p>
+<p>We will add a layer to our model using the <code class="docutils literal notranslate"><span class="pre">.add()</span></code> method. For a fully connected structure we need to use the <code class="docutils literal notranslate"><span class="pre">Dense()</span></code> class. The first argument for <code class="docutils literal notranslate"><span class="pre">Dense()</span></code> specifies the number of nodes in that layer. The <code class="docutils literal notranslate"><span class="pre">activation</span></code> argument tells the network which activation function to use in that layer.</p>
+<p>For activation functions in the hidden layers we will be using the <em>rectified linear unit activation function</em> (relu) which is fairly common.</p>
+<p>With that out of the way lets define our first layers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">86</span><span class="p">,</span> <span class="n">input_dim</span> <span class="o">=</span> <span class="mi">57</span><span class="p">,</span> <span class="n">activation</span> <span class="o">=</span> <span class="s2">&quot;relu&quot;</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">57</span><span class="p">,</span> <span class="n">activation</span> <span class="o">=</span> <span class="s2">&quot;relu&quot;</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="n">activation</span> <span class="o">=</span> <span class="s2">&quot;relu&quot;</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="n">activation</span> <span class="o">=</span> <span class="s2">&quot;relu&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now all that’s left is to define our output layer. Since this is a classification problem our output layer will have only 1 node, as we only are looking for a single output. We will also use a <em>sigmoid</em> activation function instead.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span> <span class="o">=</span> <span class="s2">&quot;sigmoid&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="compiling-the-keras-model">
+<h3><span class="section-number">7.9.3.4. </span>Compiling the Keras Model<a class="headerlink" href="#compiling-the-keras-model" title="Permalink to this headline">¶</a></h3>
+<p>Now the model must be compiled using the <code class="docutils literal notranslate"><span class="pre">.compile()</span></code> method. When doing so we must also define a few things relating to the training of the network:</p>
+<ul class="simple">
+<li><p>The loss function: This is used to specify how we will evaluate our network during training, defined with the <code class="docutils literal notranslate"><span class="pre">loss</span></code> argument</p></li>
+<li><p>The optimizer: How our network will optimize itself, defined with the <code class="docutils literal notranslate"><span class="pre">optimizer</span></code> argument</p></li>
+<li><p>The metrics: Any other metrics we want the model to output, defined with the <code class="docutils literal notranslate"><span class="pre">metrics</span></code> argument as a list</p></li>
+</ul>
+<p>In this example we will use <code class="docutils literal notranslate"><span class="pre">&quot;binary_crossentropy&quot;</span></code> as our loss function since this is a classification problem. For an optimizer we will use the stochastic gradient descent algorithm <code class="docutils literal notranslate"><span class="pre">&quot;adam&quot;</span></code>. Finally as a metric we will add <code class="docutils literal notranslate"><span class="pre">&quot;BinaryAccuracy&quot;</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span> <span class="o">=</span> <span class="s2">&quot;binary_crossentropy&quot;</span><span class="p">,</span> <span class="n">optimizer</span> <span class="o">=</span> <span class="s2">&quot;adam&quot;</span><span class="p">,</span> <span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;BinaryAccuracy&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="fitting-the-keras-model">
+<h3><span class="section-number">7.9.3.5. </span>Fitting the Keras Model<a class="headerlink" href="#fitting-the-keras-model" title="Permalink to this headline">¶</a></h3>
+<p>To fit our network model, we will use the <code class="docutils literal notranslate"><span class="pre">.fit()</span></code> method. Doing so we must specify the number of <em>epochs</em> we will iterate through, as well as the size of each <em>batch</em> within each epoch. These are defined using the <code class="docutils literal notranslate"><span class="pre">epochs</span></code> and <code class="docutils literal notranslate"><span class="pre">batch_size</span></code> arguments within this method.</p>
+<p>For this example lets use 100 epochs with a batch size of 100.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_in1</span><span class="p">,</span> <span class="n">y_in</span><span class="p">,</span> <span class="n">epochs</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you find the reporting on each individual epoch too much, you can always add in <code class="docutils literal notranslate"><span class="pre">verbose</span> <span class="pre">=</span> <span class="pre">0</span></code> as an argument to prevent it from doing so.</p>
+</div>
+<div class="section" id="evaluating-the-keras-model">
+<h3><span class="section-number">7.9.3.6. </span>Evaluating the Keras Model<a class="headerlink" href="#evaluating-the-keras-model" title="Permalink to this headline">¶</a></h3>
+<p>Now that we have trained our Neural Network, we can test it on our test data. We will do this using the <code class="docutils literal notranslate"><span class="pre">.evaluate()</span></code> method. Because of how we compiled our model, this will output both the results of the loss function and the accuracy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">loss</span><span class="p">,</span> <span class="n">accuracy</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X_hold1</span><span class="p">,</span> <span class="n">y_hold</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="making-predictions-using-the-keras-model">
+<h3><span class="section-number">7.9.3.7. </span>Making Predictions using the Keras Model<a class="headerlink" href="#making-predictions-using-the-keras-model" title="Permalink to this headline">¶</a></h3>
+<p>We can also use the model to get predictions using the <code class="docutils literal notranslate"><span class="pre">.predict()</span></code> method. This will output a numpy array of the probabilities for each row, which we could either round (as we do here) or pass through some threshold to get our results. Here we do so on our split test data and create a confusion table to see how well we did.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_hold1</span><span class="p">)</span>
+<span class="n">y_pred_r</span> <span class="o">=</span><span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">y_pred</span><span class="p">]</span> 
+
+<span class="n">disp</span> <span class="o">=</span> <span class="n">ConfusionMatrixDisplay</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_hold</span><span class="p">,</span> <span class="n">y_pred_r</span><span class="p">))</span>
+<span class="n">disp</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This isn’t necessarily the best result, there is likely some issues with how the input data was handled and the structure of the network.</p>
+</div>
+<div class="section" id="f1-score">
+<h3><span class="section-number">7.9.3.8. </span>F1-Score<a class="headerlink" href="#f1-score" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">f1_score</span>
+
+<span class="nb">round</span><span class="p">(</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y_hold</span><span class="p">,</span> <span class="n">y_pred_r</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Citations:</p>
+<ul class="simple">
+<li><p>Towards Datascience. (2018, May 17). Neural Networks [Gif]. How to Build Your Own Neural Network from Scratch in Python. <a class="reference external" href="https://miro.medium.com/max/2400/1*36MELEhgZsPFuzlZvObnxA.gif">https://miro.medium.com/max/2400/1*36MELEhgZsPFuzlZvObnxA.gif</a></p></li>
+<li><p>Towards Datascience. (2018b, May 17). Sequential Graph [Graph]. How to Build Your Own Neural Network from Scratch in Python. <a class="reference external" href="https://miro.medium.com/max/933/1*CEtt0h8Rss_qPu7CyqMTdQ.png">https://miro.medium.com/max/933/1*CEtt0h8Rss_qPu7CyqMTdQ.png</a></p></li>
+</ul>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="XGBoost.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">7.8. </span>XGBoost</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="dscompetition.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Data Science Competition</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Jun Yan and students in STAT 5255, Fall 2021<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
