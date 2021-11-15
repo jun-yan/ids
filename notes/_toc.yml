@@ -30,6 +30,7 @@ chapters:
   - file: docs/Credit_card_fraud_detection_medium
   - file: docs/XGBoost
   - file: docs/bagging_vs_boosting
+  - file: docs/Neural_networks_in_Python
 - file: docs/dscompetition
 # appendix
 - file: docs/misc
