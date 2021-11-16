@@ -48,7 +48,7 @@ When you pick a task, cross it out and add your name.
 1. Surya Teja Eada ~~Calling R from Python~~
 1. Creating modules and packages
 1. Jintao Zhang ~~Visualization with Matplotlib (JVP: p.217-274)~~
-1. Advanced Matplotlib: customization; 3d; maps (JVP: p.275-310)
+1. Sreeram Anantharaman ~~Advanced Matplotlib: customization; 3d; maps (JVP: p.275-310)~~
 1. Statistical modeling with statmodels
 
 
