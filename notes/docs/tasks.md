@@ -45,7 +45,7 @@ When you pick a task, cross it out and add your name.
 1. ~~A Kaggle competition walkthrough~~
 1. Zefang Min ~~Scope of variables~~
 1. Sydney Hyde ~~Web scraping~~
-1. Calling R from Python
+1. Surya Teja Eada ~~Calling R from Python~~
 1. Creating modules and packages
 1. Jintao Zhang ~~Visualization with Matplotlib (JVP: p.217-274)~~
 1. Advanced Matplotlib: customization; 3d; maps (JVP: p.275-310)
