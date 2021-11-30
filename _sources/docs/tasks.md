@@ -42,9 +42,9 @@ When you pick a task, cross it out and add your name.
 1. Sydney Hyde ~~Basics on Neural Network~~
 1. Shike Xu ~~Recurrent Neural Network~~
 1. Shike Xu ~~Gradient Descent~~
-1. Neural network and deep learning
+1. Jintao Zhang ~~Neural network and deep learning~~
 1. TensorFlow
-1. ~~A Kaggle competition walkthrough~~
+1. Sydney Hyde~~A Kaggle competition walkthrough~~
 1. Zefang Min ~~Scope of variables~~
 1. Sydney Hyde ~~Web scraping~~
 1. Surya Teja Eada ~~Calling R from Python~~
