@@ -1,15 +1,14 @@
 ---
 jupytext:
-  formats: ipynb,md:myst
   text_representation:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.3
+    jupytext_version: 1.13.0
 kernelspec:
-  display_name: {code-cell} ipython3 3 (ipykernel)
-  language: {code-cell} ipython3
-  name: {code-cell} ipython33
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
 ---
 
 # Neural Network and Deep Learning
@@ -230,6 +229,7 @@ from keras.layers import Dense, Dropout, Flatten
 from keras.layers import Conv2D, MaxPooling2D
 from keras.layers import BatchNormalization
 from keras.layers.advanced_activations import LeakyReLU
+import tensorflow as tf 
 ```
 
 
@@ -259,7 +259,7 @@ fashion_model.add(Dense(num_classes, activation='softmax'))
 
 
 ```{code-cell} ipython3
-fashion_model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(),metrics=['accuracy'])
+fashion_model.compile(loss=keras.losses.categorical_crossentropy, optimizer=tf.keras.optimizers.Adam(),metrics=['accuracy'])
 ```
 
 
