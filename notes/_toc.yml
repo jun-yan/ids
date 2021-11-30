@@ -32,6 +32,8 @@ chapters:
   - file: docs/bagging_vs_boosting
   - file: docs/Neural_networks_in_Python
   - file: docs/NN_and_DNN
+  - file: docs/RNN_CNN
+  - file: docs/Gradient_descent
 - file: docs/dscompetition
 # appendix
 - file: docs/misc
