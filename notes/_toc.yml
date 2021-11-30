@@ -31,6 +31,7 @@ chapters:
   - file: docs/XGBoost
   - file: docs/bagging_vs_boosting
   - file: docs/Neural_networks_in_Python
+  - file: docs/NN_and_DNN
 - file: docs/dscompetition
 # appendix
 - file: docs/misc
