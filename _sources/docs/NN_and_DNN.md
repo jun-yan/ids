@@ -229,6 +229,7 @@ from keras.layers import Dense, Dropout, Flatten
 from keras.layers import Conv2D, MaxPooling2D
 from keras.layers import BatchNormalization
 from keras.layers.advanced_activations import LeakyReLU
+import tensorflow as tf 
 ```
 
 
@@ -258,7 +259,7 @@ fashion_model.add(Dense(num_classes, activation='softmax'))
 
 
 ```{code-cell} ipython3
-fashion_model.compile(loss=keras.losses.categorical_crossentropy, optimizer=tensorflow.keras.optimizers.Adam(),metrics=['accuracy'])
+fashion_model.compile(loss=keras.losses.categorical_crossentropy, optimizer=tf.keras.optimizers.Adam(),metrics=['accuracy'])
 ```
 
 
