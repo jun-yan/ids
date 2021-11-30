@@ -23,7 +23,7 @@ Neural Networks consist of the following components
 - A set of weights and biases between each layer, W and b
 - A choice of activation function for each hidden layer, σ. In this tutorial, we’ll use a Sigmoid activation function.
 
-<img alt="" class="kq zh ei ev er fa v c" width="300" height="20" role="presentation" src="https://miro.medium.com/max/750/1*sX6T0Y4aa3ARh7IBS_sdqw.png" srcset="https://miro.medium.com/max/414/1*sX6T0Y4aa3ARh7IBS_sdqw.png 276w, https://miro.medium.com/max/750/1*sX6T0Y4aa3ARh7IBS_sdqw.png 500w" sizes="500px" title="Architecture of a 2-layer Neural Network" style=""> (Image by James Loy)
+<img alt="" class="kq zh ei ev er fa v c" width="300" height="200" role="presentation" src="https://miro.medium.com/max/750/1*sX6T0Y4aa3ARh7IBS_sdqw.png" srcset="https://miro.medium.com/max/414/1*sX6T0Y4aa3ARh7IBS_sdqw.png 276w, https://miro.medium.com/max/750/1*sX6T0Y4aa3ARh7IBS_sdqw.png 500w" sizes="500px" title="Architecture of a 2-layer Neural Network" style=""> (Image by James Loy)
 
 Each iteration of the training process consists of the following steps:
 - Calculating the predicted output ŷ, known as **feedforward**
