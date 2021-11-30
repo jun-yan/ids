@@ -53,7 +53,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3.10. Python dictionary" href="dict_in_python.html" />
+    <link rel="next" title="3.11. Python dictionary" href="dict_in_python.html" />
     <link rel="prev" title="2. Introduction" href="intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -114,17 +114,17 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="dict_in_python.html">
-     3.10. Python dictionary
+     3.11. Python dictionary
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="profiling.html">
-     3.11. Profiling
+     3.12. Profiling
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="mle-gamma.html">
-     3.12. Gamma MLE Simulation Study
+     3.13. Gamma MLE Simulation Study
     </a>
    </li>
   </ul>
@@ -379,13 +379,65 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scope-of-variables">
+   3.6. Scope of Variables
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initializing-variables">
+     3.6.1. Initializing Variables
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#local-scope">
+     3.6.2. Local scope
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#enclosing-scope-function-inside-function">
+     3.6.3. Enclosing scope: function inside function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gloabal-scope">
+     3.6.4. Gloabal scope
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#built-in-scope">
+     3.6.5. Built-in scope
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#legb-rule">
+     3.6.6. LEGB Rule
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#global-keywords">
+     3.6.7. Global keywords
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nonlocal-keywords">
+     3.6.8. Nonlocal Keywords
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#summary">
+     3.6.9. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#example-google-recruiting-problem">
-   3.6. Example: Google recruiting problem
+   3.7. Example: Google recruiting problem
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#export-e">
-     3.6.1. Export
+     3.7.1. Export
      <span class="math notranslate nohighlight">
       \(e\)
      </span>
@@ -393,41 +445,41 @@
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#write-functions-to-check-whether-a-number-is-a-prime">
-     3.6.2. Write functions to check whether a number is a prime
+     3.7.2. Write functions to check whether a number is a prime
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#error-and-debugging">
-   3.7. Error and Debugging
+   3.8. Error and Debugging
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#error">
-     3.7.1. Error
+     3.8.1. Error
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#debugging">
-     3.7.2. Debugging
+     3.8.2. Debugging
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#partial-list-of-debugging-commands">
-     3.7.3. Partial list of debugging commands
+     3.8.3. Partial list of debugging commands
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#general-resources">
-   3.8. General Resources
+   3.9. General Resources
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exercises">
-   3.9. Exercises
+   3.10. Exercises
   </a>
  </li>
 </ul>
@@ -653,8 +705,398 @@ We are going to use 3 ways to solve the problems.</p>
 </div>
 </div>
 </div>
+<div class="section" id="scope-of-variables">
+<h2><span class="section-number">3.6. </span>Scope of Variables<a class="headerlink" href="#scope-of-variables" title="Permalink to this headline">¶</a></h2>
+<p>Not all variables can be accessed from anywhere in a program.</p>
+<p>The part of a program where a variable is accessible is called its <strong>scope</strong>.</p>
+<p>Four types of variable scope (LEGB rule): Local -&gt; Enclosing -&gt; Global -&gt; Built-in.</p>
+<div class="section" id="initializing-variables">
+<h3><span class="section-number">3.6.1. </span>Initializing Variables<a class="headerlink" href="#initializing-variables" title="Permalink to this headline">¶</a></h3>
+<p>A variable is a label or a name given to a certain location in memory.</p>
+<p>Python Initializing rules:</p>
+<ul class="simple">
+<li><p>contain only letters, numbers and underscore “_”</p></li>
+<li><p>can not start with numbers</p></li>
+<li><p>can not be a keyword</p></li>
+</ul>
+<p>Difference In R:</p>
+<ul class="simple">
+<li><p>can allow dot “.”</p></li>
+<li><p>can only start with alphabet</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># No spaces are allowed in the variable</span>
+
+<span class="n">age</span> <span class="n">of</span> <span class="n">driver</span> <span class="o">=</span> <span class="mi">46</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  File &quot;&lt;ipython-input-1-2a2f77c0b400&gt;&quot;, line 2
+    first string value = &quot;First string&quot;
+          ^
+SyntaxError: invalid syntax
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cannot start with a number</span>
+
+<span class="mi">2018</span><span class="n">revenue</span> <span class="o">=</span> <span class="mi">14829</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  File &quot;&lt;ipython-input-2-79b210888e10&gt;&quot;, line 2
+    1st_string_value = &quot;First String&quot;
+     ^
+SyntaxError: invalid syntax
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Cannot be a keyword
+
+class = [&#39;low&#39;,&#39;high&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  File &quot;&lt;ipython-input-31-ae3e7ffa3e52&gt;&quot;, line 3
+    class = [&#39;low&#39;,&#39;high&#39;]
+          ^
+SyntaxError: invalid syntax
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Cannot contain .</span>
+
+<span class="n">age</span><span class="o">.</span><span class="n">of</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="mi">46</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-34-e9b3b1e0022f&gt; in &lt;module&gt;
+----&gt; 1 age.of.driver = 46
+
+
+NameError: name &#39;age&#39; is not defined
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Can start with underscore</span>
+
+<span class="n">_age_of_driver</span> <span class="o">=</span> <span class="mi">46</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">_age_of_driver</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>46
+</pre></div>
+</div>
+</div>
+<div class="section" id="local-scope">
+<h3><span class="section-number">3.6.2. </span>Local scope<a class="headerlink" href="#local-scope" title="Permalink to this headline">¶</a></h3>
+<p>A variable created inside a function belongs to the local scope of that function,<br />
+and can only be used inside that function.</p>
+<p>It is accessible from the point at which it is defined until the end of the function <br />
+and exists for as long as the function is executing</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## local scope can be called inside the function</span>
+
+<span class="k">def</span> <span class="nf">print_number</span><span class="p">():</span>
+    <span class="n">first_num</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="c1"># Print statement 1</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The first number defined is: &quot;</span><span class="p">,</span> <span class="n">first_num</span><span class="p">)</span>
+
+<span class="n">print_number</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The first number defined is:  1
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print statement 2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The first number defined is: &quot;</span><span class="p">,</span> <span class="n">first_num</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-5-9c1ccaa4c706&gt; in &lt;module&gt;
+      1 # Print statement 2
+----&gt; 2 print(&quot;The first number defined is: &quot;, first_num)
+
+
+NameError: name &#39;first_num&#39; is not defined
+</pre></div>
+</div>
+</div>
+<div class="section" id="enclosing-scope-function-inside-function">
+<h3><span class="section-number">3.6.3. </span>Enclosing scope: function inside function<a class="headerlink" href="#enclosing-scope-function-inside-function" title="Permalink to this headline">¶</a></h3>
+<p>When dealing with nested function,
+variable defined inside inner function cannot be reached from outer function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">outer</span><span class="p">():</span>
+    <span class="n">first_num</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">def</span> <span class="nf">inner</span><span class="p">():</span>
+        <span class="n">second_num</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="c1"># Print statement 1 - Scope: Inner</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;first_num from outer: &quot;</span><span class="p">,</span> <span class="n">first_num</span><span class="p">)</span>
+        <span class="c1"># Print statement 2 - Scope: Inner</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;second_num from inner: &quot;</span><span class="p">,</span> <span class="n">second_num</span><span class="p">)</span>
+    <span class="n">inner</span><span class="p">()</span>
+    <span class="c1"># Print statement 3 - Scope: Outer</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;second_num from inner: &quot;</span><span class="p">,</span> <span class="n">second_num</span><span class="p">)</span>
+
+<span class="n">outer</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>first_num from outer:  1
+second_num from inner:  2
+
+
+
+---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-7-1c430167b600&gt; in &lt;module&gt;
+     11     print(&quot;second_num from inner: &quot;, second_num)
+     12 
+---&gt; 13 outer()
+
+
+&lt;ipython-input-7-1c430167b600&gt; in outer()
+      9     inner()
+     10     # Print statement 3 - Scope: Outer
+---&gt; 11     print(&quot;second_num from inner: &quot;, second_num)
+     12 
+     13 outer()
+
+
+NameError: name &#39;second_num&#39; is not defined
+</pre></div>
+</div>
+<p>This is an enclosing scope. Outer’s variables have a larger scope <br />
+and can be accessed from the enclosed function inner().</p>
+</div>
+<div class="section" id="gloabal-scope">
+<h3><span class="section-number">3.6.4. </span>Gloabal scope<a class="headerlink" href="#gloabal-scope" title="Permalink to this headline">¶</a></h3>
+<p>Whenever a variable is defined outside any function, it becomes a global variable</p>
+<p>Global variables are available from within any scope, global and local.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mascot</span> <span class="o">=</span> <span class="s2">&quot;Huskies!&quot;</span>
+
+<span class="k">def</span> <span class="nf">chant</span><span class="p">():</span>
+    <span class="n">uni</span> <span class="o">=</span> <span class="s2">&quot;UConn!&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">uni</span><span class="p">,</span> <span class="n">mascot</span><span class="p">)</span>
+
+<span class="n">chant</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>UConn! Huskies!
+</pre></div>
+</div>
+</div>
+<div class="section" id="built-in-scope">
+<h3><span class="section-number">3.6.5. </span>Built-in scope<a class="headerlink" href="#built-in-scope" title="Permalink to this headline">¶</a></h3>
+<p>All the special reserved keywords fall under this scope.</p>
+<p>We can call the keywords anywhere within our program without having to define them before use.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="s2">&quot;keywords&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Here is a list of the Python keywords.  Enter any keyword to get more help.
+
+False               class               from                or
+None                continue            global              pass
+True                def                 if                  raise
+and                 del                 import              return
+as                  elif                in                  try
+assert              else                is                  while
+async               except              lambda              with
+await               finally             nonlocal            yield
+break               for                 not                 
+</pre></div>
+</div>
+</div>
+<div class="section" id="legb-rule">
+<h3><span class="section-number">3.6.6. </span>LEGB Rule<a class="headerlink" href="#legb-rule" title="Permalink to this headline">¶</a></h3>
+<p>LEGB (Local -&gt; Enclosing -&gt; Global -&gt; Built-in) <br />
+is the logic followed by a Python interpreter when it is executing your program.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="n">Image</span><span class="p">(</span><span class="s2">&quot;legb.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Example to introduce Global keywords</span>
+
+<span class="n">mascot</span> <span class="o">=</span> <span class="s2">&quot;Huskies!&quot;</span>
+
+<span class="c1"># change the value of mascot</span>
+<span class="k">def</span> <span class="nf">change_mascot</span><span class="p">(</span><span class="n">new_mascot</span><span class="p">):</span>
+    <span class="n">mascot</span> <span class="o">=</span> <span class="n">new_mascot</span>
+
+<span class="k">def</span> <span class="nf">chant</span><span class="p">():</span>
+    <span class="n">uni</span> <span class="o">=</span> <span class="s2">&quot;UConn!&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">uni</span><span class="p">,</span> <span class="n">mascot</span><span class="p">)</span>
+
+<span class="n">change_mascot</span><span class="p">(</span><span class="s2">&quot;Bulldogs!&quot;</span><span class="p">)</span>
+
+<span class="n">chant</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>UConn! Huskies!
+</pre></div>
+</div>
+<p>Doesn’t change?</p>
+<p>This is because when we set the new value for mascot, <br />
+it created a new local variable mascot in the scope of change_mascot().</p>
+<p>It did not change anything for the global scope.</p>
+<p>This is where the global keyword comes in handy.</p>
+</div>
+<div class="section" id="global-keywords">
+<h3><span class="section-number">3.6.7. </span>Global keywords<a class="headerlink" href="#global-keywords" title="Permalink to this headline">¶</a></h3>
+<p>With global, you’re telling Python to use the globally defined variable <br />
+instead of locally creating one.<br />
+To use the keyword, simply type ‘global’,
+in front of the variable name.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mascot</span> <span class="o">=</span> <span class="s2">&quot;Huskies!&quot;</span>
+
+
+<span class="c1"># change the value of mascot</span>
+<span class="k">def</span> <span class="nf">change_mascot</span><span class="p">(</span><span class="n">new_mascot</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">mascot</span>
+    <span class="n">mascot</span> <span class="o">=</span> <span class="n">new_mascot</span>
+
+<span class="k">def</span> <span class="nf">chant</span><span class="p">():</span>
+    <span class="n">uni</span> <span class="o">=</span> <span class="s2">&quot;UConn!&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">uni</span><span class="p">,</span> <span class="n">mascot</span><span class="p">)</span>
+
+<span class="n">change_mascot</span><span class="p">(</span><span class="s2">&quot;Bulldogs!&quot;</span><span class="p">)</span>
+
+<span class="n">chant</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>UConn! Huskies!
+</pre></div>
+</div>
+<p>In R, using <strong>Super Assignment(&lt;&lt;-)</strong> instead of <strong>regular assignment(&lt;-)</strong> <br />
+can help make a global variable from local scope</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Example to introduce Nonlocal keywords</span>
+
+<span class="k">def</span> <span class="nf">outer</span><span class="p">():</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">def</span> <span class="nf">inner</span><span class="p">():</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># change the first_num from 0 to 2</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># generate a new variable b</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;b =&quot;</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="n">inner</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a =&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+
+<span class="n">outer</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>b = 1
+a = 0
+</pre></div>
+</div>
+<p>We expect the value of a is updated to 2 instead of 0,
+but failed because the modify take place in inner function.</p>
+<p>To move the updates of a from</p>
+</div>
+<div class="section" id="nonlocal-keywords">
+<h3><span class="section-number">3.6.8. </span>Nonlocal Keywords<a class="headerlink" href="#nonlocal-keywords" title="Permalink to this headline">¶</a></h3>
+<p>The nonlocal keyword is useful in nested functions.</p>
+<p>Nonlocal keyword works similar to the global, <br />
+but rather than global, <br />
+this keyword declares a variable to point to <br />
+the variable of outside enclosing function, in case of nested functions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">outer</span><span class="p">():</span>
+    <span class="n">first_num</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">def</span> <span class="nf">inner</span><span class="p">():</span>
+        <span class="k">nonlocal</span> <span class="n">first_num</span> <span class="c1">#</span>
+        <span class="n">first_num</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># change the second_num from 1 to 0</span>
+        <span class="n">second_num</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;inner - second_num is: &quot;</span><span class="p">,</span> <span class="n">second_num</span><span class="p">)</span>
+    <span class="n">inner</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;outer - first_num is: &quot;</span><span class="p">,</span> <span class="n">first_num</span><span class="p">)</span>
+
+<span class="n">outer</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>inner - second_num is:  1
+outer - first_num is:  0
+</pre></div>
+</div>
+</div>
+<div class="section" id="summary">
+<h3><span class="section-number">3.6.9. </span>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Four types of scope</p>
+<ul>
+<li><p>Local</p></li>
+<li><p>Enclosing</p></li>
+<li><p>Global</p></li>
+<li><p>Build-in</p></li>
+</ul>
+</li>
+<li><p>Two ways to change the scope of a variable inside function</p>
+<ul>
+<li><p>Global keywords</p></li>
+<li><p>Nonlocal keywords</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
 <div class="section" id="example-google-recruiting-problem">
-<h2><span class="section-number">3.6. </span>Example: Google recruiting problem<a class="headerlink" href="#example-google-recruiting-problem" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.7. </span>Example: Google recruiting problem<a class="headerlink" href="#example-google-recruiting-problem" title="Permalink to this headline">¶</a></h2>
 <p>Find the first 10-digit prime found in consecutive digits of <span class="math notranslate nohighlight">\(e\)</span>.</p>
 <ul class="simple">
 <li><p>Get the list of digits of <span class="math notranslate nohighlight">\(e\)</span></p></li>
@@ -662,7 +1104,7 @@ We are going to use 3 ways to solve the problems.</p>
 <li><p>Try to make it more efficient!</p></li>
 </ul>
 <div class="section" id="export-e">
-<h3><span class="section-number">3.6.1. </span>Export <span class="math notranslate nohighlight">\(e\)</span><a class="headerlink" href="#export-e" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.7.1. </span>Export <span class="math notranslate nohighlight">\(e\)</span><a class="headerlink" href="#export-e" title="Permalink to this headline">¶</a></h3>
 <p>If you try to export <span class="math notranslate nohighlight">\(e\)</span> using the format command in Python, you will
 not get the precise <span class="math notranslate nohighlight">\(e\)</span> value due to the double type data’s feature!</p>
 <div class="cell docutils container">
@@ -710,7 +1152,7 @@ an existed list. For example, the website
 </div>
 </div>
 <div class="section" id="write-functions-to-check-whether-a-number-is-a-prime">
-<h3><span class="section-number">3.6.2. </span>Write functions to check whether a number is a prime<a class="headerlink" href="#write-functions-to-check-whether-a-number-is-a-prime" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.7.2. </span>Write functions to check whether a number is a prime<a class="headerlink" href="#write-functions-to-check-whether-a-number-is-a-prime" title="Permalink to this headline">¶</a></h3>
 <p>Here the most basic and bruteforce way is used. Check all the factors
 less than <span class="math notranslate nohighlight">\(\sqrt n+1\)</span> for all the odd numbers <span class="math notranslate nohighlight">\(n\)</span>.</p>
 <p>We have many powerful algorithms to achieve this if we need to check
@@ -744,11 +1186,11 @@ enough.</p>
 </div>
 </div>
 <div class="section" id="error-and-debugging">
-<h2><span class="section-number">3.7. </span>Error and Debugging<a class="headerlink" href="#error-and-debugging" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.8. </span>Error and Debugging<a class="headerlink" href="#error-and-debugging" title="Permalink to this headline">¶</a></h2>
 <p>Resource: Python Data Science Handbook</p>
 <p>Code development and data analysis always require a bit of trial and error, and IPython contains tools to streamline this process.</p>
 <div class="section" id="error">
-<h3><span class="section-number">3.7.1. </span>Error<a class="headerlink" href="#error" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.8.1. </span>Error<a class="headerlink" href="#error" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
@@ -775,7 +1217,7 @@ enough.</p>
 <p>Calling func2 results in an error, and reading the printed trace lets us see exactly what <a class="reference external" href="http://happened.By">happened.By</a> default, this trace includes several lines showing the context of each step that led to the error.</p>
 </div>
 <div class="section" id="debugging">
-<h3><span class="section-number">3.7.2. </span>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.8.2. </span>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h3>
 <p>The standard Python tool for interactive debugging is pdb, the Python debugger. This debugger lets the user step through the code line by line in order to see what might be causing a more difficult error. The IPython-enhanced version of this is ipdb, the IPython debugger.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -787,7 +1229,7 @@ enough.</p>
 <p>The interactive debugger allows much more than this, though–we can even step up and down through the stack and explore the values of variables there</p>
 </div>
 <div class="section" id="partial-list-of-debugging-commands">
-<h3><span class="section-number">3.7.3. </span>Partial list of debugging commands<a class="headerlink" href="#partial-list-of-debugging-commands" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.8.3. </span>Partial list of debugging commands<a class="headerlink" href="#partial-list-of-debugging-commands" title="Permalink to this headline">¶</a></h3>
 <p>There are many more available commands for interactive debugging than we’ve listed here; the following table contains a description of some of the more common and useful ones:</p>
 <p><strong>Command	Description</strong></p>
 <p><strong>list</strong>	Show the current location in the file<br />
@@ -802,7 +1244,7 @@ enough.</p>
 </div>
 </div>
 <div class="section" id="general-resources">
-<h2><span class="section-number">3.8. </span>General Resources<a class="headerlink" href="#general-resources" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.9. </span>General Resources<a class="headerlink" href="#general-resources" title="Permalink to this headline">¶</a></h2>
 <p>Popular textbooks on Python programming include
 <span id="id1">[]</span> and <span id="id2">[]</span>.</p>
 <p>Python is either the dominant player or a major player in</p>
@@ -816,7 +1258,7 @@ enough.</p>
 </ul>
 </div>
 <div class="section" id="exercises">
-<h2><span class="section-number">3.9. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.10. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
 <li><p>Write a function to demonstrate the Monty Hall problem through
 simulation. The function takes two arguments <code class="docutils literal notranslate"><span class="pre">ndoors</span></code> and
@@ -905,7 +1347,7 @@ study. Discuss your findings.</p></li>
     <a class='right-next' id="next-link" href="dict_in_python.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3.10. </span>Python dictionary</p>
+        <p class="prev-next-title"><span class="section-number">3.11. </span>Python dictionary</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
