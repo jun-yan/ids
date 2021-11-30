@@ -185,6 +185,406 @@ float_epsilon = np.finfo(float).eps
 print(float_epsilon)
 ```
 
+## Scope of Variables
+
+Not all variables can be accessed from anywhere in a program. 
+ 
+The part of a program where a variable is accessible is called its **scope**. 
+ 
+Four types of variable scope (LEGB rule): Local -> Enclosing -> Global -> Built-in.
+
+
+### Initializing Variables
+
+A variable is a label or a name given to a certain location in memory.
+
+Python Initializing rules:
+* contain only letters, numbers and underscore "_"
+* can not start with numbers
+* can not be a keyword
+
+Difference In R:
+* can allow dot "."
+* can only start with alphabet
+
+
+```{code-cell} ipython3
+# No spaces are allowed in the variable
+
+age of driver = 46
+```
+
+
+      File "<ipython-input-1-2a2f77c0b400>", line 2
+        first string value = "First string"
+              ^
+    SyntaxError: invalid syntax
+
+
+
+
+```{code-cell} ipython3
+# Cannot start with a number
+
+2018revenue = 14829
+```
+
+
+      File "<ipython-input-2-79b210888e10>", line 2
+        1st_string_value = "First String"
+         ^
+    SyntaxError: invalid syntax
+
+
+
+
+```{code-cell} ipython3
+# Cannot be a keyword
+
+class = ['low','high']
+```
+
+
+      File "<ipython-input-31-ae3e7ffa3e52>", line 3
+        class = ['low','high']
+              ^
+    SyntaxError: invalid syntax
+
+
+
+
+```{code-cell} ipython3
+## Cannot contain .
+
+age.of.driver = 46
+```
+
+
+    ---------------------------------------------------------------------------
+
+    NameError                                 Traceback (most recent call last)
+
+    <ipython-input-34-e9b3b1e0022f> in <module>
+    ----> 1 age.of.driver = 46
+    
+
+    NameError: name 'age' is not defined
+
+
+
+```{code-cell} ipython3
+## Can start with underscore
+
+_age_of_driver = 46
+
+print(_age_of_driver)
+```
+
+    46
+
+
+### Local scope
+
+A variable created inside a function belongs to the local scope of that function,<br />
+and can only be used inside that function.
+
+It is accessible from the point at which it is defined until the end of the function <br />
+and exists for as long as the function is executing
+
+
+```{code-cell} ipython3
+## local scope can be called inside the function
+
+def print_number():
+    first_num = 1
+    # Print statement 1
+    print("The first number defined is: ", first_num)
+
+print_number()
+```
+
+    The first number defined is:  1
+
+
+
+```{code-cell} ipython3
+# Print statement 2
+print("The first number defined is: ", first_num)
+```
+
+
+    ---------------------------------------------------------------------------
+
+    NameError                                 Traceback (most recent call last)
+
+    <ipython-input-5-9c1ccaa4c706> in <module>
+          1 # Print statement 2
+    ----> 2 print("The first number defined is: ", first_num)
+    
+
+    NameError: name 'first_num' is not defined
+
+
+### Enclosing scope: function inside function
+
+When dealing with nested function,
+variable defined inside inner function cannot be reached from outer function.
+
+
+```{code-cell} ipython3
+def outer():
+    first_num = 1
+    def inner():
+        second_num = 2
+        # Print statement 1 - Scope: Inner
+        print("first_num from outer: ", first_num)
+        # Print statement 2 - Scope: Inner
+        print("second_num from inner: ", second_num)
+    inner()
+    # Print statement 3 - Scope: Outer
+    print("second_num from inner: ", second_num)
+
+outer()
+```
+
+    first_num from outer:  1
+    second_num from inner:  2
+
+
+
+    ---------------------------------------------------------------------------
+
+    NameError                                 Traceback (most recent call last)
+
+    <ipython-input-7-1c430167b600> in <module>
+         11     print("second_num from inner: ", second_num)
+         12 
+    ---> 13 outer()
+    
+
+    <ipython-input-7-1c430167b600> in outer()
+          9     inner()
+         10     # Print statement 3 - Scope: Outer
+    ---> 11     print("second_num from inner: ", second_num)
+         12 
+         13 outer()
+
+
+    NameError: name 'second_num' is not defined
+
+
+This is an enclosing scope. Outer's variables have a larger scope <br />
+and can be accessed from the enclosed function inner().
+
+### Gloabal scope
+
+Whenever a variable is defined outside any function, it becomes a global variable
+
+Global variables are available from within any scope, global and local.
+
+
+```{code-cell} ipython3
+mascot = "Huskies!"
+
+def chant():
+    uni = "UConn!"
+    print(uni, mascot)
+
+chant()
+```
+
+    UConn! Huskies!
+
+
+### Built-in scope
+
+All the special reserved keywords fall under this scope.
+
+We can call the keywords anywhere within our program without having to define them before use.
+
+
+```{code-cell} ipython3
+help("keywords")
+```
+
+    
+    Here is a list of the Python keywords.  Enter any keyword to get more help.
+    
+    False               class               from                or
+    None                continue            global              pass
+    True                def                 if                  raise
+    and                 del                 import              return
+    as                  elif                in                  try
+    assert              else                is                  while
+    async               except              lambda              with
+    await               finally             nonlocal            yield
+    break               for                 not                 
+    
+
+
+### LEGB Rule
+
+LEGB (Local -> Enclosing -> Global -> Built-in) <br />
+is the logic followed by a Python interpreter when it is executing your program.
+
+
+```{code-cell} ipython3
+from IPython.display import Image
+Image("legb.png")
+```
+
+
+
+
+    
+    
+
+
+
+
+```{code-cell} ipython3
+
+```
+
+
+```{code-cell} ipython3
+## Example to introduce Global keywords
+
+mascot = "Huskies!"
+
+# change the value of mascot
+def change_mascot(new_mascot):
+    mascot = new_mascot
+
+def chant():
+    uni = "UConn!"
+    print(uni, mascot)
+
+change_mascot("Bulldogs!")
+
+chant()
+```
+
+    UConn! Huskies!
+
+
+Doesn't change?
+
+This is because when we set the new value for mascot, <br />
+it created a new local variable mascot in the scope of change_mascot(). 
+
+It did not change anything for the global scope. 
+
+This is where the global keyword comes in handy.
+
+### Global keywords
+
+With global, you're telling Python to use the globally defined variable <br />
+instead of locally creating one.<br />
+To use the keyword, simply type 'global',
+in front of the variable name. 
+
+
+```{code-cell} ipython3
+mascot = "Huskies!"
+
+
+# change the value of mascot
+def change_mascot(new_mascot):
+    global mascot
+    mascot = new_mascot
+
+def chant():
+    uni = "UConn!"
+    print(uni, mascot)
+
+change_mascot("Bulldogs!")
+
+chant()
+```
+
+    UConn! Huskies!
+
+
+In R, using **Super Assignment(<<-)** instead of **regular assignment(<-)** <br />
+can help make a global variable from local scope
+
+
+```{code-cell} ipython3
+
+```
+
+
+```{code-cell} ipython3
+## Example to introduce Nonlocal keywords
+
+def outer():
+    a = 0
+    def inner():
+        a = 2 # change the first_num from 0 to 2
+        b = 1 # generate a new variable b
+        print("b =", b)
+    inner()
+    print("a =", a)
+
+outer()
+```
+
+    b = 1
+    a = 0
+
+
+We expect the value of a is updated to 2 instead of 0,
+but failed because the modify take place in inner function.
+
+To move the updates of a from
+
+### Nonlocal Keywords
+
+The nonlocal keyword is useful in nested functions. 
+
+Nonlocal keyword works similar to the global, <br />
+but rather than global, <br />
+this keyword declares a variable to point to <br />
+the variable of outside enclosing function, in case of nested functions.
+
+
+```{code-cell} ipython3
+def outer():
+    first_num = 1
+    def inner():
+        nonlocal first_num #
+        first_num = 0 # change the second_num from 1 to 0
+        second_num = 1
+        print("inner - second_num is: ", second_num)
+    inner()
+    print("outer - first_num is: ", first_num)
+
+outer()
+```
+
+    inner - second_num is:  1
+    outer - first_num is:  0
+
+
+## Summary
+
+* Four types of scope
+    + Local
+    + Enclosing
+    + Global
+    + Build-in
+    
+* Two ways to change the scope of a variable inside function
+    + Global keywords
+    + Nonlocal keywords
+
+
+
+
+
+
+
 ## Example: Google recruiting problem
 Find the first 10-digit prime found in consecutive digits of $e$.
 
