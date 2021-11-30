@@ -17,36 +17,25 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import pandas    ## !pip3 install pandas (uncomment to add)
-import timeit    ## base package
-
-### First interpretation using dynamic programming memorization
-def fib_dm_helper(n,mem):
-    if mem[n] is not None:
-        return mem[n]
-    elif (n==1 or n==2):
-        result = 1
-    else:
-        result = fib_dm_helper(n - 1, mem) + fib_dm_helper(n - 2, mem)
-    mem[n]=result
-    return result
-
-def fib_dm(n):
-    mem=[None]*(n+1)
-    return fib_dm_helper(n, mem)
-
-%timeit fib_dm(100)
+from sklearn.datasets import load_iris
+from sklearn.neural_network import MLPClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+import pandas as pd
+from sklearn.metrics import plot_confusion_matrix
+import matplotlib.pyplot as plt
+from sklearn.metrics import classification_report
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m/tmp/ipykernel_2041/3867682920.py[0m in [0;36m<module>[0;34m[0m
-[0;32m----> 1[0;31m [0;32mimport[0m [0mpandas[0m    [0;31m## !pip3 install pandas (uncomment to add)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      2[0m [0;32mimport[0m [0mtimeit[0m    [0;31m## base package[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      3[0m [0;34m[0m[0m
-[1;32m      4[0m [0;31m### First interpretation using dynamic programming memorization[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      5[0m [0;32mdef[0m [0mfib_dm_helper[0m[0;34m([0m[0mn[0m[0;34m,[0m[0mmem[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m/tmp/ipykernel_1592/2772313778.py[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mdatasets[0m [0;32mimport[0m [0mload_iris[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mneural_network[0m [0;32mimport[0m [0mMLPClassifier[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mmodel_selection[0m [0;32mimport[0m [0mtrain_test_split[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mpreprocessing[0m [0;32mimport[0m [0mStandardScaler[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;32mimport[0m [0mpandas[0m [0;32mas[0m [0mpd[0m[0;34m[0m[0;34m[0m[0m
 
-[0;31mModuleNotFoundError[0m: No module named 'pandas'
-ModuleNotFoundError: No module named 'pandas'
+[0;31mModuleNotFoundError[0m: No module named 'sklearn'
+ModuleNotFoundError: No module named 'sklearn'
 
