@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>7.12. Gradient descent &#8212; Introduction to Data Science</title>
+    <title>Gradient descent &#8212; Introduction to Data Science</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,8 +53,6 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="8. Data Science Competition" href="dscompetition.html" />
-    <link rel="prev" title="7.10. Recurrent Neural Network" href="RNN_CNN.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -91,7 +89,7 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="tasks.html">
    1. Task Board
@@ -185,16 +183,16 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 current active has-children">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="sklearn.html">
    7. Scikit Learn
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
   <label for="toctree-checkbox-5">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="current">
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="Measures_of_classification_accuracy.html">
      7.1. Measures of classification accuracy and functions in Python
@@ -233,16 +231,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="Neural_networks_in_Python.html">
      7.9. Neural Networks in Python
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="RNN_CNN.html">
-     7.10. Recurrent Neural Network
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     7.12. Gradient descent
     </a>
    </li>
   </ul>
@@ -350,17 +338,17 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#batch-gd-mini-batch-gd">
-   7.12.1. Batch GD &amp; Mini-batch GD
+   Batch GD &amp; Mini-batch GD
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#gd-with-momentum">
-   7.12.2. GD with momentum
+   GD with momentum
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#adam">
-   7.12.3. Adam
+   Adam
   </a>
  </li>
 </ul>
@@ -375,14 +363,14 @@
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="gradient-descent">
-<h1><span class="section-number">7.12. </span>Gradient descent<a class="headerlink" href="#gradient-descent" title="Permalink to this headline">¶</a></h1>
+<h1>Gradient descent<a class="headerlink" href="#gradient-descent" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Batch GD &amp; Mini-batch GD</p></li>
 <li><p>GD with momentum</p></li>
 <li><p>Adam</p></li>
 </ul>
 <div class="section" id="batch-gd-mini-batch-gd">
-<h2><span class="section-number">7.12.1. </span>Batch GD &amp; Mini-batch GD<a class="headerlink" href="#batch-gd-mini-batch-gd" title="Permalink to this headline">¶</a></h2>
+<h2>Batch GD &amp; Mini-batch GD<a class="headerlink" href="#batch-gd-mini-batch-gd" title="Permalink to this headline">¶</a></h2>
 <p>The vanilla GD updates the parameters for entire dataset:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -404,7 +392,7 @@ Mini-batch GD takes the advantage of both. Note that in training neural network 
 <strong>Challenges</strong>:  Saddle points are usually surrounded by a plateau of the same error, which makes it notoriously hard for SGD to escape, as the gradient is close to zero in all dimensions.</p>
 </div>
 <div class="section" id="gd-with-momentum">
-<h2><span class="section-number">7.12.2. </span>GD with momentum<a class="headerlink" href="#gd-with-momentum" title="Permalink to this headline">¶</a></h2>
+<h2>GD with momentum<a class="headerlink" href="#gd-with-momentum" title="Permalink to this headline">¶</a></h2>
 <p>The momentum term increase for dimensions whose gradients point in the same directions and reduces updates for dimensions whose gradients change directions.<br />
 “Ball runing down a surface”<br />
 We we gain faster convergence.
@@ -414,7 +402,7 @@ v_t = \gamma v_{t-1}+ \eta\nabla_\theta J(\theta) \\
 \)</span>$</p>
 </div>
 <div class="section" id="adam">
-<h2><span class="section-number">7.12.3. </span>Adam<a class="headerlink" href="#adam" title="Permalink to this headline">¶</a></h2>
+<h2>Adam<a class="headerlink" href="#adam" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Adagrad: adapts the learning rate</p></li>
 <li><p>Adadelta: extension of Adagrad, more conservative</p></li>
@@ -459,21 +447,7 @@ v_t = \beta_2{t-1}+(1-\beta_2)g_t^2
               
         
             <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="RNN_CNN.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">7.10. </span>Recurrent Neural Network</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="dscompetition.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">8. </span>Data Science Competition</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+<div class='prev-next-area'>
 </div>
         
         </div>
