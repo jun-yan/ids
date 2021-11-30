@@ -567,7 +567,7 @@ outer()
     outer - first_num is:  0
 
 
-## Summary
+### Summary
 
 * Four types of scope
     + Local
