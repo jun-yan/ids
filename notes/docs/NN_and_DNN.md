@@ -258,7 +258,7 @@ fashion_model.add(Dense(num_classes, activation='softmax'))
 
 
 ```{code-cell} ipython3
-fashion_model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(),metrics=['accuracy'])
+fashion_model.compile(loss=keras.losses.categorical_crossentropy, optimizer=tf.keras.optimizers.Adam(),metrics=['accuracy'])
 ```
 
 
