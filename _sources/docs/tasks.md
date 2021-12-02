@@ -53,6 +53,17 @@ When you pick a task, cross it out and add your name.
 1. Sreeram Anantharaman ~~Advanced Matplotlib: customization; 3d; maps (JVP: p.275-310)~~
 1. Statistical modeling with statmodels
 
+## Final Presentation Order
+
+```{code-cell} ipython3
+import random
+
+presenters = ["Anantharaman, Sreeram", "Eada, Surya Teja","Hyde, Sydney",
+              "Min, Zefang", "Xu, Shike","Zhang, Jintao"]
+random.seed(719075)
+random.sample(presenters, 6)
+```
+
 
 ## Catching Up Topics
 
