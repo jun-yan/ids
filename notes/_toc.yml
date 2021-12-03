@@ -10,6 +10,7 @@ chapters:
   - file: docs/dict_in_python
   - file: docs/profiling
   - file: docs/mle-gamma
+  - file: docs/Visualization_with_Matplotlib
 - file: docs/Numpy
   sections:
   - file: docs/NumpyAdvanced
